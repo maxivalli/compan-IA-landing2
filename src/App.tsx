@@ -65,7 +65,7 @@ const Hero = () => (
   <section className="relative min-h-screen flex items-center overflow-hidden">
     {/* Imagen de fondo full-screen */}
     <img
-      src="https://res.cloudinary.com/dy1ll1azp/image/upload/v1774034375/Gemini_Generated_Image_mn4eosmn4eosmn4e_dnumw6.png"
+      src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_1600/v1774034375/Gemini_Generated_Image_mn4eosmn4eosmn4e_dnumw6.png"
       alt="Adulta mayor usando tablet"
       className="absolute inset-0 w-full h-full object-cover"
       referrerPolicy="no-referrer"
@@ -190,7 +190,7 @@ const Problem = () => (
         <div className="grid lg:grid-cols-2 items-center">
           <div className="h-full min-h-[300px]">
             <img
-              src="https://res.cloudinary.com/dy1ll1azp/image/upload/v1774034548/Gemini_Generated_Image_3q9gur3q9gur3q9g_kk77am.png"
+              src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774034548/Gemini_Generated_Image_3q9gur3q9gur3q9g_kk77am.png"
               alt="Familia mirando álbum"
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
@@ -466,7 +466,7 @@ const FunctionalitiesDetail = () => (
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
             <img
-              src="https://res.cloudinary.com/dy1ll1azp/image/upload/v1774034833/Gemini_Generated_Image_pf7te8pf7te8pf7t_j8zdry.png"
+              src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774034833/Gemini_Generated_Image_pf7te8pf7te8pf7t_j8zdry.png"
               alt="Hijo usando teléfono"
               className="rounded-[40px] shadow-xl"
               referrerPolicy="no-referrer"
@@ -513,7 +513,7 @@ const FunctionalitiesDetail = () => (
           </div>
           <div className="order-1 lg:order-2 relative">
             <img
-              src="https://res.cloudinary.com/dy1ll1azp/image/upload/v1774035006/Gemini_Generated_Image_qd0wqrqd0wqrqd0w_mst50x.png"
+              src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774035006/Gemini_Generated_Image_qd0wqrqd0wqrqd0w_mst50x.png"
               alt="Panel de control"
               className="rounded-[40px] shadow-xl border-8 border-slate-100"
               referrerPolicy="no-referrer"
@@ -561,7 +561,7 @@ const FunctionalitiesDetail = () => (
           </div>
           <div className="relative">
             <img
-              src="https://res.cloudinary.com/dy1ll1azp/image/upload/v1774035006/Gemini_Generated_Image_qd0wqrqd0wqrqd0w_mst50x.png"
+              src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774069222/Gemini_Generated_Image_9qjd9c9qjd9c9qjd_pqrrvk.png"
               alt="Adulta mayor escuchando música"
               className="rounded-[40px] shadow-xl"
               referrerPolicy="no-referrer"
