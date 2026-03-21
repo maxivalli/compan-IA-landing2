@@ -114,7 +114,7 @@ const Hero = () => (
         </div>
 
         {/* Trust bar */}
-        <div className="flex items-center gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
           <div className="flex -space-x-2">
             {[
               'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=72&h=72&q=80',
