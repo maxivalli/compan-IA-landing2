@@ -1093,13 +1093,16 @@ const Comparison = () => {
     'Estimulación cognitiva',
     'Informes a la familia',
     'Sin capacitación técnica',
+    'Fotos de familia narradas en voz alta',
+    'Lee textos y documentos (OCR)',
+    'Autofoto directo a la familia',
   ];
   const cols = [
-    { name: 'CompañIA', values: [true, true, true, true, true, true, true], highlight: true },
-    { name: 'heyATO', values: [true, false, true, true, false, true, false], highlight: false },
-    { name: 'Cuidador presencial', values: [false, true, true, true, false, false, true], highlight: false },
-    { name: 'Videollamada', values: [false, true, false, false, false, false, true], highlight: false },
-    { name: 'Teléfono', values: [false, true, false, false, false, false, true], highlight: false },
+    { name: 'CompañIA', values: [true, true, true, true, true, true, true, true, true, true], highlight: true },
+    { name: 'heyATO', values: [true, false, true, true, false, true, false, false, false, false], highlight: false },
+    { name: 'Cuidador presencial', values: [false, true, true, true, false, false, true, true, false, true], highlight: false },
+    { name: 'Videollamada', values: [false, true, false, false, false, false, true, false, false, false], highlight: false },
+    { name: 'Teléfono', values: [false, true, false, false, false, false, true, false, false, false], highlight: false },
   ];
 
   return (
