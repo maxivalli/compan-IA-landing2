@@ -18,12 +18,21 @@ import {
   Play,
   Pause,
   Check,
-  X
+  X,
+  ShieldAlert,
+  Activity,
+  MessageCircleWarning,
+  Bell,
+  PhoneCall,
+  Mic,
+  Image,
+  UserCheck,
+  Radio
 } from 'lucide-react';
 
 // Helper: nombre de marca con estilo
-const Brand = ({ className = '' }: { className?: string }) => (
-  <span className={className}>Compañ<span className="text-brand-orange">IA</span></span>
+const Brand = ({ className = '', iaClassName = 'text-brand-orange' }: { className?: string; iaClassName?: string }) => (
+  <span className={`font-serif font-bold ${className}`}>Compañ<span className={`font-sans ${iaClassName}`}>IA</span></span>
 );
 
 // --- Components ---
@@ -33,9 +42,7 @@ const Navbar = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center h-16">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-brand-orange rounded-full flex items-center justify-center">
-            <Heart className="text-white w-5 h-5" />
-          </div>
+          <img src="/adaptive-icon.png" alt="CompañIA" className="w-8 h-8 rounded-full object-cover" />
           <span className="text-xl font-bold tracking-tight text-slate-900">
             <Brand />
           </span>
@@ -49,7 +56,7 @@ const Navbar = () => (
           <a href="#faq" className="text-sm font-medium text-slate-600 hover:text-brand-orange transition-colors">FAQ</a>
         </div>
         <a
-          href="https://expo.dev/accounts/compan-ia/projects/AbuApp"
+          href="https://expo.dev/artifacts/eas/egD2MQaSYuWjvgrCN9NncA.apk"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-brand-orange text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-orange-600 transition-all shadow-md shadow-orange-200"
@@ -91,7 +98,7 @@ const Hero = () => (
         </p>
         <div className="flex flex-wrap gap-4 mb-12">
           <a
-            href="https://expo.dev/accounts/compan-ia/projects/AbuApp"
+            href="https://expo.dev/artifacts/eas/egD2MQaSYuWjvgrCN9NncA.apk"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-brand-orange text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-500 transition-all shadow-lg shadow-orange-900/40"
@@ -136,7 +143,7 @@ const Hero = () => (
         className="hidden lg:block absolute right-12 bottom-20 bg-white rounded-2xl p-6 shadow-2xl max-w-xs"
       >
         <p className="text-slate-700 italic text-sm leading-relaxed mb-4">
-          "Desde que tiene <strong>CompañIA</strong>, mamá llama más tranquila y nosotros dormimos mejor."
+          "Desde que tiene <strong>CompañIA</strong>, mamá está más feliz y nosotros dormimos mejor."
         </p>
         <div className="flex items-center gap-3">
           <img
@@ -196,18 +203,18 @@ const Problem = () => (
               referrerPolicy="no-referrer"
             />
           </div>
-          <div className="p-8 lg:p-16">
-            <div className="space-y-8">
+          <div className="p-8 lg:p-16 flex flex-col items-center justify-center">
+            <div className="space-y-8 w-full max-w-sm">
               {[
                 { num: '40%', text: 'de adultos mayores pasan días en silencio.' },
                 { num: '50%', text: 'de deterioro cognitivo por aislamiento social.' },
-                { num: 'USD 400–\n1.200/mes', text: 'en cuidado derivado\nde la soledad.' },
+                { num: 'USD 400–1.200/mes', text: 'en cuidado derivado\nde la soledad.' },
               ].map(({ num, text }) => (
-                <div key={num} className="flex items-start gap-6">
-                  <div className="w-36 min-h-[4.5rem] text-3xl font-bold text-brand-blue-dark leading-tight shrink-0 whitespace-pre-line flex items-start">
+                <div key={num} className="flex items-center gap-6">
+                  <div className={`w-36 min-h-[4.5rem] font-bold text-brand-blue-dark leading-tight shrink-0 whitespace-pre-line flex items-center ${num.startsWith('USD') ? 'text-lg' : 'text-3xl'}`}>
                     {num}
                   </div>
-                  <p className="text-slate-600 font-medium leading-snug pt-0.5 whitespace-pre-line">{text}</p>
+                  <p className="text-slate-600 font-medium leading-snug whitespace-pre-line">{text}</p>
                 </div>
               ))}
             </div>
@@ -298,8 +305,8 @@ const VoiceDemo = () => {
   const voices = [
     {
       id: 'femenina',
-      name: 'Voz femenina',
-      desc: 'Cálida, cercana y enérgica. Perfecta para acompañar el día a día.',
+      name: 'Rosita',
+      desc: 'Tucumana, cercana y enérgica. Perfecta para acompañar el día a día.',
       file: '/Rosita.mp3',
       emoji: '👩',
       tags: ['Compañía', 'Consejo', 'Recordatorio'],
@@ -307,8 +314,8 @@ const VoiceDemo = () => {
     },
     {
       id: 'masculino',
-      name: 'Voz masculina',
-      desc: 'Amigable, tranquilo y divertido. Ideal para charlar sin apuros.',
+      name: 'Juanchi',
+      desc: 'Santafesino, tranquilo y divertido. Ideal para charlar sin apuros.',
       file: '/Juanchi.mp3',
       emoji: '👨',
       tags: ['Charla', 'Humor', 'Ayuda'],
@@ -363,9 +370,11 @@ const VoiceDemo = () => {
               />
 
               <div className="flex items-center gap-4 mb-6">
-                <div className={`w-14 h-14 ${voice.color} rounded-2xl flex items-center justify-center text-2xl shadow-lg`}>
-                  {voice.emoji}
-                </div>
+                <img
+                  src="/adaptive-icon.png"
+                  alt={voice.name}
+                  style={{ width: 56, height: 56, borderRadius: '50%', objectFit: 'cover', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}
+                />
                 <div>
                   <h3 className="text-xl font-bold text-white">{voice.name}</h3>
                   <p className="text-slate-400 text-sm">{voice.desc}</p>
@@ -427,16 +436,16 @@ const Features = () => (
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {[
-          { icon: <Users className="text-red-400" />, title: "Conexión Familiar", desc: "Mensajes y videollamadas fáciles para toda la familia." },
-          { icon: <Calendar className="text-green-500" />, title: "Asistencia de Memoria", desc: "Recordatorios de citas, eventos familiares y medicación." },
-          { icon: <AlertCircle className="text-red-500" />, title: "Botón SOS", desc: "Llamada de emergencia inmediata a contactos designados." },
-          { icon: <Music className="text-pink-400" />, title: "Música y Juegos", desc: "Entretenimiento personalizado y ejercicios mentales." },
-          { icon: <Clock className="text-orange-400" />, title: "Recordatorios", desc: "Notificaciones diarias para actividades y bienestar." },
-          { icon: <Headphones className="text-blue-500" />, title: "Soporte 24/7", desc: "Acceso continuo y actualizaciones automáticas." }
+          { icon: <Users className="text-violet-400" />, title: "Conexión Familiar", desc: "Mensajes, fotos e informes fáciles para toda la familia." },
+          { icon: <Calendar className="text-teal-400" />, title: "Asistencia de Memoria", desc: "Recordatorios de citas, eventos familiares y medicación." },
+          { icon: <AlertCircle className="text-rose-400" />, title: "Botón SOS", desc: "Avisos de emergencia inmediata a contactos designados." },
+          { icon: <Music className="text-pink-300" />, title: "Música y Juegos", desc: "Entretenimiento personalizado y ejercicios mentales." },
+          { icon: <Clock className="text-amber-400" />, title: "Recordatorios", desc: "Notificaciones diarias para actividades y bienestar." },
+          { icon: <Headphones className="text-sky-400" />, title: "Soporte 24/7", desc: "Acceso continuo y actualizaciones automáticas." }
         ].map((feat, i) => (
           <div key={i} className="flex items-center gap-6 p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-brand-blue-light transition-colors group">
             <div className="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center group-hover:bg-brand-blue-light/20 transition-colors">
-              {React.cloneElement(feat.icon as React.ReactElement<{ className?: string }>, { className: "w-7 h-7" })}
+              {React.cloneElement(feat.icon as React.ReactElement<{ className?: string }>, { className: `w-7 h-7 ${(feat.icon as React.ReactElement<{ className?: string }>).props.className ?? ''}` })}
             </div>
             <div>
               <h4 className="font-bold text-slate-900 mb-1">{feat.title}</h4>
@@ -449,7 +458,248 @@ const Features = () => (
   </section>
 );
 
-const FunctionalitiesDetail = () => (
+// ── SOS Modal ─────────────────────────────────────────────────────────────────
+const SOSModal = ({ onClose }: { onClose: () => void }) => (
+  <AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden"
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="bg-brand-orange p-8 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-48 h-48 bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2" />
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+          >
+            <X className="w-4 h-4 text-white" />
+          </button>
+          <div className="flex items-center gap-4 relative z-10">
+            <div className="w-14 h-14 bg-red-500 rounded-2xl flex items-center justify-center font-black text-white text-lg shadow-lg">
+              SOS
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-white">Seguridad completa</h3>
+              <p className="text-white/80 text-sm">Protección activa las 24 horas</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-8 space-y-6 max-h-[60vh] overflow-y-auto">
+
+          {/* Botón SOS */}
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+              <PhoneCall className="w-5 h-5 text-red-500" />
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-1">Botón SOS físico</h4>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Con solo presionar el botón SOS, <Brand /> envía una alerta inmediata por Telegram a todos los familiares y contactos de emergencia designados.
+              </p>
+            </div>
+          </div>
+
+          {/* Detección de caídas */}
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+              <Activity className="w-5 h-5 text-amber-500" />
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-1">Alerta de caídas</h4>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Si el dispositivo detecta una caída brusca, <Brand /> activa automáticamente el protocolo de emergencia sin necesidad de que el adulto mayor haga nada. La familia recibe aviso de inmediato.
+              </p>
+            </div>
+          </div>
+
+          {/* Detección emocional */}
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-rose-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+              <MessageCircleWarning className="w-5 h-5 text-rose-500" />
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-1">Detección de frases de alerta</h4>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                <Brand /> analiza el lenguaje en tiempo real. Si detecta palabras como <span className="font-semibold text-rose-600">"dolor"</span>, <span className="font-semibold text-rose-600">"me caí"</span>, <span className="font-semibold text-rose-600">"tristeza"</span>, <span className="font-semibold text-rose-600">"no me siento bien"</span> o <span className="font-semibold text-rose-600">"ayuda"</span>, notifica automáticamente a la familia con el contexto de la conversación.
+              </p>
+            </div>
+          </div>
+
+          {/* Alertas silenciosas */}
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+              <Bell className="w-5 h-5 text-violet-500" />
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-1">Alertas silenciosas a la familia</h4>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Además del SOS, la familia recibe notificaciones si el adulto mayor no interactuó con el dispositivo por un período inusual, o si hay cambios bruscos en sus patrones de conversación diaria.
+              </p>
+            </div>
+          </div>
+
+          {/* Shield */}
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+              <ShieldAlert className="w-5 h-5 text-teal-500" />
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-1">Múltiples capas de protección</h4>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                SOS manual, detección de caídas, análisis de lenguaje y monitoreo de actividad trabajan juntos para garantizar que ninguna situación de riesgo pase desapercibida.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="px-8 pb-8">
+          <a
+            href="https://expo.dev/artifacts/eas/egD2MQaSYuWjvgrCN9NncA.apk"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-brand-orange text-white text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-600 transition-all shadow-lg"
+          >
+            Descargar y probar
+          </a>
+        </div>
+      </motion.div>
+    </motion.div>
+  </AnimatePresence>
+);
+
+// ── Telegram Modal ────────────────────────────────────────────────────────────
+const TelegramModal = ({ onClose }: { onClose: () => void }) => (
+  <AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden"
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="bg-brand-blue-dark p-8 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2" />
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+          >
+            <X className="w-4 h-4 text-white" />
+          </button>
+          <div className="flex items-center gap-4 relative z-10">
+            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center">
+              <Users className="w-7 h-7 text-white" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-white">Conexión familiar</h3>
+              <p className="text-white/70 text-sm">La familia siempre presente, sin esfuerzo</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-8 space-y-6 max-h-[60vh] overflow-y-auto">
+
+          {/* Mensajes de audio */}
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-sky-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+              <Mic className="w-5 h-5 text-sky-500" />
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-1">Mensajes de voz de la familia</h4>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Los familiares pueden enviar mensajes de audio desde Telegram y <Brand /> los reproduce en voz alta al adulto mayor, con una voz cálida: <span className="italic text-slate-500">"Tenés un mensaje de tu hijo Juan."</span>
+              </p>
+            </div>
+          </div>
+
+          {/* Fotos */}
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+              <Image className="w-5 h-5 text-violet-500" />
+            </div>
+            <div>
+              <div className="flex items-center gap-2 mb-1">
+                <h4 className="font-bold text-slate-900">Fotos que narran momentos</h4>
+                <span className="text-xs font-semibold bg-amber-100 text-amber-600 px-2 py-0.5 rounded-full">Próximamente</span>
+              </div>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Cuando la familia comparte una foto, <Brand /> la describirá en voz alta: <span className="italic text-slate-500">"Tu hija te manda una foto de los chicos en la plaza."</span> Ideal para personas con visión reducida.
+              </p>
+            </div>
+          </div>
+
+          {/* Informes */}
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+              <Radio className="w-5 h-5 text-teal-500" />
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-1">Informes diarios automáticos</h4>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Cada día, la familia recibe por Telegram un resumen del estado de ánimo, los temas de conversación, los recordatorios completados y cualquier alerta relevante del día.
+              </p>
+            </div>
+          </div>
+
+          {/* Sin app para el mayor */}
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+              <UserCheck className="w-5 h-5 text-amber-500" />
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-1">Sin apps ni pantallas para el mayor</h4>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                El adulto mayor no necesita tocar ninguna aplicación. Solo habla con <Brand />. Toda la coordinación familiar ocurre en Telegram, del lado de la familia.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Footer */}
+        <div className="px-8 pb-8">
+          <a
+            href="https://expo.dev/artifacts/eas/egD2MQaSYuWjvgrCN9NncA.apk"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-brand-blue-dark text-white text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-800 transition-all shadow-lg"
+          >
+            Descargar y probar
+          </a>
+        </div>
+      </motion.div>
+    </motion.div>
+  </AnimatePresence>
+);
+
+const FunctionalitiesDetail = () => {
+  const [showSOS, setShowSOS] = useState(false);
+  const [showTelegram, setShowTelegram] = useState(false);
+  return (
+  <>
   <section className="py-24 bg-white overflow-hidden">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-20">
@@ -479,9 +729,12 @@ const FunctionalitiesDetail = () => (
             </div>
             <h3 className="text-3xl font-bold text-slate-900 mb-6">Manténganse siempre cerca.</h3>
             <p className="text-lg text-slate-600 leading-relaxed mb-8">
-              <Brand /> facilita el envío de mensajes de video y fotos a través de una integración perfecta con Telegram, permitiendo que toda la familia participe activamente en el día a día del adulto mayor.
+              <Brand /> facilita el envío de mensajes de audio y fotos a través de una integración perfecta con Telegram, permitiendo que toda la familia participe activamente en el día a día del adulto mayor, casi como si estuvieran ahí.
             </p>
-            <button className="bg-brand-blue-dark text-white px-8 py-3 rounded-full font-bold hover:bg-blue-800 transition-all">
+            <button
+              onClick={() => setShowTelegram(true)}
+              className="bg-brand-blue-dark text-white px-8 py-3 rounded-full font-bold hover:bg-blue-800 transition-all"
+            >
               Saber más
             </button>
           </div>
@@ -535,9 +788,12 @@ const FunctionalitiesDetail = () => (
               <h4 className="text-xl font-bold mb-4">Botón SOS y Seguridad</h4>
               <h3 className="text-4xl font-bold mb-6">Alerta inmediata en caso de emergencia.</h3>
               <p className="text-lg text-white/90 leading-relaxed mb-8">
-                Con solo presionar el Botón SOS, <Brand className="text-white" /> notifica instantáneamente a todos los familiares designados y contactos de emergencia, brindando asistencia rápida cuando más se necesita.
+                Con solo presionar el Botón SOS, <Brand className="text-white" iaClassName="text-white/60" /> notifica instantáneamente a todos los familiares designados y contactos de emergencia, brindando asistencia rápida cuando más se necesita.
               </p>
-              <button className="bg-white text-brand-orange px-10 py-4 rounded-full font-bold text-lg hover:bg-slate-50 transition-all shadow-xl">
+              <button
+                onClick={() => setShowSOS(true)}
+                className="bg-white text-brand-orange px-10 py-4 rounded-full font-bold text-lg hover:bg-slate-50 transition-all shadow-xl"
+              >
                 Saber más
               </button>
             </div>
@@ -553,7 +809,7 @@ const FunctionalitiesDetail = () => (
             </div>
             <h3 className="text-3xl font-bold text-slate-900 mb-6">Música y Entretenimiento</h3>
             <p className="text-lg text-slate-600 leading-relaxed mb-8">
-              <Brand /> crea listas de reproducción personalizadas basadas en sus gustos musicales, desde tango hasta clásicos, y ofrece juegos cognitivos adaptados para mantener la mente activa y entretenida.
+              <Brand /> permite escuchar listas de reproducción personalizadas basadas en sus gustos musicales, desde tango hasta clásicos, y ofrece juegos cognitivos adaptados para mantener la mente activa y entretenida.
             </p>
             <button className="bg-brand-blue-dark text-white px-8 py-3 rounded-full font-bold hover:bg-blue-800 transition-all">
               Empezar prueba
@@ -571,7 +827,11 @@ const FunctionalitiesDetail = () => (
       </div>
     </div>
   </section>
-);
+  {showSOS && <SOSModal onClose={() => setShowSOS(false)} />}
+  {showTelegram && <TelegramModal onClose={() => setShowTelegram(false)} />}
+  </>
+  );
+};
 
 const Testimonials = () => (
   <section id="testimonios" className="py-24 bg-slate-50">
@@ -621,9 +881,9 @@ const Stats = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-white text-center">
         {[
-          { value: '+1.200', label: 'Familias conectadas' },
+          { value: '5 min', label: 'Y ya estaban interactuando' },
           { value: '87%', label: 'Uso diario activo' },
-          { value: '5★', label: 'Valoración promedio' },
+          { value: '★★★★★', label: 'Valoración promedio' },
           { value: '24/7', label: 'Siempre disponible' },
         ].map(stat => (
           <div key={stat.label}>
@@ -722,6 +982,7 @@ const Comparison = () => {
   ];
   const cols = [
     { name: 'CompañIA', values: [true, true, true, true, true, true, true], highlight: true },
+    { name: 'heyATO', values: [true, false, true, true, false, true, false], highlight: false },
     { name: 'Cuidador presencial', values: [false, true, true, true, false, false, true], highlight: false },
     { name: 'Videollamada', values: [false, true, false, false, false, false, true], highlight: false },
     { name: 'Teléfono', values: [false, true, false, false, false, false, true], highlight: false },
@@ -758,7 +1019,7 @@ const Comparison = () => {
                       {col.values[fi] ? (
                         <Check className="w-5 h-5 text-green-500 mx-auto" />
                       ) : (
-                        <X className="w-5 h-5 text-slate-300 mx-auto" />
+                        <X className="w-5 h-5 text-red-400 mx-auto" />
                       )}
                     </td>
                   ))}
@@ -766,7 +1027,8 @@ const Comparison = () => {
               ))}
               <tr className="border-t border-slate-100">
                 <td className="p-5 text-slate-700 font-bold text-sm">Precio mensual</td>
-                <td className="p-5 text-center font-bold text-brand-blue-dark bg-brand-blue-dark/5">$49</td>
+                <td className="p-5 text-center font-bold text-brand-blue-dark bg-brand-blue-dark/5">$39</td>
+                <td className="p-5 text-center text-slate-500 text-sm font-medium">$29 + $149 hardware</td>
                 <td className="p-5 text-center text-slate-500 text-sm font-medium">USD 400-1,200</td>
                 <td className="p-5 text-center text-slate-500 text-sm font-medium">Gratis</td>
                 <td className="p-5 text-center text-slate-500 text-sm font-medium">Gratis</td>
@@ -815,7 +1077,7 @@ const PricingContact = () => {
             <div className="flex justify-between items-center mb-8">
               <div className="text-4xl font-bold text-slate-900">$39<span className="text-lg text-slate-500 font-normal">/mes</span></div>
               <a
-                href="https://expo.dev/accounts/compan-ia/projects/AbuApp"
+                href="https://expo.dev/artifacts/eas/egD2MQaSYuWjvgrCN9NncA.apk"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-brand-orange text-white px-6 py-3 rounded-full font-bold hover:bg-orange-600 transition-all shadow-md shadow-orange-200"
@@ -981,16 +1243,15 @@ const FAQ = () => {
               </button>
               <div className="flex items-center gap-3 text-xl font-bold">
                 <Smartphone className="w-6 h-6" />
-                (300) 266-9706
+                (0800) 123-4567
               </div>
             </div>
           </div>
           <div className="md:w-1/3 relative z-10">
             <img
-              src="https://picsum.photos/seed/support-agent/400/400"
-              alt="Agente de soporte"
+              src="/rosita.png"
+              alt="Rosita"
               className="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-white/20 object-cover shadow-2xl"
-              referrerPolicy="no-referrer"
             />
           </div>
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
@@ -1005,9 +1266,7 @@ const Footer = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 bg-brand-orange rounded-full flex items-center justify-center">
-            <Heart className="text-white w-3 h-3" />
-          </div>
+          <img src="/adaptive-icon.png" alt="CompañIA" className="w-6 h-6 rounded-full object-cover" />
           <span className="text-lg font-bold text-slate-900"><Brand /></span>
         </div>
         <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-slate-500">
@@ -1017,7 +1276,7 @@ const Footer = () => (
           <a href="#" className="hover:text-brand-orange transition-colors">Soporte</a>
         </div>
         <div className="text-sm text-slate-400">
-          © 2026 CompañIA. Todos los derechos reservados.
+          © 2026 CompañIA. Hecho con ❤️ inspirados en "Negrita".
         </div>
       </div>
     </div>
