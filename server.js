@@ -11,4 +11,4 @@ app.get('*', (_req, res) => {
   res.sendFile(join(__dirname, 'dist', 'index.html'));
 });
 
-app.listen(PORT, () => console.log(`Servidor en puerto ${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`Servidor en puerto ${PORT}`));
