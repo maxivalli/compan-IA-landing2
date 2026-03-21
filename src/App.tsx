@@ -27,7 +27,8 @@ import {
   Mic,
   Image,
   UserCheck,
-  Radio
+  Radio,
+  Eye
 } from 'lucide-react';
 
 // Helper: nombre de marca con estilo
@@ -441,6 +442,7 @@ const Features = () => (
           { icon: <AlertCircle className="text-rose-400" />, title: "Botón SOS", desc: "Avisos de emergencia inmediata a contactos designados." },
           { icon: <Music className="text-pink-300" />, title: "Música y Juegos", desc: "Entretenimiento personalizado y ejercicios mentales." },
           { icon: <Clock className="text-amber-400" />, title: "Recordatorios", desc: "Notificaciones diarias para actividades y bienestar." },
+          { icon: <Eye className="text-emerald-500" />, title: "Lectura de textos", desc: "Apuntá la cámara a cualquier papel y Rosita lo lee en voz alta. Ideal para personas con dificultad visual." },
           { icon: <Headphones className="text-sky-400" />, title: "Soporte 24/7", desc: "Acceso continuo y actualizaciones automáticas." }
         ].map((feat, i) => (
           <div key={i} className="flex items-center gap-6 p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-brand-blue-light transition-colors group">
@@ -641,12 +643,22 @@ const TelegramModal = ({ onClose }: { onClose: () => void }) => (
               <Image className="w-5 h-5 text-violet-500" />
             </div>
             <div>
-              <div className="flex items-center gap-2 mb-1">
-                <h4 className="font-bold text-slate-900">Fotos que narran momentos</h4>
-                <span className="text-xs font-semibold bg-amber-100 text-amber-600 px-2 py-0.5 rounded-full">Próximamente</span>
-              </div>
+              <h4 className="font-bold text-slate-900 mb-1">Fotos que narran momentos</h4>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Cuando la familia comparte una foto, <Brand /> la describirá en voz alta: <span className="italic text-slate-500">"Tu hija te manda una foto de los chicos en la plaza."</span> Ideal para personas con visión reducida.
+                Cuando la familia comparte una foto, <Brand /> la describe en voz alta: <span className="italic text-slate-500">"Tu hija te manda una foto de los chicos en la plaza."</span> Ideal para personas con visión reducida.
+              </p>
+            </div>
+          </div>
+
+          {/* Leer textos */}
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+              <Eye className="w-5 h-5 text-emerald-600" />
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-1">Lectura de textos y documentos</h4>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                ¿Una carta, una receta, una boleta? Solo pedile <span className="italic text-slate-500">"Rosita, ¿qué dice acá?"</span> y apuntá el teléfono. La cámara se activa sola y lee todo en voz alta. Pensado especialmente para personas con dificultad visual.
               </p>
             </div>
           </div>
