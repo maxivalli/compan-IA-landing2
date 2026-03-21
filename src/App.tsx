@@ -93,7 +93,7 @@ const Hero = () => (
           Tu ser querido <br />
           <span className="text-brand-orange italic">nunca más solo.</span>
         </h1>
-        <p className="text-xl text-white/80 mb-10 max-w-lg leading-relaxed">
+        <p className="text-base sm:text-xl text-white/80 mb-10 max-w-lg leading-relaxed">
           <Brand className="text-white" /> es una compañera de voz con IA que escucha, recuerda y cuida — y mantiene a toda la familia informada, en tiempo real.
         </p>
         <div className="flex flex-wrap gap-4 mb-12">
