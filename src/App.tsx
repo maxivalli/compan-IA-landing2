@@ -1352,13 +1352,15 @@ const FAQ = () => {
           <div className="relative z-10">
             <h3 className="text-3xl font-bold mb-6">¿Aún tenés preguntas?</h3>
             <div className="flex flex-wrap gap-4">
-              <button className="bg-white text-brand-blue-dark px-8 py-3 rounded-full font-bold hover:bg-slate-100 transition-all">
-                Contactar Soporte
-              </button>
-              <div className="flex items-center gap-3 text-xl font-bold">
+              <a href="mailto:maximilianovalli.sc@gmail.com"
+                className="bg-white text-brand-blue-dark px-8 py-3 rounded-full font-bold hover:bg-slate-100 transition-all">
+                Escribinos
+              </a>
+              <a href="https://wa.me/543408677294" target="_blank" rel="noopener noreferrer"
+                className="flex items-center gap-3 text-xl font-bold hover:text-white/80 transition-colors">
                 <Smartphone className="w-6 h-6" />
-                (0800) 123-4567
-              </div>
+                WhatsApp
+              </a>
             </div>
           </div>
           <div className="md:w-1/3 relative z-10">
@@ -1375,7 +1377,200 @@ const FAQ = () => {
   );
 };
 
-const Footer = () => (
+// ── Sobre Nosotros Modal ───────────────────────────────────────────────────────
+const SobreNosotrosModal = ({ onClose }: { onClose: () => void }) => (
+  <AnimatePresence>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+      <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+        <div className="bg-brand-blue-dark p-8 relative overflow-hidden">
+          <div className="absolute top-0 left-0 w-48 h-48 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2" />
+          <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
+            <X className="w-4 h-4 text-white" />
+          </button>
+          <div className="relative z-10">
+            <p className="text-white/60 text-sm font-semibold uppercase tracking-widest mb-2">Nuestra historia</p>
+            <h3 className="text-3xl font-serif font-bold text-white leading-tight">Hecha con amor.<br />Inspirada en Negrita.</h3>
+          </div>
+        </div>
+        <div className="p-8 space-y-5 max-h-[60vh] overflow-y-auto text-slate-600 text-sm leading-relaxed">
+          <p>
+            <Brand className="text-slate-900" /> nació de una historia real.
+          </p>
+          <p>
+            <span className="font-semibold text-slate-900">Negrita tiene 90 años y vive sola.</span> Es la abuela de Maximiliano, el creador de esta app. Un día, después de visitarla, Maxi volvió a casa con esa sensación que conocen muchos nietos: la de dejar a alguien que querés en silencio.
+          </p>
+          <p>
+            No era solo la soledad. Era que Negrita se perdía los medicamentos, no recordaba las fechas importantes, y cuando quería hablar, no siempre había alguien disponible. La familia quería estar cerca, pero la distancia y el ritmo de la vida no siempre lo permitían.
+          </p>
+          <p>
+            <Brand className="text-slate-900" /> empezó como una idea simple: <span className="italic text-slate-500">¿y si Negrita tuviera alguien con quien charlar a las tres de la mañana?</span> ¿Alguien que la llame para el medicamento, que le cuente cómo está el tiempo, que avise a la familia si algo no anda bien?
+          </p>
+          <p>
+            Hoy, <Brand className="text-slate-900" /> es esa compañera. No es un robot ni una pantalla fría — es una voz cálida que escucha, recuerda y cuida. Pensada para todas las Negritas del mundo, y para las familias que las quieren cerca.
+          </p>
+          <p className="text-slate-400 text-xs pt-2 border-t border-slate-100">
+            CompañIA es un proyecto independiente desarrollado en Argentina. Somos un equipo chico con un objetivo grande: que ningún adulto mayor se sienta solo.
+          </p>
+        </div>
+      </motion.div>
+    </motion.div>
+  </AnimatePresence>
+);
+
+// ── Términos Modal ─────────────────────────────────────────────────────────────
+const TerminosModal = ({ onClose }: { onClose: () => void }) => (
+  <AnimatePresence>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+      <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+        <div className="bg-slate-800 p-8 relative overflow-hidden">
+          <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
+            <X className="w-4 h-4 text-white" />
+          </button>
+          <h3 className="text-2xl font-bold text-white">Términos de servicio</h3>
+          <p className="text-white/60 text-sm mt-1">Última actualización: marzo 2026</p>
+        </div>
+        <div className="p-8 space-y-5 max-h-[60vh] overflow-y-auto text-slate-600 text-sm leading-relaxed">
+          <div>
+            <h4 className="font-semibold text-slate-900 mb-1">1. El servicio</h4>
+            <p><Brand className="text-slate-800" /> es una aplicación de asistente de voz con IA para adultos mayores. El servicio incluye conversación por voz, recordatorios, alertas a familiares y funciones de accesibilidad.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-slate-900 mb-1">2. Suscripción</h4>
+            <p>El costo del servicio es de <span className="font-semibold text-slate-900">USD 29 por mes</span> por dispositivo. El cobro es mensual. Podés cancelar en cualquier momento sin penalidad; el acceso se mantiene hasta el fin del período pagado.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-slate-900 mb-1">3. Uso aceptable</h4>
+            <p>El servicio es para uso personal y familiar. No está permitido revender, redistribuir ni utilizar la app con fines comerciales sin autorización expresa.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-slate-900 mb-1">4. No reemplaza atención médica</h4>
+            <p><Brand className="text-slate-800" /> no es un dispositivo médico ni reemplaza el criterio de un profesional de la salud. Los recordatorios de medicamentos son un apoyo, no una garantía de adherencia al tratamiento.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-slate-900 mb-1">5. Disponibilidad</h4>
+            <p>Nos comprometemos a mantener el servicio disponible de forma continua, pero no garantizamos disponibilidad del 100%. Podemos realizar tareas de mantenimiento con aviso previo.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-slate-900 mb-1">6. Modificaciones</h4>
+            <p>Podemos actualizar estas condiciones con 30 días de aviso. El uso continuado del servicio implica la aceptación de los cambios.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-slate-900 mb-1">7. Contacto</h4>
+            <p>Para consultas sobre estos términos escribí a <a href="mailto:maximilianovalli.sc@gmail.com" className="text-brand-orange underline">maximilianovalli.sc@gmail.com</a></p>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  </AnimatePresence>
+);
+
+// ── Privacidad Modal ───────────────────────────────────────────────────────────
+const PrivacidadModal = ({ onClose }: { onClose: () => void }) => (
+  <AnimatePresence>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+      <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+        <div className="bg-slate-800 p-8 relative overflow-hidden">
+          <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
+            <X className="w-4 h-4 text-white" />
+          </button>
+          <h3 className="text-2xl font-bold text-white">Política de privacidad</h3>
+          <p className="text-white/60 text-sm mt-1">Última actualización: marzo 2026</p>
+        </div>
+        <div className="p-8 space-y-5 max-h-[60vh] overflow-y-auto text-slate-600 text-sm leading-relaxed">
+          <div>
+            <h4 className="font-semibold text-slate-900 mb-1">¿Qué es CompañIA?</h4>
+            <p>Una aplicación de asistente de voz para adultos mayores. Permite tener conversaciones por voz, recibir recordatorios de medicamentos, escuchar música y mantenerse en contacto con familiares mediante Telegram.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-slate-900 mb-1">Datos que recopilamos</h4>
+            <p><span className="font-semibold text-slate-800">Voz y audio:</span> El audio del botón manual se envía a OpenAI Whisper para transcripción y se descarta de inmediato. No se almacena.</p>
+            <p className="mt-2"><span className="font-semibold text-slate-800">Ubicación:</span> Solo para obtener el clima local (Open-Meteo). No se comparte ni almacena.</p>
+            <p className="mt-2"><span className="font-semibold text-slate-800">Perfil:</span> Nombre, gustos, medicamentos y fechas se guardan únicamente en el dispositivo. Las conversaciones no se almacenan en ningún servidor.</p>
+            <p className="mt-2"><span className="font-semibold text-slate-800">ID de dispositivo:</span> Un UUID anónimo para vincular el dispositivo con tu familia. No contiene información personal.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-slate-900 mb-1">Datos que no recopilamos</h4>
+            <p>No recopilamos nombre, correo, edad ni teléfono. No hay cuentas de usuario. No vendemos datos a terceros.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-slate-900 mb-1">Servicios de terceros</h4>
+            <p>Anthropic Claude (respuestas IA) · OpenAI Whisper (transcripción) · ElevenLabs (síntesis de voz, sin almacenamiento) · Open-Meteo (clima) · Telegram (mensajes familiares).</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-slate-900 mb-1">Seguridad</h4>
+            <p>Toda la comunicación usa HTTPS. Las claves de API nunca están en el dispositivo.</p>
+          </div>
+          <div>
+            <h4 className="font-semibold text-slate-900 mb-1">Contacto</h4>
+            <p>Consultas o solicitud de eliminación de datos: <a href="mailto:maximilianovalli.sc@gmail.com" className="text-brand-orange underline">maximilianovalli.sc@gmail.com</a></p>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  </AnimatePresence>
+);
+
+// ── Soporte Modal ──────────────────────────────────────────────────────────────
+const SoporteModal = ({ onClose }: { onClose: () => void }) => (
+  <AnimatePresence>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+      <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        className="bg-white rounded-[32px] max-w-sm w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+        <div className="bg-brand-blue-dark p-8 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2" />
+          <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
+            <X className="w-4 h-4 text-white" />
+          </button>
+          <h3 className="text-2xl font-bold text-white relative z-10">Soporte</h3>
+          <p className="text-white/70 text-sm mt-1 relative z-10">Estamos para ayudarte</p>
+        </div>
+        <div className="p-8 space-y-4">
+          <a href="mailto:maximilianovalli.sc@gmail.com"
+            className="flex items-center gap-4 p-4 rounded-2xl border border-slate-200 hover:border-brand-orange hover:bg-orange-50 transition-all group">
+            <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center">
+              <Send className="w-5 h-5 text-brand-orange" />
+            </div>
+            <div>
+              <p className="font-semibold text-slate-900 text-sm">Correo electrónico</p>
+              <p className="text-slate-500 text-xs">maximilianovalli.sc@gmail.com</p>
+            </div>
+          </a>
+          <a href="https://wa.me/543408677294" target="_blank" rel="noopener noreferrer"
+            className="flex items-center gap-4 p-4 rounded-2xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 transition-all group">
+            <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center">
+              <Smartphone className="w-5 h-5 text-emerald-600" />
+            </div>
+            <div>
+              <p className="font-semibold text-slate-900 text-sm">WhatsApp</p>
+              <p className="text-slate-500 text-xs">+54 340 867-7294</p>
+            </div>
+          </a>
+          <p className="text-slate-400 text-xs text-center pt-2">Tiempo de respuesta habitual: menos de 24 hs</p>
+        </div>
+      </motion.div>
+    </motion.div>
+  </AnimatePresence>
+);
+
+// ── Footer ─────────────────────────────────────────────────────────────────────
+const Footer = () => {
+  const [showAbout,     setShowAbout]     = useState(false);
+  const [showTerminos,  setShowTerminos]  = useState(false);
+  const [showPriv,      setShowPriv]      = useState(false);
+  const [showSoporte,   setShowSoporte]   = useState(false);
+  return (
+  <>
   <footer className="bg-slate-50 py-12 border-t border-slate-200">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col md:flex-row justify-between items-center gap-8">
@@ -1384,10 +1579,10 @@ const Footer = () => (
           <span className="text-lg font-bold text-slate-900"><Brand /></span>
         </div>
         <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-slate-500">
-          <a href="#" className="hover:text-brand-orange transition-colors">Sobre nosotros</a>
-          <a href="#" className="hover:text-brand-orange transition-colors">Términos</a>
-          <a href="#" className="hover:text-brand-orange transition-colors">Privacidad</a>
-          <a href="#" className="hover:text-brand-orange transition-colors">Soporte</a>
+          <button onClick={() => setShowAbout(true)}    className="hover:text-brand-orange transition-colors">Sobre nosotros</button>
+          <button onClick={() => setShowTerminos(true)} className="hover:text-brand-orange transition-colors">Términos</button>
+          <button onClick={() => setShowPriv(true)}     className="hover:text-brand-orange transition-colors">Privacidad</button>
+          <button onClick={() => setShowSoporte(true)}  className="hover:text-brand-orange transition-colors">Soporte</button>
         </div>
         <div className="text-sm text-slate-400">
           © 2026 CompañIA. Hecho con ❤️ inspirados en "Negrita".
@@ -1395,7 +1590,13 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-);
+  {showAbout    && <SobreNosotrosModal onClose={() => setShowAbout(false)} />}
+  {showTerminos && <TerminosModal      onClose={() => setShowTerminos(false)} />}
+  {showPriv     && <PrivacidadModal    onClose={() => setShowPriv(false)} />}
+  {showSoporte  && <SoporteModal       onClose={() => setShowSoporte(false)} />}
+  </>
+  );
+};
 
 // --- Main App ---
 
