@@ -583,6 +583,104 @@ const SOSModal = ({ onClose }: { onClose: () => void }) => (
   </AnimatePresence>
 );
 
+// ── Vision Modal ──────────────────────────────────────────────────────────────
+const VisionModal = ({ onClose }: { onClose: () => void }) => (
+  <AnimatePresence>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+        className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden"
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="bg-emerald-700 p-8 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2" />
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+          >
+            <X className="w-4 h-4 text-white" />
+          </button>
+          <div className="flex items-center gap-4 relative z-10">
+            <div className="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center">
+              <Eye className="w-7 h-7 text-white" />
+            </div>
+            <div>
+              <h3 className="text-2xl font-bold text-white">Ver con CompañIA</h3>
+              <p className="text-white/70 text-sm">Tecnología al servicio de la visión</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Content */}
+        <div className="p-8 space-y-6 max-h-[60vh] overflow-y-auto">
+
+          {/* Leer textos */}
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+              <Eye className="w-5 h-5 text-emerald-600" />
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-1">Lectura de textos y documentos</h4>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                ¿Una carta, una receta, una boleta? Solo decile <span className="italic text-slate-500">"Rosita, ¿qué dice acá?"</span> y apuntá el teléfono. La cámara trasera se activa sola con una cuenta regresiva y lee todo el texto en voz alta.
+              </p>
+            </div>
+          </div>
+
+          {/* Fotos de familia */}
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+              <Image className="w-5 h-5 text-violet-500" />
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-1">Fotos de la familia narradas</h4>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Cuando la familia manda una foto por Telegram, <Brand /> la describe en voz alta: <span className="italic text-slate-500">"Tu hija te manda una foto de los chicos en la plaza."</span> No hace falta ver la pantalla.
+              </p>
+            </div>
+          </div>
+
+          {/* Autofoto */}
+          <div className="flex gap-4">
+            <div className="w-10 h-10 bg-sky-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+              <Smartphone className="w-5 h-5 text-sky-500" />
+            </div>
+            <div>
+              <h4 className="font-bold text-slate-900 mb-1">Foto para la familia sin tocar nada</h4>
+              <p className="text-slate-600 text-sm leading-relaxed">
+                Decile <span className="italic text-slate-500">"Sacame una foto"</span> y <Brand /> abre la cámara frontal, cuenta tres segundos y la manda directo a la familia por Telegram. Sin botones, sin pantallas.
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Footer */}
+        <div className="px-8 pb-8">
+          <a
+            href="https://expo.dev/artifacts/eas/egD2MQaSYuWjvgrCN9NncA.apk"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full bg-emerald-700 text-white text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-800 transition-all shadow-lg"
+          >
+            Descargar y probar
+          </a>
+        </div>
+      </motion.div>
+    </motion.div>
+  </AnimatePresence>
+);
+
 // ── Telegram Modal ────────────────────────────────────────────────────────────
 const TelegramModal = ({ onClose }: { onClose: () => void }) => (
   <AnimatePresence>
@@ -637,32 +735,6 @@ const TelegramModal = ({ onClose }: { onClose: () => void }) => (
             </div>
           </div>
 
-          {/* Fotos */}
-          <div className="flex gap-4">
-            <div className="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
-              <Image className="w-5 h-5 text-violet-500" />
-            </div>
-            <div>
-              <h4 className="font-bold text-slate-900 mb-1">Fotos que narran momentos</h4>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Cuando la familia comparte una foto, <Brand /> la describe en voz alta: <span className="italic text-slate-500">"Tu hija te manda una foto de los chicos en la plaza."</span> Ideal para personas con visión reducida.
-              </p>
-            </div>
-          </div>
-
-          {/* Leer textos */}
-          <div className="flex gap-4">
-            <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
-              <Eye className="w-5 h-5 text-emerald-600" />
-            </div>
-            <div>
-              <h4 className="font-bold text-slate-900 mb-1">Lectura de textos y documentos</h4>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                ¿Una carta, una receta, una boleta? Solo pedile <span className="italic text-slate-500">"Rosita, ¿qué dice acá?"</span> y apuntá el teléfono. La cámara se activa sola y lee todo en voz alta. Pensado especialmente para personas con dificultad visual.
-              </p>
-            </div>
-          </div>
-
           {/* Informes */}
           <div className="flex gap-4">
             <div className="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
@@ -710,6 +782,7 @@ const TelegramModal = ({ onClose }: { onClose: () => void }) => (
 const FunctionalitiesDetail = () => {
   const [showSOS, setShowSOS] = useState(false);
   const [showTelegram, setShowTelegram] = useState(false);
+  const [showVision, setShowVision] = useState(false);
   return (
   <>
   <section className="py-24 bg-white overflow-hidden">
@@ -813,6 +886,34 @@ const FunctionalitiesDetail = () => {
           <div className="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2" />
         </div>
 
+        {/* Detail Vision */}
+        <div className="bg-emerald-700 rounded-[40px] p-8 md:p-16 text-white relative overflow-hidden">
+          <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
+            <div className="flex justify-center">
+              <div className="bg-white p-8 rounded-[40px] shadow-2xl flex flex-col items-center gap-4">
+                <div className="w-28 h-28 bg-emerald-100 rounded-3xl flex items-center justify-center shadow">
+                  <Eye className="w-14 h-14 text-emerald-700" />
+                </div>
+                <p className="text-emerald-800 font-semibold text-center text-sm max-w-[160px]">"Rosita, ¿qué dice acá?"</p>
+              </div>
+            </div>
+            <div>
+              <h4 className="text-xl font-bold mb-4">Accesibilidad visual</h4>
+              <h3 className="text-4xl font-bold mb-6">Tus ojos cuando los necesitás.</h3>
+              <p className="text-lg text-white/90 leading-relaxed mb-8">
+                Cartas, recetas, boletas, etiquetas — <Brand className="text-white" iaClassName="text-white/60" /> lee cualquier texto en voz alta con solo apuntarle la cámara. También describe las fotos que manda la familia. Diseñado para personas con dificultad visual.
+              </p>
+              <button
+                onClick={() => setShowVision(true)}
+                className="bg-white text-emerald-700 px-10 py-4 rounded-full font-bold text-lg hover:bg-slate-50 transition-all shadow-xl"
+              >
+                Saber más
+              </button>
+            </div>
+          </div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full translate-x-1/2 -translate-y-1/2" />
+        </div>
+
         {/* Detail 4 */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
@@ -841,6 +942,7 @@ const FunctionalitiesDetail = () => {
   </section>
   {showSOS && <SOSModal onClose={() => setShowSOS(false)} />}
   {showTelegram && <TelegramModal onClose={() => setShowTelegram(false)} />}
+  {showVision && <VisionModal onClose={() => setShowVision(false)} />}
   </>
   );
 };
