@@ -1445,7 +1445,7 @@ const TerminosModal = ({ onClose }: { onClose: () => void }) => (
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">2. Suscripción</h4>
-            <p>El costo del servicio es de <span className="font-semibold text-slate-900">USD 29 por mes</span> por dispositivo. El cobro es mensual. Podés cancelar en cualquier momento sin penalidad; el acceso se mantiene hasta el fin del período pagado.</p>
+            <p>El costo del servicio es de <span className="font-semibold text-slate-900">USD 39 por mes</span> por dispositivo. El cobro es mensual. Podés cancelar en cualquier momento sin penalidad; el acceso se mantiene hasta el fin del período pagado.</p>
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">3. Uso aceptable</h4>
