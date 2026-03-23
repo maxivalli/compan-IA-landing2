@@ -57,7 +57,7 @@ const Navbar = () => (
           <a href="#faq" className="text-sm font-medium text-slate-600 hover:text-brand-orange transition-colors">FAQ</a>
         </div>
         <a
-          href="https://expo.dev/artifacts/eas/egD2MQaSYuWjvgrCN9NncA.apk"
+          href="https://expo.dev/artifacts/eas/esxFXiKrRua661RfHdmG1u.apk"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-brand-orange text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-orange-600 transition-all shadow-md shadow-orange-200"
@@ -99,7 +99,7 @@ const Hero = () => (
         </p>
         <div className="flex flex-wrap gap-4 mb-12">
           <a
-            href="https://expo.dev/artifacts/eas/egD2MQaSYuWjvgrCN9NncA.apk"
+            href="https://expo.dev/artifacts/eas/esxFXiKrRua661RfHdmG1u.apk"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-brand-orange text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-500 transition-all shadow-lg shadow-orange-900/40"
@@ -570,7 +570,7 @@ const SOSModal = ({ onClose }: { onClose: () => void }) => (
         {/* Footer */}
         <div className="px-8 pb-8">
           <a
-            href="https://expo.dev/artifacts/eas/egD2MQaSYuWjvgrCN9NncA.apk"
+            href="https://expo.dev/artifacts/eas/esxFXiKrRua661RfHdmG1u.apk"
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full bg-brand-orange text-white text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-600 transition-all shadow-lg"
@@ -668,7 +668,7 @@ const VisionModal = ({ onClose }: { onClose: () => void }) => (
         {/* Footer */}
         <div className="px-8 pb-8">
           <a
-            href="https://expo.dev/artifacts/eas/egD2MQaSYuWjvgrCN9NncA.apk"
+            href="https://expo.dev/artifacts/eas/esxFXiKrRua661RfHdmG1u.apk"
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full bg-emerald-700 text-white text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-800 transition-all shadow-lg"
@@ -766,7 +766,7 @@ const TelegramModal = ({ onClose }: { onClose: () => void }) => (
         {/* Footer */}
         <div className="px-8 pb-8">
           <a
-            href="https://expo.dev/artifacts/eas/egD2MQaSYuWjvgrCN9NncA.apk"
+            href="https://expo.dev/artifacts/eas/esxFXiKrRua661RfHdmG1u.apk"
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full bg-brand-blue-dark text-white text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-800 transition-all shadow-lg"
@@ -1194,7 +1194,7 @@ const PricingContact = () => {
             <div className="flex justify-between items-center mb-8">
               <div className="text-4xl font-bold text-slate-900">$39<span className="text-lg text-slate-500 font-normal">/mes</span></div>
               <a
-                href="https://expo.dev/artifacts/eas/egD2MQaSYuWjvgrCN9NncA.apk"
+                href="https://expo.dev/artifacts/eas/esxFXiKrRua661RfHdmG1u.apk"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-brand-orange text-white px-6 py-3 rounded-full font-bold hover:bg-orange-600 transition-all shadow-md shadow-orange-200"
@@ -1496,7 +1496,7 @@ const PrivacidadModal = ({ onClose }: { onClose: () => void }) => (
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">Datos que recopilamos</h4>
             <p><span className="font-semibold text-slate-800">Voz y audio:</span> El audio del botón manual se envía a OpenAI Whisper para transcripción y se descarta de inmediato. No se almacena.</p>
-            <p className="mt-2"><span className="font-semibold text-slate-800">Ubicación:</span> Solo para obtener el clima local (Open-Meteo). No se comparte ni almacena.</p>
+            <p className="mt-2"><span className="font-semibold text-slate-800">Ubicación:</span> Solo para obtener el clima local (WeatherAPI). No se comparte ni almacena.</p>
             <p className="mt-2"><span className="font-semibold text-slate-800">Perfil:</span> Nombre, gustos, medicamentos y fechas se guardan únicamente en el dispositivo. Las conversaciones no se almacenan en ningún servidor.</p>
             <p className="mt-2"><span className="font-semibold text-slate-800">ID de dispositivo:</span> Un UUID anónimo para vincular el dispositivo con tu familia. No contiene información personal.</p>
           </div>
@@ -1506,7 +1506,7 @@ const PrivacidadModal = ({ onClose }: { onClose: () => void }) => (
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">Servicios de terceros</h4>
-            <p>Anthropic Claude (respuestas IA) · OpenAI Whisper (transcripción) · ElevenLabs (síntesis de voz, sin almacenamiento) · Open-Meteo (clima) · Telegram (mensajes familiares).</p>
+            <p>Anthropic Claude (respuestas IA) · OpenAI Whisper (transcripción) · ElevenLabs (síntesis de voz, sin almacenamiento) · WeatherAPI (clima) · Telegram (mensajes familiares) · Samsung SmartThings (domótica, opcional).</p>
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">Seguridad</h4>
