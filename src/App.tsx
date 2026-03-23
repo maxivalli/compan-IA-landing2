@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Heart,
@@ -443,6 +443,7 @@ const Features = () => (
           { icon: <Music className="text-pink-300" />, title: "Música y Juegos", desc: "Entretenimiento personalizado y ejercicios mentales." },
           { icon: <Clock className="text-amber-400" />, title: "Recordatorios", desc: "Notificaciones diarias para actividades y bienestar." },
           { icon: <Eye className="text-emerald-500" />, title: "Lectura de textos", desc: "Apuntá la cámara a cualquier papel y Rosita lo lee en voz alta. Ideal para personas con dificultad visual." },
+          { icon: <Bell className="text-violet-500" />, title: "Alarmas por voz", desc: "\"Rosita, despertame mañana a las 8\" — programa alarmas hablando, sin tocar nada." },
           { icon: <Headphones className="text-sky-400" />, title: "Soporte 24/7", desc: "Acceso continuo y actualizaciones automáticas." }
         ].map((feat, i) => (
           <div key={i} className="flex items-center gap-6 p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-brand-blue-light transition-colors group">
@@ -462,22 +463,21 @@ const Features = () => (
 
 // ── SOS Modal ─────────────────────────────────────────────────────────────────
 const SOSModal = ({ onClose }: { onClose: () => void }) => (
-  <AnimatePresence>
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+    onClick={onClose}
+  >
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
-      onClick={onClose}
+      initial={{ opacity: 0, scale: 0.95, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95, y: 20 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden"
+      onClick={e => e.stopPropagation()}
     >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden"
-        onClick={e => e.stopPropagation()}
-      >
         {/* Header */}
         <div className="bg-brand-orange p-8 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-48 h-48 bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2" />
@@ -580,27 +580,25 @@ const SOSModal = ({ onClose }: { onClose: () => void }) => (
         </div>
       </motion.div>
     </motion.div>
-  </AnimatePresence>
 );
 
 // ── Vision Modal ──────────────────────────────────────────────────────────────
 const VisionModal = ({ onClose }: { onClose: () => void }) => (
-  <AnimatePresence>
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+    onClick={onClose}
+  >
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
-      onClick={onClose}
+      initial={{ opacity: 0, scale: 0.95, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95, y: 20 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden"
+      onClick={e => e.stopPropagation()}
     >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden"
-        onClick={e => e.stopPropagation()}
-      >
         {/* Header */}
         <div className="bg-emerald-700 p-8 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2" />
@@ -678,27 +676,25 @@ const VisionModal = ({ onClose }: { onClose: () => void }) => (
         </div>
       </motion.div>
     </motion.div>
-  </AnimatePresence>
 );
 
 // ── Telegram Modal ────────────────────────────────────────────────────────────
 const TelegramModal = ({ onClose }: { onClose: () => void }) => (
-  <AnimatePresence>
+  <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+    onClick={onClose}
+  >
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
-      onClick={onClose}
+      initial={{ opacity: 0, scale: 0.95, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95, y: 20 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden"
+      onClick={e => e.stopPropagation()}
     >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }}
-        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden"
-        onClick={e => e.stopPropagation()}
-      >
         {/* Header */}
         <div className="bg-brand-blue-dark p-8 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2" />
@@ -776,13 +772,20 @@ const TelegramModal = ({ onClose }: { onClose: () => void }) => (
         </div>
       </motion.div>
     </motion.div>
-  </AnimatePresence>
 );
 
 const FunctionalitiesDetail = () => {
   const [showSOS, setShowSOS] = useState(false);
   const [showTelegram, setShowTelegram] = useState(false);
   const [showVision, setShowVision] = useState(false);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { setShowSOS(false); setShowTelegram(false); setShowVision(false); }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
   return (
   <>
   <section className="py-24 bg-white overflow-hidden">
@@ -940,9 +943,11 @@ const FunctionalitiesDetail = () => {
       </div>
     </div>
   </section>
-  {showSOS && <SOSModal onClose={() => setShowSOS(false)} />}
-  {showTelegram && <TelegramModal onClose={() => setShowTelegram(false)} />}
-  {showVision && <VisionModal onClose={() => setShowVision(false)} />}
+  <AnimatePresence>
+    {showSOS      && <SOSModal      key="sos" onClose={() => setShowSOS(false)} />}
+    {showTelegram && <TelegramModal key="tg"  onClose={() => setShowTelegram(false)} />}
+    {showVision   && <VisionModal   key="vis" onClose={() => setShowVision(false)} />}
+  </AnimatePresence>
   </>
   );
 };
@@ -1191,13 +1196,13 @@ const PricingContact = () => {
             <div className="inline-block bg-brand-orange text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
               Precio especial MVP
             </div>
-            <div className="flex justify-between items-center mb-8">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
               <div className="text-4xl font-bold text-slate-900">$39<span className="text-lg text-slate-500 font-normal">/mes</span></div>
               <a
                 href="https://expo.dev/artifacts/eas/esxFXiKrRua661RfHdmG1u.apk"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-brand-orange text-white px-6 py-3 rounded-full font-bold hover:bg-orange-600 transition-all shadow-md shadow-orange-200"
+                className="bg-brand-orange text-white px-6 py-3 rounded-full font-bold hover:bg-orange-600 transition-all shadow-md shadow-orange-200 text-center"
               >
                 Probar 7 días gratis
               </a>
@@ -1234,7 +1239,7 @@ const PricingContact = () => {
           ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <input type="hidden" name="_subject" value="Nueva consulta desde CompañIA" />
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <input
                 type="text"
                 name="nombre"
@@ -1382,12 +1387,11 @@ const FAQ = () => {
 
 // ── Sobre Nosotros Modal ───────────────────────────────────────────────────────
 const SobreNosotrosModal = ({ onClose }: { onClose: () => void }) => (
-  <AnimatePresence>
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
-      <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+    <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
         <div className="bg-brand-blue-dark p-8 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-48 h-48 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2" />
           <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
@@ -1420,17 +1424,15 @@ const SobreNosotrosModal = ({ onClose }: { onClose: () => void }) => (
         </div>
       </motion.div>
     </motion.div>
-  </AnimatePresence>
 );
 
 // ── Términos Modal ─────────────────────────────────────────────────────────────
 const TerminosModal = ({ onClose }: { onClose: () => void }) => (
-  <AnimatePresence>
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
-      <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+    <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
         <div className="bg-slate-800 p-8 relative overflow-hidden">
           <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
             <X className="w-4 h-4 text-white" />
@@ -1470,17 +1472,15 @@ const TerminosModal = ({ onClose }: { onClose: () => void }) => (
         </div>
       </motion.div>
     </motion.div>
-  </AnimatePresence>
 );
 
 // ── Privacidad Modal ───────────────────────────────────────────────────────────
 const PrivacidadModal = ({ onClose }: { onClose: () => void }) => (
-  <AnimatePresence>
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
-      <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+    <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
         <div className="bg-slate-800 p-8 relative overflow-hidden">
           <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
             <X className="w-4 h-4 text-white" />
@@ -1519,17 +1519,15 @@ const PrivacidadModal = ({ onClose }: { onClose: () => void }) => (
         </div>
       </motion.div>
     </motion.div>
-  </AnimatePresence>
 );
 
 // ── Soporte Modal ──────────────────────────────────────────────────────────────
 const SoporteModal = ({ onClose }: { onClose: () => void }) => (
-  <AnimatePresence>
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
-      <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        className="bg-white rounded-[32px] max-w-sm w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+    className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
+    <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+      className="bg-white rounded-[32px] max-w-sm w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
         <div className="bg-brand-blue-dark p-8 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2" />
           <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
@@ -1563,7 +1561,6 @@ const SoporteModal = ({ onClose }: { onClose: () => void }) => (
         </div>
       </motion.div>
     </motion.div>
-  </AnimatePresence>
 );
 
 // ── Footer ─────────────────────────────────────────────────────────────────────
@@ -1572,6 +1569,14 @@ const Footer = () => {
   const [showTerminos,  setShowTerminos]  = useState(false);
   const [showPriv,      setShowPriv]      = useState(false);
   const [showSoporte,   setShowSoporte]   = useState(false);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { setShowAbout(false); setShowTerminos(false); setShowPriv(false); setShowSoporte(false); }
+    };
+    window.addEventListener('keydown', handler);
+    return () => window.removeEventListener('keydown', handler);
+  }, []);
   return (
   <>
   <footer className="bg-slate-50 py-12 border-t border-slate-200">
@@ -1593,10 +1598,12 @@ const Footer = () => {
       </div>
     </div>
   </footer>
-  {showAbout    && <SobreNosotrosModal onClose={() => setShowAbout(false)} />}
-  {showTerminos && <TerminosModal      onClose={() => setShowTerminos(false)} />}
-  {showPriv     && <PrivacidadModal    onClose={() => setShowPriv(false)} />}
-  {showSoporte  && <SoporteModal       onClose={() => setShowSoporte(false)} />}
+  <AnimatePresence>
+    {showAbout    && <SobreNosotrosModal key="about" onClose={() => setShowAbout(false)} />}
+    {showTerminos && <TerminosModal      key="term"  onClose={() => setShowTerminos(false)} />}
+    {showPriv     && <PrivacidadModal    key="priv"  onClose={() => setShowPriv(false)} />}
+    {showSoporte  && <SoporteModal       key="sop"   onClose={() => setShowSoporte(false)} />}
+  </AnimatePresence>
   </>
   );
 };
