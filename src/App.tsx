@@ -1095,21 +1095,25 @@ const Comparison = () => {
     'Disponible 24/7',
     'Habla en castellano rioplatense',
     'Recordatorios activos',
+    'Alarmas por voz (sin tocar la pantalla)',
     'Alertas de emergencia a la familia',
     'Estimulación cognitiva',
     'Informes a la familia',
     'Sin capacitación técnica',
+    'Música y radio en streaming',
+    'Listas por voz (compras, tareas)',
+    'Control del hogar por voz (domótica)',
     'Fotos de familia narradas en voz alta',
     'Lee textos y documentos (OCR)',
     'Autofoto directo a la familia',
     'Amplificador de audio para hipoacusia',
   ];
   const cols = [
-    { name: 'CompañIA', values: [true, true, true, true, true, true, true, true, true, true, true], highlight: true },
-    { name: 'Ato (heyato.ai)', values: [true, false, true, false, true, true, true, false, false, false, false], highlight: false },
-    { name: 'Cuidador presencial', values: [false, true, true, true, false, false, true, true, false, true, false], highlight: false },
-    { name: 'Videollamada', values: [false, true, false, false, false, false, true, false, false, false, false], highlight: false },
-    { name: 'Teléfono', values: [false, true, false, false, false, false, true, false, false, false, false], highlight: false },
+    { name: 'CompañIA', values: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true], highlight: true },
+    { name: 'Ato (heyato.ai)', values: [true, false, true, true, false, true, true, true, true, false, false, false, false, false, false], highlight: false },
+    { name: 'Cuidador presencial', values: [false, true, true, false, true, false, false, true, false, true, false, true, false, true, false], highlight: false },
+    { name: 'Videollamada', values: [false, true, false, false, false, false, false, true, false, false, false, false, false, false, false], highlight: false },
+    { name: 'Teléfono', values: [false, true, false, false, false, false, false, true, false, false, false, false, false, false, false], highlight: false },
   ];
 
   return (
