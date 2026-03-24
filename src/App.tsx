@@ -189,44 +189,77 @@ const PressStrip = () => (
 );
 
 const Problem = () => (
-  <section id="problema" className="py-24 bg-white">
+  <section id="problema" className="py-24 bg-slate-900 text-white overflow-hidden">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      {/* Header */}
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-slate-900 mb-4">El problema</h2>
+        <span className="inline-block text-xs font-semibold tracking-widest uppercase text-brand-orange mb-4">El problema</span>
+        <h2 className="text-4xl lg:text-5xl font-bold text-white mb-5 leading-tight">
+          Millones de personas mayores<br className="hidden sm:block" /> viven en silencio cada día
+        </h2>
+        <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          El aislamiento social en adultos mayores no es solo un problema emocional — es una crisis de salud pública con consecuencias médicas, cognitivas y económicas comprobadas.
+        </p>
       </div>
-      <div className="bg-brand-blue-light/40 rounded-[40px] overflow-hidden shadow-sm border border-brand-blue-light">
-        <div className="grid lg:grid-cols-2 items-center">
-          <div className="h-full min-h-[300px]">
-            <img
-              src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774034548/Gemini_Generated_Image_3q9gur3q9gur3q9g_kk77am.png"
-              alt="Familia mirando álbum"
-              className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-          <div className="p-8 lg:p-16 flex flex-col items-center justify-center">
-            <div className="space-y-8 w-full max-w-sm">
-              {[
-                { num: '40%', text: 'de adultos mayores pasan días en silencio.' },
-                { num: '50%', text: 'de deterioro cognitivo por aislamiento social.' },
-                { num: 'USD 400–1.200/mes', text: 'en cuidado derivado\nde la soledad.' },
-              ].map(({ num, text }) => (
-                <div key={num} className="flex items-center gap-6">
-                  <div className={`w-36 min-h-[4.5rem] font-bold text-brand-blue-dark leading-tight shrink-0 whitespace-pre-line flex items-center ${num.startsWith('USD') ? 'text-lg' : 'text-3xl'}`}>
-                    {num}
-                  </div>
-                  <p className="text-slate-600 font-medium leading-snug whitespace-pre-line">{text}</p>
-                </div>
-              ))}
+
+      {/* Stats grid principal */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+        {[
+          { num: '1 de cada 3', label: 'adultos mayores vive solo en América Latina', source: 'CEPAL 2023', color: 'from-orange-500/20 to-orange-500/5', border: 'border-orange-500/30', text: 'text-orange-400' },
+          { num: '+50%', label: 'más riesgo de demencia por aislamiento social', source: 'The Lancet 2022', color: 'from-red-500/20 to-red-500/5', border: 'border-red-500/30', text: 'text-red-400' },
+          { num: '29%', label: 'mayor riesgo de enfermedad cardíaca por soledad', source: 'AHA 2023', color: 'from-purple-500/20 to-purple-500/5', border: 'border-purple-500/30', text: 'text-purple-400' },
+          { num: '15 cigarrillos', label: 'equivale en daño a fumar 15 cigarrillos por día', source: 'Holt-Lunstad 2015', color: 'from-teal-500/20 to-teal-500/5', border: 'border-teal-500/30', text: 'text-teal-400' },
+        ].map(({ num, label, source, color, border, text }) => (
+          <div key={num} className={`bg-gradient-to-b ${color} rounded-2xl border ${border} p-6 flex flex-col justify-between`}>
+            <div>
+              <div className={`text-3xl lg:text-4xl font-bold ${text} leading-tight mb-3`}>{num}</div>
+              <p className="text-slate-300 text-sm leading-snug">{label}</p>
             </div>
-            <div className="mt-12 p-4 bg-white/60 rounded-2xl border border-white">
-              <p className="text-lg font-bold text-slate-900 text-center">
-                <Brand /> combate la soledad, mejorando su bienestar.
-              </p>
-            </div>
+            <p className={`text-xs mt-4 ${text} opacity-70`}>{source}</p>
           </div>
+        ))}
+      </div>
+
+      {/* Bloque central: imagen + datos secundarios */}
+      <div className="grid lg:grid-cols-5 gap-6 items-stretch">
+
+        {/* Imagen */}
+        <div className="lg:col-span-2 rounded-2xl overflow-hidden min-h-[280px]">
+          <img
+            src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774034548/Gemini_Generated_Image_3q9gur3q9gur3q9g_kk77am.png"
+            alt="Adulta mayor sola en su hogar"
+            className="w-full h-full object-cover"
+            referrerPolicy="no-referrer"
+          />
+        </div>
+
+        {/* Datos secundarios */}
+        <div className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            { icon: '🧠', stat: '130.000', desc: 'nuevos casos de demencia por año solo en Argentina', sub: 'Alzheimer Argentina' },
+            { icon: '💊', stat: '40%', desc: 'de adultos mayores no toma sus medicamentos correctamente por olvido o confusión', sub: 'OMS 2021' },
+            { icon: '🏥', stat: '32%', desc: 'más riesgo de sufrir un ACV en personas socialmente aisladas', sub: 'JAMA 2022' },
+            { icon: '💬', stat: '60%', desc: 'de familiares cuidadores reportan sentirse desbordados y con falta de herramientas', sub: 'INDEC 2022' },
+          ].map(({ icon, stat, desc, sub }) => (
+            <div key={stat} className="bg-white/5 border border-white/10 rounded-xl p-5 flex flex-col gap-2">
+              <span className="text-2xl">{icon}</span>
+              <div className="text-2xl font-bold text-white">{stat}</div>
+              <p className="text-slate-400 text-sm leading-snug">{desc}</p>
+              <p className="text-xs text-slate-600">{sub}</p>
+            </div>
+          ))}
         </div>
       </div>
+
+      {/* Cierre emocional */}
+      <div className="mt-12 bg-brand-orange/10 border border-brand-orange/30 rounded-2xl p-8 text-center">
+        <p className="text-xl font-semibold text-white max-w-3xl mx-auto leading-relaxed">
+          La tecnología existe para resolver este problema. Lo que faltaba era una solución diseñada para quienes más la necesitan.
+        </p>
+        <p className="text-brand-orange font-bold mt-3 text-lg"><Brand iaClassName="text-white" /> es esa solución.</p>
+      </div>
+
     </div>
   </section>
 );
