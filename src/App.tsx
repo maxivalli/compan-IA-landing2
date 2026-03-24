@@ -444,7 +444,8 @@ const Features = () => (
           { icon: <Clock className="text-amber-400" />, title: "Recordatorios", desc: "Notificaciones diarias para actividades y bienestar." },
           { icon: <Eye className="text-emerald-500" />, title: "Lectura de textos", desc: "Apuntá la cámara a cualquier papel y Rosita lo lee en voz alta. Ideal para personas con dificultad visual." },
           { icon: <Bell className="text-violet-500" />, title: "Alarmas por voz", desc: "\"Rosita, despertame mañana a las 8\" — programa alarmas hablando, sin tocar nada." },
-          { icon: <Headphones className="text-sky-400" />, title: "Soporte 24/7", desc: "Acceso continuo y actualizaciones automáticas." }
+          { icon: <Headphones className="text-sky-400" />, title: "Soporte 24/7", desc: "Acceso continuo y actualizaciones automáticas." },
+          { icon: <Ear className="text-teal-500" />, title: "Amplificador de audio", desc: "Enchufá auriculares y el teléfono amplifica la voz del interlocutor en tiempo real. Ideal para personas con dificultad auditiva." }
         ].map((feat, i) => (
           <div key={i} className="flex items-center gap-6 p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-brand-blue-light transition-colors group">
             <div className="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center group-hover:bg-brand-blue-light/20 transition-colors">
@@ -1101,13 +1102,14 @@ const Comparison = () => {
     'Fotos de familia narradas en voz alta',
     'Lee textos y documentos (OCR)',
     'Autofoto directo a la familia',
+    'Amplificador de audio para hipoacusia',
   ];
   const cols = [
-    { name: 'CompañIA', values: [true, true, true, true, true, true, true, true, true, true], highlight: true },
-    { name: 'heyATO', values: [true, false, true, true, false, true, false, false, false, false], highlight: false },
-    { name: 'Cuidador presencial', values: [false, true, true, true, false, false, true, true, false, true], highlight: false },
-    { name: 'Videollamada', values: [false, true, false, false, false, false, true, false, false, false], highlight: false },
-    { name: 'Teléfono', values: [false, true, false, false, false, false, true, false, false, false], highlight: false },
+    { name: 'CompañIA', values: [true, true, true, true, true, true, true, true, true, true, true], highlight: true },
+    { name: 'Ato (heyato.ai)', values: [true, false, true, false, true, true, true, false, false, false, false], highlight: false },
+    { name: 'Cuidador presencial', values: [false, true, true, true, false, false, true, true, false, true, false], highlight: false },
+    { name: 'Videollamada', values: [false, true, false, false, false, false, true, false, false, false, false], highlight: false },
+    { name: 'Teléfono', values: [false, true, false, false, false, false, true, false, false, false, false], highlight: false },
   ];
 
   return (
