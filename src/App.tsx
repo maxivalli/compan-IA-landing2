@@ -206,10 +206,10 @@ const Problem = () => (
       {/* Stats grid principal */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
         {[
-          { num: '1 de cada 3', label: 'adultos mayores vive solo en América Latina', source: 'CEPAL 2023', color: 'from-orange-500/20 to-orange-500/5', border: 'border-orange-500/30', text: 'text-orange-400' },
-          { num: '+50%', label: 'más riesgo de demencia por aislamiento social', source: 'The Lancet 2022', color: 'from-red-500/20 to-red-500/5', border: 'border-red-500/30', text: 'text-red-400' },
-          { num: '29%', label: 'mayor riesgo de enfermedad cardíaca por soledad', source: 'AHA 2023', color: 'from-purple-500/20 to-purple-500/5', border: 'border-purple-500/30', text: 'text-purple-400' },
-          { num: '15 cigarrillos', label: 'equivale en daño a fumar 15 cigarrillos por día', source: 'Holt-Lunstad 2015', color: 'from-teal-500/20 to-teal-500/5', border: 'border-teal-500/30', text: 'text-teal-400' },
+          { num: '1 de cada 3', label: 'adultos mayores vive solo en América Latina', source: 'CEPAL 2023', color: 'from-brand-orange/20 to-brand-orange/5', border: 'border-brand-orange/30', text: 'text-brand-orange' },
+          { num: '+50%', label: 'más riesgo de demencia por aislamiento social', source: 'The Lancet 2022', color: 'from-brand-blue-dark/30 to-brand-blue-dark/5', border: 'border-brand-blue-dark/40', text: 'text-sky-400' },
+          { num: '29%', label: 'mayor riesgo de enfermedad cardíaca por soledad', source: 'AHA 2023', color: 'from-brand-orange/15 to-brand-orange/5', border: 'border-brand-orange/20', text: 'text-brand-orange' },
+          { num: 'USD 9.000/año', label: 'costo promedio de cuidado domiciliario por aislamiento', source: 'OPS 2023', color: 'from-brand-blue-dark/30 to-brand-blue-dark/5', border: 'border-brand-blue-dark/40', text: 'text-sky-400' },
         ].map(({ num, label, source, color, border, text }) => (
           <div key={num} className={`bg-gradient-to-b ${color} rounded-2xl border ${border} p-6 flex flex-col justify-between`}>
             <div>
