@@ -73,7 +73,7 @@ const Hero = () => (
   <section className="relative min-h-screen flex items-center overflow-hidden">
     {/* Imagen de fondo full-screen */}
     <img
-      src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_1600/v1774034375/Gemini_Generated_Image_mn4eosmn4eosmn4e_dnumw6.png"
+      src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_1600/v1774357278/Gemini_Generated_Image_xtbtixtbtixtbtix_ussh5t.png"
       alt="Adulta mayor usando tablet"
       className="absolute inset-0 w-full h-full object-cover"
       referrerPolicy="no-referrer"
