@@ -838,7 +838,7 @@ const FunctionalitiesDetail = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="relative">
             <img
-              src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774034833/Gemini_Generated_Image_pf7te8pf7te8pf7t_j8zdry.png"
+              src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774358828/Gemini_Generated_Image_spk4gxspk4gxspk4_oix3j8.png"
               alt="Hijo usando teléfono"
               className="rounded-[40px] shadow-xl"
               referrerPolicy="no-referrer"
