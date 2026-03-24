@@ -227,7 +227,7 @@ const Problem = () => (
         {/* Imagen */}
         <div className="lg:col-span-2 rounded-2xl overflow-hidden min-h-[280px]">
           <img
-            src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774034548/Gemini_Generated_Image_3q9gur3q9gur3q9g_kk77am.png"
+            src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774358430/Gemini_Generated_Image_6le1b46le1b46le1_im5jf3.png"
             alt="Adulta mayor sola en su hogar"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
