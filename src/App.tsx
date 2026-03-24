@@ -209,7 +209,7 @@ const Problem = () => (
           { num: '1 de cada 3', label: 'adultos mayores vive solo en América Latina', source: 'CEPAL 2023', color: 'bg-brand-orange/8', border: 'border-brand-orange/20', text: 'text-brand-orange' },
           { num: '+50%', label: 'más riesgo de demencia por aislamiento social', source: 'The Lancet 2022', color: 'bg-brand-blue-light/60', border: 'border-brand-blue-dark/20', text: 'text-brand-blue-dark' },
           { num: '29%', label: 'mayor riesgo de enfermedad cardíaca por soledad', source: 'AHA 2023', color: 'bg-brand-orange/8', border: 'border-brand-orange/20', text: 'text-brand-orange' },
-          { num: 'USD 9.000/año', label: 'costo promedio de cuidado domiciliario por aislamiento', source: 'OPS 2023', color: 'bg-brand-blue-light/60', border: 'border-brand-blue-dark/20', text: 'text-brand-blue-dark' },
+          { num: 'USD +400/mes', label: 'costo promedio de cuidado domiciliario por aislamiento', source: 'OPS 2023', color: 'bg-brand-blue-light/60', border: 'border-brand-blue-dark/20', text: 'text-brand-blue-dark' },
         ].map(({ num, label, source, color, border, text }) => (
           <div key={num} className={`${color} rounded-2xl border ${border} p-6 flex flex-col justify-between`}>
             <div>
