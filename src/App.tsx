@@ -888,7 +888,7 @@ const FunctionalitiesDetail = () => {
           </div>
           <div className="order-1 lg:order-2 relative">
             <img
-              src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774035006/Gemini_Generated_Image_qd0wqrqd0wqrqd0w_mst50x.png"
+              src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774359691/Gemini_Generated_Image_dfzi7zdfzi7zdfzi_clxjgq.png"
               alt="Panel de control"
               className="rounded-[40px] shadow-xl border-8 border-slate-100"
               referrerPolicy="no-referrer"
