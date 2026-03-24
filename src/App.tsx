@@ -213,7 +213,7 @@ const Problem = () => (
         ].map(({ num, label, source, color, border, text }) => (
           <div key={num} className={`${color} rounded-2xl border ${border} p-6 flex flex-col justify-between`}>
             <div>
-              <div className={`text-3xl lg:text-4xl font-bold ${text} leading-tight mb-3`}>{num}</div>
+              <div className={`text-2xl lg:text-4xl font-bold ${text} leading-tight mb-3`}>{num}</div>
               <p className="text-slate-600 text-sm leading-snug">{label}</p>
             </div>
             <p className={`text-xs mt-4 ${text} opacity-60`}>{source}</p>
