@@ -189,16 +189,16 @@ const PressStrip = () => (
 );
 
 const Problem = () => (
-  <section id="problema" className="py-24 bg-slate-900 text-white overflow-hidden">
+  <section id="problema" className="py-24 bg-white overflow-hidden">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       {/* Header */}
       <div className="text-center mb-16">
         <span className="inline-block text-xs font-semibold tracking-widest uppercase text-brand-orange mb-4">El problema</span>
-        <h2 className="text-4xl lg:text-5xl font-bold text-white mb-5 leading-tight">
+        <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-5 leading-tight">
           Millones de personas mayores<br className="hidden sm:block" /> viven en silencio cada día
         </h2>
-        <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+        <p className="text-slate-500 text-lg max-w-2xl mx-auto">
           El aislamiento social en adultos mayores no es solo un problema emocional — es una crisis de salud pública con consecuencias médicas, cognitivas y económicas comprobadas.
         </p>
       </div>
@@ -206,17 +206,17 @@ const Problem = () => (
       {/* Stats grid principal */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
         {[
-          { num: '1 de cada 3', label: 'adultos mayores vive solo en América Latina', source: 'CEPAL 2023', color: 'from-brand-orange/20 to-brand-orange/5', border: 'border-brand-orange/30', text: 'text-brand-orange' },
-          { num: '+50%', label: 'más riesgo de demencia por aislamiento social', source: 'The Lancet 2022', color: 'from-brand-blue-dark/30 to-brand-blue-dark/5', border: 'border-brand-blue-dark/40', text: 'text-sky-400' },
-          { num: '29%', label: 'mayor riesgo de enfermedad cardíaca por soledad', source: 'AHA 2023', color: 'from-brand-orange/15 to-brand-orange/5', border: 'border-brand-orange/20', text: 'text-brand-orange' },
-          { num: 'USD 9.000/año', label: 'costo promedio de cuidado domiciliario por aislamiento', source: 'OPS 2023', color: 'from-brand-blue-dark/30 to-brand-blue-dark/5', border: 'border-brand-blue-dark/40', text: 'text-sky-400' },
+          { num: '1 de cada 3', label: 'adultos mayores vive solo en América Latina', source: 'CEPAL 2023', color: 'bg-brand-orange/8', border: 'border-brand-orange/20', text: 'text-brand-orange' },
+          { num: '+50%', label: 'más riesgo de demencia por aislamiento social', source: 'The Lancet 2022', color: 'bg-brand-blue-light/60', border: 'border-brand-blue-dark/20', text: 'text-brand-blue-dark' },
+          { num: '29%', label: 'mayor riesgo de enfermedad cardíaca por soledad', source: 'AHA 2023', color: 'bg-brand-orange/8', border: 'border-brand-orange/20', text: 'text-brand-orange' },
+          { num: 'USD 9.000/año', label: 'costo promedio de cuidado domiciliario por aislamiento', source: 'OPS 2023', color: 'bg-brand-blue-light/60', border: 'border-brand-blue-dark/20', text: 'text-brand-blue-dark' },
         ].map(({ num, label, source, color, border, text }) => (
-          <div key={num} className={`bg-gradient-to-b ${color} rounded-2xl border ${border} p-6 flex flex-col justify-between`}>
+          <div key={num} className={`${color} rounded-2xl border ${border} p-6 flex flex-col justify-between`}>
             <div>
               <div className={`text-3xl lg:text-4xl font-bold ${text} leading-tight mb-3`}>{num}</div>
-              <p className="text-slate-300 text-sm leading-snug">{label}</p>
+              <p className="text-slate-600 text-sm leading-snug">{label}</p>
             </div>
-            <p className={`text-xs mt-4 ${text} opacity-70`}>{source}</p>
+            <p className={`text-xs mt-4 ${text} opacity-60`}>{source}</p>
           </div>
         ))}
       </div>
@@ -242,22 +242,22 @@ const Problem = () => (
             { icon: '🏥', stat: '32%', desc: 'más riesgo de sufrir un ACV en personas socialmente aisladas', sub: 'JAMA 2022' },
             { icon: '💬', stat: '60%', desc: 'de familiares cuidadores reportan sentirse desbordados y con falta de herramientas', sub: 'INDEC 2022' },
           ].map(({ icon, stat, desc, sub }) => (
-            <div key={stat} className="bg-white/5 border border-white/10 rounded-xl p-5 flex flex-col gap-2">
+            <div key={stat} className="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col gap-2">
               <span className="text-2xl">{icon}</span>
-              <div className="text-2xl font-bold text-white">{stat}</div>
-              <p className="text-slate-400 text-sm leading-snug">{desc}</p>
-              <p className="text-xs text-slate-600">{sub}</p>
+              <div className="text-2xl font-bold text-slate-900">{stat}</div>
+              <p className="text-slate-500 text-sm leading-snug">{desc}</p>
+              <p className="text-xs text-slate-400">{sub}</p>
             </div>
           ))}
         </div>
       </div>
 
       {/* Cierre emocional */}
-      <div className="mt-12 bg-brand-orange/10 border border-brand-orange/30 rounded-2xl p-8 text-center">
-        <p className="text-xl font-semibold text-white max-w-3xl mx-auto leading-relaxed">
+      <div className="mt-12 bg-brand-blue-light/50 border border-brand-blue-dark/20 rounded-2xl p-8 text-center">
+        <p className="text-xl font-semibold text-slate-900 max-w-3xl mx-auto leading-relaxed">
           La tecnología existe para resolver este problema. Lo que faltaba era una solución diseñada para quienes más la necesitan.
         </p>
-        <p className="text-brand-orange font-bold mt-3 text-lg"><Brand iaClassName="text-white" /> es esa solución.</p>
+        <p className="text-brand-orange font-bold mt-3 text-lg"><Brand /> es esa solución.</p>
       </div>
 
     </div>
