@@ -967,7 +967,7 @@ const FunctionalitiesDetail = () => {
           </div>
           <div className="relative">
             <img
-              src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774069222/Gemini_Generated_Image_9qjd9c9qjd9c9qjd_pqrrvk.png"
+              src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774357583/Gemini_Generated_Image_ismzh2ismzh2ismz_rss9va.png"
               alt="Adulta mayor escuchando música"
               className="rounded-[40px] shadow-xl"
               referrerPolicy="no-referrer"
