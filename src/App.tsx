@@ -57,7 +57,7 @@ const Navbar = () => (
           <a href="#faq" className="text-sm font-medium text-slate-600 hover:text-brand-orange transition-colors">FAQ</a>
         </div>
         <a
-          href="https://expo.dev/artifacts/eas/wWgYHX6rDY6hEhotS2SvBi.apk"
+          href="https://expo.dev/artifacts/eas/np9ok6adecBeWxmCW4aYFt.apk"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-brand-orange text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-orange-600 transition-all shadow-md shadow-orange-200"
@@ -99,7 +99,7 @@ const Hero = () => (
         </p>
         <div className="flex flex-wrap gap-4 mb-12">
           <a
-            href="https://expo.dev/artifacts/eas/wWgYHX6rDY6hEhotS2SvBi.apk"
+            href="https://expo.dev/artifacts/eas/np9ok6adecBeWxmCW4aYFt.apk"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-brand-orange text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-500 transition-all shadow-lg shadow-orange-900/40"
@@ -604,7 +604,7 @@ const SOSModal = ({ onClose }: { onClose: () => void }) => (
         {/* Footer */}
         <div className="px-8 pb-8">
           <a
-            href="https://expo.dev/artifacts/eas/wWgYHX6rDY6hEhotS2SvBi.apk"
+            href="https://expo.dev/artifacts/eas/np9ok6adecBeWxmCW4aYFt.apk"
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full bg-brand-orange text-white text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-600 transition-all shadow-lg"
@@ -700,7 +700,7 @@ const VisionModal = ({ onClose }: { onClose: () => void }) => (
         {/* Footer */}
         <div className="px-8 pb-8">
           <a
-            href="https://expo.dev/artifacts/eas/wWgYHX6rDY6hEhotS2SvBi.apk"
+            href="https://expo.dev/artifacts/eas/np9ok6adecBeWxmCW4aYFt.apk"
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full bg-emerald-700 text-white text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-emerald-800 transition-all shadow-lg"
@@ -796,7 +796,7 @@ const TelegramModal = ({ onClose }: { onClose: () => void }) => (
         {/* Footer */}
         <div className="px-8 pb-8">
           <a
-            href="https://expo.dev/artifacts/eas/wWgYHX6rDY6hEhotS2SvBi.apk"
+            href="https://expo.dev/artifacts/eas/np9ok6adecBeWxmCW4aYFt.apk"
             target="_blank"
             rel="noopener noreferrer"
             className="block w-full bg-brand-blue-dark text-white text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-800 transition-all shadow-lg"
@@ -1225,7 +1225,7 @@ const PricingContact = () => {
     }
   };
 
-  const apkUrl = "https://expo.dev/artifacts/eas/wWgYHX6rDY6hEhotS2SvBi.apk";
+  const apkUrl = "https://expo.dev/artifacts/eas/np9ok6adecBeWxmCW4aYFt.apk";
 
   const featuresFree     = ['Voz ElevenLabs (ultra-natural)', 'Conexión familiar ilimitada', 'Botón SOS y recordatorios', 'Música y juegos cognitivos', 'Informe de bienestar diario', 'Integración con Telegram'];
   const featuresStarter  = ['Voz nativa Android', 'Conexión familiar ilimitada', 'Botón SOS y recordatorios', 'Música y juegos cognitivos', 'Informe de bienestar diario', 'Integración con Telegram'];
