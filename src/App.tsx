@@ -43,7 +43,7 @@ const Navbar = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center h-16">
         <div className="flex items-center gap-2">
-          <img src="/adaptive-icon.png" alt="CompañIA" className="w-8 h-8 rounded-full object-cover" />
+          <img src="/splash-icon.png" alt="CompañIA" className="w-8 h-8 object-contain" />
           <span className="text-xl font-bold tracking-tight text-slate-900">
             <Brand />
           </span>
@@ -405,9 +405,9 @@ const VoiceDemo = () => {
 
               <div className="flex items-center gap-4 mb-6">
                 <img
-                  src="/adaptive-icon.png"
+                  src="/splash-icon.png"
                   alt={voice.name}
-                  style={{ width: 56, height: 56, borderRadius: '50%', objectFit: 'cover', boxShadow: '0 4px 12px rgba(0,0,0,0.2)' }}
+                  style={{ width: 56, height: 56, objectFit: 'contain' }}
                 />
                 <div>
                   <h3 className="text-xl font-bold text-white">{voice.name}</h3>
@@ -1188,7 +1188,7 @@ const Comparison = () => {
               ))}
               <tr className="border-t border-slate-100">
                 <td className="p-5 text-slate-700 font-bold text-sm">Precio mensual</td>
-                <td className="p-5 text-center font-bold text-brand-blue-dark bg-brand-blue-dark/5">$39</td>
+                <td className="p-5 text-center font-bold text-brand-blue-dark bg-brand-blue-dark/5">desde USD 19</td>
                 <td className="p-5 text-center text-slate-500 text-sm font-medium">$29 + $149 hardware</td>
                 <td className="p-5 text-center text-slate-500 text-sm font-medium">USD 400-1,200</td>
                 <td className="p-5 text-center text-slate-500 text-sm font-medium">Gratis</td>
@@ -1225,48 +1225,112 @@ const PricingContact = () => {
     }
   };
 
+  const apkUrl = "https://expo.dev/artifacts/eas/wWgYHX6rDY6hEhotS2SvBi.apk";
+
+  const featuresFree     = ['Voz ElevenLabs (ultra-natural)', 'Conexión familiar ilimitada', 'Botón SOS y recordatorios', 'Música y juegos cognitivos', 'Informe de bienestar diario', 'Integración con Telegram'];
+  const featuresStarter  = ['Voz nativa Android', 'Conexión familiar ilimitada', 'Botón SOS y recordatorios', 'Música y juegos cognitivos', 'Informe de bienestar diario', 'Integración con Telegram'];
+  const featuresCompanion = ['Voz ElevenLabs (ultra-natural)', 'Conexión familiar ilimitada', 'Botón SOS y recordatorios', 'Música y juegos cognitivos', 'Informe de bienestar diario', 'Integración con Telegram'];
+
   return (
   <section className="py-24 bg-white">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="grid lg:grid-cols-2 gap-16">
-        {/* Pricing Card */}
-        <div className="bg-brand-blue-light/40 p-10 rounded-[40px] border border-brand-blue-light flex flex-col justify-between">
-          <div>
-            <div className="inline-block bg-brand-orange text-white text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6">
-              Precio especial MVP
+
+      {/* Header */}
+      <div className="text-center mb-16">
+        <h2 className="text-4xl font-serif font-bold text-slate-900 mb-4">Planes y precios</h2>
+        <p className="text-slate-500 max-w-xl mx-auto">Empezá gratis. Sin tarjeta de crédito. Cancelá cuando quieras.</p>
+      </div>
+
+      {/* 3 Plan cards */}
+      <div className="grid md:grid-cols-3 gap-6 mb-20 items-stretch">
+
+        {/* Try Free */}
+        <div className="bg-slate-50 p-8 rounded-[32px] border border-slate-200 flex flex-col">
+          <div className="mb-6">
+            <div className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Prueba gratuita</div>
+            <div className="text-3xl font-bold text-slate-900 mb-1">
+              Gratis <span className="text-lg text-slate-400 font-normal">/ 3 días</span>
             </div>
-            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
-              <div className="text-4xl font-bold text-slate-900">$39<span className="text-lg text-slate-500 font-normal">/mes</span></div>
-              <a
-                href="https://expo.dev/artifacts/eas/wWgYHX6rDY6hEhotS2SvBi.apk"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-brand-orange text-white px-6 py-3 rounded-full font-bold hover:bg-orange-600 transition-all shadow-md shadow-orange-200 text-center"
-              >
-                Probar 7 días gratis
-              </a>
-            </div>
-            <ul className="space-y-4 text-slate-700 font-medium">
-              {[
-                'Asistencia por voz 24/7',
-                'Conexión familiar ilimitada',
-                'Botón SOS y recordatorios',
-                'Música y juegos cognitivos',
-                'Informe de bienestar diario',
-                'Integración con Telegram',
-              ].map(item => (
-                <li key={item} className="flex items-center gap-3">
-                  <CheckCircle2 className="text-brand-blue-dark w-5 h-5 shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
+            <p className="text-sm text-slate-500 mt-2">Todas las funciones del plan Companion, sin costo.</p>
           </div>
+          <ul className="space-y-3 text-sm text-slate-600 mb-8 flex-1">
+            {featuresFree.map(f => (
+              <li key={f} className="flex items-center gap-2">
+                <CheckCircle2 className="text-green-500 w-4 h-4 shrink-0" />{f}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={apkUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-center border-2 border-brand-blue-dark text-brand-blue-dark px-6 py-3 rounded-full font-bold hover:bg-brand-blue-dark hover:text-white transition-all"
+          >
+            Probar 3 días gratis
+          </a>
         </div>
 
-        {/* Contact Form */}
+        {/* Starter */}
+        <div className="bg-slate-50 p-8 rounded-[32px] border border-slate-200 flex flex-col">
+          <div className="mb-6">
+            <div className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Starter</div>
+            <div className="text-3xl font-bold text-slate-900 mb-1">
+              USD 19 <span className="text-lg text-slate-400 font-normal">/mes</span>
+            </div>
+            <p className="text-sm text-slate-500 mt-2">Motor de voz nativo de Android. Ideal para empezar.</p>
+          </div>
+          <ul className="space-y-3 text-sm text-slate-600 mb-8 flex-1">
+            {featuresStarter.map(f => (
+              <li key={f} className="flex items-center gap-2">
+                <CheckCircle2 className="text-green-500 w-4 h-4 shrink-0" />{f}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={apkUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-center border-2 border-brand-blue-dark text-brand-blue-dark px-6 py-3 rounded-full font-bold hover:bg-brand-blue-dark hover:text-white transition-all"
+          >
+            Elegir Starter
+          </a>
+        </div>
+
+        {/* Companion — destacado */}
+        <div className="bg-brand-blue-dark p-8 rounded-[32px] flex flex-col relative overflow-hidden">
+          <div className="absolute top-0 right-0 bg-brand-orange text-white text-xs font-bold px-4 py-1.5 rounded-bl-2xl rounded-tr-[32px] uppercase tracking-wide">
+            Más popular
+          </div>
+          <div className="mb-6">
+            <div className="text-xs font-bold uppercase tracking-widest text-blue-300 mb-3">Companion</div>
+            <div className="text-3xl font-bold text-white mb-1">
+              USD 39 <span className="text-lg text-blue-300 font-normal">/mes</span>
+            </div>
+            <p className="text-sm text-blue-200 mt-2">Voz ElevenLabs ultra-natural. La experiencia completa.</p>
+          </div>
+          <ul className="space-y-3 text-sm text-blue-100 mb-8 flex-1">
+            {featuresCompanion.map(f => (
+              <li key={f} className="flex items-center gap-2">
+                <CheckCircle2 className="text-blue-300 w-4 h-4 shrink-0" />{f}
+              </li>
+            ))}
+          </ul>
+          <a
+            href={apkUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-center bg-brand-orange text-white px-6 py-3 rounded-full font-bold hover:bg-orange-600 transition-all shadow-lg shadow-orange-900/30"
+          >
+            Elegir Companion
+          </a>
+        </div>
+
+      </div>
+
+      {/* Contact Form */}
+      <div className="max-w-2xl mx-auto">
         <div>
-          <h3 className="text-2xl font-bold text-slate-900 mb-8">¿Tenés alguna pregunta?</h3>
+          <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">¿Tenés alguna pregunta?</h3>
           {sent ? (
             <div className="flex flex-col items-center justify-center h-48 gap-4 text-center">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
@@ -1362,7 +1426,7 @@ const FAQ = () => {
     ],
     Precios: [
       { q: "¿Puedo cancelar en cualquier momento?", a: "Sí, sin penalidades ni letra chica. Podés cancelar la suscripción cuando quieras desde la app o enviándonos un mensaje." },
-      { q: "¿La prueba gratuita requiere tarjeta de crédito?", a: "No. Podés probar CompañIA gratis durante 7 días sin ingresar ningún dato de pago. Solo pedimos un email para crear tu cuenta." },
+      { q: "¿La prueba gratuita requiere tarjeta de crédito?", a: "No. Podés probar CompañIA gratis durante 3 días con todas las funciones del plan Companion, sin ingresar ningún dato de pago." },
     ],
   };
 
@@ -1412,9 +1476,9 @@ const FAQ = () => {
           </div>
           <div className="md:w-1/3 relative z-10">
             <img
-              src="/rosita.png"
+              src="/splash-icon.png"
               alt="Rosita"
-              className="w-32 h-32 md:w-48 md:h-48 rounded-full border-4 border-white/20 object-cover shadow-2xl"
+              className="w-32 h-32 md:w-48 md:h-48 object-contain drop-shadow-2xl"
             />
           </div>
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
@@ -1486,7 +1550,7 @@ const TerminosModal = ({ onClose }: { onClose: () => void }) => (
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">2. Suscripción</h4>
-            <p>El costo del servicio es de <span className="font-semibold text-slate-900">USD 39 por mes</span> por dispositivo. El cobro es mensual. Podés cancelar en cualquier momento sin penalidad; el acceso se mantiene hasta el fin del período pagado.</p>
+            <p>El costo del servicio es de <span className="font-semibold text-slate-900">USD 19 (Starter) o USD 39 (Companion) por mes</span> por dispositivo. El cobro es mensual. Podés cancelar en cualquier momento sin penalidad; el acceso se mantiene hasta el fin del período pagado.</p>
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">3. Uso aceptable</h4>
@@ -1622,7 +1686,7 @@ const Footer = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex items-center gap-2">
-          <img src="/adaptive-icon.png" alt="CompañIA" className="w-6 h-6 rounded-full object-cover" />
+          <img src="/splash-icon.png" alt="CompañIA" className="w-6 h-6 object-contain" />
           <span className="text-lg font-bold text-slate-900"><Brand /></span>
         </div>
         <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-slate-500">
