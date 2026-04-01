@@ -28,7 +28,9 @@ import {
   Image,
   UserCheck,
   Radio,
-  Eye
+  Eye,
+  CloudSun,
+  Lightbulb
 } from 'lucide-react';
 
 const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/76UDQERcTmESph1BCe6iVV.apk';
@@ -312,17 +314,19 @@ const PoweredBy = () => (
       </p>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
         {[
-          { name: 'Claude', sub: 'Inteligencia', logo: 'https://cdn.simpleicons.org/anthropic/ffffff' },
-          { name: 'ElevenLabs', sub: 'Voz sintética', logo: 'https://cdn.simpleicons.org/elevenlabs/ffffff' },
-          { name: 'Whisper', sub: 'Reconocimiento', logo: null },
-          { name: 'Telegram', sub: 'Familia conectada', logo: 'https://cdn.simpleicons.org/telegram/ffffff' },
-          { name: 'React Native', sub: 'App móvil', logo: 'https://cdn.simpleicons.org/react/ffffff' },
-          { name: 'Railway', sub: 'Infraestructura', logo: 'https://cdn.simpleicons.org/railway/ffffff' },
+          { name: 'Claude', sub: 'Motor de texto', logo: 'https://cdn.simpleicons.org/anthropic/ffffff', icon: null },
+          { name: 'Fish Audio', sub: 'Motor de voz', logo: null, icon: Headphones },
+          { name: 'Whisper', sub: 'Transcripción', logo: null, icon: Mic },
+          { name: 'Telegram', sub: 'Familia conectada', logo: 'https://cdn.simpleicons.org/telegram/ffffff', icon: null },
+          { name: 'SmartThings', sub: 'Casa conectada', logo: null, icon: Lightbulb },
+          { name: 'Open-Meteo', sub: 'Clima local', logo: null, icon: CloudSun },
         ].map(tech => (
           <div key={tech.name} className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors text-center">
             {tech.logo
               ? <img src={tech.logo} alt={tech.name} className="w-8 h-8 object-contain" />
-              : <Headphones className="w-8 h-8 text-white" />
+              : tech.icon
+                ? <tech.icon className="w-8 h-8 text-white" />
+                : <Headphones className="w-8 h-8 text-white" />
             }
             <span className="font-bold text-white text-sm">{tech.name}</span>
             <span className="text-xs text-slate-400">{tech.sub}</span>
@@ -1229,9 +1233,9 @@ const PricingContact = () => {
 
   const apkUrl = LATEST_ANDROID_BUILD_URL;
 
-  const featuresFree     = ['Voz ElevenLabs (ultra-natural)', 'Conexión familiar ilimitada', 'Botón SOS y recordatorios', 'Música y juegos cognitivos', 'Informe de bienestar diario', 'Integración con Telegram'];
+  const featuresFree     = ['Voz premium ultra-natural', 'Conexión familiar ilimitada', 'Botón SOS y recordatorios', 'Música y juegos cognitivos', 'Informe de bienestar diario', 'Integración con Telegram'];
   const featuresStarter  = ['Voz nativa Android', 'Conexión familiar ilimitada', 'Botón SOS y recordatorios', 'Música y juegos cognitivos', 'Informe de bienestar diario', 'Integración con Telegram'];
-  const featuresCompanion = ['Voz ElevenLabs (ultra-natural)', 'Conexión familiar ilimitada', 'Botón SOS y recordatorios', 'Música y juegos cognitivos', 'Informe de bienestar diario', 'Integración con Telegram'];
+  const featuresCompanion = ['Voz premium ultra-natural', 'Conexión familiar ilimitada', 'Botón SOS y recordatorios', 'Música y juegos cognitivos', 'Informe de bienestar diario', 'Integración con Telegram'];
 
   return (
   <section className="py-24 bg-white">
@@ -1308,7 +1312,7 @@ const PricingContact = () => {
             <div className="text-3xl font-bold text-white mb-1">
               USD 39 <span className="text-lg text-blue-300 font-normal">/mes</span>
             </div>
-            <p className="text-sm text-blue-200 mt-2">Voz ElevenLabs ultra-natural. La experiencia completa.</p>
+            <p className="text-sm text-blue-200 mt-2">Voz premium ultra-natural. La experiencia completa.</p>
           </div>
           <ul className="space-y-3 text-sm text-blue-100 mb-8 flex-1">
             {featuresCompanion.map(f => (
@@ -1601,7 +1605,7 @@ const PrivacidadModal = ({ onClose }: { onClose: () => void }) => (
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">Datos que recopilamos</h4>
             <p><span className="font-semibold text-slate-800">Voz y audio:</span> El audio del botón manual se envía a OpenAI Whisper para transcripción y se descarta de inmediato. No se almacena.</p>
-            <p className="mt-2"><span className="font-semibold text-slate-800">Ubicación:</span> Solo para obtener el clima local (WeatherAPI). No se comparte ni almacena.</p>
+            <p className="mt-2"><span className="font-semibold text-slate-800">Ubicación:</span> Solo para obtener el clima local (Open-Meteo). No se comparte ni almacena.</p>
             <p className="mt-2"><span className="font-semibold text-slate-800">Perfil:</span> Nombre, gustos, medicamentos y fechas se guardan únicamente en el dispositivo. Las conversaciones no se almacenan en ningún servidor.</p>
             <p className="mt-2"><span className="font-semibold text-slate-800">ID de dispositivo:</span> Un UUID anónimo para vincular el dispositivo con tu familia. No contiene información personal.</p>
           </div>
@@ -1611,7 +1615,7 @@ const PrivacidadModal = ({ onClose }: { onClose: () => void }) => (
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">Servicios de terceros</h4>
-            <p>Anthropic Claude (respuestas IA) · OpenAI Whisper (transcripción) · ElevenLabs (síntesis de voz, sin almacenamiento) · WeatherAPI (clima) · Telegram (mensajes familiares) · Samsung SmartThings (domótica, opcional).</p>
+            <p>Anthropic Claude (respuestas IA) · OpenAI Whisper (transcripción) · Fish Audio (síntesis de voz, sin almacenamiento) · Open-Meteo (clima) · Telegram (mensajes familiares) · Samsung SmartThings (domótica, opcional).</p>
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">Seguridad</h4>
