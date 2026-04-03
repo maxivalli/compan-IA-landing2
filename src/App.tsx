@@ -33,7 +33,7 @@ import {
   Lightbulb
 } from 'lucide-react';
 
-const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/76UDQERcTmESph1BCe6iVV.apk';
+const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/accounts/compan-ia/projects/AbuApp/builds/171f0b7a-0951-4f85-a42d-e724015cf1ac';
 
 // Helper: nombre de marca con estilo
 const Brand = ({ className = '', iaClassName = 'text-brand-orange' }: { className?: string; iaClassName?: string }) => (
@@ -484,7 +484,8 @@ const Features = () => (
           { icon: <Eye className="text-emerald-500" />, title: "Lectura de textos", desc: "Apuntá la cámara a cualquier papel y Rosita lo lee en voz alta. Ideal para personas con dificultad visual." },
           { icon: <Bell className="text-violet-500" />, title: "Alarmas por voz", desc: "\"Rosita, despertame mañana a las 8\" — programa alarmas hablando, sin tocar nada." },
           { icon: <Headphones className="text-sky-400" />, title: "Soporte 24/7", desc: "Acceso continuo y actualizaciones automáticas." },
-          { icon: <Ear className="text-teal-500" />, title: "Amplificador de audio", desc: "Enchufá auriculares y el teléfono amplifica la voz del interlocutor en tiempo real. Ideal para personas con dificultad auditiva." }
+          { icon: <Ear className="text-teal-500" />, title: "Amplificador de audio", desc: "Enchufá auriculares y el teléfono amplifica la voz del interlocutor en tiempo real. Ideal para personas con dificultad auditiva." },
+          { icon: <UserCheck className="text-indigo-400" />, title: "Detección de presencia", desc: "Si el adulto mayor se acerca a la pantalla, Rosita lo detecta y lo saluda. Se activa sola cuando lleva más de 30 minutos sin actividad." }
         ].map((feat, i) => (
           <div key={i} className="flex items-center gap-6 p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-brand-blue-light transition-colors group">
             <div className="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center group-hover:bg-brand-blue-light/20 transition-colors">
