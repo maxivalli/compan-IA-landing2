@@ -495,7 +495,7 @@ const Features = () => {
 
   const accessibilityFeatures = [
     { icon: <AlertCircle className="text-rose-400" />, title: "Botón SOS", desc: "Con una sola pulsación, alerta inmediata a todos los contactos familiares designados por Telegram." },
-    { icon: <Eye className="text-emerald-500" />, title: "Visión en vivo", desc: "Apuntá la cámara a cualquier papel, receta o documento y Rosita lo lee en voz alta. También puede describir lo que ve en tiempo real." },
+    { icon: <Eye className="text-emerald-500" />, title: "Visión", desc: "Lectura de textos con foto automática, o modo visión donde Rosita describe lo que ve con una pregunta. También narra las fotos de la familia." },
     { icon: <Ear className="text-teal-500" />, title: "Amplificador de audio", desc: "Enchufá auriculares y el teléfono amplifica la voz del interlocutor en tiempo real. Ideal para personas con dificultad auditiva." },
   ];
 
@@ -966,10 +966,10 @@ const FunctionalitiesDetail = () => {
               </div>
             </div>
             <div>
-              <h4 className="text-xl font-bold mb-4">Visión en vivo</h4>
+              <h4 className="text-xl font-bold mb-4">Visión</h4>
               <h3 className="text-4xl font-bold mb-6">Tus ojos cuando los necesitás.</h3>
               <p className="text-lg text-white/90 leading-relaxed mb-8">
-                Cartas, recetas, boletas, etiquetas — <Brand className="text-white" iaClassName="text-white/60" /> lee cualquier texto en voz alta con solo apuntarle la cámara. Y si querés más, activá el modo visión en vivo: la cámara queda abierta y Rosita describe todo lo que ve en tiempo real. También narra las fotos que manda la familia.
+                Dos modos: <span className="font-semibold">lectura de texto</span> — apuntá la cámara a cualquier carta, receta o boleta y Rosita la lee en voz alta con cuenta regresiva automática. Y <span className="font-semibold">modo visión</span> — la cámara queda abierta y con una pregunta Rosita describe lo que ve. También narra en voz alta las fotos que manda la familia por Telegram.
               </p>
               <button
                 onClick={() => setShowVision(true)}
