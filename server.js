@@ -14,7 +14,11 @@ console.log(`dist exists: ${existsSync(distPath)}`);
 console.log(`index.html exists: ${existsSync(join(distPath, 'index.html'))}`);
 
 app.use(express.static(distPath));
-app.get('*', (_req, res) => {
+app.get('*', (req, res) => {
+  const filePath = join(distPath, req.path);
+  if (existsSync(filePath) && !filePath.endsWith('/')) {
+    return res.sendFile(filePath);
+  }
   res.sendFile(join(distPath, 'index.html'));
 });
 
