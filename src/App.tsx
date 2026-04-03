@@ -962,7 +962,6 @@ const FunctionalitiesDetail = () => {
                 <div className="w-28 h-28 bg-emerald-100 rounded-3xl flex items-center justify-center shadow">
                   <Eye className="w-14 h-14 text-emerald-700" />
                 </div>
-                <p className="text-emerald-800 font-semibold text-center text-sm max-w-[160px]">"Rosita, ¿qué dice acá?"</p>
               </div>
             </div>
             <div>
