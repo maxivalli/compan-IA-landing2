@@ -59,6 +59,7 @@ const Navbar = () => (
           <a href="#funciones" className="text-sm font-medium text-slate-600 hover:text-brand-orange transition-colors">Funciones</a>
           <a href="#testimonios" className="text-sm font-medium text-slate-600 hover:text-brand-orange transition-colors">Testimonios</a>
           <a href="#faq" className="text-sm font-medium text-slate-600 hover:text-brand-orange transition-colors">FAQ</a>
+          <a href="/services/manual-uso.html" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-brand-blue hover:text-brand-blue-dark transition-colors">Manual de uso</a>
         </div>
         <a
           href={LATEST_ANDROID_BUILD_URL}
@@ -1724,6 +1725,7 @@ const Footer = () => {
           <button onClick={() => setShowTerminos(true)} className="hover:text-brand-orange transition-colors">Términos</button>
           <button onClick={() => setShowPriv(true)}     className="hover:text-brand-orange transition-colors">Privacidad</button>
           <button onClick={() => setShowSoporte(true)}  className="hover:text-brand-orange transition-colors">Soporte</button>
+          <a href="/services/manual-uso.html" target="_blank" rel="noopener noreferrer" className="hover:text-brand-orange transition-colors">Manual de uso</a>
         </div>
         <div className="text-sm text-slate-400">
           © 2026 CompañIA. Hecho con ❤️ inspirados en "Negrita".

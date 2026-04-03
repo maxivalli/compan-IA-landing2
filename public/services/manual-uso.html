@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CompañIA — Manual de Uso</title>
+  <style>
+    :root {
+      --azul:      #0097b2;
+      --azul-osc:  #006d82;
+      --azul-pale: #e6f7fa;
+      --verde:     #22c55e;
+      --verde-pale:#dcfce7;
+      --naranja:   #f59e0b;
+      --rosa:      #ec4899;
+      --violeta:   #8b5cf6;
+      --rojo:      #ef4444;
+      --gris-bg:   #f4f6f8;
+      --gris-brd:  #e2e8f0;
+      --gris-txt:  #4a5568;
+      --negro:     #1a202c;
+      --blanco:    #ffffff;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--gris-bg); color: var(--negro); line-height: 1.6; font-size: 15px; }
+
+    /* HERO */
+    .hero { background: linear-gradient(135deg, #006d82, #0097b2 55%, #00c4de); color: #fff; padding: 56px 32px 48px; text-align: center; }
+    .hero-tag { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; opacity: .7; margin-bottom: 12px; }
+    .hero h1 { font-size: clamp(24px, 3.5vw, 40px); font-weight: 900; margin-bottom: 10px; }
+    .hero-sub { opacity: .85; font-size: 15px; max-width: 560px; margin: 0 auto; }
+
+    /* LAYOUT */
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+    /* TOC */
+    .toc { background: var(--blanco); border-radius: 12px; padding: 28px 32px; margin: 32px 0 0; box-shadow: 0 2px 12px rgba(0,0,0,.06); display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 8px 24px; }
+    .toc-title { grid-column: 1/-1; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--azul); margin-bottom: 8px; }
+    .toc a { color: var(--gris-txt); text-decoration: none; font-size: 13px; display: flex; align-items: center; gap: 6px; }
+    .toc a:hover { color: var(--azul); }
+    .toc-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--azul); flex-shrink: 0; }
+
+    /* SECTION */
+    .section { margin: 32px 0; }
+    .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid var(--gris-brd); }
+    .section-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+    .section-header h2 { font-size: 21px; font-weight: 800; }
+    .section-header p { font-size: 13px; color: var(--gris-txt); margin-top: 2px; }
+
+    /* CARDS */
+    .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+    .card { background: var(--blanco); border-radius: 10px; padding: 18px 20px; box-shadow: 0 1px 8px rgba(0,0,0,.05); border-left: 3px solid var(--azul); }
+    .card.verde   { border-color: var(--verde); }
+    .card.naranja { border-color: var(--naranja); }
+    .card.violeta { border-color: var(--violeta); }
+    .card.rosa    { border-color: var(--rosa); }
+    .card.rojo    { border-color: var(--rojo); }
+    .card h3 { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+    .card ul { padding-left: 18px; }
+    .card li { font-size: 13px; color: var(--gris-txt); margin-bottom: 4px; }
+    .card p  { font-size: 13px; color: var(--gris-txt); }
+
+    /* STEPS */
+    .steps { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+    .step { display: flex; gap: 14px; align-items: flex-start; background: var(--blanco); border-radius: 10px; padding: 14px 18px; box-shadow: 0 1px 6px rgba(0,0,0,.05); }
+    .step-num { width: 30px; height: 30px; border-radius: 50%; background: var(--azul); color: #fff; font-weight: 800; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+    .step-num.verde   { background: var(--verde); }
+    .step-num.naranja { background: var(--naranja); }
+    .step h4 { font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+    .step p  { font-size: 13px; color: var(--gris-txt); }
+    .step ul { padding-left: 16px; margin-top: 4px; }
+    .step li { font-size: 13px; color: var(--gris-txt); margin-bottom: 3px; }
+    .step-arrow { text-align: center; color: var(--azul); font-size: 14px; line-height: 1; opacity: .5; }
+
+    /* ALERT */
+    .alert { border-radius: 8px; padding: 14px 18px; margin: 12px 0; display: flex; gap: 10px; align-items: flex-start; font-size: 13px; }
+    .alert.azul  { background: var(--azul-pale); color: var(--azul-osc); }
+    .alert.verde { background: var(--verde-pale); color: #166534; }
+    .alert.rojo  { background: #fee2e2; color: #991b1b; }
+    .alert-icon  { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+
+    /* PILLS */
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .pill { font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; background: var(--azul-pale); color: var(--azul-osc); }
+    .pill.verde   { background: var(--verde-pale); color: #166534; }
+    .pill.naranja { background: #fef3c7; color: #92400e; }
+    .pill.violeta { background: #ede9fe; color: #5b21b6; }
+    .pill.rosa    { background: #fce7f3; color: #9d174d; }
+
+    /* TABLE */
+    .table-wrap { overflow-x: auto; border-radius: 10px; border: 1px solid var(--gris-brd); margin-top: 14px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    thead { background: var(--azul); color: #fff; }
+    thead th { padding: 10px 14px; text-align: left; font-weight: 700; }
+    tbody tr:nth-child(even) { background: var(--gris-bg); }
+    tbody tr:hover { background: var(--azul-pale); }
+    tbody td { padding: 9px 14px; border-bottom: 1px solid var(--gris-brd); color: var(--gris-txt); vertical-align: top; }
+    tbody td:first-child { font-weight: 600; color: var(--negro); }
+
+    /* COMMAND BOX */
+    .cmd { display: inline-block; background: #1e293b; color: #7dd3fc; font-family: monospace; font-size: 13px; padding: 3px 10px; border-radius: 6px; }
+
+    /* VIEW BOX */
+    .view-box { background: var(--blanco); border-radius: 14px; padding: 20px 24px; margin-bottom: 14px; box-shadow: 0 1px 8px rgba(0,0,0,.06); border-top: 3px solid var(--azul); }
+    .view-box.verde   { border-color: var(--verde); }
+    .view-box.naranja { border-color: var(--naranja); }
+    .view-box.violeta { border-color: var(--violeta); }
+    .view-box h3 { font-size: 16px; font-weight: 800; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .view-box .badge { font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 12px; background: var(--azul-pale); color: var(--azul-osc); }
+    .view-box p { font-size: 13px; color: var(--gris-txt); margin-bottom: 10px; }
+    .view-box ul { padding-left: 18px; }
+    .view-box li { font-size: 13px; color: var(--gris-txt); margin-bottom: 4px; }
+
+    footer { text-align: center; padding: 40px 20px 32px; color: #aaa; font-size: 12px; }
+    footer strong { color: var(--azul); }
+
+    @media (max-width: 600px) { .cards { grid-template-columns: 1fr; } .toc { grid-template-columns: 1fr 1fr; } }
+    @media print {
+      body { background: #fff; font-size: 13px; }
+      .card, .step, .view-box, .alert { break-inside: avoid; }
+      .section { break-inside: avoid; }
+      .cards { grid-template-columns: 1fr 1fr; }
+      .hero { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      thead { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      @page { margin: 18mm 14mm; }
+      .fab-pdf { display: none !important; }
+    }
+
+    /* Botón flotante PDF */
+    .fab-pdf {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #006d82, #0097b2);
+      color: #fff;
+      border: none;
+      border-radius: 100px;
+      padding: 14px 24px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,151,178,0.40);
+      transition: transform .15s, box-shadow .15s;
+      text-decoration: none;
+    }
+    .fab-pdf:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,151,178,0.50);
+    }
+    .fab-pdf svg { flex-shrink: 0; }
+  </style>
+</head>
+<body>
+
+<!-- Botón flotante descargar PDF -->
+<button class="fab-pdf" onclick="window.print()">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 16V4M12 16l-4-4M12 16l4-4"/>
+    <path d="M4 20h16"/>
+  </svg>
+  Descargar PDF
+</button>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Manual de uso · v2026.04</div>
+  <h1>CompañIA — Manual de Uso</h1>
+  <p class="hero-sub">Guía completa para configurar, usar y aprovechar al máximo todas las funciones de la app.</p>
+</div>
+
+<div class="container">
+
+  <!-- TOC -->
+  <div class="toc">
+    <div class="toc-title">Contenido</div>
+    <a href="#onboarding"><span class="toc-dot"></span> Primeros pasos (Onboarding)</a>
+    <a href="#pantalla-principal"><span class="toc-dot"></span> Pantalla principal</a>
+    <a href="#hablar"><span class="toc-dot"></span> Hablar con Rosita</a>
+    <a href="#musica"><span class="toc-dot"></span> Música y radio</a>
+    <a href="#recordatorios-view"><span class="toc-dot"></span> Pantalla de recordatorios</a>
+    <a href="#animo-view"><span class="toc-dot"></span> Pantalla de ánimo</a>
+    <a href="#configuracion-view"><span class="toc-dot"></span> Pantalla de configuración</a>
+    <a href="#guia-view"><span class="toc-dot"></span> Guía de uso</a>
+    <a href="#menu"><span class="toc-dot"></span> Menú flotante</a>
+    <a href="#sos"><span class="toc-dot"></span> SOS y emergencias</a>
+    <a href="#telegram"><span class="toc-dot"></span> Telegram y familia</a>
+    <a href="#vision"><span class="toc-dot"></span> Cámara y visión</a>
+    <a href="#clima"><span class="toc-dot"></span> Clima y entorno</a>
+    <a href="#domotica"><span class="toc-dot"></span> Casa inteligente (SmartThings)</a>
+    <a href="#presencia"><span class="toc-dot"></span> Detección de presencia</a>
+    <a href="#modos"><span class="toc-dot"></span> Modos automáticos</a>
+    <a href="#comportamientos"><span class="toc-dot"></span> Comportamientos automáticos</a>
+    <a href="#pin"><span class="toc-dot"></span> PIN y seguridad</a>
+    <a href="#actualizaciones"><span class="toc-dot"></span> Actualizaciones</a>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="onboarding">
+    <div class="section-header">
+      <div class="section-icon" style="background:#e6f7fa">👋</div>
+      <div>
+        <h2>Primeros pasos — Onboarding</h2>
+        <p>La configuración inicial que se hace una sola vez al instalar la app.</p>
+      </div>
+    </div>
+
+    <div class="alert azul">
+      <span class="alert-icon">ℹ️</span>
+      El onboarding se completa en 7 pasos. Podés volver atrás en cualquier momento. El botón "Continuar" avanza cuando se cumple la condición mínima de cada paso.
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">0</div>
+        <div>
+          <h4>Bienvenida</h4>
+          <p>Presentación animada de la app con el avatar de Rosita. Muestra las funciones principales en un carrusel con dots indicadores.</p>
+        </div>
+      </div>
+      <div class="step-arrow">↓</div>
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h4>Términos y condiciones</h4>
+          <p>Hay que aceptar los términos antes de continuar. El botón "Continuar" está deshabilitado hasta tildar el checkbox. Se puede leer el texto completo en un modal.</p>
+        </div>
+      </div>
+      <div class="step-arrow">↓</div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h4>Nombre y género</h4>
+          <p>Se ingresa el nombre con el que Rosita va a llamar al usuario (ej: "Negrita", "Carmen", "Abuela"). También se elige el género (femenino / masculino) para que Rosita use la concordancia correcta en las respuestas.</p>
+        </div>
+      </div>
+      <div class="step-arrow">↓</div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h4>Edad</h4>
+          <p>Opcional. Permite que la IA adapte el tono: más pausado y cálido para adultos mayores, más dinámico para edades menores.</p>
+        </div>
+      </div>
+      <div class="step-arrow">↓</div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <h4>Nombre y voz de la asistente</h4>
+          <p>Se puede cambiar el nombre "Rosita" por cualquier otro. Hay 2 voces disponibles con botón de muestra de audio por cada una.</p>
+          <ul>
+            <li>👩 Voz femenina</li>
+            <li>👨 Voz masculina</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-arrow">↓</div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div>
+          <h4>Entorno familiar</h4>
+          <p>Datos opcionales para que Rosita conozca el entorno del usuario: hijos, nietos, hermanos y mascotas (separados por coma). Esta información se usa en las conversaciones para personalizar las respuestas.</p>
+        </div>
+      </div>
+      <div class="step-arrow">↓</div>
+      <div class="step">
+        <div class="step-num verde">6</div>
+        <div>
+          <h4>Confirmación y registro</h4>
+          <p>Muestra un resumen de todo lo ingresado. Al confirmar: guarda el perfil en el dispositivo, registra el dispositivo en el servidor para habilitar la IA, y pide permiso de cámara. Después pasa directamente a la pantalla principal.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert verde" style="margin-top:16px">
+      <span class="alert-icon">✅</span>
+      Todos los datos se pueden modificar después desde la pantalla de Configuración, excepto el nombre de la asistente que también puede cambiarse ahí.
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="pantalla-principal">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fce7f3">🏠</div>
+      <div>
+        <h2>Pantalla principal</h2>
+        <p>La pantalla donde vive Rosita. Todo arranca desde acá.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>🎭 El avatar</h3>
+        <ul>
+          <li>Ojos y boca animados en tiempo real según el estado</li>
+          <li>Expresa: feliz, triste, sorprendida, pensativa, neutral, enojada, avergonzada, cansada, bostezando, mimada</li>
+          <li>Guiño: tocando un ojo se activa el guiño + expresión mimada</li>
+          <li>Caricia: deslizar el dedo horizontalmente sobre el avatar activa sorpresa o alegría</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🔵 Botón Hablar</h3>
+        <ul>
+          <li>Toque corto: graba hasta 8 segundos, transcribe con Whisper y envía a Rosita</li>
+          <li>Con música activa: se convierte en botón "Parar" (texto rojo) — para la música</li>
+          <li>Muestra estado: Escuchando / Pensando / Hablando</li>
+          <li>Deshabilitado solo cuando Rosita está pensando o hablando</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🆘 Botón SOS</h3>
+        <ul>
+          <li>Toque corto: muestra instrucciones de uso</li>
+          <li>Mantener 2 segundos: activa la alerta de emergencia</li>
+          <li>Envía mensaje urgente a todos los contactos de Telegram configurados</li>
+          <li>Animación de carga visual durante el hold</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🌤️ Información dinámica</h3>
+        <ul>
+          <li>Muestra la hora, temperatura o alerta meteorológica de forma rotatoria</li>
+          <li>El fondo cambia según hora del día y clima</li>
+          <li>Animaciones de lluvia, nieve, viento, sol, relámpagos según el tiempo real</li>
+          <li>Cielo estrellado animado de noche</li>
+          <li>Fase lunar visible en el cielo nocturno</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🔕 Modo No Molestar</h3>
+        <ul>
+          <li>Botón flotante en la esquina superior izquierda</li>
+          <li>Cuando está activo: Rosita no escucha ni responde</li>
+          <li>El avatar muestra los ojos entornados y una cremallera animada en la boca</li>
+          <li>También se activa por voz: <span class="cmd">hacé silencio</span> / <span class="cmd">modo no molestar</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📋 Post-its de listas</h3>
+        <ul>
+          <li>Si hay listas creadas por voz (compras, tareas, etc.) aparecen como post-its apilados</li>
+          <li>Tocando el stack se abre el detalle completo</li>
+          <li>Cada lista tiene un color distinto</li>
+          <li>Se crean y se borran hablando con Rosita</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="hablar">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fce7f3">🎙️</div>
+      <div>
+        <h2>Hablar con Rosita</h2>
+        <p>Cómo funciona el reconocimiento de voz y la conversación.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>🎤 Reconocimiento de voz continuo</h3>
+        <ul>
+          <li>La app escucha de forma continua en español rioplatense (es-AR)</li>
+          <li>No hace falta tocar nada — solo hablar</li>
+          <li>Se reinicia automáticamente después de cada respuesta</li>
+          <li>Si el reconocimiento se cuelga, se recupera solo en segundos</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📍 ¿Cuándo responde Rosita?</h3>
+        <p>Responde si se cumple al menos una de estas condiciones:</p>
+        <ul>
+          <li>Se menciona su nombre ("Rosita, …")</li>
+          <li>Hubo una charla hace menos de 60 segundos (de día)</li>
+          <li>La frase empieza con pregunta directa ("¿Qué…", "¿Cómo…", "Poné…")</li>
+        </ul>
+        <p style="margin-top:8px;font-size:12px;color:#888">Con música activa: solo responde si se menciona su nombre.</p>
+      </div>
+      <div class="card">
+        <h3>🔁 Repetir la última respuesta</h3>
+        <ul>
+          <li>Decir <span class="cmd">repetí</span> o <span class="cmd">no te escuché</span></li>
+          <li>Reproduce el último audio sin llamar a la IA</li>
+          <li>Útil cuando no se escuchó bien la respuesta</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🧠 Memoria de conversación</h3>
+        <ul>
+          <li>Recuerda las últimas 30 charlas como contexto</li>
+          <li>Guarda automáticamente datos importantes que el usuario mencione</li>
+          <li>Hasta 50 "recuerdos" almacenados en el dispositivo</li>
+          <li>Los recuerdos enriquecen todas las conversaciones futuras</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>💬 Charla proactiva</h3>
+        <ul>
+          <li>Si pasan 2 horas sin charla, Rosita toma la iniciativa</li>
+          <li>Solo entre las 9h y las 23h (configurable)</li>
+          <li>Temas varían según el momento del día</li>
+          <li>Si hay un feriado, lo menciona con entusiasmo</li>
+          <li>No ocurre con Modo No Molestar activo</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🔍 Búsquedas en tiempo real</h3>
+        <ul>
+          <li>Horarios, direcciones, farmacias, hospitales, bancos, etc.</li>
+          <li>Noticias, deportes, política, economía, clima</li>
+          <li>Wikipedia para información general</li>
+          <li>Rosita busca y responde sin que el usuario haga nada extra</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px;font-weight:700;margin:20px 0 10px;color:var(--azul)">EJEMPLOS DE FRASES</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Decir</th><th>Resultado</th></tr></thead>
+        <tbody>
+          <tr><td>"Rosita, contame un chiste"</td><td>Cuenta un chiste rioplatense con pausa para el remate</td></tr>
+          <tr><td>"¿Qué tiempo hace hoy?"</td><td>Responde con temperatura, descripción y pronóstico</td></tr>
+          <tr><td>"Jugamos a algo"</td><td>Propone trivia, adivinanza, trabalenguas, refrán o cálculo</td></tr>
+          <tr><td>"Avisame en 20 minutos"</td><td>Programa un timer y avisa cuando vence</td></tr>
+          <tr><td>"Recordame que el martes tengo turno"</td><td>Guarda recordatorio y avisa el día indicado</td></tr>
+          <tr><td>"Despertame mañana a las 8"</td><td>Programa una alarma con hora exacta</td></tr>
+          <tr><td>"Hacé una lista de compras: leche, pan, huevos"</td><td>Crea un post-it visible en la pantalla</td></tr>
+          <tr><td>"Sacame una foto"</td><td>Abre la cámara frontal y manda la foto a la familia</td></tr>
+          <tr><td>"Repetí"</td><td>Reproduce la última respuesta de nuevo</td></tr>
+          <tr><td>"Avisale a Juan que estoy bien"</td><td>Envía mensaje por Telegram al contacto "Juan"</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="musica">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fce7f3">🎵</div>
+      <div>
+        <h2>Música y radio</h2>
+        <p>Radios argentinas y géneros en streaming vía Radio Browser.</p>
+      </div>
+    </div>
+
+    <div class="alert azul">
+      <span class="alert-icon">🎵</span>
+      Para parar la música, tocar la pantalla (el botón hablar se convierte en "Parar"). Rosita avisa esto al arrancar la música.
+    </div>
+
+    <div class="cards" style="margin-top:12px">
+      <div class="card">
+        <h3>📻 Radios por nombre</h3>
+        <div class="pills">
+          <span class="pill">Cadena 3</span><span class="pill">Radio Mitre</span><span class="pill">Continental</span>
+          <span class="pill">Rivadavia</span><span class="pill">La Red</span><span class="pill">Metro</span>
+          <span class="pill">Aspen</span><span class="pill">La 100</span><span class="pill">Folklórica Nacional</span>
+          <span class="pill">Rock &amp; Pop</span><span class="pill">Radio con Vos</span><span class="pill">Urbana Play</span>
+          <span class="pill">Radio 10</span><span class="pill">El Destape</span><span class="pill">Mega 98</span>
+          <span class="pill">FM Vida</span><span class="pill">LV3</span><span class="pill">Del Plata</span><span class="pill">LT8</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>🎸 Géneros musicales</h3>
+        <div class="pills">
+          <span class="pill verde">Tango</span><span class="pill verde">Folklore</span><span class="pill verde">Cumbia</span>
+          <span class="pill verde">Cuarteto</span><span class="pill verde">Rock</span><span class="pill verde">Salsa</span>
+          <span class="pill verde">Tropical</span><span class="pill verde">Bolero</span><span class="pill verde">Romántica</span>
+          <span class="pill verde">Clásica</span><span class="pill verde">Jazz</span><span class="pill verde">Pop</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert azul" style="margin-top:12px">
+      <span class="alert-icon">💡</span>
+      También se puede pedir cualquier radio por nombre libre: "Poné Radio Universidad", "Buscame una radio de folclore". Si existe en Radio Browser, Rosita la encuentra.
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="recordatorios-view">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fef3c7">⏰</div>
+      <div>
+        <h2>Pantalla de recordatorios</h2>
+        <p>Lista de todos los recordatorios y alarmas activos.</p>
+      </div>
+    </div>
+
+    <div class="view-box naranja">
+      <h3>⏰ Recordatorios <span class="badge">Menú → Recordatorios</span></h3>
+      <p>Muestra en dos secciones diferenciadas todos los recordatorios activos:</p>
+      <ul>
+        <li><strong>Medicamentos:</strong> los del perfil, con nombre y horarios. Se muestran siempre como referencia rápida (no se borran desde acá).</li>
+        <li><strong>Próximos avisos:</strong> recordatorios puntuales creados por voz o desde Telegram, con fecha/hora y botón para borrar individualmente.</li>
+        <li><strong>Timers:</strong> "avisame en 20 minutos" — son efímeros y no aparecen en esta lista.</li>
+      </ul>
+    </div>
+
+    <div class="alert azul">
+      <span class="alert-icon">💡</span>
+      Los recordatorios se crean hablando con Rosita. Esta pantalla es solo para consulta y eliminación. Los pasados se limpian automáticamente.
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="animo-view">
+    <div class="section-header">
+      <div class="section-icon" style="background:#e6f7fa">😊</div>
+      <div>
+        <h2>Pantalla de ánimo</h2>
+        <p>Historial del estado emocional registrado automáticamente.</p>
+      </div>
+    </div>
+
+    <div class="view-box">
+      <h3>😊 Estado de ánimo <span class="badge">Menú → Estado de ánimo</span></h3>
+      <p>Muestra el registro emocional agrupado por día, del más reciente al más antiguo. Si hay PIN configurado, se solicita al entrar.</p>
+      <ul>
+        <li>Rosita registra el estado de ánimo automáticamente después de cada charla</li>
+        <li>5 estados: 😊 Feliz · 😢 Triste · 😮 Sorprendida · 🤔 Pensativa · 😐 Neutral</li>
+        <li>Cada día muestra la emoción predominante con un chip de color</li>
+        <li>Hora exacta de cada registro</li>
+        <li>Hasta 500 entradas almacenadas en el dispositivo</li>
+      </ul>
+    </div>
+
+    <div class="alert azul">
+      <span class="alert-icon">👨‍👩‍👧</span>
+      La familia recibe el resumen de ánimo del día en el informe diario automático por Telegram (22hs).
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="configuracion-view">
+    <div class="section-header">
+      <div class="section-icon" style="background:#dcfce7">⚙️</div>
+      <div>
+        <h2>Pantalla de configuración</h2>
+        <p>Toda la personalización de la app en un solo lugar.</p>
+      </div>
+    </div>
+
+    <div class="view-box verde">
+      <h3>⚙️ Configuración <span class="badge">Menú → Configuración</span></h3>
+      <p>Si hay PIN configurado, se solicita al entrar. Las secciones son:</p>
+      <ul>
+        <li><strong>Identidad:</strong> nombre, género, edad, nombre de la asistente, voz, fecha de nacimiento</li>
+        <li><strong>Entorno familiar:</strong> hijos, nietos, hermanos, mascotas, gustos e intereses, medicamentos, fechas importantes</li>
+        <li><strong>Horario de descanso:</strong> hora de inicio y fin del modo noche (configurable con +/-)</li>
+        <li><strong>Telegram:</strong> buscar y activar contactos familiares, código de registro para invitar a la familia</li>
+        <li><strong>Casa inteligente (SmartThings):</strong> vincular token PAT, ver dispositivos conectados</li>
+        <li><strong>Funciones avanzadas:</strong> toggle de Detección de presencia por cámara</li>
+        <li><strong>Seguridad:</strong> configurar, cambiar o quitar PIN · Política de privacidad</li>
+      </ul>
+    </div>
+
+    <div class="alert azul">
+      <span class="alert-icon">💾</span>
+      Los cambios se guardan tocando el botón "Guardar" al final de la pantalla. El cambio de nombre de la asistente tiene efecto inmediato al volver a la pantalla principal.
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="guia-view">
+    <div class="section-header">
+      <div class="section-icon" style="background:#ede9fe">📖</div>
+      <div>
+        <h2>Guía de uso</h2>
+        <p>Referencia rápida de comandos y funciones dentro de la app.</p>
+      </div>
+    </div>
+
+    <div class="view-box violeta">
+      <h3>📖 Guía <span class="badge">Menú → Guía de uso</span></h3>
+      <p>Pantalla de referencia rápida con ejemplos de frases y funciones organizadas por categoría. Ideal para consultar qué se le puede pedir a Rosita sin necesidad de saber los comandos exactos.</p>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="menu">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fce7f3">☰</div>
+      <div>
+        <h2>Menú flotante</h2>
+        <p>Acceso a todas las pantallas secundarias.</p>
+      </div>
+    </div>
+
+    <div class="alert azul">
+      <span class="alert-icon">👆</span>
+      Se abre tocando el ícono de menú (≡) en la esquina superior derecha de la pantalla principal.
+    </div>
+
+    <div class="table-wrap" style="margin-top:12px">
+      <table>
+        <thead><tr><th>Opción</th><th>Descripción</th></tr></thead>
+        <tbody>
+          <tr><td>🏠 Asistente</td><td>Vuelve a la pantalla principal</td></tr>
+          <tr><td>😊 Estado de ánimo</td><td>Historial emocional diario</td></tr>
+          <tr><td>⏰ Recordatorios</td><td>Lista de recordatorios y alarmas activos</td></tr>
+          <tr><td>⚙️ Configuración</td><td>Perfil, voz, familia, SmartThings y ajustes</td></tr>
+          <tr><td>📖 Guía de uso</td><td>Referencia de frases y comandos</td></tr>
+          <tr><td>💡 SmartLink</td><td>Panel de dispositivos del hogar (solo si SmartThings está vinculado)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="sos">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fee2e2">🆘</div>
+      <div>
+        <h2>SOS y emergencias</h2>
+        <p>Alertas inmediatas a la familia.</p>
+      </div>
+    </div>
+
+    <div class="alert rojo">
+      <span class="alert-icon">⚠️</span>
+      Las alertas SOS son herramientas de asistencia. No reemplazan los servicios de emergencias. En caso de emergencia médica activa llamar al 107 (SAME) o al número local.
+    </div>
+
+    <div class="cards" style="margin-top:12px">
+      <div class="card rojo">
+        <h3>🔴 Botón SOS físico</h3>
+        <ul>
+          <li>Mantener presionado 2 segundos</li>
+          <li>Animación de barra de progreso como feedback visual</li>
+          <li>Toque corto: muestra instrucciones</li>
+          <li>Alerta a TODOS los contactos Telegram configurados</li>
+          <li>Flash blanco en pantalla al enviar</li>
+        </ul>
+      </div>
+      <div class="card rojo">
+        <h3>🗣️ SOS por voz</h3>
+        <ul>
+          <li>Rosita detecta síntomas graves en la conversación</li>
+          <li>Ejemplos: "me duele el pecho", "me caí", "no puedo respirar"</li>
+          <li>Avisa con calma que ya alertó a la familia</li>
+          <li>Cooldown de 30 minutos para alertas repetidas</li>
+        </ul>
+      </div>
+      <div class="card rojo">
+        <h3>📳 Detección de caída</h3>
+        <ul>
+          <li>El acelerómetro detecta caída libre seguida de impacto</li>
+          <li>Alerta automática sin que el usuario haga nada</li>
+          <li>Rosita habla: "¿Estás bien? Ya avisé a tu familia."</li>
+          <li>Cooldown de 60 segundos para evitar falsos positivos</li>
+          <li>⚠️ Disponible solo en el plan Companion. Requiere la pulsera de detección (se vende por separado)</li>
+        </ul>
+      </div>
+      <div class="card rojo">
+        <h3>🤳 Sacudida (SOS manual)</h3>
+        <ul>
+          <li>3 sacudidas fuertes en 1.5 segundos activan el SOS</li>
+          <li>Útil si no se puede llegar al botón de la pantalla</li>
+          <li>Comparte cooldown con el botón SOS (1 minuto)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="telegram">
+    <div class="section-header">
+      <div class="section-icon" style="background:#e6f7fa">📱</div>
+      <div>
+        <h2>Telegram y familia</h2>
+        <p>Comunicación bidireccional sin que el adulto mayor toque Telegram.</p>
+      </div>
+    </div>
+
+    <div class="alert azul">
+      <span class="alert-icon">ℹ️</span>
+      La familia se conecta escribiéndole a <strong>@compan_IA_bot</strong> en Telegram. El adulto mayor no necesita tener Telegram instalado ni tocar ninguna app adicional.
+    </div>
+
+    <div class="cards" style="margin-top:12px">
+      <div class="card">
+        <h3>📩 Mensajes de voz entrantes</h3>
+        <ul>
+          <li>La familia manda mensajes de voz al bot</li>
+          <li>Rosita anuncia quién lo mandó y lo reproduce en voz alta</li>
+          <li>Pregunta si quiere responder; si acepta, graba y envía</li>
+          <li>Si es de noche (22h–9h), los mensajes quedan en cola</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🖼️ Fotos recibidas</h3>
+        <ul>
+          <li>La familia manda una foto al bot</li>
+          <li>Rosita la describe en voz alta con Claude Vision</li>
+          <li>Ejemplo: "Tu hija te manda una foto de los chicos en el parque"</li>
+          <li>La foto aparece en la pantalla mientras la describe</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📸 Foto para la familia</h3>
+        <ul>
+          <li>Decir: "Sacame una foto"</li>
+          <li>Cámara frontal con cuenta regresiva de 3 segundos</li>
+          <li>Se envía automáticamente a todos los contactos por Telegram</li>
+          <li>Sin tocar ningún botón extra</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📊 Informe diario (22hs)</h3>
+        <ul>
+          <li>Se envía automáticamente a todos los contactos</li>
+          <li>Incluye: estado de ánimo del día con porcentajes</li>
+          <li>Temas de conversación resumidos por IA</li>
+          <li>Recordatorios completados, alertas, cantidad de charlas</li>
+          <li>La tristeza siempre aparece señalada con ⚠️</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📝 Comando /informe</h3>
+        <ul>
+          <li>Cualquier familiar puede escribir <span class="cmd">/informe</span> o <span class="cmd">/resumen</span> al bot</li>
+          <li>Recibe el resumen del día en el momento, sin esperar las 22hs</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📨 Mensajes directos</h3>
+        <ul>
+          <li>Decir: "Avisale a Juan que estoy bien"</li>
+          <li>Rosita envía el mensaje por Telegram al contacto indicado</li>
+          <li>Confirma en voz cuando lo mandó</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px;font-weight:700;margin:20px 0 10px;color:var(--azul)">CÓMO AGREGAR CONTACTOS FAMILIARES</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div><h4>El familiar abre Telegram</h4><p>Busca <strong>@compan_IA_bot</strong> y le manda cualquier mensaje (por ejemplo, "hola").</p></div>
+      </div>
+      <div class="step-arrow">↓</div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div><h4>Se registra en el sistema</h4><p>El bot lo asocia automáticamente a la instalación de CompañIA del dispositivo.</p></div>
+      </div>
+      <div class="step-arrow">↓</div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div><h4>Buscar en Configuración</h4><p>En Configuración → Telegram, tocar "Buscar contactos". El familiar aparece en la lista y se puede activar con un toque.</p></div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="vision">
+    <div class="section-header">
+      <div class="section-icon" style="background:#dcfce7">👁️</div>
+      <div>
+        <h2>Cámara y visión</h2>
+        <p>Dos modos para que Rosita "vea" lo que tiene delante.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card verde">
+        <h3>📄 Lectura de texto</h3>
+        <p>Decir: <span class="cmd">"¿Qué dice acá?"</span>, <span class="cmd">"Leeme esto"</span>, <span class="cmd">"¿Qué ves?"</span></p>
+        <ul>
+          <li>Rosita indica que apunte la cámara trasera</li>
+          <li>Cuenta regresiva de 3 segundos y captura automática</li>
+          <li>Claude Vision lee el texto en voz alta</li>
+          <li>Los números se leen dígito por dígito</li>
+          <li>Ideal para: cartas, recetas, boletas, etiquetas, medicamentos</li>
+        </ul>
+      </div>
+      <div class="card verde">
+        <h3>🎥 Modo visión</h3>
+        <p>Activado mediante frases de descripción visual.</p>
+        <ul>
+          <li>La cámara queda abierta en pantalla completa</li>
+          <li>El usuario apunta a lo que quiere que Rosita vea</li>
+          <li>Rosita captura y describe lo que ve</li>
+          <li>Se puede pedir nueva descripción hablando de nuevo</li>
+          <li>Botón Cerrar para salir del modo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="clima">
+    <div class="section-header">
+      <div class="section-icon" style="background:#e6f7fa">🌤️</div>
+      <div>
+        <h2>Clima y entorno</h2>
+        <p>Información meteorológica en tiempo real integrada en la experiencia.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>🌡️ Datos disponibles</h3>
+        <ul>
+          <li>Temperatura actual y descripción</li>
+          <li>Ciudad detectada automáticamente por GPS</li>
+          <li>Pronóstico de los próximos 2–3 días (máximas y mínimas)</li>
+          <li>Rosita conoce el clima todo el tiempo — sin necesidad de preguntar</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>⛈️ Alerta de mal tiempo</h3>
+        <ul>
+          <li>Rosita avisa proactivamente a las 9h y a las 14h si hay tormenta, granizo o lluvia intensa</li>
+          <li>Ejemplo: "Carmen, afuera hay tormenta. Si pensabas salir, mejor esperá."</li>
+          <li>Una sola vez por checkpoint por día</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🌈 Fondo dinámico</h3>
+        <ul>
+          <li>Día: azul cielo</li>
+          <li>Atardecer (17h–20h): naranja/dorado</li>
+          <li>Noche: oscuro con cielo estrellado animado</li>
+          <li>Lluvia/tormenta: gris oscuro</li>
+          <li>Animaciones: lluvia, nieve, viento, sol, relámpagos, nubes</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="domotica">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fef3c7">💡</div>
+      <div>
+        <h2>Casa inteligente — SmartThings</h2>
+        <p>Control de dispositivos del hogar por voz (opcional).</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card naranja">
+        <h3>⚙️ Configuración inicial</h3>
+        <ul>
+          <li>Ir a Configuración → Casa inteligente</li>
+          <li>Ingresar el token PAT de Samsung SmartThings</li>
+          <li>Tocar "Vincular" — se importan los dispositivos automáticamente</li>
+        </ul>
+      </div>
+      <div class="card naranja">
+        <h3>🗣️ Control por voz</h3>
+        <ul>
+          <li>"Apagá la luz del living" → apaga el dispositivo</li>
+          <li>"Prendé el ventilador" → enciende el dispositivo</li>
+          <li>"¿Está prendida la luz de la cocina?" → consulta el estado</li>
+          <li>"Apagá todo" → apaga todos los dispositivos online</li>
+        </ul>
+      </div>
+      <div class="card naranja">
+        <h3>📱 Panel SmartLink</h3>
+        <ul>
+          <li>Accesible desde Menú → SmartLink</li>
+          <li>Lista visual de todos los dispositivos con su estado actual</li>
+          <li>Control táctil directo por si no se quiere usar la voz</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="presencia">
+    <div class="section-header">
+      <div class="section-icon" style="background:#ede9fe">👤</div>
+      <div>
+        <h2>Detección de presencia</h2>
+        <p>Rosita saluda cuando alguien se acerca a la pantalla.</p>
+      </div>
+    </div>
+
+    <div class="alert azul">
+      <span class="alert-icon">🔒</span>
+      Esta función está <strong>desactivada por defecto</strong>. Se activa desde Configuración → Funciones avanzadas → Detección de presencia.
+    </div>
+
+    <div class="cards" style="margin-top:12px">
+      <div class="card violeta">
+        <h3>📷 Cómo funciona</h3>
+        <ul>
+          <li>La cámara frontal captura frames cada 2 segundos cuando está en modo watching</li>
+          <li>Usa el detector de rostros nativo del dispositivo (ML Kit en Android, Vision Framework en iOS)</li>
+          <li>Todo el procesamiento es local — no se envía ninguna imagen a servidores</li>
+          <li>Las imágenes se descartan inmediatamente después del análisis</li>
+        </ul>
+      </div>
+      <div class="card violeta">
+        <h3>⏱️ Cuándo se activa</h3>
+        <ul>
+          <li>La función debe estar activada en Configuración</li>
+          <li>Deben pasar al menos <strong>30 minutos sin actividad</strong> (charla, música, recordatorio, etc.)</li>
+          <li>Recién entonces entra en modo watching y la cámara empieza a capturar</li>
+          <li>Si el usuario está usando la app normalmente, nunca se activa</li>
+        </ul>
+      </div>
+      <div class="card violeta">
+        <h3>🗣️ Qué hace al detectar</h3>
+        <ul>
+          <li>Rosita saluda con una frase personalizada: "¡Carmen! ¡Qué bueno verte! ¿Cómo andás?"</li>
+          <li>Sale del modo watching inmediatamente</li>
+          <li>Cooldown de 1 minuto antes de poder saludar de nuevo</li>
+          <li>Cada saludo reinicia el contador de 30 minutos</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="modos">
+    <div class="section-header">
+      <div class="section-icon" style="background:#e6f7fa">🌙</div>
+      <div>
+        <h2>Modos automáticos</h2>
+        <p>Estados que la app adopta sola según el horario y la actividad.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>🌞 Modo despierta</h3>
+        <p>El modo normal de funcionamiento. Todas las funciones activas.</p>
+      </div>
+      <div class="card">
+        <h3>😪 Modo soñolienta</h3>
+        <p>Dentro del horario nocturno con actividad en el último minuto. Párpados a medio cerrar, respuestas más breves.</p>
+      </div>
+      <div class="card">
+        <h3>😴 Modo durmiendo</h3>
+        <p>Dentro del horario nocturno sin actividad por más de 1 minuto. Ojos cerrados, cielo estrellado, reloj grande. No inicia charlas proactivas.</p>
+      </div>
+      <div class="card">
+        <h3>🔕 Modo No molestar</h3>
+        <p>Rosita no interrumpe ni inicia nada por su cuenta. Cremallera animada en la boca. <strong>No escucha ni responde</strong> mientras está activo.</p>
+        <ul style="margin-top:8px">
+          <li>Tocar el ícono 🔕 en la pantalla principal</li>
+          <li>Decirle: <span class="cmd">hacé silencio</span> / <span class="cmd">modo no molestar</span></li>
+          <li>Para desactivar: tocar el ícono nuevamente</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="alert azul" style="margin-top:12px">
+      <span class="alert-icon">⚙️</span>
+      El horario del modo noche se configura en Configuración → Horario de descanso. Por defecto empieza a las 23h y termina a las 9h.
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="comportamientos">
+    <div class="section-header">
+      <div class="section-icon" style="background:#dcfce7">🤖</div>
+      <div>
+        <h2>Comportamientos automáticos</h2>
+        <p>Todo lo que pasa sin que el usuario haga nada.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>🥱 Bostezo</h3>
+        <p>Si pasan 5 minutos sin actividad de día, Rosita bosteza con animación y sonido. Solo si no hay música, modo noche ni modo no molestar. Mínimo 10 min entre bostezos.</p>
+      </div>
+      <div class="card">
+        <h3>🎵 Silbido</h3>
+        <p>Si pasan 10 minutos sin charla, Rosita silba una serie de 3 silbidos como llamado suave. Cooldown de 10 min entre series.</p>
+      </div>
+      <div class="card">
+        <h3>🎂 Saludo de cumpleaños</h3>
+        <p>A las 9hs del día del cumpleaños (configurado en el perfil), Rosita reproduce una canción y hace un saludo emotivo generado por IA. Globos animados durante todo el día.</p>
+      </div>
+      <div class="card">
+        <h3>☀️ Saludo matutino</h3>
+        <p>A las 9hs, Rosita da los buenos días con el clima del día y una pregunta cálida. Saludo especial en Navidad y Año Nuevo.</p>
+      </div>
+      <div class="card">
+        <h3>🗓️ Feriados</h3>
+        <p>Si hay un feriado hoy o mañana, Rosita lo menciona en la conversación o en el saludo matutino. Datos de feriados nacionales de Argentina del año en curso.</p>
+      </div>
+      <div class="card">
+        <h3>⚠️ Alerta de inactividad</h3>
+        <p>Si el usuario no interactúa en 4 horas seguidas (entre 9h y 21h), Rosita envía automáticamente una alerta por Telegram a los contactos familiares.</p>
+      </div>
+      <div class="card">
+        <h3>🔄 Actualizaciones OTA</h3>
+        <p>La app se actualiza automáticamente en segundo plano 5 segundos después de iniciar. Sin intervención del usuario. Solo para actualizaciones que no requieran nueva build nativa.</p>
+      </div>
+      <div class="card">
+        <h3>🧹 Limpieza automática</h3>
+        <p>Los archivos de audio de TTS mayores a 7 días se borran solos. Los registros de recordatorios pasados y las entradas de recordatorios viejos se limpian al abrir la app.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="pin">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fee2e2">🔒</div>
+      <div>
+        <h2>PIN y seguridad</h2>
+        <p>Protección opcional para las pantallas sensibles.</p>
+      </div>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>🔐 Para qué sirve el PIN</h3>
+        <ul>
+          <li>Bloquea el acceso a Configuración y al historial de Ánimo</li>
+          <li>Evita que el adulto mayor modifique ajustes involuntariamente</li>
+          <li>Lo configura el familiar que instala la app</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>⚙️ Gestión del PIN</h3>
+        <ul>
+          <li>Configurar: Configuración → Seguridad → Configurar PIN</li>
+          <li>Cambiar: Configuración → Seguridad → Cambiar PIN (pide el PIN actual)</li>
+          <li>Quitar: Configuración → Seguridad → Quitar PIN</li>
+          <li>Se almacena localmente en el dispositivo</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="actualizaciones">
+    <div class="section-header">
+      <div class="section-icon" style="background:#dcfce7">🔄</div>
+      <div>
+        <h2>Actualizaciones</h2>
+        <p>Cómo se mantiene la app actualizada.</p>
+      </div>
+    </div>
+
+    <div class="alert verde">
+      <span class="alert-icon">✅</span>
+      CompañIA se actualiza de forma automática en segundo plano. En la mayoría de los casos no hace falta descargar nada nuevo.
+    </div>
+
+    <div class="cards" style="margin-top:12px">
+      <div class="card verde">
+        <h3>📡 Actualizaciones OTA (automáticas)</h3>
+        <ul>
+          <li>Se descargan y aplican solos 5 segundos después de abrir la app</li>
+          <li>Sin interrupciones ni avisos</li>
+          <li>Cubren la mayoría de los cambios: nuevas funciones, mejoras de comportamiento, correcciones</li>
+        </ul>
+      </div>
+      <div class="card verde">
+        <h3>📦 Actualizaciones de build (manuales)</h3>
+        <ul>
+          <li>Necesarias cuando se agregan módulos nativos nuevos</li>
+          <li>Se descarga el APK desde el link de la landing o Google Play</li>
+          <li>Ocurren con poca frecuencia</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /container -->
+
+<footer>
+  <p>CompañIA · Manual de uso · <strong>v2026.04</strong> · Documentación interna</p>
+</footer>
+
+</body>
+</html>
