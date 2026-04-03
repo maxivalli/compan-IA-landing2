@@ -488,7 +488,9 @@ const Features = () => {
     { icon: <Clock className="text-amber-400" />, title: "Recordatorios", desc: "Notificaciones diarias para actividades y bienestar." },
     { icon: <Bell className="text-violet-500" />, title: "Alarmas por voz", desc: "\"Rosita, despertame mañana a las 8\" — programa alarmas hablando, sin tocar nada." },
     { icon: <Headphones className="text-sky-400" />, title: "Soporte 24/7", desc: "Acceso continuo y actualizaciones automáticas." },
-    { icon: <UserCheck className="text-indigo-400" />, title: "Detección de presencia", desc: "Si el adulto mayor se acerca a la pantalla, Rosita lo detecta y lo saluda. Se activa sola cuando lleva más de 30 minutos sin actividad." },
+    { icon: <UserCheck className="text-indigo-400" />, title: "Detección de presencia", desc: "Rosita detecta cuando alguien se acerca y lo saluda. Solo se activa tras 30 minutos sin actividad." },
+    { icon: <Lightbulb className="text-yellow-400" />, title: "Casa inteligente", desc: "Controlá luces, enchufes y dispositivos del hogar por voz mediante integración con SmartThings." },
+    { icon: <Radio className="text-cyan-500" />, title: "Información en tiempo real", desc: "Clima, noticias, búsquedas web y Wikipedia. Todo con una pregunta, sin tocar la pantalla." },
   ];
 
   const accessibilityFeatures = [
