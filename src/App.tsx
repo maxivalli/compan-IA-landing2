@@ -966,10 +966,10 @@ const FunctionalitiesDetail = () => {
               </div>
             </div>
             <div>
-              <h4 className="text-xl font-bold mb-4">Accesibilidad visual</h4>
+              <h4 className="text-xl font-bold mb-4">Visión en vivo</h4>
               <h3 className="text-4xl font-bold mb-6">Tus ojos cuando los necesitás.</h3>
               <p className="text-lg text-white/90 leading-relaxed mb-8">
-                Cartas, recetas, boletas, etiquetas — <Brand className="text-white" iaClassName="text-white/60" /> lee cualquier texto en voz alta con solo apuntarle la cámara. También describe las fotos que manda la familia. Diseñado para personas con dificultad visual.
+                Cartas, recetas, boletas, etiquetas — <Brand className="text-white" iaClassName="text-white/60" /> lee cualquier texto en voz alta con solo apuntarle la cámara. Y si querés más, activá el modo visión en vivo: la cámara queda abierta y Rosita describe todo lo que ve en tiempo real. También narra las fotos que manda la familia.
               </p>
               <button
                 onClick={() => setShowVision(true)}
