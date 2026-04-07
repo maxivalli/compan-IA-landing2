@@ -33,7 +33,7 @@ import {
   Lightbulb
 } from 'lucide-react';
 
-const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/accounts/compan-ia/projects/AbuApp/builds/171f0b7a-0951-4f85-a42d-e724015cf1ac';
+const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/u1f13cP3LEktP442Ysqzj4.apk';
 
 // Helper: nombre de marca con estilo
 const Brand = ({ className = '', iaClassName = 'text-brand-orange' }: { className?: string; iaClassName?: string }) => (
@@ -1219,7 +1219,7 @@ const Comparison = () => {
               ))}
               <tr className="border-t border-slate-100">
                 <td className="p-5 text-slate-700 font-bold text-sm">Precio mensual</td>
-                <td className="p-5 text-center font-bold text-brand-blue-dark bg-brand-blue-dark/5">desde USD 19</td>
+                <td className="p-5 text-center font-bold text-brand-blue-dark bg-brand-blue-dark/5">desde USD 29</td>
                 <td className="p-5 text-center text-slate-500 text-sm font-medium">$29 + $149 hardware</td>
                 <td className="p-5 text-center text-slate-500 text-sm font-medium">USD 400-1,200</td>
                 <td className="p-5 text-center text-slate-500 text-sm font-medium">Gratis</td>
@@ -1280,7 +1280,7 @@ const PricingContact = () => {
           <div className="mb-6">
             <div className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Prueba gratuita</div>
             <div className="text-3xl font-bold text-slate-900 mb-1">
-              Gratis <span className="text-lg text-slate-400 font-normal">/ 3 días</span>
+              Gratis <span className="text-lg text-slate-400 font-normal">/ 7 días</span>
             </div>
             <p className="text-sm text-slate-500 mt-2">Todas las funciones del plan Companion, sin costo.</p>
           </div>
@@ -1297,7 +1297,7 @@ const PricingContact = () => {
             rel="noopener noreferrer"
             className="block text-center border-2 border-brand-blue-dark text-brand-blue-dark px-6 py-3 rounded-full font-bold hover:bg-brand-blue-dark hover:text-white transition-all"
           >
-            Probar 3 días gratis
+            Probar 7 días gratis
           </a>
         </div>
 
@@ -1306,7 +1306,7 @@ const PricingContact = () => {
           <div className="mb-6">
             <div className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Starter</div>
             <div className="text-3xl font-bold text-slate-900 mb-1">
-              USD 19 <span className="text-lg text-slate-400 font-normal">/mes</span>
+              USD 29 <span className="text-lg text-slate-400 font-normal">/mes</span>
             </div>
             <p className="text-sm text-slate-500 mt-2">Motor de voz nativo de Android. Ideal para empezar.</p>
           </div>
@@ -1457,7 +1457,7 @@ const FAQ = () => {
     ],
     Precios: [
       { q: "¿Puedo cancelar en cualquier momento?", a: "Sí, sin penalidades ni letra chica. Podés cancelar la suscripción cuando quieras desde la app o enviándonos un mensaje." },
-      { q: "¿La prueba gratuita requiere tarjeta de crédito?", a: "No. Podés probar CompañIA gratis durante 3 días con todas las funciones del plan Companion, sin ingresar ningún dato de pago." },
+      { q: "¿La prueba gratuita requiere tarjeta de crédito?", a: "No. Podés probar CompañIA gratis durante 7 días con todas las funciones del plan Companion, sin ingresar ningún dato de pago." },
     ],
   };
 
@@ -1581,7 +1581,7 @@ const TerminosModal = ({ onClose }: { onClose: () => void }) => (
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">2. Suscripción</h4>
-            <p>El costo del servicio es de <span className="font-semibold text-slate-900">USD 19 (Starter) o USD 39 (Companion) por mes</span> por dispositivo. El cobro es mensual. Podés cancelar en cualquier momento sin penalidad; el acceso se mantiene hasta el fin del período pagado.</p>
+            <p>El costo del servicio es de <span className="font-semibold text-slate-900">USD 29 (Starter) o USD 39 (Companion) por mes</span> por dispositivo. El cobro es mensual. Podés cancelar en cualquier momento sin penalidad; el acceso se mantiene hasta el fin del período pagado.</p>
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">3. Uso aceptable</h4>
