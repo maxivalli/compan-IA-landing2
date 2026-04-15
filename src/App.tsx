@@ -33,7 +33,7 @@ import {
   Lightbulb
 } from 'lucide-react';
 
-const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/u1f13cP3LEktP442Ysqzj4.apk';
+const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/2zNj7UD7hmN6MwZQjskucp.apk';
 
 // Helper: nombre de marca con estilo
 const Brand = ({ className = '', iaClassName = 'text-brand-orange' }: { className?: string; iaClassName?: string }) => (
