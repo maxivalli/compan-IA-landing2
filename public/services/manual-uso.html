@@ -181,6 +181,8 @@
     <a href="#pantalla-principal"><span class="toc-dot"></span> Pantalla principal</a>
     <a href="#hablar"><span class="toc-dot"></span> Hablar con Rosita</a>
     <a href="#musica"><span class="toc-dot"></span> Música y radio</a>
+    <a href="#juegos"><span class="toc-dot"></span> Juegos y entretenimiento</a>
+    <a href="#notas"><span class="toc-dot"></span> Notas guardadas</a>
     <a href="#recordatorios-view"><span class="toc-dot"></span> Pantalla de recordatorios</a>
     <a href="#animo-view"><span class="toc-dot"></span> Pantalla de ánimo</a>
     <a href="#configuracion-view"><span class="toc-dot"></span> Pantalla de configuración</a>
@@ -211,7 +213,7 @@
 
     <div class="alert azul">
       <span class="alert-icon">ℹ️</span>
-      El onboarding se completa en 7 pasos. Podés volver atrás en cualquier momento. El botón "Continuar" avanza cuando se cumple la condición mínima de cada paso.
+      El onboarding se completa en 8 pasos. Podés volver atrás en cualquier momento. El botón "Continuar" avanza cuando se cumple la condición mínima de cada paso.
     </div>
 
     <div class="steps">
@@ -219,7 +221,7 @@
         <div class="step-num">0</div>
         <div>
           <h4>Bienvenida</h4>
-          <p>Presentación animada de la app con el avatar de Rosita. Muestra las funciones principales en un carrusel con dots indicadores.</p>
+          <p>Presentación animada de la app con el avatar de Rosita. Muestra las funciones principales en un carrusel con dots indicadores: charla y compañía, música y radio, recordatorios de medicamentos, clima en tiempo real, alertas a la familia y botón de emergencia.</p>
         </div>
       </div>
       <div class="step-arrow">↓</div>
@@ -227,31 +229,45 @@
         <div class="step-num">1</div>
         <div>
           <h4>Términos y condiciones</h4>
-          <p>Hay que aceptar los términos antes de continuar. El botón "Continuar" está deshabilitado hasta tildar el checkbox. Se puede leer el texto completo en un modal.</p>
+          <p>Hay que aceptar los términos antes de continuar. El botón "Continuar" está deshabilitado hasta tildar el checkbox. Se puede leer el texto completo en un modal. Incluye aclaraciones importantes: CompañIA no es un dispositivo médico, las alertas SOS son herramientas de asistencia, y las conversaciones pueden ser compartidas con familiares configurados.</p>
         </div>
       </div>
       <div class="step-arrow">↓</div>
       <div class="step">
         <div class="step-num">2</div>
         <div>
-          <h4>Nombre y género</h4>
-          <p>Se ingresa el nombre con el que Rosita va a llamar al usuario (ej: "Negrita", "Carmen", "Abuela"). También se elige el género (femenino / masculino) para que Rosita use la concordancia correcta en las respuestas.</p>
+          <h4>Permisos necesarios</h4>
+          <p>Se solicitan los permisos esenciales para el funcionamiento de la app. Cada permiso se habilita tocándolo individualmente:</p>
+          <ul>
+            <li>🎤 Micrófono: para que puedas hablarle y que te escuche</li>
+            <li>📍 Ubicación: para el clima, lugares cercanos y control Bluetooth</li>
+            <li>📷 Cámara: para detectar presencia y tomar fotos</li>
+            <li>📱 Dispositivos cercanos (Android 12+): para conectar con pulsera o botón de emergencia por Bluetooth</li>
+          </ul>
         </div>
       </div>
       <div class="step-arrow">↓</div>
       <div class="step">
         <div class="step-num">3</div>
         <div>
-          <h4>Edad</h4>
-          <p>Opcional. Permite que la IA adapte el tono: más pausado y cálido para adultos mayores, más dinámico para edades menores.</p>
+          <h4>Nombre y género</h4>
+          <p>Se ingresa el nombre con el que Rosita va a llamar al usuario (ej: "Negrita", "Carmen", "Abuela"). También se elige cómo preferís que te trate: Mujer/Abuela o Hombre/Abuelo, para que Rosita use la concordancia correcta en las respuestas.</p>
         </div>
       </div>
       <div class="step-arrow">↓</div>
       <div class="step">
         <div class="step-num">4</div>
         <div>
+          <h4>Edad</h4>
+          <p>Opcional. Permite que la IA adapte el tono: más pausado y cálido para adultos mayores, más dinámico para edades menores. Se puede saltear este paso.</p>
+        </div>
+      </div>
+      <div class="step-arrow">↓</div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div>
           <h4>Nombre y voz de la asistente</h4>
-          <p>Se puede cambiar el nombre "Rosita" por cualquier otro. Hay 2 voces disponibles con botón de muestra de audio por cada una.</p>
+          <p>Se puede cambiar el nombre "Rosita" por cualquier otro. Hay 2 voces disponibles con botón de muestra de audio por cada una:</p>
           <ul>
             <li>👩 Voz femenina</li>
             <li>👨 Voz masculina</li>
@@ -260,25 +276,25 @@
       </div>
       <div class="step-arrow">↓</div>
       <div class="step">
-        <div class="step-num">5</div>
+        <div class="step-num">6</div>
         <div>
           <h4>Entorno familiar</h4>
-          <p>Datos opcionales para que Rosita conozca el entorno del usuario: hijos, nietos, hermanos y mascotas (separados por coma). Esta información se usa en las conversaciones para personalizar las respuestas.</p>
+          <p>Datos opcionales para que Rosita conozca el entorno del usuario: cónyuge/pareja, hijos, nietos, hermanos y mascotas (separados por coma). Esta información se usa en las conversaciones para personalizar las respuestas. Se puede completar después.</p>
         </div>
       </div>
       <div class="step-arrow">↓</div>
       <div class="step">
-        <div class="step-num verde">6</div>
+        <div class="step-num verde">7</div>
         <div>
           <h4>Confirmación y registro</h4>
-          <p>Muestra un resumen de todo lo ingresado. Al confirmar: guarda el perfil en el dispositivo, registra el dispositivo en el servidor para habilitar la IA, y pide permiso de cámara. Después pasa directamente a la pantalla principal.</p>
+          <p>Muestra un resumen de todo lo ingresado. Al confirmar: guarda el perfil en el dispositivo, registra el dispositivo en el servidor para habilitar la IA, y pasa directamente a la pantalla principal.</p>
         </div>
       </div>
     </div>
 
     <div class="alert verde" style="margin-top:16px">
       <span class="alert-icon">✅</span>
-      Todos los datos se pueden modificar después desde la pantalla de Configuración, excepto el nombre de la asistente que también puede cambiarse ahí.
+      Todos los datos se pueden modificar después desde la pantalla de Configuración, excepto el nombre y la voz de la asistente que solo se configuran durante el onboarding.
     </div>
   </div>
 
@@ -298,7 +314,8 @@
         <h3>🎭 El avatar</h3>
         <ul>
           <li>Ojos y boca animados en tiempo real según el estado</li>
-          <li>Expresa: feliz, triste, sorprendida, pensativa, neutral, enojada, avergonzada, cansada, bostezando, mimada</li>
+          <li>14 expresiones: 😐 neutral · 😊 feliz · 😢 triste · 😮 sorprendida · 🤔 pensativa · 😂 chiste · 😠 enojada · 😳 avergonzada · 😪 cansada · 🥱 bostezando · 🥰 mimada · 🥺 ternura · 😟 preocupada · 🤩 entusiasmada</li>
+          <li>Cambian automáticamente según el contexto de la conversación</li>
           <li>Guiño: tocando un ojo se activa el guiño + expresión mimada</li>
           <li>Caricia: deslizar el dedo horizontalmente sobre el avatar activa sorpresa o alegría</li>
         </ul>
@@ -337,7 +354,8 @@
           <li>Botón flotante en la esquina superior izquierda</li>
           <li>Cuando está activo: Rosita no escucha ni responde</li>
           <li>El avatar muestra los ojos entornados y una cremallera animada en la boca</li>
-          <li>También se activa por voz: <span class="cmd">hacé silencio</span> / <span class="cmd">modo no molestar</span></li>
+          <li>Se activa tocando el botón o por voz: <span class="cmd">hacé silencio</span> / <span class="cmd">modo no molestar</span></li>
+          <li>Para desactivar: tocar el botón nuevamente</li>
         </ul>
       </div>
       <div class="card">
@@ -407,6 +425,9 @@
           <li>Si pasan 2 horas sin charla, Rosita toma la iniciativa</li>
           <li>Solo entre las 9h y las 23h (configurable)</li>
           <li>Temas varían según el momento del día</li>
+          <li>25% de las veces propone entretenimiento: juego, chiste o noticia del día</li>
+          <li>12% de las veces propone ejercicios físicos (respetando la condición física del perfil)</li>
+          <li>En la mañana puede contar sueños inventados</li>
           <li>Si hay un feriado, lo menciona con entusiasmo</li>
           <li>No ocurre con Modo No Molestar activo</li>
         </ul>
@@ -479,11 +500,163 @@
           <span class="pill verde">Clásica</span><span class="pill verde">Jazz</span><span class="pill verde">Pop</span>
         </div>
       </div>
+      <div class="card">
+        <h3>⏰ Timer nocturno automático</h3>
+        <ul>
+          <li>Al arrancar música, se programa un timer de 30 minutos</li>
+          <li>Si es horario nocturno y el timer se dispara, Rosita pregunta: "¿Seguís ahí?"</li>
+          <li>Si no hay respuesta en 2 minutos, para la música automáticamente</li>
+          <li>Función de seguridad para evitar que la música quede sonando toda la noche</li>
+        </ul>
+      </div>
     </div>
 
     <div class="alert azul" style="margin-top:12px">
       <span class="alert-icon">💡</span>
       También se puede pedir cualquier radio por nombre libre: "Poné Radio Universidad", "Buscame una radio de folclore". Si existe en Radio Browser, Rosita la encuentra.
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="juegos">
+    <div class="section-header">
+      <div class="section-icon" style="background:#ede9fe">🎮</div>
+      <div>
+        <h2>Juegos y entretenimiento</h2>
+        <p>Juegos interactivos y conversacionales para mantener la mente activa.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px;font-weight:700;margin:0 0 10px;color:var(--violeta)">🎯 JUEGOS INTERACTIVOS (Pantalla completa)</h3>
+    <div class="cards">
+      <div class="card violeta">
+        <h3>🔤 Ahorcado</h3>
+        <p>Decir: <span class="cmd">"Jugamos al ahorcado"</span></p>
+        <ul>
+          <li>69 palabras curadas con pistas en pantalla</li>
+          <li>Se juega tocando letras en la pantalla</li>
+          <li>6 vidas (corazones) antes de perder</li>
+          <li>Para salir: botón Cerrar o decir "salir" / "basta"</li>
+        </ul>
+      </div>
+      <div class="card violeta">
+        <h3>🧩 Memoria</h3>
+        <p>Decir: <span class="cmd">"Jugamos a la memoria"</span></p>
+        <ul>
+          <li>Tablero de hasta 3x3 fichas cubiertas</li>
+          <li>4 sets de emojis: formas, animales, frutas, objetos</li>
+          <li>Rosita pide buscar algo específico: "Encontrá el gato"</li>
+          <li>3 niveles de dificultad (4, 6 y 9 fichas)</li>
+        </ul>
+      </div>
+      <div class="card violeta">
+        <h3>❌⭕ Ta-Te-Ti</h3>
+        <p>Decir: <span class="cmd">"Jugamos al tateti"</span></p>
+        <ul>
+          <li>Juego clásico de 3x3, se juega tocando</li>
+          <li>Usuario es X, la app es O</li>
+          <li>IA estratégica con 35% de margen de error para dar oportunidades</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px;font-weight:700;margin:20px 0 10px;color:var(--violeta)">🗣️ JUEGOS CONVERSACIONALES (Por voz)</h3>
+    <div class="alert azul">
+      <span class="alert-icon">🎲</span>
+      Decir: <span class="cmd">"Jugamos a algo"</span> o <span class="cmd">"Contame un chiste"</span>. Rosita elige automáticamente sin repetir los últimos 20 juegos o 10 chistes.
+    </div>
+    <div class="cards" style="margin-top:12px">
+      <div class="card">
+        <h3>🤔 Adivinanzas</h3>
+        <p>12 adivinanzas clásicas rioplatenses y universales.</p>
+      </div>
+      <div class="card">
+        <h3>🧠 Trivia cultural</h3>
+        <p>14 preguntas de historia argentina, ciencias, tango y geografía.</p>
+      </div>
+      <div class="card">
+        <h3>💭 Refranes</h3>
+        <p>8 refranes tradicionales para completar.</p>
+      </div>
+      <div class="card">
+        <h3>🧮 Cálculo</h3>
+        <p>8 operaciones simples y problemas cotidianos.</p>
+      </div>
+      <div class="card">
+        <h3>🗣️ Trabalenguas</h3>
+        <p>5 trabalenguas para repetir sin trabarse.</p>
+      </div>
+      <div class="card">
+        <h3>😂 Chistes</h3>
+        <p>15 chistes rioplatenses con pausa natural para el remate.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════════════════ -->
+  <div class="section" id="notas">
+    <div class="section-header">
+      <div class="section-icon" style="background:#fef3c7">📝</div>
+      <div>
+        <h2>Notas guardadas</h2>
+        <p>Información completa que Rosita guarda automáticamente para consultar después.</p>
+      </div>
+    </div>
+
+    <div class="alert azul">
+      <span class="alert-icon">✨</span>
+      Rosita decide automáticamente cuándo vale la pena guardar una nota completa. No hace falta pedirlo.
+    </div>
+
+    <div class="cards" style="margin-top:12px">
+      <div class="card naranja">
+        <h3>📚 Notas de Wikipedia</h3>
+        <p>Cuando se pregunta sobre temas enciclopédicos importantes:</p>
+        <ul>
+          <li>"¿Quién fue San Martín?"</li>
+          <li>"Contame sobre la Revolución de Mayo"</li>
+          <li>"¿Qué es el Parque Nacional Iguazú?"</li>
+        </ul>
+        <p style="margin-top:8px">Rosita responde con un resumen breve y 30-60 segundos después avisa: "Te dejé una nota con información sobre..."</p>
+      </div>
+      <div class="card naranja">
+        <h3>🍳 Recetas completas</h3>
+        <p>Cuando se pide una receta:</p>
+        <ul>
+          <li>"¿Cómo hago budín de pan?"</li>
+          <li>"Receta de empanadas"</li>
+        </ul>
+        <p style="margin-top:8px">Rosita explica lo básico y genera una nota con ingredientes, cantidades y pasos detallados.</p>
+      </div>
+      <div class="card naranja">
+        <h3>🔍 Búsquedas generales</h3>
+        <p>Para información extensa que conviene tener guardada.</p>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px;font-weight:700;margin:20px 0 10px;color:var(--naranja)">CÓMO VER LAS NOTAS</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num naranja">1</div>
+        <div><h4>Abrir el menú</h4><p>Tocar el ícono ≡ en la esquina superior derecha.</p></div>
+      </div>
+      <div class="step-arrow">↓</div>
+      <div class="step">
+        <div class="step-num naranja">2</div>
+        <div><h4>Ir a Notas</h4><p>Tocar "📝 Notas guardadas" en el menú.</p></div>
+      </div>
+      <div class="step-arrow">↓</div>
+      <div class="step">
+        <div class="step-num naranja">3</div>
+        <div><h4>Ver la nota</h4><p>Tocar cualquier nota para ver el contenido completo con todos los detalles.</p></div>
+      </div>
+    </div>
+
+    <div class="alert verde" style="margin-top:16px">
+      <span class="alert-icon">💡</span>
+      Las notas se guardan automáticamente en el dispositivo. Se pueden consultar las veces que se quiera sin necesidad de volver a preguntar.
     </div>
   </div>
 
@@ -750,6 +923,54 @@
       </div>
     </div>
 
+    <h3 style="font-size:14px;font-weight:700;margin:20px 0 10px;color:var(--azul)">COMANDOS REMOTOS</h3>
+    <div class="cards">
+      <div class="card">
+        <h3>📸 /camara</h3>
+        <ul>
+          <li>Toma una foto silenciosa con la cámara frontal y la envía al familiar que lo pidió</li>
+          <li>Rechazada automáticamente de noche (22h–9h)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>⏰ /recordatorio</h3>
+        <ul>
+          <li>Formato: <span class="cmd">/recordatorio texto, fecha, hora</span></li>
+          <li>Ejemplo: <span class="cmd">/recordatorio tomar pastilla, 2026-04-26, 14:00</span></li>
+          <li>Agrega un recordatorio remoto que Rosita avisará en el momento indicado</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="font-size:14px;font-weight:700;margin:20px 0 10px;color:var(--azul)">MONITOREO DE SEGURIDAD</h3>
+    <div class="alert azul">
+      <span class="alert-icon">❤️</span>
+      La app envía un ping cada 10 minutos al servidor para confirmar que está funcionando. Si se detecta un problema, la familia recibe una alerta automática.
+    </div>
+    <div class="cards" style="margin-top:12px">
+      <div class="card">
+        <h3>🔴 Detección de desconexión</h3>
+        <ul>
+          <li>Si la app se cierra, el dispositivo se apaga o se pierde la conexión, el servidor lo detecta</li>
+          <li>Alerta automática a todos los contactos por Telegram</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>⏱️ Watchdog de inactividad</h3>
+        <ul>
+          <li>Si pasan 4 horas sin interacción (entre 9h y 21h), se envía alerta a la familia</li>
+          <li>Útil para detectar situaciones anormales</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>📊 Resumen diario automático</h3>
+        <ul>
+          <li>A las 22hs se envía el informe completo del día a todos los contactos</li>
+          <li>Incluye estado de ánimo, temas de conversación, recordatorios y alertas</li>
+        </ul>
+      </div>
+    </div>
+
     <h3 style="font-size:14px;font-weight:700;margin:20px 0 10px;color:var(--azul)">CÓMO AGREGAR CONTACTOS FAMILIARES</h3>
     <div class="steps">
       <div class="step">
@@ -803,6 +1024,15 @@
           <li>Botón Cerrar para salir del modo</li>
         </ul>
       </div>
+      <div class="card verde">
+        <h3>📸 Foto para la familia</h3>
+        <p>Decir: <span class="cmd">"Sacame una foto"</span></p>
+        <ul>
+          <li>Cámara frontal (selfie) con cuenta regresiva de 3 segundos</li>
+          <li>Se envía automáticamente a todos los contactos por Telegram</li>
+          <li>Sin tocar ningún botón extra</li>
+        </ul>
+      </div>
     </div>
   </div>
 
@@ -843,6 +1073,14 @@
           <li>Noche: oscuro con cielo estrellado animado</li>
           <li>Lluvia/tormenta: gris oscuro</li>
           <li>Animaciones: lluvia, nieve, viento, sol, relámpagos, nubes</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>🌕 Fase lunar</h3>
+        <ul>
+          <li>Durante la noche, el cielo muestra una luna con la fase lunar real</li>
+          <li>Se calcula automáticamente según la fecha actual</li>
+          <li>Halo extra visible en luna llena</li>
         </ul>
       </div>
     </div>
@@ -908,28 +1146,28 @@
       <div class="card violeta">
         <h3>📷 Cómo funciona</h3>
         <ul>
-          <li>La cámara frontal captura frames cada 2 segundos cuando está en modo watching</li>
-          <li>Usa el detector de rostros nativo del dispositivo (ML Kit en Android, Vision Framework en iOS)</li>
+          <li>Tras 30 minutos de inactividad, la cámara frontal detecta cuando alguien se acerca</li>
+          <li>Usa Google ML Kit (Android) para detectar rostros en tiempo real</li>
+          <li>Polling cada 15 segundos cuando está en modo watching</li>
           <li>Todo el procesamiento es local — no se envía ninguna imagen a servidores</li>
           <li>Las imágenes se descartan inmediatamente después del análisis</li>
         </ul>
       </div>
       <div class="card violeta">
-        <h3>⏱️ Cuándo se activa</h3>
+        <h3>🗣️ Qué hace al detectar</h3>
         <ul>
-          <li>La función debe estar activada en Configuración</li>
-          <li>Deben pasar al menos <strong>30 minutos sin actividad</strong> (charla, música, recordatorio, etc.)</li>
-          <li>Recién entonces entra en modo watching y la cámara empieza a capturar</li>
-          <li>Si el usuario está usando la app normalmente, nunca se activa</li>
+          <li>Rosita saluda automáticamente: "¡Carmen! ¡Qué bueno verte!"</li>
+          <li>Sale del modo watching inmediatamente</li>
+          <li>Cooldown de 1 minuto antes de poder saludar de nuevo</li>
+          <li>Respeta modo no molestar y música activa (no interrumpe)</li>
         </ul>
       </div>
       <div class="card violeta">
-        <h3>🗣️ Qué hace al detectar</h3>
+        <h3>⚙️ Configuración</h3>
         <ul>
-          <li>Rosita saluda con una frase personalizada: "¡Carmen! ¡Qué bueno verte! ¿Cómo andás?"</li>
-          <li>Sale del modo watching inmediatamente</li>
-          <li>Cooldown de 1 minuto antes de poder saludar de nuevo</li>
-          <li>Cada saludo reinicia el contador de 30 minutos</li>
+          <li>Solo funciona en Android</li>
+          <li>Opcional y configurable desde Configuración</li>
+          <li>Se puede activar/desactivar en cualquier momento</li>
         </ul>
       </div>
     </div>
