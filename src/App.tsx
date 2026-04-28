@@ -30,10 +30,11 @@ import {
   Radio,
   Eye,
   CloudSun,
-  Lightbulb
+  Lightbulb,
+  Subtitles
 } from 'lucide-react';
 
-const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/9ouJQnFytfqFJ9QZAMrTMe.apk';
+const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/ra4PcFp6M3oPRyqV519Kmt.apk';
 
 // Helper: nombre de marca con estilo
 const Brand = ({ className = '', iaClassName = 'text-brand-orange' }: { className?: string; iaClassName?: string }) => (
@@ -497,7 +498,7 @@ const Features = () => {
   const accessibilityFeatures = [
     { icon: <AlertCircle className="text-rose-400" />, title: "Botón SOS", desc: "Con una sola pulsación, alerta inmediata a todos los contactos familiares designados por Telegram." },
     { icon: <Eye className="text-emerald-500" />, title: "Visión", desc: "Lectura de textos con foto automática, o modo visión donde Rosita describe lo que ve con una pregunta. También narra las fotos de la familia." },
-    { icon: <Ear className="text-teal-500" />, title: "Amplificador de audio", desc: "Enchufá auriculares y el teléfono amplifica la voz del interlocutor en tiempo real. Ideal para personas con dificultad auditiva." },
+    { icon: <Subtitles className="text-teal-500" />, title: "Subtítulos en pantalla", desc: "Todo lo que dice Rosita aparece en texto grande en la pantalla en tiempo real. Ideal para personas con dificultad auditiva o entornos ruidosos." },
   ];
 
   return (
@@ -1170,7 +1171,7 @@ const Comparison = () => {
     'Fotos de familia narradas en voz alta',
     'Lee textos y documentos (OCR)',
     'Autofoto directo a la familia',
-    'Amplificador de audio para hipoacusia',
+    'Subtítulos en pantalla',
   ];
   const cols = [
     { name: 'CompañIA', values: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true], highlight: true },
