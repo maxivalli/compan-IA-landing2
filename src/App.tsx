@@ -316,12 +316,12 @@ const PoweredBy = () => (
       </p>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
         {[
-          { name: 'Claude', sub: 'Motor de texto', logo: 'https://cdn.simpleicons.org/anthropic/ffffff', icon: null },
+          { name: 'Claude', sub: 'Motor de pensamiento', logo: 'https://cdn.simpleicons.org/anthropic/ffffff', icon: null },
           { name: 'Fish Audio', sub: 'Motor de voz', logo: null, icon: Headphones },
-          { name: 'Whisper', sub: 'Transcripción', logo: null, icon: Mic },
+          { name: 'Deepgram', sub: 'Transcripción', logo: null, icon: Mic },
           { name: 'Telegram', sub: 'Familia conectada', logo: 'https://cdn.simpleicons.org/telegram/ffffff', icon: null },
           { name: 'SmartThings', sub: 'Casa conectada', logo: null, icon: Lightbulb },
-          { name: 'Open-Meteo', sub: 'Clima local', logo: null, icon: CloudSun },
+          { name: 'OpenWeather', sub: 'Clima local', logo: null, icon: CloudSun },
         ].map(tech => (
           <div key={tech.name} className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors text-center">
             {tech.logo
@@ -574,22 +574,9 @@ const SOSModal = ({ onClose }: { onClose: () => void }) => (
               <PhoneCall className="w-5 h-5 text-red-500" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-1">Botón SOS físico</h4>
+              <h4 className="font-bold text-slate-900 mb-1">Botón SOS</h4>
               <p className="text-slate-600 text-sm leading-relaxed">
-                Con solo presionar el botón SOS, <Brand /> envía una alerta inmediata por Telegram a todos los familiares y contactos de emergencia designados.
-              </p>
-            </div>
-          </div>
-
-          {/* Detección de caídas */}
-          <div className="flex gap-4">
-            <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
-              <Activity className="w-5 h-5 text-amber-500" />
-            </div>
-            <div>
-              <h4 className="font-bold text-slate-900 mb-1">Alerta de caídas</h4>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Si el dispositivo detecta una caída brusca, <Brand /> activa automáticamente el protocolo de emergencia sin necesidad de que el adulto mayor haga nada. La familia recibe aviso de inmediato.
+                <Brand /> incluye un botón SOS dentro de la app. La <span className="font-medium text-slate-700">pulsera SOS física</span> (se vende por separado) suma detección automática de caídas: si detecta una caída brusca, activa el protocolo de emergencia sin que el adulto mayor tenga que hacer nada. En ambos casos, la familia recibe la alerta de inmediato por Telegram.
               </p>
             </div>
           </div>
@@ -1630,8 +1617,8 @@ const PrivacidadModal = ({ onClose }: { onClose: () => void }) => (
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">Datos que recopilamos</h4>
-            <p><span className="font-semibold text-slate-800">Voz y audio:</span> El audio del botón manual se envía a OpenAI Whisper para transcripción y se descarta de inmediato. No se almacena.</p>
-            <p className="mt-2"><span className="font-semibold text-slate-800">Ubicación:</span> Solo para obtener el clima local (Open-Meteo). No se comparte ni almacena.</p>
+            <p><span className="font-semibold text-slate-800">Voz y audio:</span> El audio se envía a Deepgram para transcripción y se descarta de inmediato. No se almacena.</p>
+            <p className="mt-2"><span className="font-semibold text-slate-800">Ubicación:</span> Solo para obtener el clima local (OpenWeather). No se comparte ni almacena.</p>
             <p className="mt-2"><span className="font-semibold text-slate-800">Perfil:</span> Nombre, gustos, medicamentos y fechas se guardan únicamente en el dispositivo. Las conversaciones no se almacenan en ningún servidor.</p>
             <p className="mt-2"><span className="font-semibold text-slate-800">ID de dispositivo:</span> Un UUID anónimo para vincular el dispositivo con tu familia. No contiene información personal.</p>
           </div>
@@ -1641,7 +1628,7 @@ const PrivacidadModal = ({ onClose }: { onClose: () => void }) => (
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">Servicios de terceros</h4>
-            <p>Anthropic Claude (respuestas IA) · OpenAI Whisper (transcripción) · Fish Audio (síntesis de voz, sin almacenamiento) · Open-Meteo (clima) · Telegram (mensajes familiares) · Samsung SmartThings (domótica, opcional).</p>
+            <p>Anthropic Claude (respuestas IA) · Deepgram (transcripción) · Fish Audio (síntesis de voz, sin almacenamiento) · OpenWeather (clima) · Telegram (mensajes familiares) · Samsung SmartThings (domótica, opcional).</p>
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">Seguridad</h4>
