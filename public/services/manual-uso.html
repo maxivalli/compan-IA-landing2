@@ -321,15 +321,6 @@
         </ul>
       </div>
       <div class="card">
-        <h3>🔵 Botón Hablar</h3>
-        <ul>
-          <li>Toque corto: graba hasta 8 segundos, transcribe con Whisper y envía a Rosita</li>
-          <li>Con música activa: se convierte en botón "Parar" (texto rojo) — para la música</li>
-          <li>Muestra estado: Escuchando / Pensando / Hablando</li>
-          <li>Deshabilitado solo cuando Rosita está pensando o hablando</li>
-        </ul>
-      </div>
-      <div class="card">
         <h3>🆘 Botón SOS</h3>
         <ul>
           <li>Toque corto: muestra instrucciones de uso</li>
@@ -386,21 +377,20 @@
       <div class="card">
         <h3>🎤 Reconocimiento de voz continuo</h3>
         <ul>
-          <li>La app escucha de forma continua en español rioplatense (es-AR)</li>
+          <li>Usa <strong>Deepgram Nova-3</strong> vía conexión WebSocket permanente</li>
           <li>No hace falta tocar nada — solo hablar</li>
-          <li>Se reinicia automáticamente después de cada respuesta</li>
-          <li>Si el reconocimiento se cuelga, se recupera solo en segundos</li>
+          <li>Durante la respuesta de Rosita el micrófono se pausa (anti-eco) y se reactiva automáticamente al terminar</li>
+          <li>Si la conexión se interrumpe, se reconecta sola con backoff exponencial</li>
         </ul>
       </div>
       <div class="card">
         <h3>📍 ¿Cuándo responde Rosita?</h3>
         <p>Responde si se cumple al menos una de estas condiciones:</p>
         <ul>
-          <li>Se menciona su nombre ("Rosita, …")</li>
-          <li>Hubo una charla hace menos de 60 segundos (de día)</li>
-          <li>La frase empieza con pregunta directa ("¿Qué…", "¿Cómo…", "Poné…")</li>
+          <li>Se menciona su nombre en cualquier parte de la frase ("Rosita, …" o "… Rosita")</li>
+          <li>Hubo una charla hace menos de 60 segundos <em>y</em> no hay música activa</li>
         </ul>
-        <p style="margin-top:8px;font-size:12px;color:#888">Con música activa: solo responde si se menciona su nombre.</p>
+        <p style="margin-top:8px;font-size:12px;color:#888">Con música activa: el micrófono sigue abierto pero solo responde si se menciona su nombre. Al responder, baja el volumen de la música automáticamente.</p>
       </div>
       <div class="card">
         <h3>🔁 Repetir la última respuesta</h3>
@@ -476,7 +466,7 @@
 
     <div class="alert azul">
       <span class="alert-icon">🎵</span>
-      Para parar la música, tocar la pantalla (el botón hablar se convierte en "Parar"). Rosita avisa esto al arrancar la música.
+      Para parar la música, decile <strong>"pará la música"</strong> o tocá la pantalla. Rosita avisa cómo pararla al arrancar.
     </div>
 
     <div class="cards" style="margin-top:12px">

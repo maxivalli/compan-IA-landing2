@@ -1207,7 +1207,7 @@ const Comparison = () => {
               ))}
               <tr className="border-t border-slate-100">
                 <td className="p-5 text-slate-700 font-bold text-sm">Precio mensual</td>
-                <td className="p-5 text-center font-bold text-brand-blue-dark bg-brand-blue-dark/5">desde USD 29</td>
+                <td className="p-5 text-center font-bold text-brand-blue-dark bg-brand-blue-dark/5">desde USD 19</td>
                 <td className="p-5 text-center text-slate-500 text-sm font-medium">$29 + $149 hardware</td>
                 <td className="p-5 text-center text-slate-500 text-sm font-medium">USD 400-1,200</td>
                 <td className="p-5 text-center text-slate-500 text-sm font-medium">Gratis</td>
@@ -1294,7 +1294,7 @@ const PricingContact = () => {
           <div className="mb-6">
             <div className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Starter</div>
             <div className="text-3xl font-bold text-slate-900 mb-1">
-              USD 29 <span className="text-lg text-slate-400 font-normal">/mes</span>
+              USD 19 <span className="text-lg text-slate-400 font-normal">/mes</span>
             </div>
             <p className="text-sm text-slate-500 mt-2">Motor de voz nativo de Android. Ideal para empezar.</p>
           </div>
@@ -1323,7 +1323,7 @@ const PricingContact = () => {
           <div className="mb-6">
             <div className="text-xs font-bold uppercase tracking-widest text-blue-300 mb-3">Companion</div>
             <div className="text-3xl font-bold text-white mb-1">
-              USD 39 <span className="text-lg text-blue-300 font-normal">/mes</span>
+              USD 29 <span className="text-lg text-blue-300 font-normal">/mes</span>
             </div>
             <p className="text-sm text-blue-200 mt-2">Voz premium ultra-natural. La experiencia completa.</p>
           </div>
@@ -1569,7 +1569,7 @@ const TerminosModal = ({ onClose }: { onClose: () => void }) => (
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">2. Suscripción</h4>
-            <p>El costo del servicio es de <span className="font-semibold text-slate-900">USD 29 (Starter) o USD 39 (Companion) por mes</span> por dispositivo. El cobro es mensual. Podés cancelar en cualquier momento sin penalidad; el acceso se mantiene hasta el fin del período pagado.</p>
+            <p>El costo del servicio es de <span className="font-semibold text-slate-900">USD 19 (Starter) o USD 29 (Companion) por mes</span> por dispositivo. El cobro es mensual. Podés cancelar en cualquier momento sin penalidad; el acceso se mantiene hasta el fin del período pagado.</p>
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">3. Uso aceptable</h4>
