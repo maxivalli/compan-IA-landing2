@@ -34,7 +34,7 @@ import {
   Subtitles
 } from 'lucide-react';
 
-const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/jYDe8wpM7j2nGR4vM7WLDK.apk';
+const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/dpg3mCtFxKficR71RMMExm.apk';
 
 // Helper: nombre de marca con estilo
 const Brand = ({ className = '', iaClassName = 'text-brand-orange' }: { className?: string; iaClassName?: string }) => (
@@ -77,12 +77,14 @@ const Navbar = () => (
 
 const Hero = () => (
   <section className="relative min-h-screen flex items-center overflow-hidden">
-    {/* Imagen de fondo full-screen */}
-    <img
-      src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_1600/v1774357278/Gemini_Generated_Image_xtbtixtbtixtbtix_ussh5t.png"
-      alt="Adulta mayor usando tablet"
+    {/* Video de fondo full-screen */}
+    <video
+      src="https://res.cloudinary.com/dy1ll1azp/video/upload/v1778241650/v_mp__ceojjj.mp4"
+      autoPlay
+      muted
+      loop
+      playsInline
       className="absolute inset-0 w-full h-full object-cover"
-      referrerPolicy="no-referrer"
     />
     {/* Gradiente oscuro diagonal desde la izquierda */}
     <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/10" />
