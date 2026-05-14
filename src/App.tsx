@@ -496,10 +496,10 @@ const AppScreenshots = () => {
           </p>
         </div>
 
-        {/* Video destacado */}
-        <div className="flex justify-center mb-16">
-          <div className="flex flex-col items-center gap-4">
-            <div className="w-[260px] rounded-[44px] border-[12px] border-slate-700 shadow-2xl shadow-black/70 overflow-hidden bg-slate-800">
+        <div className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {/* Video — primer elemento del carrusel */}
+          <div className="flex-none snap-center flex flex-col items-center gap-4">
+            <div className="w-[190px] rounded-[36px] border-[10px] border-slate-700 shadow-2xl shadow-black/60 overflow-hidden bg-slate-800">
               <video
                 src="https://res.cloudinary.com/dy1ll1azp/video/upload/f_auto,q_auto,vc_auto/v1778792086/Rosita_llwrcg.mov"
                 autoPlay
@@ -509,12 +509,9 @@ const AppScreenshots = () => {
                 className="w-full block"
               />
             </div>
-            <p className="text-slate-300 text-sm font-semibold tracking-wide">Rosita en acción</p>
+            <p className="text-slate-400 text-sm font-medium text-center">Rosita en acción</p>
           </div>
-        </div>
 
-        {/* Carrusel de screenshots */}
-        <div className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {screenshots.map(({ label, url }) => (
             <div key={label} className="flex-none snap-center flex flex-col items-center gap-4">
               <div className="w-[190px] rounded-[36px] border-[10px] border-slate-700 shadow-2xl shadow-black/60 overflow-hidden bg-slate-800">
