@@ -472,6 +472,70 @@ const VoiceDemo = () => {
   );
 };
 
+// ── App Screenshots ───────────────────────────────────────────────────────────
+const AppScreenshots = () => {
+  const screenshots = [
+    { label: 'Pantalla principal', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1778791052/WhatsApp_Image_2026-05-13_at_09.35.11_2_r2idqg.jpg' },
+    { label: 'Modo no molestar', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1778791052/WhatsApp_Image_2026-05-13_at_09.35.11_1_miqrt9.jpg' },
+    { label: 'Juegos — Ta-te-ti', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1778791052/WhatsApp_Image_2026-05-13_at_09.35.10_zkfyd9.jpg' },
+    { label: 'Modo cocina', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1778791050/WhatsApp_Image_2026-05-13_at_09.35.11_3_epii1q.jpg' },
+    { label: 'Configuración', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1778791050/WhatsApp_Image_2026-05-13_at_09.35.11_gsdiko.jpg' },
+    { label: 'Guía de uso', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1778791050/WhatsApp_Image_2026-05-13_at_09.35.10_1_gr4wxp.jpg' },
+  ];
+
+  return (
+    <section className="py-24 bg-slate-900 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <p className="text-sm font-semibold text-brand-orange uppercase tracking-widest mb-3">La app en acción</p>
+          <h2 className="text-4xl font-serif font-bold text-white mb-4">
+            Así se ve <Brand className="text-white" />
+          </h2>
+          <p className="text-slate-400 max-w-xl mx-auto">
+            Una interfaz pensada para que cualquiera pueda usar sin aprender nada.
+          </p>
+        </div>
+
+        {/* Video destacado */}
+        <div className="flex justify-center mb-16">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-[260px] rounded-[44px] border-[12px] border-slate-700 shadow-2xl shadow-black/70 overflow-hidden bg-slate-800">
+              <video
+                src="https://res.cloudinary.com/dy1ll1azp/video/upload/f_auto,q_auto,vc_auto/v1778792086/Rosita_llwrcg.mov"
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full block"
+              />
+            </div>
+            <p className="text-slate-300 text-sm font-semibold tracking-wide">Rosita en acción</p>
+          </div>
+        </div>
+
+        {/* Carrusel de screenshots */}
+        <div className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {screenshots.map(({ label, url }) => (
+            <div key={label} className="flex-none snap-center flex flex-col items-center gap-4">
+              <div className="w-[190px] rounded-[36px] border-[10px] border-slate-700 shadow-2xl shadow-black/60 overflow-hidden bg-slate-800">
+                <img
+                  src={url}
+                  alt={label}
+                  className="w-full block"
+                  loading="lazy"
+                />
+              </div>
+              <p className="text-slate-400 text-sm font-medium text-center">{label}</p>
+            </div>
+          ))}
+        </div>
+
+        <p className="text-center text-slate-600 text-xs mt-2 select-none tracking-wide">← deslizá →</p>
+      </div>
+    </section>
+  );
+};
+
 const FeatureCard = ({ feat }: { feat: { icon: React.ReactElement<{ className?: string }>; title: string; desc: string } }) => (
   <div className="flex items-center gap-6 p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-brand-blue-light transition-colors group">
     <div className="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center group-hover:bg-brand-blue-light/20 transition-colors">
@@ -1746,6 +1810,7 @@ export default function App() {
         <HowItWorks />
         <PoweredBy />
         <VoiceDemo />
+        <AppScreenshots />
         <Features />
         <FunctionalitiesDetail />
         <Testimonials />
