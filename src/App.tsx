@@ -319,7 +319,7 @@ const PoweredBy = () => (
       </p>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
         {[
-          { name: 'Claude', sub: 'Motor de pensamiento', logo: 'https://cdn.simpleicons.org/anthropic/ffffff', icon: null },
+          { name: 'Gemini', sub: 'Motor de pensamiento', logo: 'https://cdn.simpleicons.org/googlegemini/ffffff', icon: null },
           { name: 'Fish Audio', sub: 'Motor de voz', logo: null, icon: Headphones },
           { name: 'Deepgram', sub: 'Transcripción', logo: null, icon: Mic },
           { name: 'Telegram', sub: 'Familia conectada', logo: 'https://cdn.simpleicons.org/telegram/ffffff', icon: null },
@@ -1707,7 +1707,7 @@ const PrivacidadModal = ({ onClose }: { onClose: () => void }) => (
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">Servicios de terceros</h4>
-            <p>Anthropic Claude (respuestas IA) · Deepgram (transcripción) · Fish Audio (síntesis de voz, sin almacenamiento) · OpenWeather (clima) · Telegram (mensajes familiares) · Samsung SmartThings (domótica, opcional).</p>
+            <p>Google Gemini (respuestas IA) · Deepgram (transcripción) · Fish Audio (síntesis de voz, sin almacenamiento) · OpenWeather (clima) · Telegram (mensajes familiares) · Samsung SmartThings (domótica, opcional).</p>
           </div>
           <div>
             <h4 className="font-semibold text-slate-900 mb-1">Seguridad</h4>
