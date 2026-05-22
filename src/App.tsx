@@ -476,12 +476,12 @@ const VoiceDemo = () => {
 // ── App Screenshots ───────────────────────────────────────────────────────────
 const AppScreenshots = () => {
   const screenshots = [
-    { label: 'Pantalla principal', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1778791052/WhatsApp_Image_2026-05-13_at_09.35.11_2_r2idqg.jpg' },
-    { label: 'Modo no molestar', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1778791052/WhatsApp_Image_2026-05-13_at_09.35.11_1_miqrt9.jpg' },
+    { label: 'Pantalla principal', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/v1779454699/WhatsApp_Image_2026-05-22_at_09.56.17_bo0q6k.jpg' },
+    { label: 'Modo no molestar', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/v1779454894/WhatsApp_Image_2026-05-22_at_10.00.52_aa2jzp.jpg' },
     { label: 'Juegos — Ta-te-ti', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1778791052/WhatsApp_Image_2026-05-13_at_09.35.10_zkfyd9.jpg' },
     { label: 'Modo cocina', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1778791050/WhatsApp_Image_2026-05-13_at_09.35.11_3_epii1q.jpg' },
-    { label: 'Configuración', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1778791050/WhatsApp_Image_2026-05-13_at_09.35.11_gsdiko.jpg' },
-    { label: 'Guía de uso', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1778791050/WhatsApp_Image_2026-05-13_at_09.35.10_1_gr4wxp.jpg' },
+    { label: 'Configuración', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/v1779454699/WhatsApp_Image_2026-05-22_at_09.56.17_2_iu5dek.jpg' },
+    { label: 'Guía de uso', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/v1779454699/WhatsApp_Image_2026-05-22_at_09.56.17_1_aujrm5.jpg' },
   ];
 
   return (
@@ -502,7 +502,7 @@ const AppScreenshots = () => {
           <div className="flex-none snap-center flex flex-col items-center gap-4">
             <div className="w-[190px] rounded-[36px] border-[10px] border-slate-700 shadow-2xl shadow-black/60 overflow-hidden bg-slate-800">
               <video
-                src="https://res.cloudinary.com/dy1ll1azp/video/upload/f_auto,q_auto,vc_auto/v1778792086/Rosita_llwrcg.mov"
+                src="https://res.cloudinary.com/dy1ll1azp/video/upload/v1779454701/WhatsApp_Video_2026-05-22_at_09.56.18_vjkjcv.mp4"
                 autoPlay
                 muted
                 loop
