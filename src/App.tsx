@@ -476,10 +476,10 @@ const VoiceDemo = () => {
 // ── App Screenshots ───────────────────────────────────────────────────────────
 const AppScreenshots = () => {
   const screenshots = [
-    { label: 'Pantalla principal', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/v1779454699/WhatsApp_Image_2026-05-22_at_09.56.17_bo0q6k.jpg' },
-    { label: 'Modo no molestar', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/v1779454894/WhatsApp_Image_2026-05-22_at_10.00.52_aa2jzp.jpg' },
+    { label: 'Pantalla principal', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1779825427/WhatsApp_Image_2026-05-26_at_16.54.40_cwdoqu.jpg' },
+    { label: 'Modo no molestar', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1779825425/WhatsApp_Image_2026-05-26_at_16.54.41_yvzu6j.jpg' },
     { label: 'Juegos — Ta-te-ti', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1778791052/WhatsApp_Image_2026-05-13_at_09.35.10_zkfyd9.jpg' },
-    { label: 'Modo cocina', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1778791050/WhatsApp_Image_2026-05-13_at_09.35.11_3_epii1q.jpg' },
+    { label: 'Modo cocina', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1779825416/WhatsApp_Image_2026-05-26_at_16.54.41_1_updjmi.jpg' },
     { label: 'Configuración', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/v1779454699/WhatsApp_Image_2026-05-22_at_09.56.17_2_iu5dek.jpg' },
     { label: 'Guía de uso', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/v1779454699/WhatsApp_Image_2026-05-22_at_09.56.17_1_aujrm5.jpg' },
   ];
@@ -502,7 +502,7 @@ const AppScreenshots = () => {
           <div className="flex-none snap-center flex flex-col items-center gap-4">
             <div className="w-[190px] rounded-[36px] border-[10px] border-slate-700 shadow-2xl shadow-black/60 overflow-hidden bg-slate-800">
               <video
-                src="https://res.cloudinary.com/dy1ll1azp/video/upload/v1779454701/WhatsApp_Video_2026-05-22_at_09.56.18_vjkjcv.mp4"
+                src="https://res.cloudinary.com/dy1ll1azp/video/upload/v1779825426/WhatsApp_Video_2026-05-26_at_16.54.44_fwckqp.mp4"
                 autoPlay
                 muted
                 loop
