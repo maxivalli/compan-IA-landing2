@@ -49,7 +49,7 @@ const Navbar = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center h-16">
         <div className="flex items-center gap-2">
-          <img src="/splash-icon.png" alt="CompañIA" className="w-8 h-8 object-contain" />
+          <img src="/buho-0.png" alt="CompañIA" className="w-9 h-9 object-contain" />
           <span className="text-xl font-bold tracking-tight text-slate-900">
             <Brand />
           </span>
@@ -87,9 +87,9 @@ const Hero = () => (
       playsInline
       className="absolute inset-0 w-full h-full object-cover"
     />
-    {/* Gradiente oscuro diagonal desde la izquierda */}
-    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/10" />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+    {/* Gradiente purple diagonal desde la izquierda */}
+    <div className="absolute inset-0 bg-gradient-to-r from-violet-950/90 via-purple-900/55 to-transparent" />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 
     {/* Contenido */}
     <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
@@ -143,6 +143,16 @@ const Hero = () => (
             Familias de Argentina ya la usan · <span className="text-white font-semibold">MVP en producción</span>
           </p>
         </div>
+      </motion.div>
+
+      {/* Buho mascot — solo desktop */}
+      <motion.div
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, delay: 0.3 }}
+        className="hidden lg:block absolute right-56 bottom-44 z-20 pointer-events-none"
+      >
+        <img src="/buho-3.png" alt="" className="w-40 h-40 object-contain drop-shadow-2xl" />
       </motion.div>
 
       {/* Floating quote — solo desktop */}
@@ -234,13 +244,14 @@ const Problem = () => (
       <div className="grid lg:grid-cols-5 gap-6 items-stretch">
 
         {/* Imagen */}
-        <div className="lg:col-span-2 rounded-2xl overflow-hidden min-h-[280px]">
+        <div className="lg:col-span-2 rounded-2xl overflow-hidden min-h-[280px] relative bg-gradient-to-br from-violet-100 to-purple-50 flex items-center justify-center">
           <img
             src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774358430/Gemini_Generated_Image_6le1b46le1b46le1_im5jf3.png"
             alt="Adulta mayor sola en su hogar"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
+          <img src="/buho-8.png" alt="" className="absolute -bottom-4 -right-4 w-28 h-28 object-contain drop-shadow-xl pointer-events-none" />
         </div>
 
         {/* Datos secundarios */}
@@ -262,7 +273,8 @@ const Problem = () => (
       </div>
 
       {/* Cierre emocional */}
-      <div className="mt-12 bg-brand-blue-light/50 border border-brand-blue-dark/20 rounded-2xl p-8 text-center">
+      <div className="mt-12 bg-brand-blue-light/50 border border-brand-blue-dark/20 rounded-2xl p-8 text-center relative overflow-visible">
+        <img src="/buho-5.png" alt="" className="hidden lg:block absolute -top-14 left-6 w-24 h-24 object-contain drop-shadow-lg pointer-events-none" />
         <p className="text-xl font-semibold text-slate-900 max-w-3xl mx-auto leading-relaxed">
           La tecnología existe para resolver este problema. Lo que faltaba era una solución diseñada para quienes más la necesitan.
         </p>
@@ -277,6 +289,7 @@ const HowItWorks = () => (
   <section id="como-funciona" className="py-24 bg-slate-50">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
+        <img src="/buho-0.png" alt="" className="w-24 h-24 mx-auto mb-4 object-contain drop-shadow-lg" />
         <h2 className="text-3xl font-bold text-slate-900 mb-4">Cómo funciona</h2>
       </div>
       <div className="grid md:grid-cols-3 gap-8">
@@ -312,7 +325,7 @@ const HowItWorks = () => (
 
 // ── Powered By ────────────────────────────────────────────────────────────────
 const PoweredBy = () => (
-  <section className="py-16 bg-slate-900">
+  <section className="py-16 bg-[#1A0A2E]">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <p className="text-center text-sm font-semibold text-slate-400 uppercase tracking-widest mb-10">
         Tecnología de clase mundial, al servicio de tu familia
@@ -392,7 +405,7 @@ const VoiceDemo = () => {
   };
 
   return (
-    <section id="voces" className="py-24 bg-slate-900">
+    <section id="voces" className="py-24 bg-[#1A0A2E]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-sm font-semibold text-brand-orange uppercase tracking-widest mb-3">Demo de voces</p>
@@ -416,7 +429,7 @@ const VoiceDemo = () => {
 
               <div className="flex items-center gap-4 mb-6">
                 <img
-                  src="/splash-icon.png"
+                  src="/buho-0.png"
                   alt={voice.name}
                   style={{ width: 56, height: 56, objectFit: 'contain' }}
                 />
@@ -485,7 +498,7 @@ const AppScreenshots = () => {
   ];
 
   return (
-    <section className="py-24 bg-slate-900 overflow-hidden">
+    <section className="py-24 bg-[#1A0A2E] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-sm font-semibold text-brand-orange uppercase tracking-widest mb-3">La app en acción</p>
@@ -1127,8 +1140,11 @@ const Testimonials = () => (
 
 // ── Stats Row ─────────────────────────────────────────────────────────────────
 const Stats = () => (
-  <section className="py-16 bg-brand-orange">
+  <section className="py-16 bg-gradient-to-r from-brand-blue-dark to-brand-orange">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="flex justify-center mb-8">
+        <img src="/buho-7.png" alt="" className="w-24 h-24 object-contain drop-shadow-xl" />
+      </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-white text-center">
         {[
           { value: '5 min', label: 'Y ya estaban interactuando' },
@@ -1157,7 +1173,7 @@ const ForWhom = () => (
       <div className="grid md:grid-cols-3 gap-8">
         {/* Card 1 */}
         <div className="bg-brand-blue-dark rounded-[32px] p-8 text-white">
-          <div className="text-4xl mb-4">👵</div>
+          <img src="/buho-4.png" alt="" className="w-20 h-20 object-contain mb-4 drop-shadow-lg" />
           <h3 className="text-xl font-bold mb-6">Para adultos mayores</h3>
           <ul className="space-y-3">
             {[
@@ -1177,7 +1193,7 @@ const ForWhom = () => (
 
         {/* Card 2 */}
         <div className="bg-white rounded-[32px] p-8 shadow-sm border border-slate-100">
-          <div className="text-4xl mb-4">👨‍👩‍👧</div>
+          <img src="/buho-6.png" alt="" className="w-24 h-16 object-contain mb-4 drop-shadow-md" />
           <h3 className="text-xl font-bold mb-6 text-slate-900">Para hijos e hijas</h3>
           <ul className="space-y-3">
             {[
@@ -1574,7 +1590,7 @@ const FAQ = () => {
           </div>
           <div className="md:w-1/3 relative z-10">
             <img
-              src="/splash-icon.png"
+              src="/buho-1.png"
               alt="Rosita"
               className="w-32 h-32 md:w-48 md:h-48 object-contain drop-shadow-2xl"
             />
@@ -1682,12 +1698,15 @@ const PrivacidadModal = ({ onClose }: { onClose: () => void }) => (
     <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
       className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
-        <div className="bg-slate-800 p-8 relative overflow-hidden">
+        <div className="bg-slate-800 p-8 relative overflow-hidden flex items-center gap-4">
+          <img src="/buho-2.png" alt="" className="w-16 h-16 object-contain shrink-0" />
+          <div className="flex-1">
+            <h3 className="text-2xl font-bold text-white">Política de privacidad</h3>
+            <p className="text-white/60 text-sm mt-1">Última actualización: marzo 2026</p>
+          </div>
           <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
             <X className="w-4 h-4 text-white" />
           </button>
-          <h3 className="text-2xl font-bold text-white">Política de privacidad</h3>
-          <p className="text-white/60 text-sm mt-1">Última actualización: marzo 2026</p>
         </div>
         <div className="p-8 space-y-5 max-h-[60vh] overflow-y-auto text-slate-600 text-sm leading-relaxed">
           <div>
@@ -1784,7 +1803,7 @@ const Footer = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex items-center gap-2">
-          <img src="/splash-icon.png" alt="CompañIA" className="w-6 h-6 object-contain" />
+          <img src="/buho-0.png" alt="CompañIA" className="w-8 h-8 object-contain" />
           <span className="text-lg font-bold text-slate-900"><Brand /></span>
         </div>
         <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-slate-500">
