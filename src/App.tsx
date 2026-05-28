@@ -49,7 +49,7 @@ const Navbar = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center h-16">
         <div className="flex items-center gap-2">
-          <img src="/buho-0.png" alt="CompañIA" className="w-9 h-9 object-contain" />
+          <img src="/splash-icon.png" alt="CompañIA" className="w-8 h-8 object-contain" />
           <span className="text-xl font-bold tracking-tight text-slate-900">
             <Brand />
           </span>
@@ -124,24 +124,27 @@ const Hero = () => (
         </div>
 
         {/* Trust bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-          <div className="flex -space-x-2">
-            {[
-              'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=72&h=72&q=80',
-              'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=72&h=72&q=80',
-              'https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=72&h=72&q=80',
-            ].map((src, i) => (
-              <img
-                key={i}
-                src={src}
-                alt="Usuario"
-                className="w-9 h-9 rounded-full border-2 border-white object-cover"
-              />
-            ))}
+        <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 flex-1">
+            <div className="flex -space-x-2">
+              {[
+                'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=72&h=72&q=80',
+                'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=72&h=72&q=80',
+                'https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=72&h=72&q=80',
+              ].map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  alt="Usuario"
+                  className="w-9 h-9 rounded-full border-2 border-white object-cover"
+                />
+              ))}
+            </div>
+            <p className="text-white/70 text-sm font-medium">
+              Familias de Argentina ya la usan · <span className="text-white font-semibold">MVP en producción</span>
+            </p>
           </div>
-          <p className="text-white/70 text-sm font-medium">
-            Familias de Argentina ya la usan · <span className="text-white font-semibold">MVP en producción</span>
-          </p>
+          <img src="/buho-3.png" alt="" className="lg:hidden w-36 h-36 object-contain drop-shadow-2xl shrink-0" />
         </div>
       </motion.div>
 
@@ -150,7 +153,7 @@ const Hero = () => (
         initial={{ opacity: 0, y: 24 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.3 }}
-        className="hidden lg:block absolute right-56 bottom-44 z-20 pointer-events-none"
+        className="hidden lg:block absolute right-56 bottom-[206px] z-20 pointer-events-none"
       >
         <img src="/buho-3.png" alt="" className="w-40 h-40 object-contain drop-shadow-2xl" />
       </motion.div>
@@ -244,14 +247,13 @@ const Problem = () => (
       <div className="grid lg:grid-cols-5 gap-6 items-stretch">
 
         {/* Imagen */}
-        <div className="lg:col-span-2 rounded-2xl overflow-hidden min-h-[280px] relative bg-gradient-to-br from-violet-100 to-purple-50 flex items-center justify-center">
+        <div className="lg:col-span-2 rounded-2xl overflow-hidden min-h-[280px]">
           <img
             src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774358430/Gemini_Generated_Image_6le1b46le1b46le1_im5jf3.png"
             alt="Adulta mayor sola en su hogar"
             className="w-full h-full object-cover"
             referrerPolicy="no-referrer"
           />
-          <img src="/buho-8.png" alt="" className="absolute -bottom-4 -right-4 w-28 h-28 object-contain drop-shadow-xl pointer-events-none" />
         </div>
 
         {/* Datos secundarios */}
@@ -332,12 +334,12 @@ const PoweredBy = () => (
       </p>
       <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6">
         {[
-          { name: 'Gemini', sub: 'Motor de pensamiento', logo: 'https://cdn.simpleicons.org/googlegemini/ffffff', icon: null },
-          { name: 'Fish Audio', sub: 'Motor de voz', logo: null, icon: Headphones },
           { name: 'Deepgram', sub: 'Transcripción', logo: null, icon: Mic },
+          { name: 'Gemini', sub: 'Motor de pensamiento', logo: 'https://cdn.simpleicons.org/googlegemini/ffffff', icon: null },
           { name: 'Telegram', sub: 'Familia conectada', logo: 'https://cdn.simpleicons.org/telegram/ffffff', icon: null },
           { name: 'SmartThings', sub: 'Casa conectada', logo: null, icon: Lightbulb },
           { name: 'OpenWeather', sub: 'Clima local', logo: null, icon: CloudSun },
+          { name: 'Fish Audio', sub: 'Motor de voz', logo: null, icon: Headphones },
         ].map(tech => (
           <div key={tech.name} className="flex flex-col items-center gap-2 p-4 rounded-2xl bg-white/5 hover:bg-white/10 transition-colors text-center">
             {tech.logo
@@ -1213,7 +1215,7 @@ const ForWhom = () => (
 
         {/* Card 3 */}
         <div className="bg-brand-blue-dark rounded-[32px] p-8 text-white">
-          <div className="text-4xl mb-4">🧑‍⚕️</div>
+          <img src="/buho-2.png" alt="" className="w-20 h-20 object-contain mb-4 drop-shadow-lg" />
           <h3 className="text-xl font-bold mb-6">Para cuidadores</h3>
           <ul className="space-y-3">
             {[
