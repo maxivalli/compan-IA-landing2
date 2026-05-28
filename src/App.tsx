@@ -366,7 +366,7 @@ const VoiceDemo = () => {
     {
       id: 'femenina',
       name: 'Rosita',
-      desc: 'Tucumana, cercana y enérgica. Perfecta para acompañar el día a día.',
+      desc: 'Dulce y cercana. Perfecta para acompañar el día a día.',
       file: '/Rosita.mp3',
       emoji: '👩',
       tags: ['Compañía', 'Consejo', 'Recordatorio'],
@@ -375,7 +375,7 @@ const VoiceDemo = () => {
     {
       id: 'masculino',
       name: 'Juanchi',
-      desc: 'Santafesino, tranquilo y divertido. Ideal para charlar sin apuros.',
+      desc: 'Tranquilo y divertido. Ideal para charlar sin apuros.',
       file: '/Juanchi.mp3',
       emoji: '👨',
       tags: ['Charla', 'Humor', 'Ayuda'],
