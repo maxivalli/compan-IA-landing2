@@ -36,7 +36,7 @@ import {
   ShieldCheck
 } from 'lucide-react';
 
-const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/2bbkcYoiKWyNce61Pu38Zd.apk';
+const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/pTEFq5SjBFwYEnpxWALRKY.apk';
 
 // Helper: nombre de marca con estilo
 const Brand = ({ className = '', iaClassName = 'text-brand-orange' }: { className?: string; iaClassName?: string }) => (
