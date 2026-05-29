@@ -1,41 +1,52 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 
-const APP_NAME = 'CompañIA';
-const IA_START = 6; // C,o,m,p,a,ñ → serif | I,A → sans naranja
-
-const LETTER_DELAY  = 0.4;
-const LETTER_STEP   = 0.08;
-const TOTAL_MS      = 2800;
-const FONTS_TIMEOUT = 1500; // máximo que esperamos las fuentes antes de continuar igual
+const APP_NAME     = 'CompañIA';
+const IA_START     = 6;    // C,o,m,p,a,ñ → serif | I,A → sans naranja
+const LETTER_DELAY = 0.4;
+const LETTER_STEP  = 0.08;
+const TOTAL_MS     = 2800; // duración de la animación desde que todo está listo
+const FONTS_TIMEOUT = 1500;
+const IMAGE_TIMEOUT = 3000;
 
 export function SplashScreen({ onDone }: { onDone: () => void }) {
-  const [visible, setVisible]       = useState(true);
+  const [visible,    setVisible]    = useState(true);
+  const [imageReady, setImageReady] = useState(false);
   const [fontsReady, setFontsReady] = useState(false);
+  const ready = imageReady && fontsReady;
 
-  // Esperar a que Playfair Display y Poppins estén disponibles antes de animar el texto
+  // Precargar imagen imperatitvamente (independiente del render)
+  useEffect(() => {
+    let cancelled = false;
+    const fallback = setTimeout(() => { if (!cancelled) setImageReady(true); }, IMAGE_TIMEOUT);
+    const img = new window.Image();
+    img.onload  = () => { if (!cancelled) { clearTimeout(fallback); setImageReady(true); } };
+    img.onerror = () => { if (!cancelled) { clearTimeout(fallback); setImageReady(true); } };
+    img.src = '/buho-0.png';
+    return () => { cancelled = true; clearTimeout(fallback); };
+  }, []);
+
+  // Esperar fuentes
   useEffect(() => {
     let cancelled = false;
     const fallback = setTimeout(() => { if (!cancelled) setFontsReady(true); }, FONTS_TIMEOUT);
-
     Promise.all([
       document.fonts.load('700 1em "Playfair Display"'),
       document.fonts.load('700 1em "Poppins"'),
     ]).then(() => {
-      if (!cancelled) setFontsReady(true);
+      if (!cancelled) { clearTimeout(fallback); setFontsReady(true); }
     }).catch(() => {
-      if (!cancelled) setFontsReady(true);
+      if (!cancelled) { clearTimeout(fallback); setFontsReady(true); }
     });
-
     return () => { cancelled = true; clearTimeout(fallback); };
   }, []);
 
-  // El temporizador de cierre arranca cuando las fuentes están listas
+  // Countdown arranca cuando imagen Y fuentes están listas
   useEffect(() => {
-    if (!fontsReady) return;
+    if (!ready) return;
     const t = setTimeout(() => setVisible(false), TOTAL_MS);
     return () => clearTimeout(t);
-  }, [fontsReady]);
+  }, [ready]);
 
   return (
     <AnimatePresence onExitComplete={onDone}>
@@ -56,15 +67,15 @@ export function SplashScreen({ onDone }: { onDone: () => void }) {
             zIndex: 9999,
           }}
         >
-          {/* Logo con pulso doble */}
+          {/* Logo: invisible hasta que la imagen cargó, luego pulso doble */}
           <motion.img
             src="/buho-0.png"
             alt="CompañIA"
             initial={{ opacity: 0, scale: 0.82 }}
-            animate={{
+            animate={ready ? {
               opacity: [0, 1, 1,    1,    1,    1,    1],
               scale:   [0.82, 1, 1.12, 1.02, 1.15, 1,  1],
-            }}
+            } : { opacity: 0, scale: 0.82 }}
             transition={{
               times:    [0, 0.12, 0.28, 0.42, 0.58, 0.78, 1],
               duration: 1.4,
@@ -73,8 +84,8 @@ export function SplashScreen({ onDone }: { onDone: () => void }) {
             style={{ width: 160, height: 160, objectFit: 'contain' }}
           />
 
-          {/* Nombre letra por letra — solo se anima cuando las fuentes están listas */}
-          {fontsReady && (
+          {/* Texto: aparece solo cuando imagen + fuentes están listas */}
+          {ready && (
             <div style={{ display: 'flex', flexDirection: 'row', marginTop: -6, alignItems: 'baseline' }}>
               {APP_NAME.split('').map((char, i) => {
                 const isIA = i >= IA_START;
