@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { SplashScreen } from './SplashScreen';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   Heart,
@@ -49,7 +50,7 @@ const Navbar = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center h-16">
         <div className="flex items-center gap-2">
-          <img src="/splash-icon.png" alt="CompañIA" className="w-8 h-8 object-contain" />
+          <img src="/buho-0.png" alt="CompañIA" className="w-8 h-8 object-contain" />
           <span className="text-xl font-bold tracking-tight text-slate-900">
             <Brand />
           </span>
@@ -1834,27 +1835,31 @@ const Footer = () => {
 // --- Main App ---
 
 export default function App() {
+  const [splashDone, setSplashDone] = useState(false);
   return (
-    <div className="min-h-screen bg-white selection:bg-brand-orange/20">
-      <Navbar />
-      <main>
-        <Hero />
-        <PressStrip />
-        <Problem />
-        <HowItWorks />
-        <PoweredBy />
-        <VoiceDemo />
-        <AppScreenshots />
-        <Features />
-        <FunctionalitiesDetail />
-        <Testimonials />
-        <Stats />
-        <ForWhom />
-        <Comparison />
-        <PricingContact />
-        <FAQ />
-      </main>
-      <Footer />
-    </div>
+    <>
+      {!splashDone && <SplashScreen onDone={() => setSplashDone(true)} />}
+      <div className="min-h-screen bg-white selection:bg-brand-orange/20">
+        <Navbar />
+        <main>
+          <Hero />
+          <PressStrip />
+          <Problem />
+          <HowItWorks />
+          <PoweredBy />
+          <VoiceDemo />
+          <AppScreenshots />
+          <Features />
+          <FunctionalitiesDetail />
+          <Testimonials />
+          <Stats />
+          <ForWhom />
+          <Comparison />
+          <PricingContact />
+          <FAQ />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 }
