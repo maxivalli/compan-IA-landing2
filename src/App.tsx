@@ -493,7 +493,7 @@ const AppScreenshots = () => {
   const screenshots = [
     { label: 'Pantalla principal', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1781303578/WhatsApp_Image_2026-06-12_at_19.31.36_1_zrtvbl.jpg' },
     { label: 'Modo radio', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1781303576/WhatsApp_Image_2026-06-12_at_19.31.35_tcgyuk.jpg' },
-    { label: 'Juegos — Ta-te-ti', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1778791052/WhatsApp_Image_2026-05-13_at_09.35.10_zkfyd9.jpg' },
+    { label: 'Juegos — Ta-te-ti', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1781303577/WhatsApp_Image_2026-06-12_at_19.31.36_kvqw32.jpg' },
     { label: 'Modo cocina', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1779825416/WhatsApp_Image_2026-05-26_at_16.54.41_1_updjmi.jpg' },
     { label: 'Configuración', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/v1779454699/WhatsApp_Image_2026-05-22_at_09.56.17_2_iu5dek.jpg' },
     { label: 'Guía de uso', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/v1779454699/WhatsApp_Image_2026-05-22_at_09.56.17_1_aujrm5.jpg' },
