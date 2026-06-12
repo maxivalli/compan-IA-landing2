@@ -32,8 +32,7 @@ import {
   Eye,
   CloudSun,
   Lightbulb,
-  Subtitles,
-  ShieldCheck
+  Subtitles
 } from 'lucide-react';
 
 const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/Qg_cIX35xsRh-Wuhk4cjBI4HW9tVBc8xRce07b9R1R8.apk';
@@ -577,7 +576,6 @@ const Features = () => {
 
   const accessibilityFeatures = [
     { icon: <AlertCircle className="text-rose-400" />, title: "Botón SOS", desc: "Con una sola pulsación, alerta inmediata a todos los contactos familiares designados por Telegram." },
-    { icon: <ShieldCheck className="text-red-500" />, title: "Modo vigilancia", desc: "Activalo por voz antes de salir. Rosita vigila con la cámara y manda una foto silenciosa a la familia si detecta un rostro en casa." },
     { icon: <Eye className="text-emerald-500" />, title: "Visión", desc: "Lectura de textos con foto automática, o modo visión donde Rosita describe lo que ve con una pregunta. También narra las fotos de la familia." },
     { icon: <Subtitles className="text-teal-500" />, title: "Subtítulos en pantalla", desc: "Todo lo que dice Rosita aparece en texto grande en la pantalla en tiempo real. Ideal para personas con dificultad auditiva o entornos ruidosos." },
   ];
@@ -671,19 +669,6 @@ const SOSModal = ({ onClose }: { onClose: () => void }) => (
               <h4 className="font-bold text-slate-900 mb-1">Detección de frases de alerta</h4>
               <p className="text-slate-600 text-sm leading-relaxed">
                 <Brand /> analiza el lenguaje en tiempo real. Si detecta palabras como <span className="font-semibold text-rose-600">"dolor"</span>, <span className="font-semibold text-rose-600">"me caí"</span>, <span className="font-semibold text-rose-600">"tristeza"</span>, <span className="font-semibold text-rose-600">"no me siento bien"</span> o <span className="font-semibold text-rose-600">"ayuda"</span>, notifica automáticamente a la familia con el contexto de la conversación.
-              </p>
-            </div>
-          </div>
-
-          {/* Modo vigilancia */}
-          <div className="flex gap-4">
-            <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
-              <ShieldCheck className="w-5 h-5 text-red-500" />
-            </div>
-            <div>
-              <h4 className="font-bold text-slate-900 mb-1">Modo vigilancia</h4>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Decile <span className="italic text-slate-500">"Activá el modo vigilancia"</span> antes de salir. <Brand /> espera un minuto para que puedas irte y luego vigila con la cámara frontal. Si detecta un rostro, toma una foto silenciosa y le avisa a la familia por Telegram con la hora exacta. Se desactiva por voz cuando volvés, o tocando la pantalla.
               </p>
             </div>
           </div>
@@ -1246,7 +1231,6 @@ const Comparison = () => {
     'Recordatorios activos',
     'Alarmas por voz (sin tocar la pantalla)',
     'Alertas de emergencia a la familia',
-    'Modo vigilancia del hogar',
     'Estimulación cognitiva',
     'Informes a la familia',
     'Sin capacitación técnica',
