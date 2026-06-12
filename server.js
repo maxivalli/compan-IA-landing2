@@ -1,6 +1,6 @@
 import express from 'express';
 import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
+import { dirname, join, resolve } from 'path';
 import { existsSync } from 'fs';
 
 const app = express();
@@ -14,8 +14,13 @@ console.log(`dist exists: ${existsSync(distPath)}`);
 console.log(`index.html exists: ${existsSync(join(distPath, 'index.html'))}`);
 
 app.use(express.static(distPath));
+const resolvedDist = resolve(distPath);
+
 app.get('*', (req, res) => {
-  const filePath = join(distPath, req.path);
+  const filePath = resolve(distPath, '.' + req.path);
+  if (!filePath.startsWith(resolvedDist + '/') && filePath !== resolvedDist) {
+    return res.sendFile(join(distPath, 'index.html'));
+  }
   if (existsSync(filePath) && !filePath.endsWith('/')) {
     return res.sendFile(filePath);
   }
