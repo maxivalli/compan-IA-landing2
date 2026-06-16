@@ -492,7 +492,7 @@ const VoiceDemo = () => {
 const AppScreenshots = () => {
   const screenshots = [
     { label: 'Pantalla principal', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1781303578/WhatsApp_Image_2026-06-12_at_19.31.36_1_zrtvbl.jpg' },
-    { label: 'Modo radio', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1781303576/WhatsApp_Image_2026-06-12_at_19.31.35_tcgyuk.jpg' },
+    { label: 'Modo radio', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1781614881/WhatsApp_Image_2026-06-16_at_09.59.41_pa55n8.jpg' },
     { label: 'Juegos — Ta-te-ti', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1781303577/WhatsApp_Image_2026-06-12_at_19.31.36_kvqw32.jpg' },
     { label: 'Listas por voz', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1781303578/WhatsApp_Image_2026-06-12_at_19.31.35_1_hagy1v.jpg' },
     { label: 'Modo cocina', url: 'https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_400/v1779825416/WhatsApp_Image_2026-05-26_at_16.54.41_1_updjmi.jpg' },
