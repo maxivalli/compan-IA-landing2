@@ -35,7 +35,7 @@ import {
   Subtitles
 } from 'lucide-react';
 
-const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/uT6to40TxErg-mFnq9Pu7XkG8ochIjfLxVGkGFAq7I0.apk';
+const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/9pY-NiS5lzFHsLeWLauiEvGdqYzQa0BPirJ43Q--hX0.apk';
 
 // Helper: nombre de marca con estilo
 const Brand = ({ className = '', iaClassName = 'text-brand-orange' }: { className?: string; iaClassName?: string }) => (
