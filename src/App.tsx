@@ -35,7 +35,7 @@ import {
   Subtitles
 } from 'lucide-react';
 
-const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/Qg_cIX35xsRh-Wuhk4cjBI4HW9tVBc8xRce07b9R1R8.apk';
+const LATEST_ANDROID_BUILD_URL = 'https://expo.dev/artifacts/eas/uT6to40TxErg-mFnq9Pu7XkG8ochIjfLxVGkGFAq7I0.apk';
 
 // Helper: nombre de marca con estilo
 const Brand = ({ className = '', iaClassName = 'text-brand-orange' }: { className?: string; iaClassName?: string }) => (
@@ -45,29 +45,29 @@ const Brand = ({ className = '', iaClassName = 'text-brand-orange' }: { classNam
 // --- Components ---
 
 const Navbar = () => (
-  <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-100">
+  <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0B0C0F]/85 backdrop-blur-md border-b border-white/10">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex justify-between items-center h-16">
         <div className="flex items-center gap-2">
-          <img src="/buho-0.png" alt="CompañIA" className="w-8 h-8 object-contain" />
-          <span className="text-xl font-bold tracking-tight text-slate-900">
+          <img src="/logo.png" alt="CompañIA" className="w-8 h-8 object-contain" />
+          <span className="text-xl font-bold tracking-tight text-white">
             <Brand />
           </span>
         </div>
         <div className="hidden md:flex items-center gap-8">
-          <a href="#problema" className="text-sm font-medium text-slate-600 hover:text-brand-orange transition-colors">El problema</a>
-          <a href="#como-funciona" className="text-sm font-medium text-slate-600 hover:text-brand-orange transition-colors">Cómo funciona</a>
-          <a href="#voces" className="text-sm font-medium text-slate-600 hover:text-brand-orange transition-colors">Voces</a>
-          <a href="#funciones" className="text-sm font-medium text-slate-600 hover:text-brand-orange transition-colors">Funciones</a>
-          <a href="#testimonios" className="text-sm font-medium text-slate-600 hover:text-brand-orange transition-colors">Testimonios</a>
-          <a href="#faq" className="text-sm font-medium text-slate-600 hover:text-brand-orange transition-colors">FAQ</a>
+          <a href="#problema" className="text-sm font-medium text-slate-300 hover:text-brand-orange transition-colors">El problema</a>
+          <a href="#como-funciona" className="text-sm font-medium text-slate-300 hover:text-brand-orange transition-colors">Cómo funciona</a>
+          <a href="#voces" className="text-sm font-medium text-slate-300 hover:text-brand-orange transition-colors">Voces</a>
+          <a href="#funciones" className="text-sm font-medium text-slate-300 hover:text-brand-orange transition-colors">Funciones</a>
+          <a href="#testimonios" className="text-sm font-medium text-slate-300 hover:text-brand-orange transition-colors">Testimonios</a>
+          <a href="#faq" className="text-sm font-medium text-slate-300 hover:text-brand-orange transition-colors">FAQ</a>
           <a href="/services/manual-uso.html" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-brand-blue hover:text-brand-blue-dark transition-colors">Manual de uso</a>
         </div>
         <a
           href={LATEST_ANDROID_BUILD_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-brand-orange text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-orange-600 transition-all shadow-md shadow-orange-200"
+          className="bg-[#5CE1E6] text-[#06232c] px-5 py-2 rounded-full text-sm font-semibold hover:bg-[#7eeaef] transition-all shadow-md shadow-[#5CE1E6]/20"
         >
           Probar gratis
         </a>
@@ -88,7 +88,7 @@ const Hero = () => (
       className="absolute inset-0 w-full h-full object-cover"
     />
     {/* Gradiente purple diagonal desde la izquierda */}
-    <div className="absolute inset-0 bg-gradient-to-r from-violet-950/90 via-purple-900/55 to-transparent" />
+    <div className="absolute inset-0 bg-gradient-to-r from-[#0B0C0F]/95 via-[#0B0C0F]/60 to-transparent" />
     <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
 
     {/* Contenido */}
@@ -111,7 +111,7 @@ const Hero = () => (
             href={LATEST_ANDROID_BUILD_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-brand-orange text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-500 transition-all shadow-lg shadow-orange-900/40"
+            className="bg-[#5CE1E6] text-[#06232c] px-8 py-4 rounded-full font-bold text-lg hover:bg-[#7eeaef] transition-all shadow-lg shadow-cyan-950/40"
           >
             Probá gratis 7 días →
           </a>
@@ -144,7 +144,6 @@ const Hero = () => (
               Familias de Argentina ya la usan · <span className="text-white font-semibold">MVP en producción</span>
             </p>
           </div>
-          <img src="/buho-3.png" alt="" className="lg:hidden w-36 h-36 object-contain drop-shadow-2xl shrink-0" />
         </div>
       </motion.div>
 
@@ -155,7 +154,6 @@ const Hero = () => (
         transition={{ duration: 0.9, delay: 0.3 }}
         className="hidden lg:block absolute right-56 bottom-[206px] z-20 pointer-events-none"
       >
-        <img src="/buho-3.png" alt="" className="w-40 h-40 object-contain drop-shadow-2xl" />
       </motion.div>
 
       {/* Floating quote — solo desktop */}
@@ -163,9 +161,9 @@ const Hero = () => (
         initial={{ opacity: 0, x: 40 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8, delay: 0.5 }}
-        className="hidden lg:block absolute right-12 bottom-20 bg-white rounded-2xl p-6 shadow-2xl max-w-xs"
+        className="hidden lg:block absolute right-12 bottom-20 bg-[#16181F] rounded-2xl p-6 shadow-2xl max-w-xs"
       >
-        <p className="text-slate-700 italic text-sm leading-relaxed mb-4">
+        <p className="text-slate-200 italic text-sm leading-relaxed mb-4">
           "Desde que tiene <strong>CompañIA</strong>, mamá está más feliz y nosotros dormimos mejor."
         </p>
         <div className="flex items-center gap-3">
@@ -176,7 +174,7 @@ const Hero = () => (
             referrerPolicy="no-referrer"
           />
           <div>
-            <p className="font-bold text-slate-900 text-sm">Tomás V.</p>
+            <p className="font-bold text-white text-sm">Tomás V.</p>
             <p className="text-slate-400 text-xs">Hijo, Buenos Aires</p>
           </div>
         </div>
@@ -196,12 +194,12 @@ const Hero = () => (
 
 // ── Press Strip ───────────────────────────────────────────────────────────────
 const PressStrip = () => (
-  <section className="py-10 bg-brand-blue-light/30 border-y border-brand-blue-light">
+  <section className="py-10 bg-[#0F1116] border-y border-white/10">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <p className="text-center text-sm font-semibold text-slate-400 uppercase tracking-widest mb-6">Mencionado en</p>
       <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
         {['La Nación', 'Clarín', 'Infobae Tech', 'TecnoXplora'].map(name => (
-          <span key={name} className="text-xl font-serif font-bold text-slate-400/70 hover:text-slate-600 transition-colors cursor-default">
+          <span key={name} className="text-xl font-serif font-bold text-slate-400/70 hover:text-slate-300 transition-colors cursor-default">
             {name}
           </span>
         ))}
@@ -211,16 +209,16 @@ const PressStrip = () => (
 );
 
 const Problem = () => (
-  <section id="problema" className="py-24 bg-white overflow-hidden">
+  <section id="problema" className="py-24 bg-[#0B0C0F] overflow-hidden">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       {/* Header */}
       <div className="text-center mb-16">
         <span className="inline-block text-xs font-semibold tracking-widest uppercase text-brand-orange mb-4">El problema</span>
-        <h2 className="text-4xl lg:text-5xl font-bold text-slate-900 mb-5 leading-tight">
+        <h2 className="text-4xl lg:text-5xl font-bold text-white mb-5 leading-tight">
           Millones de personas mayores<br className="hidden sm:block" /> viven en silencio cada día
         </h2>
-        <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+        <p className="text-slate-400 text-lg max-w-2xl mx-auto">
           El aislamiento social en adultos mayores no es solo un problema emocional — es una crisis de salud pública con consecuencias médicas, cognitivas y económicas comprobadas.
         </p>
       </div>
@@ -229,14 +227,14 @@ const Problem = () => (
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
         {[
           { num: '1 de cada 3', label: 'adultos mayores vive solo en América Latina', source: 'CEPAL 2023', color: 'bg-brand-orange/8', border: 'border-brand-orange/20', text: 'text-brand-orange' },
-          { num: '+50%', label: 'más riesgo de demencia por aislamiento social', source: 'The Lancet 2022', color: 'bg-brand-blue-light/60', border: 'border-brand-blue-dark/20', text: 'text-brand-blue-dark' },
+          { num: '+50%', label: 'más riesgo de demencia por aislamiento social', source: 'The Lancet 2022', color: 'bg-[#5CE1E6]/10', border: 'border-[#5CE1E6]/20', text: 'text-brand-blue-dark' },
           { num: '29%', label: 'mayor riesgo de enfermedad cardíaca por soledad', source: 'AHA 2023', color: 'bg-brand-orange/8', border: 'border-brand-orange/20', text: 'text-brand-orange' },
-          { num: 'USD +400/mes', label: 'costo promedio de cuidado domiciliario por aislamiento', source: 'OPS 2023', color: 'bg-brand-blue-light/60', border: 'border-brand-blue-dark/20', text: 'text-brand-blue-dark' },
+          { num: 'USD +400/mes', label: 'costo promedio de cuidado domiciliario por aislamiento', source: 'OPS 2023', color: 'bg-[#5CE1E6]/10', border: 'border-[#5CE1E6]/20', text: 'text-brand-blue-dark' },
         ].map(({ num, label, source, color, border, text }) => (
           <div key={num} className={`${color} rounded-2xl border ${border} p-6 flex flex-col justify-between`}>
             <div>
               <div className={`text-1xl lg:text-4xl font-bold ${text} leading-tight mb-3`}>{num}</div>
-              <p className="text-slate-600 text-sm leading-snug">{label}</p>
+              <p className="text-slate-300 text-sm leading-snug">{label}</p>
             </div>
             <p className={`text-xs mt-4 ${text} opacity-60`}>{source}</p>
           </div>
@@ -264,10 +262,10 @@ const Problem = () => (
             { icon: '🏥', stat: '32%', desc: 'más riesgo de sufrir un ACV en personas socialmente aisladas', sub: 'JAMA 2022' },
             { icon: '💬', stat: '60%', desc: 'de familiares cuidadores reportan sentirse desbordados y con falta de herramientas', sub: 'INDEC 2022' },
           ].map(({ icon, stat, desc, sub }) => (
-            <div key={stat} className="bg-slate-50 border border-slate-200 rounded-xl p-5 flex flex-col gap-2">
+            <div key={stat} className="bg-white/5 border border-white/10 rounded-xl p-5 flex flex-col gap-2">
               <span className="text-2xl">{icon}</span>
-              <div className="text-2xl font-bold text-slate-900">{stat}</div>
-              <p className="text-slate-500 text-sm leading-snug">{desc}</p>
+              <div className="text-2xl font-bold text-white">{stat}</div>
+              <p className="text-slate-400 text-sm leading-snug">{desc}</p>
               <p className="text-xs text-slate-400">{sub}</p>
             </div>
           ))}
@@ -275,9 +273,8 @@ const Problem = () => (
       </div>
 
       {/* Cierre emocional */}
-      <div className="mt-12 bg-brand-blue-light/50 border border-brand-blue-dark/20 rounded-2xl p-8 text-center relative overflow-visible">
-        <img src="/buho-5.png" alt="" className="hidden lg:block absolute -top-14 left-6 w-24 h-24 object-contain drop-shadow-lg pointer-events-none" />
-        <p className="text-xl font-semibold text-slate-900 max-w-3xl mx-auto leading-relaxed">
+      <div className="mt-12 bg-[#5CE1E6]/8 border border-[#5CE1E6]/20 rounded-2xl p-8 text-center relative overflow-visible">
+        <p className="text-xl font-semibold text-white max-w-3xl mx-auto leading-relaxed">
           La tecnología existe para resolver este problema. Lo que faltaba era una solución diseñada para quienes más la necesitan.
         </p>
         <p className="text-brand-orange font-bold mt-3 text-lg"><Brand /> es esa solución.</p>
@@ -288,11 +285,10 @@ const Problem = () => (
 );
 
 const HowItWorks = () => (
-  <section id="como-funciona" className="py-24 bg-slate-50">
+  <section id="como-funciona" className="py-24 bg-[#0F1116]">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
-        <img src="/buho-0.png" alt="" className="w-24 h-24 mx-auto mb-4 object-contain drop-shadow-lg" />
-        <h2 className="text-3xl font-bold text-slate-900 mb-4">Cómo funciona</h2>
+        <h2 className="text-3xl font-bold text-white mb-4">Cómo funciona</h2>
       </div>
       <div className="grid md:grid-cols-3 gap-8">
         {[
@@ -312,12 +308,12 @@ const HowItWorks = () => (
             desc: "Responde con calidez. Ofrece compañía, recordatorios y alertas a la familia."
           }
         ].map((step, i) => (
-          <div key={i} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition-shadow">
-            <div className="w-16 h-16 bg-slate-50 rounded-2xl flex items-center justify-center mb-6">
+          <div key={i} className="bg-[#16181F] p-8 rounded-3xl shadow-sm border border-white/10 hover:shadow-md transition-shadow">
+            <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-6">
               {step.icon}
             </div>
-            <h3 className="text-xl font-bold text-slate-900 mb-3">{step.title}</h3>
-            <p className="text-slate-600 leading-relaxed">{step.desc}</p>
+            <h3 className="text-xl font-bold text-white mb-3">{step.title}</h3>
+            <p className="text-slate-300 leading-relaxed">{step.desc}</p>
           </div>
         ))}
       </div>
@@ -327,7 +323,7 @@ const HowItWorks = () => (
 
 // ── Powered By ────────────────────────────────────────────────────────────────
 const PoweredBy = () => (
-  <section className="py-16 bg-[#1A0A2E]">
+  <section className="py-16 bg-[#0F1116]">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <p className="text-center text-sm font-semibold text-slate-400 uppercase tracking-widest mb-10">
         Tecnología de clase mundial, al servicio de tu familia
@@ -379,7 +375,7 @@ const VoiceDemo = () => {
       file: '/Juanchi.mp3',
       emoji: '👨',
       tags: ['Charla', 'Humor', 'Ayuda'],
-      color: 'bg-brand-blue-dark',
+      color: 'bg-[#5CE1E6]',
     },
   ];
 
@@ -407,7 +403,7 @@ const VoiceDemo = () => {
   };
 
   return (
-    <section id="voces" className="py-24 bg-[#1A0A2E]">
+    <section id="voces" className="py-24 bg-[#0F1116]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-sm font-semibold text-brand-orange uppercase tracking-widest mb-3">Demo de voces</p>
@@ -431,7 +427,7 @@ const VoiceDemo = () => {
 
               <div className="flex items-center gap-4 mb-6">
                 <img
-                  src="/buho-0.png"
+                  src="/logo.png"
                   alt={voice.name}
                   style={{ width: 56, height: 56, objectFit: 'contain' }}
                 />
@@ -501,7 +497,7 @@ const AppScreenshots = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#1A0A2E] overflow-hidden">
+    <section className="py-24 bg-[#0F1116] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <p className="text-sm font-semibold text-brand-orange uppercase tracking-widest mb-3">La app en acción</p>
@@ -516,7 +512,7 @@ const AppScreenshots = () => {
         <div className="flex gap-6 overflow-x-auto pb-6 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {/* Video — primer elemento del carrusel */}
           <div className="flex-none snap-center flex flex-col items-center gap-4">
-            <div className="w-[190px] rounded-[36px] border-[10px] border-slate-700 shadow-2xl shadow-black/60 overflow-hidden bg-slate-800">
+            <div className="w-[190px] rounded-[36px] border-[10px] border-slate-700 shadow-2xl shadow-black/60 overflow-hidden bg-[#1c2029]">
               <video
                 src="https://res.cloudinary.com/dy1ll1azp/video/upload/v1779825426/WhatsApp_Video_2026-05-26_at_16.54.44_fwckqp.mp4"
                 autoPlay
@@ -531,7 +527,7 @@ const AppScreenshots = () => {
 
           {screenshots.map(({ label, url }) => (
             <div key={label} className="flex-none snap-center flex flex-col items-center gap-4">
-              <div className="w-[190px] rounded-[36px] border-[10px] border-slate-700 shadow-2xl shadow-black/60 overflow-hidden bg-slate-800">
+              <div className="w-[190px] rounded-[36px] border-[10px] border-slate-700 shadow-2xl shadow-black/60 overflow-hidden bg-[#1c2029]">
                 <img
                   src={url}
                   alt={label}
@@ -544,20 +540,20 @@ const AppScreenshots = () => {
           ))}
         </div>
 
-        <p className="text-center text-slate-600 text-xs mt-2 select-none tracking-wide">← deslizá →</p>
+        <p className="text-center text-slate-300 text-xs mt-2 select-none tracking-wide">← deslizá →</p>
       </div>
     </section>
   );
 };
 
 const FeatureCard = ({ feat }: { feat: { icon: React.ReactElement<{ className?: string }>; title: string; desc: string } }) => (
-  <div className="flex items-center gap-6 p-6 bg-white rounded-2xl border border-slate-100 shadow-sm hover:border-brand-blue-light transition-colors group">
-    <div className="w-14 h-14 bg-slate-50 rounded-xl flex items-center justify-center group-hover:bg-brand-blue-light/20 transition-colors">
+  <div className="flex items-center gap-6 p-6 bg-[#16181F] rounded-2xl border border-white/10 shadow-sm hover:border-white/10 transition-colors group">
+    <div className="w-14 h-14 bg-white/5 rounded-xl flex items-center justify-center group-hover:bg-brand-blue-light/20 transition-colors">
       {React.cloneElement(feat.icon, { className: `w-7 h-7 ${feat.icon.props.className ?? ''}` })}
     </div>
     <div>
-      <h4 className="font-bold text-slate-900 mb-1">{feat.title}</h4>
-      <p className="text-sm text-slate-500 leading-snug">{feat.desc}</p>
+      <h4 className="font-bold text-white mb-1">{feat.title}</h4>
+      <p className="text-sm text-slate-400 leading-snug">{feat.desc}</p>
     </div>
   </div>
 );
@@ -582,10 +578,10 @@ const Features = () => {
   ];
 
   return (
-    <section id="funciones" className="py-24 bg-white">
+    <section id="funciones" className="py-24 bg-[#0B0C0F]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold text-slate-900 mb-4">Funciones</h2>
+          <h2 className="text-3xl font-bold text-white mb-4">Funciones</h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
@@ -594,9 +590,9 @@ const Features = () => {
 
         <div className="mb-6">
           <div className="flex items-center gap-3 mb-6">
-            <div className="h-px flex-1 bg-slate-100" />
+            <div className="h-px flex-1 bg-white/10" />
             <span className="text-xs font-semibold text-slate-400 uppercase tracking-widest">Accesibilidad y seguridad</span>
-            <div className="h-px flex-1 bg-slate-100" />
+            <div className="h-px flex-1 bg-white/10" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {accessibilityFeatures.map((feat, i) => <FeatureCard key={i} feat={feat} />)}
@@ -622,7 +618,7 @@ const SOSModal = ({ onClose }: { onClose: () => void }) => (
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95, y: 20 }}
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-      className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden"
+      className="bg-[#16181F] rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden"
       onClick={e => e.stopPropagation()}
     >
         {/* Header */}
@@ -650,25 +646,25 @@ const SOSModal = ({ onClose }: { onClose: () => void }) => (
 
           {/* Botón SOS */}
           <div className="flex gap-4">
-            <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+            <div className="w-10 h-10 bg-red-500/15 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
               <PhoneCall className="w-5 h-5 text-red-500" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-1">Botón SOS</h4>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                <Brand /> incluye un botón SOS dentro de la app. La <span className="font-medium text-slate-700">pulsera SOS física</span> (se vende por separado) suma detección automática de caídas: si detecta una caída brusca, activa el protocolo de emergencia sin que el adulto mayor tenga que hacer nada. En ambos casos, la familia recibe la alerta de inmediato por Telegram.
+              <h4 className="font-bold text-white mb-1">Botón SOS</h4>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                <Brand /> incluye un botón SOS dentro de la app. La <span className="font-medium text-slate-200">pulsera SOS física</span> (se vende por separado) suma detección automática de caídas: si detecta una caída brusca, activa el protocolo de emergencia sin que el adulto mayor tenga que hacer nada. En ambos casos, la familia recibe la alerta de inmediato por Telegram.
               </p>
             </div>
           </div>
 
           {/* Detección emocional */}
           <div className="flex gap-4">
-            <div className="w-10 h-10 bg-rose-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+            <div className="w-10 h-10 bg-rose-500/15 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
               <MessageCircleWarning className="w-5 h-5 text-rose-500" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-1">Detección de frases de alerta</h4>
-              <p className="text-slate-600 text-sm leading-relaxed">
+              <h4 className="font-bold text-white mb-1">Detección de frases de alerta</h4>
+              <p className="text-slate-300 text-sm leading-relaxed">
                 <Brand /> analiza el lenguaje en tiempo real. Si detecta palabras como <span className="font-semibold text-rose-600">"dolor"</span>, <span className="font-semibold text-rose-600">"me caí"</span>, <span className="font-semibold text-rose-600">"tristeza"</span>, <span className="font-semibold text-rose-600">"no me siento bien"</span> o <span className="font-semibold text-rose-600">"ayuda"</span>, notifica automáticamente a la familia con el contexto de la conversación.
               </p>
             </div>
@@ -676,12 +672,12 @@ const SOSModal = ({ onClose }: { onClose: () => void }) => (
 
           {/* Alertas silenciosas */}
           <div className="flex gap-4">
-            <div className="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+            <div className="w-10 h-10 bg-violet-500/15 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
               <Bell className="w-5 h-5 text-violet-500" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-1">Alertas silenciosas a la familia</h4>
-              <p className="text-slate-600 text-sm leading-relaxed">
+              <h4 className="font-bold text-white mb-1">Alertas silenciosas a la familia</h4>
+              <p className="text-slate-300 text-sm leading-relaxed">
                 Además del SOS, la familia recibe notificaciones si el adulto mayor no interactuó con el dispositivo por un período inusual, o si hay cambios bruscos en sus patrones de conversación diaria.
               </p>
             </div>
@@ -689,12 +685,12 @@ const SOSModal = ({ onClose }: { onClose: () => void }) => (
 
           {/* Shield */}
           <div className="flex gap-4">
-            <div className="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+            <div className="w-10 h-10 bg-teal-500/15 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
               <ShieldAlert className="w-5 h-5 text-teal-500" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-1">Múltiples capas de protección</h4>
-              <p className="text-slate-600 text-sm leading-relaxed">
+              <h4 className="font-bold text-white mb-1">Múltiples capas de protección</h4>
+              <p className="text-slate-300 text-sm leading-relaxed">
                 SOS manual, detección de caídas, análisis de lenguaje y monitoreo de actividad trabajan juntos para garantizar que ninguna situación de riesgo pase desapercibida.
               </p>
             </div>
@@ -707,7 +703,7 @@ const SOSModal = ({ onClose }: { onClose: () => void }) => (
             href={LATEST_ANDROID_BUILD_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full bg-brand-orange text-white text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-orange-600 transition-all shadow-lg"
+            className="block w-full bg-[#5CE1E6] text-[#06232c] text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-[#7eeaef] transition-all shadow-lg"
           >
             Descargar y probar
           </a>
@@ -730,11 +726,11 @@ const VisionModal = ({ onClose }: { onClose: () => void }) => (
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95, y: 20 }}
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-      className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden"
+      className="bg-[#16181F] rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden"
       onClick={e => e.stopPropagation()}
     >
         {/* Header */}
-        <div className="bg-emerald-700 p-8 relative overflow-hidden">
+        <div className="bg-[#12161D] p-8 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2" />
           <button
             onClick={onClose}
@@ -758,39 +754,39 @@ const VisionModal = ({ onClose }: { onClose: () => void }) => (
 
           {/* Leer textos */}
           <div className="flex gap-4">
-            <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+            <div className="w-10 h-10 bg-emerald-500/15 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
               <Eye className="w-5 h-5 text-emerald-600" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-1">Lectura de textos y documentos</h4>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                ¿Una carta, una receta, una boleta? Solo decile <span className="italic text-slate-500">"Rosita, ¿qué dice acá?"</span> y apuntá el teléfono. La cámara trasera se activa sola con una cuenta regresiva y lee todo el texto en voz alta.
+              <h4 className="font-bold text-white mb-1">Lectura de textos y documentos</h4>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                ¿Una carta, una receta, una boleta? Solo decile <span className="italic text-slate-400">"Rosita, ¿qué dice acá?"</span> y apuntá el teléfono. La cámara trasera se activa sola con una cuenta regresiva y lee todo el texto en voz alta.
               </p>
             </div>
           </div>
 
           {/* Fotos de familia */}
           <div className="flex gap-4">
-            <div className="w-10 h-10 bg-violet-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+            <div className="w-10 h-10 bg-violet-500/15 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
               <Image className="w-5 h-5 text-violet-500" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-1">Fotos de la familia narradas</h4>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Cuando la familia manda una foto por Telegram, <Brand /> la describe en voz alta: <span className="italic text-slate-500">"Tu hija te manda una foto de los chicos en la plaza."</span> No hace falta ver la pantalla.
+              <h4 className="font-bold text-white mb-1">Fotos de la familia narradas</h4>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                Cuando la familia manda una foto por Telegram, <Brand /> la describe en voz alta: <span className="italic text-slate-400">"Tu hija te manda una foto de los chicos en la plaza."</span> No hace falta ver la pantalla.
               </p>
             </div>
           </div>
 
           {/* Autofoto */}
           <div className="flex gap-4">
-            <div className="w-10 h-10 bg-sky-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+            <div className="w-10 h-10 bg-sky-500/15 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
               <Smartphone className="w-5 h-5 text-sky-500" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-1">Foto para la familia sin tocar nada</h4>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Decile <span className="italic text-slate-500">"Sacame una foto"</span> y <Brand /> abre la cámara frontal, cuenta tres segundos y la manda directo a la familia por Telegram. Sin botones, sin pantallas.
+              <h4 className="font-bold text-white mb-1">Foto para la familia sin tocar nada</h4>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                Decile <span className="italic text-slate-400">"Sacame una foto"</span> y <Brand /> abre la cámara frontal, cuenta tres segundos y la manda directo a la familia por Telegram. Sin botones, sin pantallas.
               </p>
             </div>
           </div>
@@ -826,11 +822,11 @@ const TelegramModal = ({ onClose }: { onClose: () => void }) => (
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95, y: 20 }}
       transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-      className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden"
+      className="bg-[#16181F] rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden"
       onClick={e => e.stopPropagation()}
     >
         {/* Header */}
-        <div className="bg-brand-blue-dark p-8 relative overflow-hidden">
+        <div className="bg-[#12161D] p-8 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-48 h-48 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2" />
           <button
             onClick={onClose}
@@ -854,25 +850,25 @@ const TelegramModal = ({ onClose }: { onClose: () => void }) => (
 
           {/* Mensajes de audio */}
           <div className="flex gap-4">
-            <div className="w-10 h-10 bg-sky-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+            <div className="w-10 h-10 bg-sky-500/15 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
               <Mic className="w-5 h-5 text-sky-500" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-1">Mensajes de voz de la familia</h4>
-              <p className="text-slate-600 text-sm leading-relaxed">
-                Los familiares pueden enviar mensajes de audio desde Telegram y <Brand /> los reproduce en voz alta al adulto mayor, con una voz cálida: <span className="italic text-slate-500">"Tenés un mensaje de tu hijo Juan."</span>
+              <h4 className="font-bold text-white mb-1">Mensajes de voz de la familia</h4>
+              <p className="text-slate-300 text-sm leading-relaxed">
+                Los familiares pueden enviar mensajes de audio desde Telegram y <Brand /> los reproduce en voz alta al adulto mayor, con una voz cálida: <span className="italic text-slate-400">"Tenés un mensaje de tu hijo Juan."</span>
               </p>
             </div>
           </div>
 
           {/* Informes */}
           <div className="flex gap-4">
-            <div className="w-10 h-10 bg-teal-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+            <div className="w-10 h-10 bg-teal-500/15 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
               <Radio className="w-5 h-5 text-teal-500" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-1">Informes diarios automáticos</h4>
-              <p className="text-slate-600 text-sm leading-relaxed">
+              <h4 className="font-bold text-white mb-1">Informes diarios automáticos</h4>
+              <p className="text-slate-300 text-sm leading-relaxed">
                 Cada día, la familia recibe por Telegram un resumen del estado de ánimo, los temas de conversación, los recordatorios completados y cualquier alerta relevante del día.
               </p>
             </div>
@@ -880,12 +876,12 @@ const TelegramModal = ({ onClose }: { onClose: () => void }) => (
 
           {/* Sin app para el mayor */}
           <div className="flex gap-4">
-            <div className="w-10 h-10 bg-amber-100 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+            <div className="w-10 h-10 bg-amber-500/15 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
               <UserCheck className="w-5 h-5 text-amber-500" />
             </div>
             <div>
-              <h4 className="font-bold text-slate-900 mb-1">Sin apps ni pantallas para el mayor</h4>
-              <p className="text-slate-600 text-sm leading-relaxed">
+              <h4 className="font-bold text-white mb-1">Sin apps ni pantallas para el mayor</h4>
+              <p className="text-slate-300 text-sm leading-relaxed">
                 El adulto mayor no necesita tocar ninguna aplicación. Solo habla con <Brand />. Toda la coordinación familiar ocurre en Telegram, del lado de la familia.
               </p>
             </div>
@@ -899,7 +895,7 @@ const TelegramModal = ({ onClose }: { onClose: () => void }) => (
             href={LATEST_ANDROID_BUILD_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="block w-full bg-brand-blue-dark text-white text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-blue-800 transition-all shadow-lg"
+            className="block w-full bg-[#5CE1E6] text-[#06232c] text-center px-8 py-4 rounded-full font-bold text-lg hover:bg-[#7eeaef] transition-all shadow-lg"
           >
             Descargar y probar
           </a>
@@ -922,13 +918,13 @@ const FunctionalitiesDetail = () => {
   }, []);
   return (
   <>
-  <section className="py-24 bg-white overflow-hidden">
+  <section className="py-24 bg-[#0B0C0F] overflow-hidden">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-20">
-        <h2 className="text-4xl font-serif font-bold text-slate-900 leading-tight">
+        <h2 className="text-4xl font-serif font-bold text-white leading-tight">
           Funcionalidades: <span className="text-brand-orange">La tecnología más <br />humana</span> para conectar generaciones.
         </h2>
-        <p className="mt-4 text-slate-500 max-w-2xl mx-auto">
+        <p className="mt-4 text-slate-400 max-w-2xl mx-auto">
           <Brand /> está diseñada para enriquecer la vida de sus seres queridos con empatía y cuidado.
         </p>
       </div>
@@ -949,13 +945,13 @@ const FunctionalitiesDetail = () => {
             <div className="w-12 h-12 bg-brand-blue-light rounded-2xl flex items-center justify-center mb-6">
               <Users className="text-brand-blue-dark w-6 h-6" />
             </div>
-            <h3 className="text-3xl font-bold text-slate-900 mb-6">Manténganse siempre cerca.</h3>
-            <p className="text-lg text-slate-600 leading-relaxed mb-8">
+            <h3 className="text-3xl font-bold text-white mb-6">Manténganse siempre cerca.</h3>
+            <p className="text-lg text-slate-300 leading-relaxed mb-8">
               <Brand /> facilita el envío de mensajes de audio y fotos a través de una integración perfecta con Telegram, permitiendo que toda la familia participe activamente en el día a día del adulto mayor, casi como si estuvieran ahí.
             </p>
             <button
               onClick={() => setShowTelegram(true)}
-              className="bg-brand-blue-dark text-white px-8 py-3 rounded-full font-bold hover:bg-blue-800 transition-all"
+              className="bg-[#5CE1E6] text-[#06232c] px-8 py-3 rounded-full font-bold hover:bg-[#7eeaef] transition-all"
             >
               Saber más
             </button>
@@ -968,21 +964,21 @@ const FunctionalitiesDetail = () => {
             <div className="w-12 h-12 bg-brand-blue-light rounded-2xl flex items-center justify-center mb-6">
               <Brain className="text-brand-blue-dark w-6 h-6" />
             </div>
-            <h3 className="text-3xl font-bold text-slate-900 mb-6">Ayuda para el bienestar cognitivo.</h3>
-            <p className="text-lg text-slate-600 leading-relaxed mb-6">
+            <h3 className="text-3xl font-bold text-white mb-6">Ayuda para el bienestar cognitivo.</h3>
+            <p className="text-lg text-slate-300 leading-relaxed mb-6">
               <Brand /> ofrece recordatorios suaves para medicamentos, citas médicas y eventos importantes, además de estimular la memoria con historias y preguntas personalizadas.
             </p>
             <div className="space-y-3 mb-8">
-              <div className="flex items-center gap-3 font-bold text-slate-800">
+              <div className="flex items-center gap-3 font-bold text-slate-100">
                 <div className="w-2 h-2 bg-brand-orange rounded-full" />
                 Estimulación cognitiva diaria
               </div>
-              <div className="flex items-center gap-3 font-bold text-slate-800">
+              <div className="flex items-center gap-3 font-bold text-slate-100">
                 <div className="w-2 h-2 bg-brand-orange rounded-full" />
                 Organización y tranquilidad
               </div>
             </div>
-            <button className="bg-brand-blue-dark text-white px-8 py-3 rounded-full font-bold hover:bg-blue-800 transition-all">
+            <button className="bg-[#5CE1E6] text-[#06232c] px-8 py-3 rounded-full font-bold hover:bg-[#7eeaef] transition-all">
               Empezar prueba
             </button>
           </div>
@@ -990,17 +986,17 @@ const FunctionalitiesDetail = () => {
             <img
               src="https://res.cloudinary.com/dy1ll1azp/image/upload/f_auto,q_auto,w_900/v1774359691/Gemini_Generated_Image_dfzi7zdfzi7zdfzi_clxjgq.png"
               alt="Panel de control"
-              className="rounded-[40px] shadow-xl border-8 border-slate-100"
+              className="rounded-[40px] shadow-xl border-8 border-white/10"
               referrerPolicy="no-referrer"
             />
           </div>
         </div>
 
         {/* Detail 3 - SOS */}
-        <div className="bg-brand-orange rounded-[40px] p-8 md:p-16 text-white relative overflow-hidden">
+        <div className="bg-[#12161D] border border-[#5CE1E6]/25 rounded-[40px] p-8 md:p-16 text-white relative overflow-hidden">
           <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
             <div className="flex justify-center">
-              <div className="bg-white p-8 rounded-[40px] shadow-2xl">
+              <div className="bg-[#16181F] p-8 rounded-[40px] shadow-2xl">
                 <div className="w-32 h-32 bg-red-500 rounded-3xl flex items-center justify-center text-5xl font-black shadow-lg shadow-red-200">
                   SOS
                 </div>
@@ -1010,11 +1006,11 @@ const FunctionalitiesDetail = () => {
               <h4 className="text-xl font-bold mb-4">Botón SOS y Seguridad</h4>
               <h3 className="text-4xl font-bold mb-6">Alerta inmediata en caso de emergencia.</h3>
               <p className="text-lg text-white/90 leading-relaxed mb-8">
-                Con solo presionar el Botón SOS, <Brand className="text-white" iaClassName="text-white/60" /> notifica instantáneamente a todos los familiares designados y contactos de emergencia, brindando asistencia rápida cuando más se necesita.
+                Con solo presionar el Botón SOS, <Brand className="text-white" /> notifica instantáneamente a todos los familiares designados y contactos de emergencia, brindando asistencia rápida cuando más se necesita.
               </p>
               <button
                 onClick={() => setShowSOS(true)}
-                className="bg-white text-brand-orange px-10 py-4 rounded-full font-bold text-lg hover:bg-slate-50 transition-all shadow-xl"
+                className="bg-white text-brand-orange px-10 py-4 rounded-full font-bold text-lg hover:bg-white/90 transition-all shadow-xl"
               >
                 Saber más
               </button>
@@ -1024,11 +1020,11 @@ const FunctionalitiesDetail = () => {
         </div>
 
         {/* Detail Vision */}
-        <div className="bg-emerald-700 rounded-[40px] p-8 md:p-16 text-white relative overflow-hidden">
+        <div className="bg-[#12161D] border border-emerald-400/25 rounded-[40px] p-8 md:p-16 text-white relative overflow-hidden">
           <div className="grid lg:grid-cols-2 gap-12 items-center relative z-10">
             <div className="flex justify-center">
-              <div className="bg-white p-8 rounded-[40px] shadow-2xl flex flex-col items-center gap-4">
-                <div className="w-28 h-28 bg-emerald-100 rounded-3xl flex items-center justify-center shadow">
+              <div className="bg-[#16181F] p-8 rounded-[40px] shadow-2xl flex flex-col items-center gap-4">
+                <div className="w-28 h-28 bg-emerald-500/15 rounded-3xl flex items-center justify-center shadow">
                   <Eye className="w-14 h-14 text-emerald-700" />
                 </div>
               </div>
@@ -1041,7 +1037,7 @@ const FunctionalitiesDetail = () => {
               </p>
               <button
                 onClick={() => setShowVision(true)}
-                className="bg-white text-emerald-700 px-10 py-4 rounded-full font-bold text-lg hover:bg-slate-50 transition-all shadow-xl"
+                className="bg-white text-emerald-700 px-10 py-4 rounded-full font-bold text-lg hover:bg-white/90 transition-all shadow-xl"
               >
                 Saber más
               </button>
@@ -1056,11 +1052,11 @@ const FunctionalitiesDetail = () => {
             <div className="w-12 h-12 bg-brand-blue-light rounded-2xl flex items-center justify-center mb-6">
               <Music className="text-brand-blue-dark w-6 h-6" />
             </div>
-            <h3 className="text-3xl font-bold text-slate-900 mb-6">Música y Entretenimiento</h3>
-            <p className="text-lg text-slate-600 leading-relaxed mb-8">
+            <h3 className="text-3xl font-bold text-white mb-6">Música y Entretenimiento</h3>
+            <p className="text-lg text-slate-300 leading-relaxed mb-8">
               <Brand /> permite escuchar listas de reproducción personalizadas basadas en sus gustos musicales, desde tango hasta clásicos, y ofrece juegos cognitivos adaptados para mantener la mente activa y entretenida.
             </p>
-            <button className="bg-brand-blue-dark text-white px-8 py-3 rounded-full font-bold hover:bg-blue-800 transition-all">
+            <button className="bg-[#5CE1E6] text-[#06232c] px-8 py-3 rounded-full font-bold hover:bg-[#7eeaef] transition-all">
               Empezar prueba
             </button>
           </div>
@@ -1086,10 +1082,10 @@ const FunctionalitiesDetail = () => {
 };
 
 const Testimonials = () => (
-  <section id="testimonios" className="py-24 bg-slate-50">
+  <section id="testimonios" className="py-24 bg-[#0F1116]">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
-        <h2 className="text-3xl font-bold text-slate-900 mb-4">Lo que dicen las familias</h2>
+        <h2 className="text-3xl font-bold text-white mb-4">Lo que dicen las familias</h2>
       </div>
       <div className="grid md:grid-cols-3 gap-8">
         {[
@@ -1109,17 +1105,17 @@ const Testimonials = () => (
             img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=104&h=104&q=80"
           }
         ].map((t, i) => (
-          <div key={i} className="bg-white p-8 rounded-3xl shadow-sm border border-slate-100">
+          <div key={i} className="bg-[#16181F] p-8 rounded-3xl shadow-sm border border-white/10">
             <div className="flex items-center gap-4 mb-6">
               <img src={t.img} alt={t.name} className="w-12 h-12 rounded-full object-cover" referrerPolicy="no-referrer" />
-              <div className="font-bold text-slate-900">{t.name}</div>
+              <div className="font-bold text-white">{t.name}</div>
             </div>
             <div className="flex gap-1 mb-4">
               {[...Array(5)].map((_, si) => (
                 <span key={si} className="text-brand-orange text-lg">★</span>
               ))}
             </div>
-            <p className="text-slate-600 italic leading-relaxed">{t.text}</p>
+            <p className="text-slate-300 italic leading-relaxed">{t.text}</p>
           </div>
         ))}
       </div>
@@ -1129,10 +1125,9 @@ const Testimonials = () => (
 
 // ── Stats Row ─────────────────────────────────────────────────────────────────
 const Stats = () => (
-  <section className="py-16 bg-gradient-to-r from-brand-blue-dark to-brand-orange">
+  <section className="py-16 bg-[#0F1116]">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex justify-center mb-8">
-        <img src="/buho-7.png" alt="" className="w-24 h-24 object-contain drop-shadow-xl" />
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-white text-center">
         {[
@@ -1153,16 +1148,15 @@ const Stats = () => (
 
 // ── Para Quién ────────────────────────────────────────────────────────────────
 const ForWhom = () => (
-  <section className="py-24 bg-brand-blue-light/20">
+  <section className="py-24 bg-[#0F1116]">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-serif font-bold text-slate-900 mb-4">¿Para quién es <Brand />?</h2>
-        <p className="text-slate-500 max-w-xl mx-auto">Una solución pensada para toda la familia.</p>
+        <h2 className="text-4xl font-serif font-bold text-white mb-4">¿Para quién es <Brand />?</h2>
+        <p className="text-slate-400 max-w-xl mx-auto">Una solución pensada para toda la familia.</p>
       </div>
       <div className="grid md:grid-cols-3 gap-8">
         {/* Card 1 */}
-        <div className="bg-brand-blue-dark rounded-[32px] p-8 text-white">
-          <img src="/buho-4.png" alt="" className="w-20 h-20 object-contain mb-4 drop-shadow-lg" />
+        <div className="bg-[#12161D] rounded-[32px] p-8 text-white">
           <h3 className="text-xl font-bold mb-6">Para adultos mayores</h3>
           <ul className="space-y-3">
             {[
@@ -1181,9 +1175,8 @@ const ForWhom = () => (
         </div>
 
         {/* Card 2 */}
-        <div className="bg-white rounded-[32px] p-8 shadow-sm border border-slate-100">
-          <img src="/buho-6.png" alt="" className="w-24 h-16 object-contain mb-4 drop-shadow-md" />
-          <h3 className="text-xl font-bold mb-6 text-slate-900">Para hijos e hijas</h3>
+        <div className="bg-[#16181F] rounded-[32px] p-8 shadow-sm border border-white/10">
+          <h3 className="text-xl font-bold mb-6 text-white">Para hijos e hijas</h3>
           <ul className="space-y-3">
             {[
               'Informes de bienestar diarios',
@@ -1192,7 +1185,7 @@ const ForWhom = () => (
               'Estado emocional en tiempo real',
               'Tranquilidad aunque estés lejos',
             ].map(item => (
-              <li key={item} className="flex items-start gap-3 text-slate-600 text-sm">
+              <li key={item} className="flex items-start gap-3 text-slate-300 text-sm">
                 <CheckCircle2 className="w-4 h-4 mt-0.5 text-brand-blue-dark shrink-0" />
                 {item}
               </li>
@@ -1201,8 +1194,7 @@ const ForWhom = () => (
         </div>
 
         {/* Card 3 */}
-        <div className="bg-brand-blue-dark rounded-[32px] p-8 text-white">
-          <img src="/buho-2.png" alt="" className="w-20 h-20 object-contain mb-4 drop-shadow-lg" />
+        <div className="bg-[#12161D] rounded-[32px] p-8 text-white">
           <h3 className="text-xl font-bold mb-6">Para cuidadores</h3>
           <ul className="space-y-3">
             {[
@@ -1252,22 +1244,22 @@ const Comparison = () => {
   ];
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-[#0B0C0F]">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-serif font-bold text-slate-900 mb-4">
+          <h2 className="text-4xl font-serif font-bold text-white mb-4">
             ¿Por qué <Brand />?
           </h2>
-          <p className="text-slate-500 max-w-xl mx-auto">Comparado con las alternativas tradicionales.</p>
+          <p className="text-slate-400 max-w-xl mx-auto">Comparado con las alternativas tradicionales.</p>
         </div>
 
-        <div className="overflow-x-auto rounded-[32px] border border-slate-100 shadow-sm">
+        <div className="overflow-x-auto rounded-[32px] border border-white/10 shadow-sm">
           <table className="w-full">
             <thead>
               <tr>
-                <th className="text-left p-6 text-slate-500 font-medium text-sm">Función</th>
+                <th className="text-left p-6 text-slate-400 font-medium text-sm">Función</th>
                 {cols.map(col => (
-                  <th key={col.name} className={`p-6 text-center text-sm font-bold ${col.highlight ? 'bg-brand-blue-dark text-white rounded-t-2xl' : 'text-slate-600'}`}>
+                  <th key={col.name} className={`p-6 text-center text-sm font-bold ${col.highlight ? 'bg-[#5CE1E6] text-[#06232c] rounded-t-2xl' : 'text-slate-300'}`}>
                     {col.highlight ? <Brand className="text-white" /> : col.name}
                   </th>
                 ))}
@@ -1275,10 +1267,10 @@ const Comparison = () => {
             </thead>
             <tbody>
               {features.map((feat, fi) => (
-                <tr key={feat} className={fi % 2 === 0 ? 'bg-slate-50/50' : 'bg-white'}>
-                  <td className="p-5 text-slate-700 font-medium text-sm">{feat}</td>
+                <tr key={feat} className={fi % 2 === 0 ? 'bg-white/[0.03]' : 'bg-transparent'}>
+                  <td className="p-5 text-slate-200 font-medium text-sm">{feat}</td>
                   {cols.map(col => (
-                    <td key={col.name} className={`p-5 text-center ${col.highlight ? 'bg-brand-blue-dark/5' : ''}`}>
+                    <td key={col.name} className={`p-5 text-center ${col.highlight ? 'bg-[#5CE1E6]/10' : ''}`}>
                       {col.values[fi] ? (
                         <Check className="w-5 h-5 text-green-500 mx-auto" />
                       ) : (
@@ -1288,13 +1280,13 @@ const Comparison = () => {
                   ))}
                 </tr>
               ))}
-              <tr className="border-t border-slate-100">
-                <td className="p-5 text-slate-700 font-bold text-sm">Precio mensual</td>
-                <td className="p-5 text-center font-bold text-brand-blue-dark bg-brand-blue-dark/5">desde USD 19</td>
-                <td className="p-5 text-center text-slate-500 text-sm font-medium">$29 + $149 hardware</td>
-                <td className="p-5 text-center text-slate-500 text-sm font-medium">USD 400-1,200</td>
-                <td className="p-5 text-center text-slate-500 text-sm font-medium">Gratis</td>
-                <td className="p-5 text-center text-slate-500 text-sm font-medium">Gratis</td>
+              <tr className="border-t border-white/10">
+                <td className="p-5 text-slate-200 font-bold text-sm">Precio mensual</td>
+                <td className="p-5 text-center font-bold text-brand-blue-dark bg-[#5CE1E6]/10">desde USD 19</td>
+                <td className="p-5 text-center text-slate-400 text-sm font-medium">$29 + $149 hardware</td>
+                <td className="p-5 text-center text-slate-400 text-sm font-medium">USD 400-1,200</td>
+                <td className="p-5 text-center text-slate-400 text-sm font-medium">Gratis</td>
+                <td className="p-5 text-center text-slate-400 text-sm font-medium">Gratis</td>
               </tr>
             </tbody>
           </table>
@@ -1334,28 +1326,28 @@ const PricingContact = () => {
   const featuresCompanion = ['Voz premium ultra-natural', 'Conexión familiar ilimitada', 'Botón SOS y recordatorios', 'Música y juegos cognitivos', 'Informe de bienestar diario', 'Integración con Telegram'];
 
   return (
-  <section className="py-24 bg-white">
+  <section className="py-24 bg-[#0B0C0F]">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
       {/* Header */}
       <div className="text-center mb-16">
-        <h2 className="text-4xl font-serif font-bold text-slate-900 mb-4">Planes y precios</h2>
-        <p className="text-slate-500 max-w-xl mx-auto">Empezá gratis. Sin tarjeta de crédito. Cancelá cuando quieras.</p>
+        <h2 className="text-4xl font-serif font-bold text-white mb-4">Planes y precios</h2>
+        <p className="text-slate-400 max-w-xl mx-auto">Empezá gratis. Sin tarjeta de crédito. Cancelá cuando quieras.</p>
       </div>
 
       {/* 3 Plan cards */}
       <div className="grid md:grid-cols-3 gap-6 mb-20 items-stretch">
 
         {/* Try Free */}
-        <div className="bg-slate-50 p-8 rounded-[32px] border border-slate-200 flex flex-col">
+        <div className="bg-[#16181F] p-8 rounded-[32px] border border-white/10 flex flex-col">
           <div className="mb-6">
             <div className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Prueba gratuita</div>
-            <div className="text-3xl font-bold text-slate-900 mb-1">
+            <div className="text-3xl font-bold text-white mb-1">
               Gratis <span className="text-lg text-slate-400 font-normal">/ 7 días</span>
             </div>
-            <p className="text-sm text-slate-500 mt-2">Todas las funciones del plan Companion, sin costo.</p>
+            <p className="text-sm text-slate-400 mt-2">Todas las funciones del plan Companion, sin costo.</p>
           </div>
-          <ul className="space-y-3 text-sm text-slate-600 mb-8 flex-1">
+          <ul className="space-y-3 text-sm text-slate-300 mb-8 flex-1">
             {featuresFree.map(f => (
               <li key={f} className="flex items-center gap-2">
                 <CheckCircle2 className="text-green-500 w-4 h-4 shrink-0" />{f}
@@ -1366,22 +1358,22 @@ const PricingContact = () => {
             href={apkUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-center border-2 border-brand-blue-dark text-brand-blue-dark px-6 py-3 rounded-full font-bold hover:bg-brand-blue-dark hover:text-white transition-all"
+            className="block text-center border-2 border-[#5CE1E6] text-[#5CE1E6] px-6 py-3 rounded-full font-bold hover:bg-[#5CE1E6] hover:text-[#06232c] transition-all"
           >
             Probar 7 días gratis
           </a>
         </div>
 
         {/* Starter */}
-        <div className="bg-slate-50 p-8 rounded-[32px] border border-slate-200 flex flex-col">
+        <div className="bg-[#16181F] p-8 rounded-[32px] border border-white/10 flex flex-col">
           <div className="mb-6">
             <div className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-3">Starter</div>
-            <div className="text-3xl font-bold text-slate-900 mb-1">
+            <div className="text-3xl font-bold text-white mb-1">
               USD 19 <span className="text-lg text-slate-400 font-normal">/mes</span>
             </div>
-            <p className="text-sm text-slate-500 mt-2">Motor de voz nativo de Android. Ideal para empezar.</p>
+            <p className="text-sm text-slate-400 mt-2">Motor de voz nativo de Android. Ideal para empezar.</p>
           </div>
-          <ul className="space-y-3 text-sm text-slate-600 mb-8 flex-1">
+          <ul className="space-y-3 text-sm text-slate-300 mb-8 flex-1">
             {featuresStarter.map(f => (
               <li key={f} className="flex items-center gap-2">
                 <CheckCircle2 className="text-green-500 w-4 h-4 shrink-0" />{f}
@@ -1392,28 +1384,28 @@ const PricingContact = () => {
             href={apkUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-center border-2 border-brand-blue-dark text-brand-blue-dark px-6 py-3 rounded-full font-bold hover:bg-brand-blue-dark hover:text-white transition-all"
+            className="block text-center border-2 border-[#5CE1E6] text-[#5CE1E6] px-6 py-3 rounded-full font-bold hover:bg-[#5CE1E6] hover:text-[#06232c] transition-all"
           >
             Elegir Starter
           </a>
         </div>
 
         {/* Companion — destacado */}
-        <div className="bg-brand-blue-dark p-8 rounded-[32px] flex flex-col relative overflow-hidden">
-          <div className="absolute top-0 right-0 bg-brand-orange text-white text-xs font-bold px-4 py-1.5 rounded-bl-2xl rounded-tr-[32px] uppercase tracking-wide">
+        <div className="bg-[#12161D] p-8 rounded-[32px] flex flex-col relative overflow-hidden">
+          <div className="absolute top-0 right-0 bg-[#5CE1E6] text-[#06232c] text-xs font-bold px-4 py-1.5 rounded-bl-2xl rounded-tr-[32px] uppercase tracking-wide">
             Más popular
           </div>
           <div className="mb-6">
-            <div className="text-xs font-bold uppercase tracking-widest text-blue-300 mb-3">Companion</div>
+            <div className="text-xs font-bold uppercase tracking-widest text-[#5CE1E6] mb-3">Companion</div>
             <div className="text-3xl font-bold text-white mb-1">
-              USD 29 <span className="text-lg text-blue-300 font-normal">/mes</span>
+              USD 29 <span className="text-lg text-[#5CE1E6] font-normal">/mes</span>
             </div>
-            <p className="text-sm text-blue-200 mt-2">Voz premium ultra-natural. La experiencia completa.</p>
+            <p className="text-sm text-slate-300 mt-2">Voz premium ultra-natural. La experiencia completa.</p>
           </div>
-          <ul className="space-y-3 text-sm text-blue-100 mb-8 flex-1">
+          <ul className="space-y-3 text-sm text-slate-200 mb-8 flex-1">
             {featuresCompanion.map(f => (
               <li key={f} className="flex items-center gap-2">
-                <CheckCircle2 className="text-blue-300 w-4 h-4 shrink-0" />{f}
+                <CheckCircle2 className="text-[#5CE1E6] w-4 h-4 shrink-0" />{f}
               </li>
             ))}
           </ul>
@@ -1421,7 +1413,7 @@ const PricingContact = () => {
             href={apkUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-center bg-brand-orange text-white px-6 py-3 rounded-full font-bold hover:bg-orange-600 transition-all shadow-lg shadow-orange-900/30"
+            className="block text-center bg-[#5CE1E6] text-[#06232c] px-6 py-3 rounded-full font-bold hover:bg-[#7eeaef] transition-all shadow-lg shadow-cyan-950/30"
           >
             Elegir Companion
           </a>
@@ -1432,14 +1424,14 @@ const PricingContact = () => {
       {/* Contact Form */}
       <div className="max-w-2xl mx-auto">
         <div>
-          <h3 className="text-2xl font-bold text-slate-900 mb-8 text-center">¿Tenés alguna pregunta?</h3>
+          <h3 className="text-2xl font-bold text-white mb-8 text-center">¿Tenés alguna pregunta?</h3>
           {sent ? (
             <div className="flex flex-col items-center justify-center h-48 gap-4 text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 bg-green-500/15 rounded-full flex items-center justify-center">
                 <CheckCircle2 className="text-green-500 w-8 h-8" />
               </div>
-              <p className="text-xl font-bold text-slate-900">¡Mensaje enviado!</p>
-              <p className="text-slate-500">Te respondemos a la brevedad.</p>
+              <p className="text-xl font-bold text-white">¡Mensaje enviado!</p>
+              <p className="text-slate-400">Te respondemos a la brevedad.</p>
             </div>
           ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -1450,14 +1442,14 @@ const PricingContact = () => {
                 name="nombre"
                 placeholder="Tu nombre"
                 required
-                className="w-full px-5 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue-dark/20 transition-all"
+                className="w-full px-5 py-3 rounded-xl border border-white/10 bg-[#16181F] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#5CE1E6]/30 transition-all"
               />
               <input
                 type="email"
                 name="email"
                 placeholder="Tu correo"
                 required
-                className="w-full px-5 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue-dark/20 transition-all"
+                className="w-full px-5 py-3 rounded-xl border border-white/10 bg-[#16181F] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#5CE1E6]/30 transition-all"
               />
             </div>
             <textarea
@@ -1465,12 +1457,12 @@ const PricingContact = () => {
               placeholder="Tu mensaje..."
               rows={4}
               required
-              className="w-full px-5 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-blue-dark/20 transition-all resize-none"
+              className="w-full px-5 py-3 rounded-xl border border-white/10 bg-[#16181F] text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#5CE1E6]/30 transition-all resize-none"
             ></textarea>
             <button
               type="submit"
               disabled={sending}
-              className="w-full bg-brand-blue-dark text-white py-4 rounded-xl font-bold hover:bg-blue-800 transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-wait"
+              className="w-full bg-[#5CE1E6] text-[#06232c] py-4 rounded-xl font-bold hover:bg-[#7eeaef] transition-all flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-wait"
             >
               <Send className="w-5 h-5" />
               {sending ? 'Enviando...' : 'Enviar mensaje'}
@@ -1487,12 +1479,12 @@ const PricingContact = () => {
 const FAQItem = ({ question, answer }: { question: string, answer: string, key?: React.Key }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="border-b border-slate-100 last:border-0">
+    <div className="border-b border-white/10 last:border-0">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-full py-6 flex justify-between items-center text-left group"
       >
-        <span className="text-lg font-bold text-slate-900 group-hover:text-brand-orange transition-colors">{question}</span>
+        <span className="text-lg font-bold text-white group-hover:text-brand-orange transition-colors">{question}</span>
         {isOpen ? <ChevronUp className="text-slate-400" /> : <ChevronDown className="text-slate-400" />}
       </button>
       <AnimatePresence>
@@ -1503,7 +1495,7 @@ const FAQItem = ({ question, answer }: { question: string, answer: string, key?:
             exit={{ height: 0, opacity: 0 }}
             className="overflow-hidden"
           >
-            <p className="pb-6 text-slate-600 leading-relaxed">{answer}</p>
+            <p className="pb-6 text-slate-300 leading-relaxed">{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -1535,10 +1527,10 @@ const FAQ = () => {
   const faqs = faqsByTab[activeTab] ?? [];
 
   return (
-    <section id="faq" className="py-24 bg-brand-blue-light/20">
+    <section id="faq" className="py-24 bg-[#0F1116]">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-serif font-bold text-slate-900">Preguntas Frecuentes</h2>
+          <h2 className="text-4xl font-serif font-bold text-white">Preguntas Frecuentes</h2>
         </div>
 
         <div className="flex flex-col md:flex-row gap-12">
@@ -1547,13 +1539,13 @@ const FAQ = () => {
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
-                className={`w-full text-left px-6 py-3 rounded-xl font-bold transition-all ${activeTab === tab ? 'bg-brand-blue-light text-brand-blue-dark shadow-sm' : 'text-slate-500 hover:bg-white/50'}`}
+                className={`w-full text-left px-6 py-3 rounded-xl font-bold transition-all ${activeTab === tab ? 'bg-[#5CE1E6]/15 text-[#5CE1E6]-dark shadow-sm' : 'text-slate-400 hover:bg-white/50'}`}
               >
                 {tab}
               </button>
             ))}
           </div>
-          <div className="md:w-3/4 bg-white p-8 rounded-[32px] shadow-sm border border-slate-100">
+          <div className="md:w-3/4 bg-[#16181F] p-8 rounded-[32px] shadow-sm border border-white/10">
             {faqs.map((faq, i) => (
               <FAQItem key={i} question={faq.q} answer={faq.a} />
             ))}
@@ -1561,12 +1553,12 @@ const FAQ = () => {
         </div>
 
         {/* Support Banner */}
-        <div className="mt-16 bg-brand-blue-dark rounded-[32px] p-8 md:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
+        <div className="mt-16 bg-[#12161D] rounded-[32px] p-8 md:p-12 text-white flex flex-col md:flex-row items-center justify-between gap-8 relative overflow-hidden">
           <div className="relative z-10">
             <h3 className="text-3xl font-bold mb-6">¿Aún tenés preguntas?</h3>
             <div className="flex flex-wrap gap-4">
               <a href="mailto:maximilianovalli.sc@gmail.com"
-                className="bg-white text-brand-blue-dark px-8 py-3 rounded-full font-bold hover:bg-slate-100 transition-all">
+                className="bg-white text-brand-blue-dark px-8 py-3 rounded-full font-bold hover:bg-white/90 transition-all">
                 Escribinos
               </a>
               <a href="https://wa.me/543408677294" target="_blank" rel="noopener noreferrer"
@@ -1577,11 +1569,6 @@ const FAQ = () => {
             </div>
           </div>
           <div className="md:w-1/3 relative z-10">
-            <img
-              src="/buho-1.png"
-              alt="Rosita"
-              className="w-32 h-32 md:w-48 md:h-48 object-contain drop-shadow-2xl"
-            />
           </div>
           <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
         </div>
@@ -1596,8 +1583,8 @@ const SobreNosotrosModal = ({ onClose }: { onClose: () => void }) => (
     className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
     <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-      className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
-        <div className="bg-brand-blue-dark p-8 relative overflow-hidden">
+      className="bg-[#16181F] rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+        <div className="bg-[#12161D] p-8 relative overflow-hidden">
           <div className="absolute top-0 left-0 w-48 h-48 bg-white/5 rounded-full -translate-x-1/2 -translate-y-1/2" />
           <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
             <X className="w-4 h-4 text-white" />
@@ -1607,23 +1594,23 @@ const SobreNosotrosModal = ({ onClose }: { onClose: () => void }) => (
             <h3 className="text-3xl font-serif font-bold text-white leading-tight">Hecha con amor.<br />Inspirada en Negrita.</h3>
           </div>
         </div>
-        <div className="p-8 space-y-5 max-h-[60vh] overflow-y-auto text-slate-600 text-sm leading-relaxed">
+        <div className="p-8 space-y-5 max-h-[60vh] overflow-y-auto text-slate-300 text-sm leading-relaxed">
           <p>
-            <Brand className="text-slate-900" /> nació de una historia real.
+            <Brand className="text-white" /> nació de una historia real.
           </p>
           <p>
-            <span className="font-semibold text-slate-900">Negrita tiene 90 años y vive sola.</span> Es la abuela de Maximiliano, el creador de esta app. Un día, después de visitarla, Maxi volvió a casa con esa sensación que conocen muchos nietos: la de dejar a alguien que querés en silencio.
+            <span className="font-semibold text-white">Negrita tiene 90 años y vive sola.</span> Es la abuela de Maximiliano, el creador de esta app. Un día, después de visitarla, Maxi volvió a casa con esa sensación que conocen muchos nietos: la de dejar a alguien que querés en silencio.
           </p>
           <p>
             No era solo la soledad. Era que Negrita se perdía los medicamentos, no recordaba las fechas importantes, y cuando quería hablar, no siempre había alguien disponible. La familia quería estar cerca, pero la distancia y el ritmo de la vida no siempre lo permitían.
           </p>
           <p>
-            <Brand className="text-slate-900" /> empezó como una idea simple: <span className="italic text-slate-500">¿y si Negrita tuviera alguien con quien charlar a las tres de la mañana?</span> ¿Alguien que la llame para el medicamento, que le cuente cómo está el tiempo, que avise a la familia si algo no anda bien?
+            <Brand className="text-white" /> empezó como una idea simple: <span className="italic text-slate-400">¿y si Negrita tuviera alguien con quien charlar a las tres de la mañana?</span> ¿Alguien que la llame para el medicamento, que le cuente cómo está el tiempo, que avise a la familia si algo no anda bien?
           </p>
           <p>
-            Hoy, <Brand className="text-slate-900" /> es esa compañera. No es un robot ni una pantalla fría — es una voz cálida que escucha, recuerda y cuida. Pensada para todas las Negritas del mundo, y para las familias que las quieren cerca.
+            Hoy, <Brand className="text-white" /> es esa compañera. No es un robot ni una pantalla fría — es una voz cálida que escucha, recuerda y cuida. Pensada para todas las Negritas del mundo, y para las familias que las quieren cerca.
           </p>
-          <p className="text-slate-400 text-xs pt-2 border-t border-slate-100">
+          <p className="text-slate-400 text-xs pt-2 border-t border-white/10">
             CompañIA es un proyecto independiente desarrollado en Argentina. Somos un equipo chico con un objetivo grande: que ningún adulto mayor se sienta solo.
           </p>
         </div>
@@ -1637,41 +1624,41 @@ const TerminosModal = ({ onClose }: { onClose: () => void }) => (
     className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
     <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-      className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
-        <div className="bg-slate-800 p-8 relative overflow-hidden">
+      className="bg-[#16181F] rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+        <div className="bg-[#1c2029] p-8 relative overflow-hidden">
           <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
             <X className="w-4 h-4 text-white" />
           </button>
           <h3 className="text-2xl font-bold text-white">Términos de servicio</h3>
           <p className="text-white/60 text-sm mt-1">Última actualización: marzo 2026</p>
         </div>
-        <div className="p-8 space-y-5 max-h-[60vh] overflow-y-auto text-slate-600 text-sm leading-relaxed">
+        <div className="p-8 space-y-5 max-h-[60vh] overflow-y-auto text-slate-300 text-sm leading-relaxed">
           <div>
-            <h4 className="font-semibold text-slate-900 mb-1">1. El servicio</h4>
-            <p><Brand className="text-slate-800" /> es una aplicación de asistente de voz con IA para adultos mayores. El servicio incluye conversación por voz, recordatorios, alertas a familiares y funciones de accesibilidad.</p>
+            <h4 className="font-semibold text-white mb-1">1. El servicio</h4>
+            <p><Brand className="text-slate-100" /> es una aplicación de asistente de voz con IA para adultos mayores. El servicio incluye conversación por voz, recordatorios, alertas a familiares y funciones de accesibilidad.</p>
           </div>
           <div>
-            <h4 className="font-semibold text-slate-900 mb-1">2. Suscripción</h4>
-            <p>El costo del servicio es de <span className="font-semibold text-slate-900">USD 19 (Starter) o USD 29 (Companion) por mes</span> por dispositivo. El cobro es mensual. Podés cancelar en cualquier momento sin penalidad; el acceso se mantiene hasta el fin del período pagado.</p>
+            <h4 className="font-semibold text-white mb-1">2. Suscripción</h4>
+            <p>El costo del servicio es de <span className="font-semibold text-white">USD 19 (Starter) o USD 29 (Companion) por mes</span> por dispositivo. El cobro es mensual. Podés cancelar en cualquier momento sin penalidad; el acceso se mantiene hasta el fin del período pagado.</p>
           </div>
           <div>
-            <h4 className="font-semibold text-slate-900 mb-1">3. Uso aceptable</h4>
+            <h4 className="font-semibold text-white mb-1">3. Uso aceptable</h4>
             <p>El servicio es para uso personal y familiar. No está permitido revender, redistribuir ni utilizar la app con fines comerciales sin autorización expresa.</p>
           </div>
           <div>
-            <h4 className="font-semibold text-slate-900 mb-1">4. No reemplaza atención médica</h4>
-            <p><Brand className="text-slate-800" /> no es un dispositivo médico ni reemplaza el criterio de un profesional de la salud. Los recordatorios de medicamentos son un apoyo, no una garantía de adherencia al tratamiento.</p>
+            <h4 className="font-semibold text-white mb-1">4. No reemplaza atención médica</h4>
+            <p><Brand className="text-slate-100" /> no es un dispositivo médico ni reemplaza el criterio de un profesional de la salud. Los recordatorios de medicamentos son un apoyo, no una garantía de adherencia al tratamiento.</p>
           </div>
           <div>
-            <h4 className="font-semibold text-slate-900 mb-1">5. Disponibilidad</h4>
+            <h4 className="font-semibold text-white mb-1">5. Disponibilidad</h4>
             <p>Nos comprometemos a mantener el servicio disponible de forma continua, pero no garantizamos disponibilidad del 100%. Podemos realizar tareas de mantenimiento con aviso previo.</p>
           </div>
           <div>
-            <h4 className="font-semibold text-slate-900 mb-1">6. Modificaciones</h4>
+            <h4 className="font-semibold text-white mb-1">6. Modificaciones</h4>
             <p>Podemos actualizar estas condiciones con 30 días de aviso. El uso continuado del servicio implica la aceptación de los cambios.</p>
           </div>
           <div>
-            <h4 className="font-semibold text-slate-900 mb-1">7. Contacto</h4>
+            <h4 className="font-semibold text-white mb-1">7. Contacto</h4>
             <p>Para consultas sobre estos términos escribí a <a href="mailto:maximilianovalli.sc@gmail.com" className="text-brand-orange underline">maximilianovalli.sc@gmail.com</a></p>
           </div>
         </div>
@@ -1685,9 +1672,8 @@ const PrivacidadModal = ({ onClose }: { onClose: () => void }) => (
     className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
     <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-      className="bg-white rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
-        <div className="bg-slate-800 p-8 relative overflow-hidden flex items-center gap-4">
-          <img src="/buho-2.png" alt="" className="w-16 h-16 object-contain shrink-0" />
+      className="bg-[#16181F] rounded-[32px] max-w-lg w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+        <div className="bg-[#1c2029] p-8 relative overflow-hidden flex items-center gap-4">
           <div className="flex-1">
             <h3 className="text-2xl font-bold text-white">Política de privacidad</h3>
             <p className="text-white/60 text-sm mt-1">Última actualización: marzo 2026</p>
@@ -1696,32 +1682,32 @@ const PrivacidadModal = ({ onClose }: { onClose: () => void }) => (
             <X className="w-4 h-4 text-white" />
           </button>
         </div>
-        <div className="p-8 space-y-5 max-h-[60vh] overflow-y-auto text-slate-600 text-sm leading-relaxed">
+        <div className="p-8 space-y-5 max-h-[60vh] overflow-y-auto text-slate-300 text-sm leading-relaxed">
           <div>
-            <h4 className="font-semibold text-slate-900 mb-1">¿Qué es CompañIA?</h4>
+            <h4 className="font-semibold text-white mb-1">¿Qué es CompañIA?</h4>
             <p>Una aplicación de asistente de voz para adultos mayores. Permite tener conversaciones por voz, recibir recordatorios de medicamentos, escuchar música y mantenerse en contacto con familiares mediante Telegram.</p>
           </div>
           <div>
-            <h4 className="font-semibold text-slate-900 mb-1">Datos que recopilamos</h4>
-            <p><span className="font-semibold text-slate-800">Voz y audio:</span> El audio se envía a Deepgram para transcripción y se descarta de inmediato. No se almacena.</p>
-            <p className="mt-2"><span className="font-semibold text-slate-800">Ubicación:</span> Solo para obtener el clima local (OpenWeather). No se comparte ni almacena.</p>
-            <p className="mt-2"><span className="font-semibold text-slate-800">Perfil:</span> Nombre, gustos, medicamentos y fechas se guardan únicamente en el dispositivo. Las conversaciones no se almacenan en ningún servidor.</p>
-            <p className="mt-2"><span className="font-semibold text-slate-800">ID de dispositivo:</span> Un UUID anónimo para vincular el dispositivo con tu familia. No contiene información personal.</p>
+            <h4 className="font-semibold text-white mb-1">Datos que recopilamos</h4>
+            <p><span className="font-semibold text-slate-100">Voz y audio:</span> El audio se envía a Deepgram para transcripción y se descarta de inmediato. No se almacena.</p>
+            <p className="mt-2"><span className="font-semibold text-slate-100">Ubicación:</span> Solo para obtener el clima local (OpenWeather). No se comparte ni almacena.</p>
+            <p className="mt-2"><span className="font-semibold text-slate-100">Perfil:</span> Nombre, gustos, medicamentos y fechas se guardan únicamente en el dispositivo. Las conversaciones no se almacenan en ningún servidor.</p>
+            <p className="mt-2"><span className="font-semibold text-slate-100">ID de dispositivo:</span> Un UUID anónimo para vincular el dispositivo con tu familia. No contiene información personal.</p>
           </div>
           <div>
-            <h4 className="font-semibold text-slate-900 mb-1">Datos que no recopilamos</h4>
+            <h4 className="font-semibold text-white mb-1">Datos que no recopilamos</h4>
             <p>No recopilamos nombre, correo, edad ni teléfono. No hay cuentas de usuario. No vendemos datos a terceros.</p>
           </div>
           <div>
-            <h4 className="font-semibold text-slate-900 mb-1">Servicios de terceros</h4>
+            <h4 className="font-semibold text-white mb-1">Servicios de terceros</h4>
             <p>Google Gemini (respuestas IA) · Deepgram (transcripción) · Fish Audio (síntesis de voz, sin almacenamiento) · OpenWeather (clima) · Telegram (mensajes familiares) · Samsung SmartThings (domótica, opcional).</p>
           </div>
           <div>
-            <h4 className="font-semibold text-slate-900 mb-1">Seguridad</h4>
+            <h4 className="font-semibold text-white mb-1">Seguridad</h4>
             <p>Toda la comunicación usa HTTPS. Las claves de API nunca están en el dispositivo.</p>
           </div>
           <div>
-            <h4 className="font-semibold text-slate-900 mb-1">Contacto</h4>
+            <h4 className="font-semibold text-white mb-1">Contacto</h4>
             <p>Consultas o solicitud de eliminación de datos: <a href="mailto:maximilianovalli.sc@gmail.com" className="text-brand-orange underline">maximilianovalli.sc@gmail.com</a></p>
           </div>
         </div>
@@ -1735,8 +1721,8 @@ const SoporteModal = ({ onClose }: { onClose: () => void }) => (
     className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={onClose}>
     <motion.div initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-      className="bg-white rounded-[32px] max-w-sm w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
-        <div className="bg-brand-blue-dark p-8 relative overflow-hidden">
+      className="bg-[#16181F] rounded-[32px] max-w-sm w-full shadow-2xl overflow-hidden" onClick={e => e.stopPropagation()}>
+        <div className="bg-[#12161D] p-8 relative overflow-hidden">
           <div className="absolute top-0 right-0 w-40 h-40 bg-white/5 rounded-full translate-x-1/2 -translate-y-1/2" />
           <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors">
             <X className="w-4 h-4 text-white" />
@@ -1746,23 +1732,23 @@ const SoporteModal = ({ onClose }: { onClose: () => void }) => (
         </div>
         <div className="p-8 space-y-4">
           <a href="mailto:maximilianovalli.sc@gmail.com"
-            className="flex items-center gap-4 p-4 rounded-2xl border border-slate-200 hover:border-brand-orange hover:bg-orange-50 transition-all group">
-            <div className="w-10 h-10 bg-orange-100 rounded-xl flex items-center justify-center">
+            className="flex items-center gap-4 p-4 rounded-2xl border border-white/10 hover:border-brand-orange hover:bg-orange-500/10 transition-all group">
+            <div className="w-10 h-10 bg-orange-500/15 rounded-xl flex items-center justify-center">
               <Send className="w-5 h-5 text-brand-orange" />
             </div>
             <div>
-              <p className="font-semibold text-slate-900 text-sm">Correo electrónico</p>
-              <p className="text-slate-500 text-xs">maximilianovalli.sc@gmail.com</p>
+              <p className="font-semibold text-white text-sm">Correo electrónico</p>
+              <p className="text-slate-400 text-xs">maximilianovalli.sc@gmail.com</p>
             </div>
           </a>
           <a href="https://wa.me/543408677294" target="_blank" rel="noopener noreferrer"
-            className="flex items-center gap-4 p-4 rounded-2xl border border-slate-200 hover:border-emerald-500 hover:bg-emerald-50 transition-all group">
-            <div className="w-10 h-10 bg-emerald-100 rounded-xl flex items-center justify-center">
+            className="flex items-center gap-4 p-4 rounded-2xl border border-white/10 hover:border-emerald-500 hover:bg-emerald-500/10 transition-all group">
+            <div className="w-10 h-10 bg-emerald-500/15 rounded-xl flex items-center justify-center">
               <Smartphone className="w-5 h-5 text-emerald-600" />
             </div>
             <div>
-              <p className="font-semibold text-slate-900 text-sm">WhatsApp</p>
-              <p className="text-slate-500 text-xs">+54 340 867-7294</p>
+              <p className="font-semibold text-white text-sm">WhatsApp</p>
+              <p className="text-slate-400 text-xs">+54 340 867-7294</p>
             </div>
           </a>
           <p className="text-slate-400 text-xs text-center pt-2">Tiempo de respuesta habitual: menos de 24 hs</p>
@@ -1787,14 +1773,14 @@ const Footer = () => {
   }, []);
   return (
   <>
-  <footer className="bg-slate-50 py-12 border-t border-slate-200">
+  <footer className="bg-[#0F1116] py-12 border-t border-white/10">
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="flex items-center gap-2">
-          <img src="/buho-0.png" alt="CompañIA" className="w-8 h-8 object-contain" />
-          <span className="text-lg font-bold text-slate-900"><Brand /></span>
+          <img src="/logo.png" alt="CompañIA" className="w-8 h-8 object-contain" />
+          <span className="text-lg font-bold text-white"><Brand /></span>
         </div>
-        <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-slate-500">
+        <div className="flex flex-wrap justify-center gap-8 text-sm font-medium text-slate-400">
           <button onClick={() => setShowAbout(true)}    className="hover:text-brand-orange transition-colors">Sobre nosotros</button>
           <button onClick={() => setShowTerminos(true)} className="hover:text-brand-orange transition-colors">Términos</button>
           <button onClick={() => setShowPriv(true)}     className="hover:text-brand-orange transition-colors">Privacidad</button>
@@ -1824,7 +1810,7 @@ export default function App() {
   return (
     <>
       {!splashDone && <SplashScreen onDone={() => setSplashDone(true)} />}
-      <div className="min-h-screen bg-white selection:bg-brand-orange/20">
+      <div className="min-h-screen bg-[#0B0C0F] selection:bg-[#5CE1E6]/20">
         <Navbar />
         <main>
           <Hero />

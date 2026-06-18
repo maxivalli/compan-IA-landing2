@@ -22,7 +22,7 @@ export function SplashScreen({ onDone }: { onDone: () => void }) {
     const img = new window.Image();
     img.onload  = () => { if (!cancelled) { clearTimeout(fallback); setImageReady(true); } };
     img.onerror = () => { if (!cancelled) { clearTimeout(fallback); setImageReady(true); } };
-    img.src = '/buho-0.png';
+    img.src = '/logo.png';
     return () => { cancelled = true; clearTimeout(fallback); };
   }, []);
 
@@ -59,17 +59,18 @@ export function SplashScreen({ onDone }: { onDone: () => void }) {
           style={{
             position: 'fixed',
             inset: 0,
-            backgroundColor: '#ffffff',
+            backgroundColor: '#0B0C0F',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
+            paddingBottom: '14%',
             zIndex: 9999,
           }}
         >
           {/* Logo: invisible hasta que la imagen cargó, luego pulso doble */}
           <motion.img
-            src="/buho-0.png"
+            src="/logo.png"
             alt="CompañIA"
             initial={{ opacity: 0, scale: 0.82 }}
             animate={ready ? {
@@ -81,12 +82,12 @@ export function SplashScreen({ onDone }: { onDone: () => void }) {
               duration: 1.4,
               ease:     'easeInOut',
             }}
-            style={{ width: 160, height: 160, objectFit: 'contain' }}
+            style={{ width: 160, height: 160, objectFit: 'contain', borderRadius: 36 }}
           />
 
           {/* Texto: aparece solo cuando imagen + fuentes están listas */}
           {ready && (
-            <div style={{ display: 'flex', flexDirection: 'row', marginTop: -6, alignItems: 'baseline' }}>
+            <div style={{ display: 'flex', flexDirection: 'row', marginTop: 22, alignItems: 'baseline' }}>
               {APP_NAME.split('').map((char, i) => {
                 const isIA = i >= IA_START;
                 return (
@@ -103,7 +104,7 @@ export function SplashScreen({ onDone }: { onDone: () => void }) {
                       fontSize:      34,
                       fontFamily:    isIA ? '"Poppins", sans-serif' : '"Playfair Display", serif',
                       fontWeight:    700,
-                      color:         isIA ? '#f27d26' : '#333333',
+                      color:         isIA ? '#5CE1E6' : '#E8EAED',
                       letterSpacing: isIA ? 0 : 1,
                       lineHeight:    1,
                     }}

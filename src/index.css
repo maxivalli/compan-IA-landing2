@@ -4,11 +4,13 @@
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", serif;
 
-  --color-brand-orange: #F97316;
-  --color-brand-coral: #FB7185;
-  --color-brand-purple: #C084FC;
-  --color-brand-blue-light: #EDE9FE;
-  --color-brand-blue-dark: #7C3AED;
+  /* Paleta CompañIA — acento cian (igual que los ojos de la app) */
+  --color-brand-orange: #5CE1E6;
+  --color-brand-coral: #5CE1E6;
+  --color-brand-purple: #5CE1E6;
+  --color-brand-blue: #5CE1E6;
+  --color-brand-blue-light: #103338;
+  --color-brand-blue-dark: #5CE1E6;
 }
 
 @layer base {
@@ -16,7 +18,7 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply font-sans text-slate-900 bg-white;
+    @apply font-sans text-slate-100 bg-[#0B0C0F];
   }
 }
 
