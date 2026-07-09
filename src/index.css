@@ -4,10 +4,8 @@
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", serif;
 
-  /* Paleta CompañIA — acento cian (igual que los ojos de la app) */
-  --color-brand-orange: #5CE1E6;
-  --color-brand-coral: #5CE1E6;
-  --color-brand-purple: #5CE1E6;
+  /* Paleta CompañIA — cian tecnológico (ojos de la app) + coral cálido (calidez humana) */
+  --color-brand-orange: #F2905C;
   --color-brand-blue: #5CE1E6;
   --color-brand-blue-light: #103338;
   --color-brand-blue-dark: #5CE1E6;
