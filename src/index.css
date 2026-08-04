@@ -304,6 +304,19 @@
     will-change: transform, opacity;
   }
 
+  /* Vaivén de lectura: los ojos barren el renglón despacio y vuelven rápido al
+     principio del siguiente. Tiempos y amplitud copiados de RostroAsistente.tsx
+     (AMP 17 sobre un rostro de 360 = 4,72%; 1700 ms de ida, 500 ms de vuelta).
+     La curva por tramo imita el Easing.inOut(Easing.sin) de la app. */
+  @keyframes leer-vaiven {
+    0%     { transform: translateX(-4.72%); animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1); }
+    77.27% { transform: translateX(4.72%);  animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1); }
+    100%   { transform: translateX(-4.72%); }
+  }
+  .leer-vaiven {
+    animation: leer-vaiven 2.2s infinite;
+  }
+
   /* Onda de voz de los mensajes de audio */
   @keyframes wave-pulse {
     0%, 100% { transform: scaleY(0.35); }

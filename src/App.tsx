@@ -435,12 +435,35 @@ const OverlayExpresion = ({ expresion }: { expresion: Expresion }) => {
   return null;
 };
 
-const OjosRosita = ({ expresion = 'neutral' }: { expresion?: Expresion }) => {
+// Anteojos de lectura, iguales a los de la app (`AnteojosLectura`): dos lentes
+// de radio 58 centrados en los mismos puntos que los ojos (106 y 254 de 360),
+// vidrio cian translúcido, marco cálido y el puente que los une.
+// La app los pone en y=145 de un rostro de 260 de alto, o sea 15 por debajo del
+// centro de los ojos; acá el rostro mide 200, así que van a 100 + 15 = 115.
+const AnteojosLectura = () => (
+  <svg viewBox="0 0 360 200" className="pointer-events-none absolute inset-0 h-full w-full">
+    {/* El vidrio va más suave que en la app (0,3): acá los ojos llevan un glow
+        que la app no tiene, y con el tinte original todo se fundía en un bloque. */}
+    <g fill="rgba(92,225,230,0.14)" stroke="#F0CFA0" strokeWidth={6}>
+      <circle cx={106} cy={115} r={58} />
+      <circle cx={254} cy={115} r={58} />
+    </g>
+    <rect x={164} y={111} width={32} height={8} fill="#F0CFA0" />
+  </svg>
+);
+
+const OjosRosita = ({ expresion = 'neutral', leyendo = false }: { expresion?: Expresion; leyendo?: boolean }) => {
   const { L, R } = EXPRESIONES[expresion] ?? EXPRESIONES.neutral;
   return (
     <div className="relative w-full" style={{ paddingBottom: `${(200 / CARA_W) * 100}%` }}>
-      <Ojo f={L} cx={OJO_CX_IZQ} retardo="0s" />
-      <Ojo f={R} cx={OJO_CX_DER} retardo="0.06s" />
+      {/* El vaivén va en una capa aparte que envuelve a los dos ojos: mueve el
+          PAR completo, como el `idleX` de la app, y no toca ni el centrado de
+          cada ojo ni el pestañeo. */}
+      <div className={`absolute inset-0 ${leyendo ? 'leer-vaiven' : ''}`}>
+        <Ojo f={L} cx={OJO_CX_IZQ} retardo="0s" />
+        <Ojo f={R} cx={OJO_CX_DER} retardo="0.06s" />
+      </div>
+      {leyendo && <AnteojosLectura />}
       <OverlayExpresion expresion={expresion} />
     </div>
   );
@@ -524,17 +547,23 @@ const FondoApp = () => (
 // El rostro va centrado en su línea de ojos (27% del alto), no anclado arriba:
 // así las formas más bajas (ternura, feliz) no "flotan" fuera de lugar cuando
 // cambia la expresión.
-const Rostro = ({ expresion }: { expresion: Expresion }) => (
+const Rostro = ({ expresion, leyendo = false }: { expresion: Expresion; leyendo?: boolean }) => (
   <div className="absolute left-1/2 top-[27%] w-[96%] -translate-x-1/2 -translate-y-1/2">
-    <OjosRosita expresion={expresion} />
+    <OjosRosita expresion={expresion} leyendo={leyendo} />
   </div>
 );
 
-// El mate: es el mismo Lottie que usa la app en reposo
-// (AbuApp/assets/animations/MatePava.lottie → acá extraído a /mate.json).
+// Animación de reposo: el mismo Lottie que muestra la app cuando no pasa nada
+// (AbuApp/assets/animations/Reading Book.lottie → acá extraído a /leyendo.json).
 // Se carga en diferido y solo cuando el teléfono está a la vista, para no
 // meterle 50 KB de reproductor al primer pintado del hero.
-const MateLottie = () => {
+//
+// OJO al elegir el archivo: NO cualquier .lottie de la app sirve en la web.
+// `MatePava.lottie` avanza el contador pero lottie-web no lo repinta (además su
+// capa de agua tiene una máscara que deja TODO en blanco 0,8 s de cada 4). Se
+// probaron las diez animaciones de la app corriendo solas; esta y las otras
+// nueve andan, el mate es la única que no.
+const AnimacionReposo = () => {
   const caja = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -552,7 +581,7 @@ const MateLottie = () => {
         renderer: 'svg',
         loop: true,
         autoplay: true,
-        path: '/mate.json',
+        path: '/leyendo.json',
       });
     };
 
@@ -575,23 +604,26 @@ const MateLottie = () => {
     };
   }, []);
 
-  // 180 px sobre una pantalla de ~400 → 45% del ancho, centrado, igual que la app.
+  // Tamaño: cada Lottie tiene su arte más o menos centrado dentro de su lienzo,
+  // así que la app le da a cada uno un tamaño distinto (el mate 180 px, este 420
+  // sobre una pantalla de ~400). Traducido: el lienzo ocupa ~105% del ancho y el
+  // dibujo queda a la mitad de la pantalla, como en la app.
   // `aspect-square` es obligatorio: sin alto el div mide 0 px y el
   // IntersectionObserver nunca lo da por visible, así que el Lottie no cargaba.
   return (
     <div
       ref={caja}
-      className="absolute left-1/2 top-[57%] aspect-square w-[45%] -translate-x-1/2 -translate-y-1/2"
+      className="absolute left-1/2 top-[55%] aspect-square w-[105%] -translate-x-1/2 -translate-y-1/2"
     />
   );
 };
 
-const PantallaRosita = ({ expresion = 'neutral', mate = false }: { expresion?: Expresion; mate?: boolean }) => (
+const PantallaRosita = ({ expresion = 'neutral', reposo = false }: { expresion?: Expresion; reposo?: boolean }) => (
   <div className="absolute inset-0 overflow-hidden bg-black">
     <FondoApp />
     <BarraEstado />
-    <Rostro expresion={expresion} />
-    {mate && <MateLottie />}
+    <Rostro expresion={expresion} leyendo={reposo} />
+    {reposo && <AnimacionReposo />}
     <PanelInferiorApp />
   </div>
 );
@@ -923,7 +955,7 @@ const Hero = () => (
           <div className="flotar-b">
             <div className="w-[240px] sm:w-[248px] lg:w-[268px]">
               <Telefono>
-                <PantallaRosita mate />
+                <PantallaRosita reposo />
               </Telefono>
             </div>
           </div>
@@ -1496,7 +1528,7 @@ const Problema = () => (
 
       <Reveal delay={0.1} className="mt-20 grid grid-cols-2 gap-x-8 gap-y-14 lg:grid-cols-4">
         {[
-          { num: '1 de cada 3', label: 'adultos mayores vive solo en América Latina', source: 'CEPAL 2023' },
+          { num: '1 de 3', label: 'adultos mayores vive solo en América Latina', source: 'CEPAL 2023' },
           { num: '+50%', label: 'más riesgo de demencia por aislamiento social', source: 'The Lancet 2022' },
           { num: '29%', label: 'mayor riesgo de enfermedad cardíaca por soledad', source: 'AHA 2023' },
           { num: 'USD +400', label: 'costo mensual promedio de cuidado domiciliario', source: 'OPS 2023' },
