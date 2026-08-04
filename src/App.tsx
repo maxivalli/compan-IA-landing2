@@ -211,7 +211,7 @@ const Telefono = ({ children, className = '' }: { children: React.ReactNode; cla
   <div className={`device rounded-[2.6rem] p-[7px] ${className}`}>
     <div className="device-screen rounded-[2.2rem] aspect-[9/19.5]">
       {/* isla dinámica */}
-      <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 h-[13px] w-[34%] rounded-full bg-black" />
+      <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 h-[6.5cqw] w-[34%] rounded-full bg-black" />
       {children}
     </div>
   </div>
@@ -449,15 +449,15 @@ const OjosRosita = ({ expresion = 'neutral' }: { expresion?: Expresion }) => {
 // Barra de estado del sistema: hora a la izquierda, señal/wifi/batería a la derecha.
 const BarraEstado = () => (
   <div className="absolute inset-x-0 top-0 flex items-center justify-between px-[7%] pt-[4%] text-white">
-    <span className="text-[7px] font-medium">13:57</span>
-    <div className="flex items-center gap-[3px]">
-      <div className="flex items-end gap-[1px]">
+    <span className="text-[3.5cqw] font-medium">13:57</span>
+    <div className="flex items-center gap-[1.5cqw]">
+      <div className="flex items-end gap-[0.5cqw]">
         {[3, 4.5, 6, 7.5].map((h, i) => (
-          <span key={i} className="w-[1.5px] rounded-[1px] bg-white" style={{ height: `${h}px` }} />
+          <span key={i} className="w-[0.75cqw] rounded-[0.5cqw] bg-white" style={{ height: `${h}px` }} />
         ))}
       </div>
-      <span className="ml-[2px] rounded-[2px] bg-white px-[2px] text-[5px] font-bold leading-[8px] text-black">90</span>
-      <span className="h-[3px] w-[3px] rounded-full bg-[#3ddc84]" />
+      <span className="ml-[2px] rounded-[1cqw] bg-white px-[2px] text-[2.5cqw] font-bold leading-[4cqw] text-black">90</span>
+      <span className="h-[1.5cqw] w-[1.5cqw] rounded-full bg-[#3ddc84]" />
     </div>
   </div>
 );
@@ -477,27 +477,27 @@ const RADIO_PANEL = { borderTopLeftRadius: '5.5% 9.4%', borderTopRightRadius: '5
 const PanelInferiorApp = () => (
   <div className="absolute inset-x-0 bottom-0 h-[27%] bg-white px-[6%] pt-[4%]" style={RADIO_PANEL}>
     <div className="flex justify-end gap-[3%]">
-      <span className="flex h-[13px] w-[13px] items-center justify-center rounded-full bg-emerald-500/12">
-        <AlarmClock className="h-[7px] w-[7px] text-emerald-600" strokeWidth={2.4} />
+      <span className="flex h-[6.5cqw] w-[6.5cqw] items-center justify-center rounded-full bg-emerald-500/12">
+        <AlarmClock className="h-[3.5cqw] w-[3.5cqw] text-emerald-600" strokeWidth={2.4} />
       </span>
-      <span className="flex h-[13px] w-[13px] items-center justify-center rounded-full bg-amber-500/12 text-[6px] font-bold text-amber-600">
+      <span className="flex h-[6.5cqw] w-[6.5cqw] items-center justify-center rounded-full bg-amber-500/12 text-[3cqw] font-bold text-amber-600">
         Aa
       </span>
-      <span className="flex h-[13px] w-[13px] items-center justify-center rounded-full bg-ink/[0.06]">
-        <Bluetooth className="h-[7px] w-[7px] text-ink-soft" strokeWidth={2.4} />
+      <span className="flex h-[6.5cqw] w-[6.5cqw] items-center justify-center rounded-full bg-ink/[0.06]">
+        <Bluetooth className="h-[3.5cqw] w-[3.5cqw] text-ink-soft" strokeWidth={2.4} />
       </span>
     </div>
-    <p className="mt-[1%] text-center text-[19px] font-bold leading-none tracking-tight text-[#221d3d]">13:57</p>
-    <p className="mt-[3%] text-center text-[7px] font-medium text-[#6b6486]">Martes 4 de agosto</p>
-    <div className="mt-[3%] flex items-center justify-center gap-[3px]">
-      <span className="h-[2.5px] w-[9px] rounded-full bg-[#a78bfa]" />
-      <span className="h-[2.5px] w-[2.5px] rounded-full bg-ink/15" />
+    <p className="mt-[1%] text-center text-[9.5cqw] font-bold leading-none tracking-tight text-[#221d3d]">13:57</p>
+    <p className="mt-[3%] text-center text-[3.5cqw] font-medium text-[#6b6486]">Martes 4 de agosto</p>
+    <div className="mt-[3%] flex items-center justify-center gap-[1.5cqw]">
+      <span className="h-[1.25cqw] w-[4.5cqw] rounded-full bg-[#a78bfa]" />
+      <span className="h-[1.25cqw] w-[1.25cqw] rounded-full bg-ink/15" />
     </div>
     <div className="mt-[5%] flex items-center gap-[4%]">
       <span className="flex aspect-square w-[15%] items-center justify-center rounded-full bg-[#f1eff7]">
         <Mic className="h-[45%] w-[45%] text-[#221d3d]" strokeWidth={2} />
       </span>
-      <span className="flex flex-1 items-center justify-center rounded-full bg-[#f0424a] py-[4.5%] text-[9px] font-semibold text-white shadow-[0_6px_14px_-4px_rgba(240,66,74,0.7)]">
+      <span className="flex flex-1 items-center justify-center rounded-full bg-[#f0424a] py-[4.5%] text-[4.5cqw] font-semibold text-white shadow-[0_6px_14px_-4px_rgba(240,66,74,0.7)]">
         ¡Ayuda!
       </span>
       <span className="flex aspect-square w-[15%] items-center justify-center rounded-full bg-[#f1eff7]">
@@ -506,7 +506,7 @@ const PanelInferiorApp = () => (
     </div>
     {/* barra de inicio del sistema */}
     <div className="absolute inset-x-0 bottom-[3%] flex justify-center">
-      <span className="h-[2px] w-[28%] rounded-full bg-[#221d3d]/70" />
+      <span className="h-[1cqw] w-[28%] rounded-full bg-[#221d3d]/70" />
     </div>
   </div>
 );
@@ -611,10 +611,10 @@ const PantallaApp = ({
     <FondoApp />
     <BarraEstado />
     <Rostro expresion={expresion} />
-    <p className="absolute inset-x-0 top-[45%] px-4 text-center text-[9px] font-medium leading-snug text-white/70">
+    <p className="absolute inset-x-0 top-[45%] px-[8cqw] text-center text-[4.5cqw] font-medium leading-snug text-white/70">
       {dice}
     </p>
-    <div className="absolute inset-x-0 bottom-0 p-2.5 pb-4">{children}</div>
+    <div className="absolute inset-x-0 bottom-0 p-[5cqw] pb-[8cqw]">{children}</div>
   </div>
 );
 
@@ -622,7 +622,7 @@ const PantallaApp = ({
 // de un teléfono angosto no debe desbordar.
 const PanelUI = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
   <div
-    className={`w-full min-w-0 rounded-[18px] bg-white p-3.5 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.5)] ${className}`}
+    className={`w-full min-w-0 rounded-[9cqw] bg-white p-[7cqw] shadow-[0_20px_50px_-25px_rgba(0,0,0,0.5)] ${className}`}
   >
     {children}
   </div>
@@ -630,23 +630,23 @@ const PanelUI = ({ children, className = '' }: { children: React.ReactNode; clas
 
 const TarjetaRecordatorio = () => (
   <PanelUI>
-    <div className="flex items-center gap-2 mb-3">
-      <Bell className="w-3.5 h-3.5 text-[#f2905c]" />
-      <span className="text-[11px] font-semibold text-ink">Recordatorios</span>
+    <div className="flex items-center gap-[4cqw] mb-[6cqw]">
+      <Bell className="w-[7cqw] h-[7cqw] text-[#f2905c]" />
+      <span className="text-[5.5cqw] font-semibold text-ink">Recordatorios</span>
     </div>
-    <div className="space-y-2.5">
-      <div className="flex items-start gap-2.5">
-        <div className="mt-0.5 h-3.5 w-3.5 shrink-0 rounded-full border-[1.5px] border-ink-faint" />
+    <div className="space-y-[5cqw]">
+      <div className="flex items-start gap-[5cqw]">
+        <div className="mt-[1cqw] h-[7cqw] w-[7cqw] shrink-0 rounded-full border-[1.5px] border-ink-faint" />
         <div>
-          <p className="text-[12px] font-medium leading-tight text-ink">Tomar la pastilla de la presión</p>
-          <span className="mt-1 inline-flex items-center gap-1 rounded-md bg-[#f2905c]/12 px-1.5 py-0.5 text-[10px] font-medium text-[#c96a37]">
-            <Clock className="w-2.5 h-2.5" /> Hoy 20:00
+          <p className="text-[6cqw] font-medium leading-tight text-ink">Tomar la pastilla de la presión</p>
+          <span className="mt-[2cqw] inline-flex items-center gap-[2cqw] rounded-md bg-[#f2905c]/12 px-[3cqw] py-[1cqw] text-[5cqw] font-medium text-[#c96a37]">
+            <Clock className="w-[5cqw] h-[5cqw]" /> Hoy 20:00
           </span>
         </div>
       </div>
-      <div className="flex items-start gap-2.5 opacity-45">
-        <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-500" />
-        <p className="text-[12px] font-medium leading-tight text-ink line-through">Llamar al doctor Pérez</p>
+      <div className="flex items-start gap-[5cqw] opacity-45">
+        <CheckCircle2 className="mt-[1cqw] h-[7cqw] w-[7cqw] shrink-0 text-emerald-500" />
+        <p className="text-[6cqw] font-medium leading-tight text-ink line-through">Llamar al doctor Pérez</p>
       </div>
     </div>
   </PanelUI>
@@ -654,73 +654,73 @@ const TarjetaRecordatorio = () => (
 
 const TarjetaMensajeFamilia = () => (
   <PanelUI>
-    <div className="flex items-center gap-2.5 mb-3">
-      <div className="flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-[#6e8cff] to-[#a78bfa] text-[10px] font-bold text-white">
+    <div className="flex items-center gap-[5cqw] mb-[6cqw]">
+      <div className="flex h-[14cqw] w-[14cqw] items-center justify-center rounded-full bg-gradient-to-br from-[#6e8cff] to-[#a78bfa] text-[5cqw] font-bold text-white">
         C
       </div>
       <div>
-        <p className="text-[11px] font-semibold leading-none text-ink">Carolina</p>
-        <p className="mt-1 text-[10px] leading-none text-ink-faint">Tu hija · ahora</p>
+        <p className="text-[5.5cqw] font-semibold leading-none text-ink">Carolina</p>
+        <p className="mt-[2cqw] text-[5cqw] leading-none text-ink-faint">Tu hija · ahora</p>
       </div>
     </div>
-    <div className="flex min-w-0 items-center gap-2 rounded-2xl bg-[#f5f5f7] px-2.5 py-2.5">
-      <Play className="h-3 w-3 shrink-0 fill-ink text-ink" />
-      <div className="flex h-5 min-w-0 flex-1 items-center gap-[3px] overflow-hidden">
+    <div className="flex min-w-0 items-center gap-[4cqw] rounded-2xl bg-[#f5f5f7] px-[5cqw] py-[5cqw]">
+      <Play className="h-[6cqw] w-[6cqw] shrink-0 fill-ink text-ink" />
+      <div className="flex h-[10cqw] min-w-0 flex-1 items-center gap-[1.5cqw] overflow-hidden">
         {[0.5, 0.9, 0.4, 1, 0.7, 0.35, 0.85, 0.5, 1, 0.6].map((h, i) => (
           <span
             key={i}
-            className="wave-bar w-[2px] shrink-0 rounded-full bg-[#0071e3]"
+            className="wave-bar w-[1cqw] shrink-0 rounded-full bg-[#0071e3]"
             style={{ height: `${h * 100}%`, animationDelay: `${i * 0.08}s` }}
           />
         ))}
       </div>
-      <span className="shrink-0 text-[9px] font-medium text-ink-faint">0:14</span>
+      <span className="shrink-0 text-[4.5cqw] font-medium text-ink-faint">0:14</span>
     </div>
-    <p className="mt-2.5 text-[10px] leading-snug text-ink-soft">Rosita lo reproduce en voz alta, sin tocar nada.</p>
+    <p className="mt-[5cqw] text-[5cqw] leading-snug text-ink-soft">Rosita lo reproduce en voz alta, sin tocar nada.</p>
   </PanelUI>
 );
 
 const TarjetaSOS = () => (
   <PanelUI>
-    <div className="flex items-center gap-2.5">
-      <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#e5484d] text-[10px] font-black text-white">
+    <div className="flex items-center gap-[5cqw]">
+      <div className="flex h-[18cqw] w-[18cqw] items-center justify-center rounded-xl bg-[#e5484d] text-[5cqw] font-black text-white">
         SOS
       </div>
       <div>
-        <p className="text-[11px] font-semibold leading-none text-ink">Alerta enviada</p>
-        <p className="mt-1 text-[10px] leading-none text-ink-faint">Hace 4 segundos</p>
+        <p className="text-[5.5cqw] font-semibold leading-none text-ink">Alerta enviada</p>
+        <p className="mt-[2cqw] text-[5cqw] leading-none text-ink-faint">Hace 4 segundos</p>
       </div>
     </div>
-    <div className="mt-3 space-y-1.5">
+    <div className="mt-[6cqw] space-y-[3cqw]">
       {['Carolina — hija', 'Tomás — nieto', 'Juan — hijo'].map((n) => (
-        <div key={n} className="flex items-center gap-2 rounded-lg bg-[#f5f5f7] px-2.5 py-1.5">
-          <CheckCircle2 className="h-3 w-3 shrink-0 text-emerald-500" />
-          <span className="text-[10.5px] font-medium text-ink">{n}</span>
-          <span className="ml-auto text-[9px] text-ink-faint">Notificado</span>
+        <div key={n} className="flex items-center gap-[4cqw] rounded-lg bg-[#f5f5f7] px-[5cqw] py-[3cqw]">
+          <CheckCircle2 className="h-[6cqw] w-[6cqw] shrink-0 text-emerald-500" />
+          <span className="text-[5.25cqw] font-medium text-ink">{n}</span>
+          <span className="ml-auto text-[4.5cqw] text-ink-faint">Notificado</span>
         </div>
       ))}
     </div>
-    <p className="mt-2.5 text-[10px] leading-snug text-ink-soft">Con ubicación exacta, por Telegram.</p>
+    <p className="mt-[5cqw] text-[5cqw] leading-snug text-ink-soft">Toda la familia avisada al instante.</p>
   </PanelUI>
 );
 
 const TarjetaLista = () => (
   <PanelUI>
-    <div className="mb-3 flex items-center justify-between">
-      <span className="text-[11px] font-semibold text-ink">Lista del almacén</span>
-      <span className="text-[10px] text-ink-faint">4 cosas</span>
+    <div className="mb-[6cqw] flex items-center justify-between">
+      <span className="text-[5.5cqw] font-semibold text-ink">Lista del almacén</span>
+      <span className="text-[5cqw] text-ink-faint">4 cosas</span>
     </div>
-    <div className="space-y-2">
+    <div className="space-y-[4cqw]">
       {['Pan casero', 'Leche descremada', 'Yerba', 'Pastillas de la presión'].map((item, i) => (
-        <div key={item} className="flex items-center gap-2.5">
+        <div key={item} className="flex items-center gap-[5cqw]">
           <div
-            className={`h-3.5 w-3.5 shrink-0 rounded-md ${
+            className={`h-[7cqw] w-[7cqw] shrink-0 rounded-md ${
               i === 0 ? 'bg-[#0071e3]' : 'border-[1.5px] border-ink-faint'
             } flex items-center justify-center`}
           >
-            {i === 0 && <Check className="h-2.5 w-2.5 text-white" strokeWidth={3} />}
+            {i === 0 && <Check className="h-[5cqw] w-[5cqw] text-white" strokeWidth={3} />}
           </div>
-          <span className={`text-[12px] font-medium text-ink ${i === 0 ? 'line-through opacity-40' : ''}`}>{item}</span>
+          <span className={`text-[6cqw] font-medium text-ink ${i === 0 ? 'line-through opacity-40' : ''}`}>{item}</span>
         </div>
       ))}
     </div>
@@ -729,19 +729,19 @@ const TarjetaLista = () => (
 
 const TarjetaMusica = () => (
   <PanelUI>
-    <div className="flex items-center gap-3">
-      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#f2905c] to-[#d94f5c]">
-        <Music className="h-5 w-5 text-white" />
+    <div className="flex items-center gap-[6cqw]">
+      <div className="flex h-[24cqw] w-[24cqw] shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#f2905c] to-[#d94f5c]">
+        <Music className="h-[10cqw] w-[10cqw] text-white" />
       </div>
       <div className="min-w-0">
-        <p className="truncate text-[12px] font-semibold text-ink">Cambalache</p>
-        <p className="truncate text-[10px] text-ink-faint">Tango · Los favoritos de Negrita</p>
+        <p className="truncate text-[6cqw] font-semibold text-ink">Cambalache</p>
+        <p className="truncate text-[5cqw] text-ink-faint">Tango argentino</p>
       </div>
     </div>
-    <div className="mt-3 h-1 w-full overflow-hidden rounded-full bg-[#f5f5f7]">
+    <div className="mt-[6cqw] h-[2cqw] w-full overflow-hidden rounded-full bg-[#f5f5f7]">
       <div className="h-full w-2/5 rounded-full bg-ink" />
     </div>
-    <div className="mt-1.5 flex justify-between text-[9px] text-ink-faint">
+    <div className="mt-[3cqw] flex justify-between text-[4.5cqw] text-ink-faint">
       <span>1:12</span>
       <span>3:04</span>
     </div>
@@ -750,21 +750,21 @@ const TarjetaMusica = () => (
 
 const TarjetaInforme = () => (
   <PanelUI>
-    <div className="mb-3 flex items-center gap-2">
-      <Heart className="h-3.5 w-3.5 text-[#e5484d]" />
-      <span className="text-[11px] font-semibold text-ink">Informe del día</span>
+    <div className="mb-[6cqw] flex items-center gap-[4cqw]">
+      <Heart className="h-[7cqw] w-[7cqw] text-[#e5484d]" />
+      <span className="text-[5.5cqw] font-semibold text-ink">Informe del día</span>
     </div>
-    <div className="space-y-2">
-      <div className="rounded-xl bg-[#f5f5f7] px-3 py-2">
-        <p className="text-[10px] text-ink-faint">Ánimo</p>
-        <p className="text-[12px] font-semibold text-ink">Contenta · charló 14 veces</p>
+    <div className="space-y-[4cqw]">
+      <div className="rounded-xl bg-[#f5f5f7] px-[6cqw] py-[4cqw]">
+        <p className="text-[5cqw] text-ink-faint">Ánimo</p>
+        <p className="text-[6cqw] font-semibold text-ink">Contenta · charló 14 veces</p>
       </div>
-      <div className="rounded-xl bg-[#f5f5f7] px-3 py-2">
-        <p className="text-[10px] text-ink-faint">Temas del día</p>
-        <p className="text-[12px] font-medium leading-snug text-ink">El casamiento de Tomás y el dolor de rodilla</p>
+      <div className="rounded-xl bg-[#f5f5f7] px-[6cqw] py-[4cqw]">
+        <p className="text-[5cqw] text-ink-faint">Temas del día</p>
+        <p className="text-[6cqw] font-medium leading-snug text-ink">El casamiento de Tomás y el dolor de rodilla</p>
       </div>
-      <div className="rounded-xl bg-emerald-500/10 px-3 py-2">
-        <p className="text-[11px] font-medium text-emerald-700">Tomó los 3 medicamentos</p>
+      <div className="rounded-xl bg-emerald-500/10 px-[6cqw] py-[4cqw]">
+        <p className="text-[5.5cqw] font-medium text-emerald-700">Tomó los 3 medicamentos</p>
       </div>
     </div>
   </PanelUI>
@@ -772,18 +772,18 @@ const TarjetaInforme = () => (
 
 const TarjetaVision = () => (
   <PanelUI>
-    <div className="mb-2.5 flex items-center gap-2">
-      <Eye className="h-3.5 w-3.5 text-emerald-600" />
-      <span className="text-[11px] font-semibold text-ink">Leyendo</span>
+    <div className="mb-[5cqw] flex items-center gap-[4cqw]">
+      <Eye className="h-[7cqw] w-[7cqw] text-emerald-600" />
+      <span className="text-[5.5cqw] font-semibold text-ink">Leyendo</span>
     </div>
-    <div className="rounded-xl bg-[#f5f5f7] p-3">
-      <div className="space-y-1.5">
-        <div className="h-1.5 w-4/5 rounded-full bg-ink/15" />
-        <div className="h-1.5 w-full rounded-full bg-ink/15" />
-        <div className="h-1.5 w-3/5 rounded-full bg-ink/15" />
+    <div className="rounded-xl bg-[#f5f5f7] p-[6cqw]">
+      <div className="space-y-[3cqw]">
+        <div className="h-[3cqw] w-4/5 rounded-full bg-ink/15" />
+        <div className="h-[3cqw] w-full rounded-full bg-ink/15" />
+        <div className="h-[3cqw] w-3/5 rounded-full bg-ink/15" />
       </div>
     </div>
-    <p className="mt-2.5 text-[11px] font-medium leading-snug text-ink">
+    <p className="mt-[5cqw] text-[5.5cqw] font-medium leading-snug text-ink">
       «Ibuprofeno 400 mg. Un comprimido cada 8 horas.»
     </p>
   </PanelUI>
@@ -1170,14 +1170,14 @@ const CitasUno = () => (
           fondo="card-dark"
           colorFrase="g-text g-siri"
         >
-          <div className="mx-auto max-w-[300px]">
+          <div className="caja-ui mx-auto w-full max-w-[210px]">
             <TarjetaRecordatorio />
           </div>
         </TarjetaCita>
       </Reveal>
       <Reveal delay={0.1}>
         <TarjetaCita frase="¿qué dice esta receta?" tema="claro" fondo="card-light" colorFrase="g-text g-violet">
-          <div className="mx-auto max-w-[300px]">
+          <div className="caja-ui mx-auto w-full max-w-[210px]">
             <TarjetaVision />
           </div>
         </TarjetaCita>
@@ -1191,7 +1191,7 @@ const CitasDos = () => (
     <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
       <Reveal>
         <TarjetaCita frase="poneme un tango" tema="claro" fondo="card-light" colorFrase="g-text g-teal">
-          <div className="mx-auto max-w-[300px]">
+          <div className="caja-ui mx-auto w-full max-w-[210px]">
             <TarjetaMusica />
           </div>
         </TarjetaCita>
@@ -1240,7 +1240,7 @@ const EscenaSOS = ({ onSaberMas }: { onSaberMas: () => void }) => (
         <Reveal delay={0.18} className="w-full max-w-md lg:w-[360px] lg:shrink-0">
           <p className="copy-lead text-white">
             Un botón, o simplemente decirlo. Si Rosita escucha «me caí», «me duele el pecho» o «ayuda», avisa a toda la
-            familia por Telegram con la ubicación — sin esperar a que nadie pregunte.
+            familia por Telegram — sin esperar a que nadie pregunte.
           </p>
           <div className="mt-8">
             <button
@@ -2209,7 +2209,7 @@ const ModalSOS = ({ onClose }: { onClose: () => void }) => (
     <EncabezadoModal
       antetitulo="Seguridad"
       titulo="Protegida las 24 horas."
-      bajada="Cuatro capas que trabajan juntas para que ninguna situación de riesgo pase desapercibida."
+      bajada="Varias capas que trabajan juntas para que ninguna situación de riesgo pase desapercibida."
     />
     <ListaModal>
       <ItemModal titulo="Botón SOS">
@@ -2228,9 +2228,6 @@ const ModalSOS = ({ onClose }: { onClose: () => void }) => (
       <ItemModal titulo="Alertas silenciosas">
         Además del SOS, la familia recibe notificaciones si el adulto mayor no interactuó con el dispositivo por un
         período inusual, o si hay cambios bruscos en sus patrones de conversación diaria.
-      </ItemModal>
-      <ItemModal titulo="Ubicación en la alerta">
-        Cada aviso llega con la ubicación exacta, así quien esté más cerca puede llegar primero.
       </ItemModal>
     </ListaModal>
     <CtaModal />

@@ -171,10 +171,24 @@
       0 2px 0 rgba(255, 255, 255, 0.14) inset,
       0 50px 90px -40px rgba(0, 0, 0, 0.75);
   }
+  /* `container-type: inline-size` convierte la pantalla en la referencia de las
+     unidades `cqw`: 1cqw = 1% del ancho de ESTA pantalla. Todo lo que va adentro
+     del mockup se mide así, no en px fijos — si no, el mismo texto de 12px queda
+     enorme cuando el teléfono baja de 268 px (hero) a 151 px (móvil).
+     Equivalencia usada al convertir: la maqueta se diseñó sobre una pantalla de
+     ~200 px, o sea 1 px ≙ 0,5cqw. */
   .device-screen {
     background: #000;
     overflow: hidden;
     position: relative;
+    container-type: inline-size;
+  }
+
+  /* Las mismas tarjetas de UI se usan FUERA del teléfono (en las tarjetas de
+     citas). Ahí también hace falta un contenedor de referencia: sin él, `cqw`
+     se mide contra la ventana entera y la tarjeta sale gigante. */
+  .caja-ui {
+    container-type: inline-size;
   }
 
   /* ── Movimiento del hero ──────────────────────────────────────────────────
