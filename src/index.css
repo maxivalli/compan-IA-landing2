@@ -1,27 +1,306 @@
 @import "tailwindcss";
 
-@theme {
-  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", serif;
+/* ─────────────────────────────────────────────────────────────────────────────
+   Sistema de diseño — inspirado en apple.com/siri
+   Tres ideas que lo definen todo:
+   1. Tipografía DISPLAY gigante (14vw), tracking muy cerrado, dos palabras.
+   2. La página avanza por "capítulos": cada sección es un mundo de color propio.
+   3. Nada de bordes ni sombras duras. Todo aire, radios grandes y degradados.
+   ──────────────────────────────────────────────────────────────────────────── */
 
-  /* Paleta CompañIA — cian tecnológico (ojos de la app) + coral cálido (calidez humana) */
-  --color-brand-orange: #F2905C;
-  --color-brand-blue: #5CE1E6;
-  --color-brand-blue-light: #103338;
-  --color-brand-blue-dark: #5CE1E6;
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+
+  /* Tinta y papel — la paleta neutra de Apple */
+  --color-ink: #1d1d1f;
+  --color-ink-soft: #6e6e73;
+  --color-ink-faint: #86868b;
+  --color-paper: #ffffff;
+  --color-paper-alt: #f5f5f7;
+
+  /* Acento de marca */
+  --color-brand-orange: #f2905c;
+  --color-brand-blue: #5ce1e6;
+
+  /* Acentos "Siri" */
+  --color-siri-blue: #6e8cff;
+  --color-siri-violet: #a78bfa;
+  --color-siri-magenta: #e17fb8;
+  --color-siri-navy: #0d2b58;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    background: #000;
   }
   body {
-    @apply font-sans text-slate-100 bg-[#0B0C0F];
+    @apply font-sans bg-black;
+    color: var(--color-ink);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection {
+    background: rgba(110, 140, 255, 0.3);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+
+  /* ── Escala tipográfica ───────────────────────────────────────────────────
+     .display es EL gesto de la referencia: un titular que ocupa el ancho
+     entero de la pantalla. Nunca más de 2 o 3 palabras. */
+  .display {
+    font-size: clamp(3.4rem, 13.5vw, 11rem);
+    line-height: 0.92;
+    letter-spacing: -0.045em;
+    font-weight: 700;
   }
+  .display-md {
+    font-size: clamp(2.6rem, 7.5vw, 5.5rem);
+    line-height: 0.98;
+    letter-spacing: -0.038em;
+    font-weight: 700;
+  }
+  .display-sm {
+    font-size: clamp(2rem, 4.6vw, 3.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+  /* Copy de escena: en Apple el párrafo bajo el titular va SEMIBOLD, no light */
+  .copy-lead {
+    font-size: clamp(1.15rem, 1.9vw, 1.6rem);
+    line-height: 1.28;
+    letter-spacing: -0.014em;
+    font-weight: 600;
+  }
+  .copy-body {
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
+    line-height: 1.5;
+    letter-spacing: -0.01em;
+  }
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+  .text-balance { text-wrap: balance; }
+
+  /* ── Degradados de texto ──────────────────────────────────────────────────
+     Uno por "clima" de capítulo, igual que la referencia. */
+  /* El degradado se recorta a la caja del elemento, no a los glifos. Con
+     line-height < 1 las colas de la g/p/y quedaban FUERA de esa caja y se
+     cortaban. El padding extiende la caja lo justo para cubrirlas. */
+  .g-text {
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding-bottom: 0.15em;
+  }
+  .g-hero   { background-image: linear-gradient(96deg, #4a8cff, #7b5cf0 30%, #e0509a 64%, #ff7a3d); }
+  .g-navy   { background-image: linear-gradient(165deg, #0b2a57, #5340a0); }
+  .g-teal   { background-image: linear-gradient(160deg, #3fa8b8, #0d2b58); }
+  .g-violet { background-image: linear-gradient(160deg, #123a7a, #6a3f9e); }
+  .g-coral  { background-image: linear-gradient(160deg, #d94f5c, #f2905c); }
+  .g-siri   { background-image: linear-gradient(100deg, #6e8cff, #a78bfa 42%, #5ce1e6 72%, #e17fb8); }
+
+  /* ── Fondos de capítulo ───────────────────────────────────────────────────
+     Los "escenarios" claros llevan un tinte suave que baja desde arriba. */
+  .bg-scene-violet {
+    background:
+      radial-gradient(130% 62% at 50% 0%, rgba(150, 130, 240, 0.22), transparent 68%),
+      #ffffff;
+  }
+  .bg-scene-teal {
+    background:
+      radial-gradient(130% 62% at 50% 0%, rgba(80, 200, 210, 0.26), transparent 68%),
+      #ffffff;
+  }
+  .bg-scene-blue {
+    background:
+      radial-gradient(130% 62% at 50% 0%, rgba(120, 165, 250, 0.26), transparent 68%),
+      #ffffff;
+  }
+  /* Capítulos de "citas" — color pleno, saturado, tipo póster */
+  .bg-quote-lavender {
+    background: linear-gradient(168deg, #8d7cc6 0%, #b98bbe 46%, #dfa08f 100%);
+  }
+  .bg-quote-aqua {
+    background: linear-gradient(196deg, #4fb0bb 0%, #8b7fc7 58%, #bc90c9 100%);
+  }
+
+  /* ── Tarjetas ─────────────────────────────────────────────────────────────
+     Radio 28px, sin borde, sombra muy difusa. */
+  .card {
+    border-radius: 28px;
+    overflow: hidden;
+  }
+  .card-light {
+    background: #ffffff;
+    box-shadow: 0 30px 70px -40px rgba(0, 0, 0, 0.4);
+  }
+  .card-dark {
+    background: #10151d;
+    box-shadow: 0 30px 70px -40px rgba(0, 0, 0, 0.8);
+  }
+  .card-paper {
+    background: var(--color-paper-alt);
+  }
+  .card-glass {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+  }
+
+  /* ── Marcos de dispositivo ────────────────────────────────────────────────
+     Dibujados en CSS: nítidos en cualquier pantalla y sin peso de descarga. */
+  .device {
+    background: linear-gradient(150deg, #3a3d45, #16181d 40%, #0a0b0e);
+    box-shadow:
+      0 2px 0 rgba(255, 255, 255, 0.14) inset,
+      0 50px 90px -40px rgba(0, 0, 0, 0.75);
+  }
+  .device-screen {
+    background: #000;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ── Movimiento del hero ──────────────────────────────────────────────────
+     Tres capas lentas que nunca compiten con el texto: el degradado del titular
+     recorre, los teléfonos flotan desfasados y el orbe respira. */
+
+  /* Barrido del degradado. La paleta va y vuelve (azul…naranja…azul), así el
+     loop cierra sin salto. */
+  @keyframes barrido {
+    from { background-position: 0% 50%; }
+    to   { background-position: 200% 50%; }
+  }
+  .g-hero-vivo {
+    background-image: linear-gradient(
+      96deg,
+      #4a8cff, #7b5cf0 14%, #e0509a 30%, #ff7a3d 50%, #e0509a 70%, #7b5cf0 86%, #4a8cff
+    );
+    background-size: 200% auto;
+    animation: barrido 14s linear infinite;
+  }
+
+  @keyframes flotar {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50%      { transform: translate3d(0, -14px, 0); }
+  }
+  /* Períodos distintos y desfase negativo: los tres teléfonos nunca quedan
+     sincronizados, que es lo que delata una animación hecha a mano. */
+  .flotar-a { animation: flotar 6.5s ease-in-out infinite; }
+  .flotar-b { animation: flotar 8s ease-in-out infinite; animation-delay: -2.6s; }
+  .flotar-c { animation: flotar 7.2s ease-in-out infinite; animation-delay: -4.9s; }
+
+  @keyframes respirar {
+    0%, 100% { transform: scale(1);    opacity: 0.5; }
+    50%      { transform: scale(1.09); opacity: 0.68; }
+  }
+  .respirar { animation: respirar 11s ease-in-out infinite; }
+
+  /* ── Orbe Siri ────────────────────────────────────────────────────────────
+     Manchón de luz difusa que vive detrás del contenido en los capítulos negros.
+     No lleva `position`: la fija quien lo usa (así se puede animar la escala sin
+     pelearse con un translate de centrado). */
+  .siri-orb {
+    border-radius: 9999px;
+    filter: blur(90px);
+    opacity: 0.55;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(110, 140, 255, 0.55), transparent 60%),
+      radial-gradient(circle at 68% 40%, rgba(167, 139, 250, 0.5), transparent 60%),
+      radial-gradient(circle at 50% 75%, rgba(92, 225, 230, 0.45), transparent 60%),
+      radial-gradient(circle at 80% 80%, rgba(225, 127, 184, 0.4), transparent 60%);
+  }
+
+  /* Esfera Siri sólida — el "botón" de voz de la referencia */
+  .siri-sphere {
+    position: relative;
+    border-radius: 9999px;
+    overflow: hidden;
+    background: conic-gradient(from 0deg, #6e8cff, #a78bfa, #e17fb8, #f2905c, #5ce1e6, #6e8cff);
+    box-shadow: 0 0 80px 6px rgba(110, 140, 255, 0.3), 0 0 140px 34px rgba(225, 127, 184, 0.14);
+  }
+  .siri-sphere::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.95), transparent 42%);
+  }
+  .siri-sphere::after {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    background: conic-gradient(from 90deg, transparent, rgba(255, 255, 255, 0.3), transparent 30%);
+    animation: siri-spin 16s linear infinite;
+  }
+  @keyframes siri-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* Ojos de Rosita — pestañeo lento, igual que en la app */
+  @keyframes rosita-blink {
+    0%, 92%, 100% { transform: scaleY(1); }
+    95%           { transform: scaleY(0.08); }
+  }
+  .rosita-eye {
+    animation: rosita-blink 5.5s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  /* Overlays de expresión (corazones, confeti, signos) — suben, laten y se van.
+     OJO: el `translate(-50%)` que centra cada pieza va DENTRO del keyframe. Una
+     animación CSS pisa el `transform` inline, así que si el centrado quedara
+     afuera se perdería y las piezas se correrían media anchura. */
+  @keyframes subir-efecto {
+    0%        { transform: translate(-50%, 45%)   scale(0.35); opacity: 0; }
+    12%       { transform: translate(-50%, 20%)   scale(1.15); opacity: 1; }
+    50%       { transform: translate(-50%, -55%)  scale(1);    opacity: 0.9; }
+    70%, 100% { transform: translate(-50%, -110%) scale(0.5);  opacity: 0; }
+  }
+  .efecto-sube {
+    animation: subir-efecto 3.2s ease-out infinite;
+    will-change: transform, opacity;
+  }
+
+  /* Los signos de admiración no suben y se van como el confeti: se quedan
+     arriba de los ojos latiendo, igual que en la app. */
+  @keyframes latir-signo {
+    0%, 100% { transform: translate(-50%, 0)    scale(1);    opacity: 0.9; }
+    50%      { transform: translate(-50%, -16%) scale(1.09); opacity: 1; }
+  }
+  .efecto-late {
+    animation: latir-signo 1.4s ease-in-out infinite;
+    will-change: transform, opacity;
+  }
+
+  /* Onda de voz de los mensajes de audio */
+  @keyframes wave-pulse {
+    0%, 100% { transform: scaleY(0.35); }
+    50%      { transform: scaleY(1); }
+  }
+  .wave-bar {
+    animation: wave-pulse 1.1s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  /* Oculta la barra de scroll en los carruseles horizontales */
+  .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+  .no-scrollbar::-webkit-scrollbar { display: none; }
 }
