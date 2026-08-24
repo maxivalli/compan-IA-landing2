@@ -1,0 +1,44 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Ver la escena</title>
+<!--
+  Página de VERIFICACIÓN, no de producción. Dibuja la escena del taller en cuatro
+  momentos del ciclo para poder mirarla de un vistazo. Sirve para comprobar que la
+  copia de `comun.js` + `mate.js` sigue dibujando lo mismo que la app después de
+  actualizarla desde el taller.
+
+  Se abre en http://localhost:3001/escenas/_ver.html
+-->
+<style>
+  body { margin:0; background:#0b0d11; color:#94a3b8; font:13px system-ui; padding:16px; }
+  .fila { display:flex; gap:12px; flex-wrap:wrap; }
+  figure { margin:0; }
+  canvas { background:#0b0d11; border:1px solid #1e293b; border-radius:8px; display:block; }
+  figcaption { margin-top:6px; font-size:11px; }
+</style>
+<div class="fila" id="fila"></div>
+<script src="/escenas/comun.js"></script>
+<script src="/escenas/mate.js"></script>
+<script src="/escenas/puente.js"></script>
+<script>
+  // Las mismas opciones que usa la app (AbuApp/components/idle/index.ts → OPCIONES).
+  const OP = { ojos: false, guias: false, rastro: true, sinContorno: true };
+  const esc = window.__ESCENAS.mate;
+  const fila = document.getElementById('fila');
+  [0, 4600, 5600, 6800].forEach(t => {
+    const fig = document.createElement('figure');
+    const c = document.createElement('canvas');
+    c.width = 340; c.height = 302;
+    const x = c.getContext('2d');
+    // Encuadre igual que en la app: {cx:450, cy:461, alto:414} y el objeto a 20,6%
+    // del alto de la pantalla.
+    const k = (302 * (175 / 850)) / 414 * 3.2;   // ×3,2 solo para verlo más grande acá
+    x.translate(170, 151); x.scale(k, k); x.translate(-450, -461);
+    esc.dibujar(x, 900, 800, t, OP);
+    fig.appendChild(c);
+    const cap = document.createElement('figcaption');
+    cap.textContent = `${(t / 1000).toFixed(1)}s · ${esc.nombreFase(t)}`;
+    fig.appendChild(cap);
+    fila.appendChild(fig);
+  });
+</script>

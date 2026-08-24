@@ -165,11 +165,32 @@
 
   /* ── Marcos de dispositivo ────────────────────────────────────────────────
      Dibujados en CSS: nítidos en cualquier pantalla y sin peso de descarga. */
+  /* El marco se mide en PROPORCIÓN a su propio ancho, no en rem fijos.
+     El mismo teléfono se dibuja a seis anchos distintos (168, 190, 215, 240, 248
+     y 268 px). Con un radio fijo de 2,6rem el de 168 quedaba con esquinas del 25%
+     de su ancho y el de 268 con el 15% — el mismo aparato con dos formas. Con
+     `cqw` sobre el propio marco, los seis se ven iguales.
+     Los valores salen de conservar el aspecto del tamaño más usado (215 px). */
   .device {
     background: linear-gradient(150deg, #3a3d45, #16181d 40%, #0a0b0e);
+    /* Radio en PORCENTAJE y con los dos ejes separados por barra.
+       Un solo valor en % da una ELIPSE: el horizontal se mide contra el ancho y el
+       vertical contra el ALTO, y el teléfono es el doble de alto que ancho. Los dos
+       ejes escritos aparte dan un arco redondo de verdad, y como el aspecto está
+       fijo (9/19.5 más el marco), la proporción se mantiene sola.
+       `cqw` acá NO sirve: sobre el propio elemento se mide contra el contenedor
+       padre, no contra sí mismo — probado, daba 230px en los seis tamaños.
+       18% del ancho ≡ 8,585% del alto (alto = 2,0967 × ancho). */
+    border-radius: 18% / 8.585%;
+    /* El padding en % siempre se mide contra el ANCHO, en los cuatro lados. */
+    padding: 3%;
     box-shadow:
       0 2px 0 rgba(255, 255, 255, 0.14) inset,
       0 50px 90px -40px rgba(0, 0, 0, 0.75);
+  }
+  .device > .device-screen {
+    /* 15% del ancho de la pantalla ≡ 6,923% de su alto (aspecto 9/19.5). */
+    border-radius: 15% / 6.923%;
   }
   /* `container-type: inline-size` convierte la pantalla en la referencia de las
      unidades `cqw`: 1cqw = 1% del ancho de ESTA pantalla. Todo lo que va adentro
@@ -187,10 +208,6 @@
   /* Las mismas tarjetas de UI se usan FUERA del teléfono (en las tarjetas de
      citas). Ahí también hace falta un contenedor de referencia: sin él, `cqw`
      se mide contra la ventana entera y la tarjeta sale gigante. */
-  .caja-ui {
-    container-type: inline-size;
-  }
-
   /* ── Movimiento del hero ──────────────────────────────────────────────────
      Tres capas lentas que nunca compiten con el texto: el degradado del titular
      recorre, los teléfonos flotan desfasados y el orbe respira. */

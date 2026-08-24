@@ -106,7 +106,7 @@ const DEGRADADO_HERO = 'linear-gradient(96deg, #4a8cff, #7b5cf0 30%, #e0509a 64%
 // autosuficiente y se puede animar sin romper nada.
 //
 // Las letras van aria-hidden y el texto real viaja en aria-label, así un lector
-// de pantalla lee "Nunca más sola." y no letra por letra.
+// de pantalla lee "Nunca más solos." y no letra por letra.
 const TituloPorLetra = ({
   lineas,
   className = '',
@@ -208,10 +208,13 @@ const EnlaceFlecha = ({
    ═══════════════════════════════════════════════════════════════════════════ */
 
 const Telefono = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
-  <div className={`device rounded-[2.6rem] p-[7px] ${className}`}>
-    <div className="device-screen rounded-[2.2rem] aspect-[9/19.5]">
-      {/* isla dinámica */}
-      <div className="absolute top-2 left-1/2 -translate-x-1/2 z-20 h-[6.5cqw] w-[34%] rounded-full bg-black" />
+  // El radio y el grosor del marco viven en el CSS (`.device`), medidos contra el
+  // ancho del propio teléfono: acá eran rem fijos y el mockup chico salía mucho
+  // más redondeado que el grande.
+  <div className={`device ${className}`}>
+    <div className="device-screen aspect-[9/19.5]">
+      {/* isla dinámica — también proporcional, si no queda muy abajo en los chicos */}
+      <div className="absolute top-[2cqw] left-1/2 -translate-x-1/2 z-20 h-[6.5cqw] w-[34%] rounded-full bg-black" />
       {children}
     </div>
   </div>
@@ -243,8 +246,9 @@ type Forma = { w: number; h: number; rt: number; rb: number; rot?: number; arco?
 // Solo las expresiones que usamos en la web. El resto (confundida, guiño,
 // avergonzada, durmiendo…) existe en la app pero acá no aporta.
 const EXPRESIONES: Record<string, { L: Forma; R: Forma }> = {
-  // óvalo alto de siempre
-  neutral: { L: { w: 104, h: 132, rt: 52, rb: 52 }, R: { w: 104, h: 132, rt: 52, rb: 52 } },
+  // óvalo de siempre. h=106, NO 132: acá decía 132 y el ojo salía un 25% más alto
+  // que en la app — y es la expresión por defecto, la que más se ve.
+  neutral: { L: { w: 104, h: 106, rt: 52, rb: 52 }, R: { w: 104, h: 106, rt: 52, rb: 52 } },
   // más alto y angosto: ojos bien abiertos
   sorprendida: { L: { w: 100, h: 152, rt: 50, rb: 50 }, R: { w: 100, h: 152, rt: 50, rb: 50 } },
   // domo grueso: plano abajo, redondo arriba (ternura / pensativa)
@@ -299,20 +303,36 @@ const Ojo = ({ f, cx, retardo }: { f: Forma; cx: number; retardo: string }) => {
     );
   }
 
-  const rtH = (f.rt / f.w) * 100;
-  const rtV = (f.rt / f.h) * 100;
-  const rbH = (f.rb / f.w) * 100;
-  const rbV = (f.rb / f.h) * 100;
+  // El ojo NO es un rectángulo con `border-radius`: es el mismo path que dibuja la
+  // app (`pathForma` en RostroAsistente.tsx), con curvas CUADRÁTICAS cuyo punto de
+  // control está en la esquina del rectángulo.
+  //
+  // La diferencia importa y se ve: `border-radius` traza un arco de ELIPSE, así que
+  // con rt = w/2 el ojo sale un círculo perfecto. Una cuadrática con el control en
+  // la esquina traza una parábola, que es más PLANA que el arco — por eso el ojo de
+  // la app se lee como "redondo pero un poco cuadrado". Con border-radius eso se
+  // perdía y quedaba una pastilla.
+  //
+  // Los recortes (`Math.min`) son los mismos que hace la app, en el mismo orden.
+  const rt = Math.max(0, Math.min(f.rt, f.w / 2, f.h));
+  const rb = Math.max(0, Math.min(f.rb, f.w / 2, f.h - rt));
+  const d =
+    `M ${rt},0 ` +
+    `L ${f.w - rt},0 Q ${f.w},0 ${f.w},${rt} ` +
+    `L ${f.w},${f.h - rb} Q ${f.w},${f.h} ${f.w - rb},${f.h} ` +
+    `L ${rb},${f.h} Q 0,${f.h} 0,${f.h - rb} ` +
+    `L 0,${rt} Q 0,0 ${rt},0 Z`;
 
   return (
     <div style={posicion}>
-      <div
-        className="rosita-eye absolute inset-0 bg-[#5ce1e6] shadow-[0_0_26px_8px_rgba(92,225,230,0.5)]"
-        style={{
-          borderRadius: `${rtH}% ${rtH}% ${rbH}% ${rbH}% / ${rtV}% ${rtV}% ${rbV}% ${rbV}%`,
-          animationDelay: retardo,
-        }}
-      />
+      <svg
+        viewBox={`0 0 ${f.w} ${f.h}`}
+        preserveAspectRatio="none"
+        className="rosita-eye absolute inset-0 h-full w-full drop-shadow-[0_0_13px_rgba(92,225,230,0.75)]"
+        style={{ animationDelay: retardo }}
+      >
+        <path d={d} fill="#5ce1e6" />
+      </svg>
     </div>
   );
 };
@@ -435,6 +455,11 @@ const OverlayExpresion = ({ expresion }: { expresion: Expresion }) => {
   return null;
 };
 
+// ⚠️ HOY NO SE DIBUJAN. Van con la escena del LIBRO, y la landing ahora muestra la
+// del mate. Se dejan porque son una función real de la app (RostroAsistente.tsx,
+// "Anteojos de lectura"): si algún día se cambia la escena copiada del taller por
+// `libro.js`, hay que volver a pasar `leyendo` y aparecen solos.
+//
 // Anteojos de lectura, iguales a los de la app (`AnteojosLectura`): dos lentes
 // de radio 58 centrados en los mismos puntos que los ojos (106 y 254 de 360),
 // vidrio cian translúcido, marco cálido y el puente que los une.
@@ -499,12 +524,23 @@ const RADIO_PANEL = { borderTopLeftRadius: '5.5% 9.4%', borderTopRightRadius: '5
 
 const PanelInferiorApp = () => (
   <div className="absolute inset-x-0 bottom-0 h-[27%] bg-white px-[6%] pt-[4%]" style={RADIO_PANEL}>
+    {/* Chevron del cajón de apps: vive DENTRO del panel, arriba del reloj, e invita a
+        deslizar hacia arriba (index.tsx lo anima subiendo y desvaneciéndose en loop).
+        Faltaba, y es la única pista de que el panel se puede abrir. */}
+    <span className="absolute inset-x-0 top-[3%] flex justify-center">
+      <ChevronDown className="h-[4.5cqw] w-[4.5cqw] rotate-180 text-[#9CA3AF]" strokeWidth={2.4} />
+    </span>
     <div className="flex justify-end gap-[3%]">
       <span className="flex h-[6.5cqw] w-[6.5cqw] items-center justify-center rounded-full bg-emerald-500/12">
         <AlarmClock className="h-[3.5cqw] w-[3.5cqw] text-emerald-600" strokeWidth={2.4} />
       </span>
       <span className="flex h-[6.5cqw] w-[6.5cqw] items-center justify-center rounded-full bg-amber-500/12 text-[3cqw] font-bold text-amber-600">
         Aa
+      </span>
+      {/* Chip de presencia: la cámara mirando si hay alguien. Faltaba — la app tiene
+          cuatro chips y acá había tres. */}
+      <span className="flex h-[6.5cqw] w-[6.5cqw] items-center justify-center rounded-full bg-ink/[0.06]">
+        <Eye className="h-[3.5cqw] w-[3.5cqw] text-ink-soft" strokeWidth={2.4} />
       </span>
       <span className="flex h-[6.5cqw] w-[6.5cqw] items-center justify-center rounded-full bg-ink/[0.06]">
         <Bluetooth className="h-[3.5cqw] w-[3.5cqw] text-ink-soft" strokeWidth={2.4} />
@@ -553,76 +589,141 @@ const Rostro = ({ expresion, leyendo = false }: { expresion: Expresion; leyendo?
   </div>
 );
 
-// Animación de reposo: el mismo Lottie que muestra la app cuando no pasa nada
-// (AbuApp/assets/animations/Reading Book.lottie → acá extraído a /leyendo.json).
-// Se carga en diferido y solo cuando el teléfono está a la vista, para no
-// meterle 50 KB de reproductor al primer pintado del hero.
+// Animación de reposo — el MISMO dibujo que hace la app.
 //
-// OJO al elegir el archivo: NO cualquier .lottie de la app sirve en la web.
-// `MatePava.lottie` avanza el contador pero lottie-web no lo repinta (además su
-// capa de agua tiene una máscara que deja TODO en blanco 0,8 s de cada 4). Se
-// probaron las diez animaciones de la app corriendo solas; esta y las otras
-// nueve andan, el mate es la única que no.
+// Antes acá corría un Lottie (`/leyendo.json`) sacado de AbuApp/assets/animations/.
+// Esa carpeta hoy está VACÍA: la app dejó de usar Lottie y dibuja quince escenas
+// propias con Skia (AbuApp/components/idle/escenas/). O sea que la web mostraba una
+// animación de una versión de la app que ya no existe.
+//
+// La fuente de esas escenas es el taller (AbuApp/taller-animaciones/), Canvas2D puro,
+// y el navegador lo corre tal cual. Así que en vez de portar el dibujo a mano —que
+// volvería a separarse en la próxima edición— se copian los dos archivos del taller
+// y se los llama con las MISMAS opciones y el MISMO encuadre que usa la app.
+//
+// Los números salen de AbuApp/components/idle/: lienzo lógico 900×800, encuadre del
+// mate {cx:450, cy:461, alto:414} y tamaño en pantalla 175 sobre una de ~850 de alto.
+const ESCENA = {
+  lienzoW: 900,
+  lienzoH: 800,
+  cx: 450,
+  cy: 461,
+  alto: 414,
+  // 175 de alto de objeto sobre una pantalla de ~850 → 20,6% del alto.
+  fraccionAlto: 175 / 850,
+  // AbuApp/components/idle/index.ts → OPCIONES. `rastro` y `sinContorno` prendidos,
+  // ojos apagados (los dibuja RostroAsistente aparte) y guías apagadas.
+  opciones: { ojos: false, guias: false, rastro: true, sinContorno: true },
+};
+
+let escenasCargadas: Promise<void> | null = null;
+function cargarEscenas(): Promise<void> {
+  if (escenasCargadas) return escenasCargadas;
+  escenasCargadas = new Promise<void>((listo, falla) => {
+    // Scripts clásicos y EN ORDEN: `mate.js` se registra dentro del `ANIMACIONES`
+    // que declara `comun.js`, y `puente.js` es el que lo expone al módulo.
+    const rutas = ['/escenas/comun.js', '/escenas/mate.js', '/escenas/puente.js'];
+    const siguiente = (i: number) => {
+      if (i >= rutas.length) return listo();
+      const el = document.createElement('script');
+      el.src = rutas[i];
+      el.async = false;
+      el.onload = () => siguiente(i + 1);
+      el.onerror = () => falla(new Error(`no cargó ${rutas[i]}`));
+      document.head.appendChild(el);
+    };
+    siguiente(0);
+  });
+  return escenasCargadas;
+}
+
 const AnimacionReposo = () => {
-  const caja = useRef<HTMLDivElement | null>(null);
+  const lienzo = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    const nodo = caja.current;
+    const nodo = lienzo.current;
     if (!nodo) return;
 
-    let anim: { destroy: () => void } | null = null;
-    let cancelado = false;
+    let vivo = true;
+    let pedido = 0;
+    let arranque = 0;
 
-    const arrancar = async () => {
-      const { default: lottie } = await import('lottie-web/build/player/lottie_light');
-      if (cancelado || !caja.current) return;
-      anim = lottie.loadAnimation({
-        container: caja.current,
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-        path: '/leyendo.json',
-      });
+    const dibujar = (escena: any) => {
+      const ctx = nodo.getContext('2d');
+      if (!ctx) return;
+
+      const marco = (ahora: number) => {
+        if (!vivo) return;
+        if (!arranque) arranque = ahora;
+
+        // Tamaño real en píxeles: el teléfono de la web es chico y sin esto el
+        // dibujo sale borroso en pantallas densas.
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const anchoCss = nodo.clientWidth;
+        const altoCss = nodo.clientHeight;
+        if (!anchoCss || !altoCss) { pedido = requestAnimationFrame(marco); return; }
+        if (nodo.width !== Math.round(anchoCss * dpr)) {
+          nodo.width = Math.round(anchoCss * dpr);
+          nodo.height = Math.round(altoCss * dpr);
+        }
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.clearRect(0, 0, anchoCss, altoCss);
+
+        // El mismo encuadre que hace EscenaIdle.tsx: se escala para que el objeto
+        // mida lo que tiene que medir, y se corre el lienzo para que el punto del
+        // encuadre caiga en el centro de la pantalla.
+        const k = (altoCss * ESCENA.fraccionAlto) / ESCENA.alto;
+        ctx.save();
+        ctx.translate(anchoCss / 2, altoCss / 2);
+        ctx.scale(k, k);
+        ctx.translate(-ESCENA.cx, -ESCENA.cy);
+
+        const t = (ahora - arranque) % escena.dur;
+        escena.atras?.(ctx, ESCENA.lienzoW, ESCENA.lienzoH, t);
+        escena.dibujar(ctx, ESCENA.lienzoW, ESCENA.lienzoH, t, ESCENA.opciones);
+        escena.frente?.(ctx, ESCENA.lienzoW, ESCENA.lienzoH, t);
+        ctx.restore();
+
+        pedido = requestAnimationFrame(marco);
+      };
+      pedido = requestAnimationFrame(marco);
     };
 
-    // Solo lo cargamos cuando entra en pantalla
+    // Recién cuando entra en pantalla: son 25 KB de escena que no hacen falta
+    // para el primer pintado del hero.
     const obs = new IntersectionObserver(
-      (entradas) => {
-        if (entradas.some((e) => e.isIntersecting)) {
-          obs.disconnect();
-          arrancar();
-        }
+      entradas => {
+        if (!entradas.some(e => e.isIntersecting)) return;
+        obs.disconnect();
+        cargarEscenas()
+          .then(() => {
+            const escena = (window as any).__ESCENAS?.mate;
+            if (vivo && escena) dibujar(escena);
+          })
+          .catch(() => {});
       },
       { rootMargin: '200px' },
     );
     obs.observe(nodo);
 
     return () => {
-      cancelado = true;
+      vivo = false;
       obs.disconnect();
-      anim?.destroy();
+      cancelAnimationFrame(pedido);
     };
   }, []);
 
-  // Tamaño: cada Lottie tiene su arte más o menos centrado dentro de su lienzo,
-  // así que la app le da a cada uno un tamaño distinto (el mate 180 px, este 420
-  // sobre una pantalla de ~400). Traducido: el lienzo ocupa ~105% del ancho y el
-  // dibujo queda a la mitad de la pantalla, como en la app.
-  // `aspect-square` es obligatorio: sin alto el div mide 0 px y el
-  // IntersectionObserver nunca lo da por visible, así que el Lottie no cargaba.
-  return (
-    <div
-      ref={caja}
-      className="absolute left-1/2 top-[55%] aspect-square w-[105%] -translate-x-1/2 -translate-y-1/2"
-    />
-  );
+  // Cubre la pantalla entera, igual que en la app: la escena se ubica sola con su
+  // encuadre y el panel blanco de abajo la tapa en parte, como corresponde.
+  return <canvas ref={lienzo} className="absolute inset-0 h-full w-full" />;
 };
 
 const PantallaRosita = ({ expresion = 'neutral', reposo = false }: { expresion?: Expresion; reposo?: boolean }) => (
   <div className="absolute inset-0 overflow-hidden bg-black">
     <FondoApp />
     <BarraEstado />
-    <Rostro expresion={expresion} leyendo={reposo} />
+    <Rostro expresion={expresion} />
     {reposo && <AnimacionReposo />}
     <PanelInferiorApp />
   </div>
@@ -630,6 +731,18 @@ const PantallaRosita = ({ expresion = 'neutral', reposo = false }: { expresion?:
 
 // Pantalla con una acción en curso: el mismo rostro, lo que Rosita está
 // diciendo, y abajo la tarjeta de lo que hizo.
+// Un teléfono mostrando una pantalla ENTERA de la app (la radio, los avisos, el
+// visor). Va al lado del que muestra la cara, no encima: esas pantallas ocupan el
+// teléfono completo y dibujarlas sobre los ojos sería inventar algo que no pasa.
+const TelefonoPantalla = ({ children }: { children: React.ReactNode }) => (
+  <Telefono>
+    <div className="absolute inset-0 overflow-hidden bg-black">
+      {children}
+      <BarraEstado />
+    </div>
+  </Telefono>
+);
+
 const PantallaApp = ({
   dice,
   expresion = 'neutral',
@@ -637,193 +750,336 @@ const PantallaApp = ({
 }: {
   dice: string;
   expresion?: Expresion;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }) => (
   <div className="absolute inset-0 overflow-hidden bg-black">
     <FondoApp />
     <BarraEstado />
     <Rostro expresion={expresion} />
-    <p className="absolute inset-x-0 top-[45%] px-[8cqw] text-center text-[4.5cqw] font-medium leading-snug text-white/70">
+    <PanelInferiorApp />
+    {/* El subtítulo va COLGADO del panel de abajo, como en la app (index.tsx:
+        `bottom: panelH + 10`), no flotando a media pantalla. Y es blanco puro,
+        grande y con sombra — antes acá era gris chiquito al 45% del alto. */}
+    <p
+      className="absolute inset-x-0 bottom-[29%] px-[7cqw] text-center text-[6cqw] font-semibold leading-snug text-white"
+      style={{ textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}
+    >
       {dice}
     </p>
-    <div className="absolute inset-x-0 bottom-0 p-[5cqw] pb-[8cqw]">{children}</div>
+    {/* Un modal de la app NO es una tarjeta apoyada abajo: sale CENTRADO sobre un
+        velo que oscurece todo, panel incluido (ver components/ModalShell.tsx). El
+        color del velo es el del tema: rgba(30,15,50,0.45), violeta, no negro. */}
+    {children && (
+      <div
+        className="absolute inset-0 z-30 flex items-center justify-center px-[9cqw]"
+        style={{ backgroundColor: 'rgba(30, 15, 50, 0.45)' }}
+      >
+        {children}
+      </div>
+    )}
   </div>
 );
 
-// Tarjeta genérica de "UI de la app". Siempre ocupa el ancho disponible: dentro
-// de un teléfono angosto no debe desbordar.
-const PanelUI = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => (
-  <div
-    className={`w-full min-w-0 rounded-[9cqw] bg-white p-[7cqw] shadow-[0_20px_50px_-25px_rgba(0,0,0,0.5)] ${className}`}
-  >
-    {children}
-  </div>
-);
+/* ── LO QUE LA APP MUESTRA DE VERDAD ────────────────────────────────────────
+   Antes acá había siete "tarjetas" blancas, todas iguales, que se apoyaban abajo
+   de la pantalla. Ninguna existía: la app no muestra tarjetas genéricas. Muestra
+   tres cosas distintas, y cada una tiene su forma.
 
-const TarjetaRecordatorio = () => (
-  <PanelUI>
-    <div className="flex items-center gap-[4cqw] mb-[6cqw]">
-      <Bell className="w-[7cqw] h-[7cqw] text-[#f2905c]" />
-      <span className="text-[5.5cqw] font-semibold text-ink">Recordatorios</span>
-    </div>
-    <div className="space-y-[5cqw]">
-      <div className="flex items-start gap-[5cqw]">
-        <div className="mt-[1cqw] h-[7cqw] w-[7cqw] shrink-0 rounded-full border-[1.5px] border-ink-faint" />
-        <div>
-          <p className="text-[6cqw] font-medium leading-tight text-ink">Tomar la pastilla de la presión</p>
-          <span className="mt-[2cqw] inline-flex items-center gap-[2cqw] rounded-md bg-[#f2905c]/12 px-[3cqw] py-[1cqw] text-[5cqw] font-medium text-[#c96a37]">
-            <Clock className="w-[5cqw] h-[5cqw]" /> Hoy 20:00
-          </span>
+     1. PANTALLAS ENTERAS — la radio, los recordatorios y el visor de la cámara
+        ocupan el teléfono completo. Por eso van en su propio teléfono, al lado
+        del que muestra la cara: si se dibujaran encima de los ojos se estaría
+        inventando una superposición que no pasa.
+     2. COSAS QUE SE ABREN ENCIMA — el aviso que suena, el audio de la familia y
+        las listas. Salen centradas sobre la pantalla oscurecida, cada una con su
+        propia forma (banda de color, columna, papelito).
+     3. COSAS QUE NO ESTÁN EN LA APP — el informe del día y la alerta de SOS son
+        mensajes de Telegram que le llegan a la familia.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* ── 1. Pantallas enteras ─────────────────────────────────────────────────── */
+
+// La radio (AbuApp/components/PantallaRadio.tsx). Es un Modal a pantalla completa
+// con degradé violeta, no una tarjeta: título en Lobster, dial de AM con aguja,
+// parlante redondo, SIGUIENTE / PARAR y cuatro memorias.
+const PantallaRadioApp = () => (
+  // El contenido se REPARTE a lo alto en vez de colgar de márgenes fijos arriba:
+  // así no queda un hueco muerto abajo cuando el teléfono es más alto que el
+  // contenido. El "Volver" va absoluto, fuera del reparto.
+  <div className="absolute inset-0 flex flex-col justify-center gap-[4cqw] overflow-hidden bg-[linear-gradient(160deg,#A855F7_0%,#C084FC_100%)] pb-[3cqw] pt-[13cqw]">
+    <span className="absolute left-[5cqw] top-[7cqw] rounded-[3.5cqw] bg-white/20 px-[4cqw] py-[2cqw] text-[3.4cqw] font-bold text-white">
+      ← Volver
+    </span>
+    <p className="text-center text-[14cqw] leading-none text-white [font-family:Lobster,cursive] [text-shadow:0_3px_10px_rgba(0,0,0,0.25)]">
+      Radio
+    </p>
+    <div className="mx-auto w-[86%] rounded-[6cqw] border border-white/60 bg-white p-[5cqw]">
+      {/* Dial de AM: los mismos seis números que la app */}
+      <div className="flex items-baseline justify-between">
+        <span className="text-[2.6cqw] font-semibold text-[#7C6A9A]">AM</span>
+        {['530', '700', '900', '1200', '1500', '1700'].map(f => (
+          <span key={f} className="text-[3.4cqw] font-extrabold text-[#1A0A2E]">{f}</span>
+        ))}
+        <span className="text-[2.6cqw] font-semibold text-[#7C6A9A]">kHz</span>
+      </div>
+      <div className="relative mt-[2cqw] flex items-end justify-between">
+        {Array.from({ length: 21 }).map((_, i) => (
+          <span key={i} className="w-[0.4cqw] rounded-full bg-[#7C6A9A]/40" style={{ height: i % 4 === 0 ? '3.6cqw' : '2cqw' }} />
+        ))}
+        <span className="absolute left-1/2 h-[7cqw] w-[0.7cqw] -translate-x-1/2 rounded-full bg-[#A855F7]" />
+      </div>
+      <p className="mt-[3cqw] text-center text-[4cqw] font-extrabold tracking-[0.08em] text-[#A855F7]">TANGO</p>
+      {/* Rejilla del parlante + el parlante */}
+      <div className="mt-[4cqw] flex items-center gap-[4cqw]">
+        <div className="flex-1 space-y-[1.8cqw]">
+          {[0, 1, 2, 3].map(i => <span key={i} className="block h-[1.8cqw] rounded-full bg-[#EDE9FE]" />)}
         </div>
-      </div>
-      <div className="flex items-start gap-[5cqw] opacity-45">
-        <CheckCircle2 className="mt-[1cqw] h-[7cqw] w-[7cqw] shrink-0 text-emerald-500" />
-        <p className="text-[6cqw] font-medium leading-tight text-ink line-through">Llamar al doctor Pérez</p>
+        <span className="flex h-[17cqw] w-[17cqw] shrink-0 items-center justify-center rounded-full border border-[#EDE9FE] bg-[#F3E8FF]">
+          <Radio className="h-[7.5cqw] w-[7.5cqw] text-[#A855F7]" strokeWidth={2} />
+        </span>
       </div>
     </div>
-  </PanelUI>
+    <div className="mx-auto flex w-[86%] gap-[3cqw]">
+      <span className="flex flex-1 items-center justify-center gap-[2cqw] rounded-[4cqw] bg-[#A7F3D0] py-[3cqw] text-[3.4cqw] font-extrabold text-[#065F46]">
+        SIGUIENTE
+      </span>
+      <span className="flex flex-1 items-center justify-center gap-[2cqw] rounded-[4cqw] bg-[#F0424A] py-[3cqw] text-[3.4cqw] font-extrabold text-white">
+        PARAR
+      </span>
+    </div>
+    <div className="mx-auto flex w-[86%] justify-between">
+      {['M1', 'M2', 'M3', 'M4'].map(m => (
+        <span key={m} className="flex h-[11cqw] w-[19%] items-center justify-center rounded-[3cqw] bg-white/25 text-[3.4cqw] font-extrabold text-white">
+          {m}
+        </span>
+      ))}
+    </div>
+    <p className="text-center text-[2.8cqw] text-white/70">— mantené M1–M4 para guardar —</p>
+  </div>
 );
 
-const TarjetaMensajeFamilia = () => (
-  <PanelUI>
-    <div className="flex items-center gap-[5cqw] mb-[6cqw]">
-      <div className="flex h-[14cqw] w-[14cqw] items-center justify-center rounded-full bg-gradient-to-br from-[#6e8cff] to-[#a78bfa] text-[5cqw] font-bold text-white">
-        C
-      </div>
-      <div>
-        <p className="text-[5.5cqw] font-semibold leading-none text-ink">Carolina</p>
-        <p className="mt-[2cqw] text-[5cqw] leading-none text-ink-faint">Tu hija · ahora</p>
+// La lista de avisos (AbuApp/app/recordatorios.tsx). Pantalla entera sobre el fondo
+// de la app, con dos secciones rotuladas y filas blancas. NO hay casilleros ni
+// tachados: eso era invento de la web.
+const FilaAviso = ({ color, icono: Icono, texto, cuando, etiqueta }: {
+  color: string; icono: typeof Bell; texto: string; cuando: string; etiqueta: string;
+}) => (
+  <div className="flex items-center gap-[3.5cqw] rounded-[4cqw] bg-white px-[4cqw] py-[3.5cqw]">
+    <span className="flex h-[8cqw] w-[8cqw] shrink-0 items-center justify-center rounded-[2.5cqw]" style={{ backgroundColor: color + '22' }}>
+      <Icono className="h-[4.2cqw] w-[4.2cqw]" style={{ color }} strokeWidth={2.2} />
+    </span>
+    <div className="min-w-0">
+      <p className="truncate text-[4cqw] font-medium text-[#1A0A2E]">{texto}</p>
+      <p className="mt-[0.5cqw] text-[3.2cqw] text-[#7C6A9A]">
+        <span className="font-semibold" style={{ color }}>{etiqueta}</span> {cuando}
+      </p>
+    </div>
+  </div>
+);
+
+const PantallaRecordatoriosApp = () => (
+  <div className="absolute inset-0 overflow-hidden bg-[#FAF7FF]">
+    {/* El header de la pantalla, que faltaba. Degradé naranja→ámbar (GRADIENT en
+        app/recordatorios.tsx), flecha de volver en un círculo claro, el rótulo
+        "AGENDA" arriba del título y el ícono de alarma a la derecha. */}
+    <div className="bg-[linear-gradient(90deg,#FB923C_0%,#FBBF24_100%)] px-[4cqw] pb-[6cqw] pt-[11cqw]">
+      <div className="flex items-end gap-[3cqw]">
+        <span className="flex h-[10cqw] w-[10cqw] shrink-0 items-center justify-center rounded-full bg-white/25">
+          <ChevronDown className="h-[5cqw] w-[5cqw] rotate-90 text-white" strokeWidth={2.6} />
+        </span>
+        <div className="min-w-0 flex-1">
+          <p className="text-[2.8cqw] font-semibold uppercase tracking-[0.1em] text-white/75">agenda</p>
+          <p className="text-[6.5cqw] font-bold leading-tight tracking-[-0.01em] text-white">Recordatorios</p>
+        </div>
+        <AlarmClock className="mb-[1cqw] h-[5.5cqw] w-[5.5cqw] shrink-0 text-white/90" strokeWidth={2.2} />
       </div>
     </div>
-    <div className="flex min-w-0 items-center gap-[4cqw] rounded-2xl bg-[#f5f5f7] px-[5cqw] py-[5cqw]">
-      <Play className="h-[6cqw] w-[6cqw] shrink-0 fill-ink text-ink" />
-      <div className="flex h-[10cqw] min-w-0 flex-1 items-center gap-[1.5cqw] overflow-hidden">
-        {[0.5, 0.9, 0.4, 1, 0.7, 0.35, 0.85, 0.5, 1, 0.6].map((h, i) => (
-          <span
-            key={i}
-            className="wave-bar w-[1cqw] shrink-0 rounded-full bg-[#0071e3]"
-            style={{ height: `${h * 100}%`, animationDelay: `${i * 0.08}s` }}
-          />
+    <div className="px-[5cqw] pt-[4cqw]">
+    <div className="flex items-center gap-[2cqw]">
+      <Plus className="h-[3.4cqw] w-[3.4cqw] text-[#B45309]" strokeWidth={2.6} />
+      <span className="text-[3cqw] font-semibold uppercase tracking-[0.08em] text-[#B45309]">Medicamentos</span>
+    </div>
+    <div className="mt-[2.5cqw] space-y-[2cqw]">
+      <FilaAviso color="#B45309" icono={Plus} texto="Pastilla de la presión" cuando="08:00 · 20:00" etiqueta="" />
+    </div>
+    <div className="mt-[5cqw] flex items-center gap-[2cqw]">
+      <AlarmClock className="h-[3.4cqw] w-[3.4cqw] text-[#A855F7]" strokeWidth={2.6} />
+      <span className="text-[3cqw] font-semibold uppercase tracking-[0.08em] text-[#A855F7]">Próximos avisos</span>
+    </div>
+    <div className="mt-[2.5cqw] space-y-[2cqw]">
+      <FilaAviso color="#A855F7" icono={AlarmClock} texto="Llamar al doctor Pérez" cuando="mañana 10:30" etiqueta="Aviso ·" />
+      <FilaAviso color="#0EA5E9" icono={Calendar} texto="Cumpleaños de Tomás" cuando="viernes" etiqueta="Fecha ·" />
+    </div>
+    <div className="mt-[5cqw] flex items-start gap-[2.5cqw] rounded-[4cqw] bg-white px-[4cqw] py-[3cqw]">
+      <AlertCircle className="mt-[0.4cqw] h-[3.6cqw] w-[3.6cqw] shrink-0 text-[#A855F7]" strokeWidth={2.2} />
+      <p className="text-[3cqw] leading-relaxed text-[#7C6A9A]">
+        Pedíselos a Rosita hablando: «acordate de mi pastilla a las ocho».
+      </p>
+    </div>
+    </div>
+  </div>
+);
+
+// El modo visión (AbuApp/components/CameraAutoCaptura.tsx): un visor de cámara con
+// esquinas de encuadre y el estado. No una tarjeta con renglones grises.
+const PantallaVisionApp = () => (
+  <div className="absolute inset-0 overflow-hidden bg-[#14121a]">
+    {/* Lo que ve la cámara, sugerido: una receta sobre la mesa */}
+    <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_50%_45%,#3a3630_0%,#17151b_70%)]" />
+    <div className="absolute left-1/2 top-[46%] h-[38%] w-[62%] -translate-x-1/2 -translate-y-1/2 rotate-[-4deg] rounded-[1.5cqw] bg-[#f1ece1] p-[4cqw] shadow-[0_10px_30px_-8px_rgba(0,0,0,0.8)]">
+      <div className="space-y-[2.6cqw]">
+        <span className="block h-[2cqw] w-3/5 rounded-full bg-[#2b2620]/25" />
+        <span className="block h-[1.6cqw] w-full rounded-full bg-[#2b2620]/15" />
+        <span className="block h-[1.6cqw] w-11/12 rounded-full bg-[#2b2620]/15" />
+        <span className="block h-[1.6cqw] w-4/6 rounded-full bg-[#2b2620]/15" />
+      </div>
+    </div>
+    {/* Las cuatro esquinas del encuadre — la identidad de "estoy mirando algo" */}
+    {[
+      'left-[7%] top-[16%] border-l-[0.9cqw] border-t-[0.9cqw] rounded-tl-[2cqw]',
+      'right-[7%] top-[16%] border-r-[0.9cqw] border-t-[0.9cqw] rounded-tr-[2cqw]',
+      'left-[7%] bottom-[26%] border-l-[0.9cqw] border-b-[0.9cqw] rounded-bl-[2cqw]',
+      'right-[7%] bottom-[26%] border-r-[0.9cqw] border-b-[0.9cqw] rounded-br-[2cqw]',
+    ].map(pos => (
+      <span key={pos} className={`absolute h-[9cqw] w-[9cqw] border-white/80 ${pos}`} />
+    ))}
+    <p className="absolute inset-x-0 bottom-[13%] text-center text-[4.2cqw] font-semibold text-white [text-shadow:0_1px_4px_rgba(0,0,0,0.7)]">
+      Mirando…
+    </p>
+  </div>
+);
+
+/* ── 2. Lo que se abre ENCIMA de la pantalla ──────────────────────────────── */
+
+// El aviso cuando SUENA (AbuApp/components/AvisoModal.tsx). La banda de color
+// arriba no es decoración: existe para entender de qué se trata ANTES de leer,
+// porque esta tarjeta aparece sin que nadie la pida.
+//   💊 MEDICAMENTO → ámbar #B45309   ·   ⏰ ALARMA → coral #E11D48
+const AvisoModalApp = ({ rotulo, banda, nombre, confirmar }: {
+  rotulo: string; banda: string; nombre: string; confirmar: string;
+}) => (
+  <div className="relative w-[82%] overflow-hidden rounded-[5cqw] bg-white shadow-[0_20px_50px_-25px_rgba(0,0,0,0.5)]">
+    <div className="py-[3cqw] text-center" style={{ backgroundColor: banda }}>
+      <span className="text-[3.6cqw] font-semibold tracking-[0.06em] text-white">{rotulo}</span>
+    </div>
+    <div className="px-[6cqw] pb-[6cqw] pt-[5cqw] text-center">
+      <p className="text-[7cqw] font-bold leading-tight text-[#1A0A2E]">{nombre}</p>
+      <span className="mx-auto mt-[5cqw] flex w-full items-center justify-center rounded-[4cqw] bg-[#34D399] py-[4cqw] text-[5.5cqw] font-bold text-white shadow-[0_6px_14px_-4px_rgba(52,211,153,0.6)]">
+        {confirmar}
+      </span>
+      <p className="mt-[3cqw] text-[3.6cqw] text-[#7C6A9A]">Después</p>
+    </div>
+  </div>
+);
+
+// Las listas (AbuApp/components/PostItViewer.tsx): un PAPELITO, no una tarjeta.
+// Cuadrado, con la esquina de abajo a la derecha doblada, cinta adhesiva arriba y
+// dos papelitos apilados atrás. Cinco colores; acá el amarillo.
+const PostItApp = () => (
+  <div className="relative w-[70%] pt-[5cqw]">
+    <span className="absolute inset-x-0 top-0 h-full -rotate-[6deg] rounded-[1cqw] rounded-br-[10cqw] bg-[#DCFCE7]/70" />
+    <span className="absolute inset-x-0 top-0 h-full rotate-[3deg] rounded-[1cqw] rounded-br-[10cqw] bg-[#FCE7F3]/80" />
+    <div className="relative aspect-square w-full rounded-[1cqw] rounded-br-[10cqw] bg-[#FEF9C3] px-[6cqw] pt-[9cqw] shadow-[3px_14px_22px_-6px_rgba(61,46,82,0.45)]">
+      <span className="absolute left-1/2 top-[-3cqw] h-[9cqw] w-[17cqw] -translate-x-1/2 rounded-[0.5cqw] bg-[#ddd9a8]/70" />
+      <p className="text-[7cqw] font-black leading-tight tracking-[0.01em] text-[#5C3D00]">Almacén</p>
+      <div className="mt-[3cqw] space-y-[1.5cqw]">
+        {['Leche', 'Pan', 'Yerba', 'Huevos'].map(x => (
+          <p key={x} className="flex gap-[2.5cqw] text-[5cqw] leading-tight text-[#5C3D00]">
+            <span className="font-bold">•</span> {x}
+          </p>
         ))}
       </div>
-      <span className="shrink-0 text-[4.5cqw] font-medium text-ink-faint">0:14</span>
     </div>
-    <p className="mt-[5cqw] text-[5cqw] leading-snug text-ink-soft">Rosita lo reproduce en voz alta, sin tocar nada.</p>
-  </PanelUI>
+  </div>
 );
 
-const TarjetaSOS = () => (
-  <PanelUI>
-    <div className="flex items-center gap-[5cqw]">
-      <div className="flex h-[18cqw] w-[18cqw] items-center justify-center rounded-xl bg-[#e5484d] text-[5cqw] font-black text-white">
-        SOS
-      </div>
-      <div>
-        <p className="text-[5.5cqw] font-semibold leading-none text-ink">Alerta enviada</p>
-        <p className="mt-[2cqw] text-[5cqw] leading-none text-ink-faint">Hace 4 segundos</p>
-      </div>
-    </div>
-    <div className="mt-[6cqw] space-y-[3cqw]">
-      {['Carolina — hija', 'Tomás — nieto', 'Juan — hijo'].map((n) => (
-        <div key={n} className="flex items-center gap-[4cqw] rounded-lg bg-[#f5f5f7] px-[5cqw] py-[3cqw]">
-          <CheckCircle2 className="h-[6cqw] w-[6cqw] shrink-0 text-emerald-500" />
-          <span className="text-[5.25cqw] font-medium text-ink">{n}</span>
-          <span className="ml-auto text-[4.5cqw] text-ink-faint">Notificado</span>
-        </div>
+// El audio que mandó la familia (AbuApp/components/MensajeVozModal.tsx): columna
+// centrada — micrófono, "AUDIO DE", el nombre grande, la onda, el tiempo y un
+// botón grande. Las barras son decorativas también en la app: leer el .ogg para
+// sacar amplitudes reales metería demora justo cuando ella espera escuchar.
+const MensajeVozApp = () => (
+  <div className="relative w-[82%] rounded-[5cqw] bg-white px-[6cqw] py-[7cqw] text-center shadow-[0_20px_50px_-25px_rgba(0,0,0,0.5)]">
+    <span className="absolute right-[2.5cqw] top-[2.5cqw] flex h-[11cqw] w-[11cqw] items-center justify-center rounded-full bg-black/20">
+      <X className="h-[5.5cqw] w-[5.5cqw] text-white" strokeWidth={2.5} />
+    </span>
+    <Mic className="mx-auto h-[9cqw] w-[9cqw] text-[#1A0A2E]" strokeWidth={2} />
+    <p className="mt-[3cqw] text-[4cqw] font-medium tracking-[0.12em] text-[#B45309]">AUDIO DE</p>
+    <p className="mt-[1cqw] text-[7cqw] font-bold leading-tight text-[#1A0A2E]">Carolina</p>
+    <div className="mt-[5cqw] flex h-[11cqw] items-center justify-center gap-[1.4cqw]">
+      {[0.45, 0.8, 0.35, 1, 0.62, 0.3, 0.9, 0.5, 0.75, 0.4, 0.95, 0.55].map((h, i) => (
+        <span
+          key={i}
+          className="w-[1.6cqw] shrink-0 rounded-full"
+          style={{ height: `${Math.max(12, h * 100)}%`, backgroundColor: i < 5 ? '#34D399' : '#7C6A9A', opacity: i < 5 ? 1 : 0.35 }}
+        />
       ))}
     </div>
-    <p className="mt-[5cqw] text-[5cqw] leading-snug text-ink-soft">Toda la familia avisada al instante.</p>
-  </PanelUI>
+    <p className="mt-[3cqw] text-[4cqw] text-[#7C6A9A]">0:06 / 0:14</p>
+    {/* Una sola línea, como en la app. `whitespace-nowrap` es lo que lo garantiza:
+        sin eso el texto se parte en dos y el botón queda el doble de alto. */}
+    <span className="mx-auto mt-[5cqw] flex w-fit items-center gap-[2cqw] whitespace-nowrap rounded-[4cqw] bg-[#34D399] px-[5cqw] py-[3.2cqw] shadow-[0_6px_14px_-4px_rgba(52,211,153,0.6)]">
+      <Play className="h-[4.4cqw] w-[4.4cqw] shrink-0 fill-white text-white" />
+      <span className="text-[4.4cqw] font-bold leading-none text-white">Volver a escuchar</span>
+    </span>
+    <p className="mt-[3.5cqw] text-[3.8cqw] text-[#7C6A9A]">Tocá afuera para cerrar</p>
+  </div>
 );
 
-const TarjetaLista = () => (
-  <PanelUI>
-    <div className="mb-[6cqw] flex items-center justify-between">
-      <span className="text-[5.5cqw] font-semibold text-ink">Lista del almacén</span>
-      <span className="text-[5cqw] text-ink-faint">4 cosas</span>
-    </div>
-    <div className="space-y-[4cqw]">
-      {['Pan casero', 'Leche descremada', 'Yerba', 'Pastillas de la presión'].map((item, i) => (
-        <div key={item} className="flex items-center gap-[5cqw]">
-          <div
-            className={`h-[7cqw] w-[7cqw] shrink-0 rounded-md ${
-              i === 0 ? 'bg-[#0071e3]' : 'border-[1.5px] border-ink-faint'
-            } flex items-center justify-center`}
-          >
-            {i === 0 && <Check className="h-[5cqw] w-[5cqw] text-white" strokeWidth={3} />}
-          </div>
-          <span className={`text-[6cqw] font-medium text-ink ${i === 0 ? 'line-through opacity-40' : ''}`}>{item}</span>
-        </div>
-      ))}
-    </div>
-  </PanelUI>
-);
+/* ── 3. Lo que le llega a la FAMILIA por Telegram ─────────────────────────── */
 
-const TarjetaMusica = () => (
-  <PanelUI>
-    <div className="flex items-center gap-[6cqw]">
-      <div className="flex h-[24cqw] w-[24cqw] shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-[#f2905c] to-[#d94f5c]">
-        <Music className="h-[10cqw] w-[10cqw] text-white" />
-      </div>
+// Burbuja de Telegram. La usan el SOS y el informe de la noche: ninguno de los dos
+// es una pantalla de la app — son mensajes que le llegan a la familia al teléfono.
+const BurbujaTelegram = ({ hora, children }: { hora: string; children: React.ReactNode }) => (
+  <div className="w-full rounded-[18px] bg-[#0f1720] p-[14px] shadow-[0_20px_50px_-25px_rgba(0,0,0,0.7)]">
+    <div className="mb-3 flex items-center gap-2.5">
+      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#2aabee] text-[13px] font-bold text-white">C</span>
       <div className="min-w-0">
-        <p className="truncate text-[6cqw] font-semibold text-ink">Cambalache</p>
-        <p className="truncate text-[5cqw] text-ink-faint">Tango argentino</p>
+        <p className="text-[13px] font-semibold leading-none text-white">CompañIA</p>
+        <p className="mt-1 text-[11px] leading-none text-white/40">bot</p>
       </div>
     </div>
-    <div className="mt-[6cqw] h-[2cqw] w-full overflow-hidden rounded-full bg-[#f5f5f7]">
-      <div className="h-full w-2/5 rounded-full bg-ink" />
+    <div className="rounded-[14px] rounded-tl-[4px] bg-[#182533] px-3.5 py-3">
+      {children}
+      <p className="mt-2 text-right text-[10px] text-white/35">{hora}</p>
     </div>
-    <div className="mt-[3cqw] flex justify-between text-[4.5cqw] text-ink-faint">
-      <span>1:12</span>
-      <span>3:04</span>
-    </div>
-  </PanelUI>
+  </div>
 );
 
-const TarjetaInforme = () => (
-  <PanelUI>
-    <div className="mb-[6cqw] flex items-center gap-[4cqw]">
-      <Heart className="h-[7cqw] w-[7cqw] text-[#e5484d]" />
-      <span className="text-[5.5cqw] font-semibold text-ink">Informe del día</span>
-    </div>
-    <div className="space-y-[4cqw]">
-      <div className="rounded-xl bg-[#f5f5f7] px-[6cqw] py-[4cqw]">
-        <p className="text-[5cqw] text-ink-faint">Ánimo</p>
-        <p className="text-[6cqw] font-semibold text-ink">Contenta · charló 14 veces</p>
-      </div>
-      <div className="rounded-xl bg-[#f5f5f7] px-[6cqw] py-[4cqw]">
-        <p className="text-[5cqw] text-ink-faint">Temas del día</p>
-        <p className="text-[6cqw] font-medium leading-snug text-ink">El casamiento de Tomás y el dolor de rodilla</p>
-      </div>
-      <div className="rounded-xl bg-emerald-500/10 px-[6cqw] py-[4cqw]">
-        <p className="text-[5.5cqw] font-medium text-emerald-700">Tomó los 3 medicamentos</p>
-      </div>
-    </div>
-  </PanelUI>
-);
-
-const TarjetaVision = () => (
-  <PanelUI>
-    <div className="mb-[5cqw] flex items-center gap-[4cqw]">
-      <Eye className="h-[7cqw] w-[7cqw] text-emerald-600" />
-      <span className="text-[5.5cqw] font-semibold text-ink">Leyendo</span>
-    </div>
-    <div className="rounded-xl bg-[#f5f5f7] p-[6cqw]">
-      <div className="space-y-[3cqw]">
-        <div className="h-[3cqw] w-4/5 rounded-full bg-ink/15" />
-        <div className="h-[3cqw] w-full rounded-full bg-ink/15" />
-        <div className="h-[3cqw] w-3/5 rounded-full bg-ink/15" />
-      </div>
-    </div>
-    <p className="mt-[5cqw] text-[5.5cqw] font-medium leading-snug text-ink">
-      «Ibuprofeno 400 mg. Un comprimido cada 8 horas.»
+// Texto literal de AbuApp/hooks/useRosita.ts → dispararSOS().
+const MensajeTelegramSOS = () => (
+  <BurbujaTelegram hora="21:04">
+    <p className="text-[14px] font-bold leading-snug text-white">
+      🆘 ALERTA SOS — Negrita necesita ayuda urgente.
     </p>
-  </PanelUI>
+    <p className="mt-2.5 text-[14px] leading-snug text-white/85">
+      Llamala de inmediato o andá a su casa.
+    </p>
+  </BurbujaTelegram>
 );
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   NAVEGACIÓN
-   ═══════════════════════════════════════════════════════════════════════════ */
+// El informe de la noche. NO es una pantalla de la app: es el mensaje de las 22:15.
+// La forma sale de AbuApp/lib/integraciones/informeFamilia.ts (armarMensajeResumen)
+// y las etiquetas de ánimo de etiquetasAnimo() — van con porcentaje, no en prosa.
+const MensajeTelegramInforme = () => (
+  <BurbujaTelegram hora="22:15">
+    <p className="text-[13.5px] font-bold leading-snug text-white">📋 Resumen del día de Negrita</p>
+    <p className="text-[12px] italic leading-snug text-white/50">martes 4 de agosto</p>
+    <p className="mt-2.5 text-[13px] leading-snug text-white/85">
+      <span className="font-bold text-white">😊 Estado de ánimo:</span> 😊 Contenta 71% · 😐 Normal 29%
+    </p>
+    <p className="mt-2.5 text-[13px] leading-snug text-white/85">
+      <span className="font-bold text-white">💬 Temas del día:</span>
+      <br />
+      El casamiento de Tomás y el dolor de rodilla.
+    </p>
+    <p className="mt-2.5 text-[13px] leading-snug text-white/85">
+      <span className="font-bold text-white">🎵 Música:</span> Sí ·{' '}
+      <span className="font-bold text-white">💬 Charlas:</span> 14 veces (2h 30min aprox.)
+    </p>
+    <p className="mt-2.5 text-[13px] leading-snug text-white/85">
+      <span className="font-bold text-white">📅 Agenda del día:</span> ✅ 3/3 (100%)
+    </p>
+  </BurbujaTelegram>
+);
 
 const Navbar = () => (
   <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/[0.08] bg-black/70 backdrop-blur-2xl backdrop-saturate-150">
@@ -868,7 +1124,7 @@ const Navbar = () => (
 // Solo desde `lg`: más abajo no hay margen y quedarían encima de las palabras.
 // Cada icono se sienta en la banda vertical de una parte del titular, y su
 // separación del borde depende de cuánto ocupa ESA línea: al lado de "más
-// sola." (la línea más ancha) van bien pegados al borde; al lado de "Nunca" o
+// solos." (la línea más ancha) van bien pegados al borde; al lado de "Nunca" o
 // del párrafo, que son más angostos, pueden acercarse al centro.
 const ICONOS_HERO = [
   { src: '/clock.png',  lado: 'izq', top: 'top-[7rem]',  x: 'left-[6vw]',  tam: 'w-[104px] xl:w-[150px]', delay: 0.3,  flot: 'flotar-a' },
@@ -915,7 +1171,17 @@ const Hero = () => (
           <Brand />
         </p>
       </Entrada>
-      <TituloPorLetra lineas={['Nunca', 'más sola.']} className="display" delayInicial={0.15} />
+      {/* El titular es UNA frase partida en dos tamaños: la primera mitad chica y la
+          segunda grande. Antes decía "Nunca más sola.", que le hablaba solo a las
+          mujeres — y la app la usan padres, madres, abuelos y abuelas. */}
+      <Entrada delay={0.1}>
+        {/* Más chica que `display-sm`: es la entrada de la frase, no su peso. El
+            titular grande tiene que seguir siendo lo primero que se lee. */}
+        <p className="mx-auto mb-2 max-w-3xl text-balance text-[clamp(1.3rem,2.8vw,2rem)] font-bold leading-tight tracking-[-0.01em] text-white/55">
+          Tus familiares queridos
+        </p>
+      </Entrada>
+      <TituloPorLetra lineas={['Nunca', 'más solos.']} className="display" delayInicial={0.25} />
       <Entrada delay={0.85}>
         <p className="copy-lead mx-auto mt-9 max-w-lg text-balance text-white/60">
           Una compañera de voz que escucha, recuerda y cuida a tu ser querido. Y mantiene a toda la familia cerca,
@@ -943,8 +1209,8 @@ const Hero = () => (
           <div className="flotar-a">
             <div className="w-[168px] -rotate-[7deg] lg:w-[190px]">
               <Telefono>
-                <PantallaApp dice="Te aviso a las ocho, quedate tranquila.">
-                  <TarjetaRecordatorio />
+                <PantallaApp dice="Te aviso a las ocho, quedate tranquila." expresion="ternura">
+                  <AvisoModalApp rotulo="⏰ ALARMA" banda="#E11D48" nombre="Pastilla de la presión" confirmar="Ya la tomé" />
                 </PantallaApp>
               </Telefono>
             </div>
@@ -966,7 +1232,7 @@ const Hero = () => (
             <div className="w-[168px] rotate-[7deg] lg:w-[190px]">
               <Telefono>
                 <PantallaApp dice="Te dejó un mensaje tu hija Carolina." expresion="feliz">
-                  <TarjetaMensajeFamilia />
+                  <MensajeVozApp />
                 </PantallaApp>
               </Telefono>
             </div>
@@ -1109,17 +1375,23 @@ const EscenaAcompana = () => (
     }
     visual={
       <div className="mx-auto flex w-full max-w-[520px] items-end justify-center gap-5">
+        {/* La radio ocupa el teléfono ENTERO, así que va en su propio aparato al
+            lado del que muestra la cara. Encimarla sobre los ojos sería inventar
+            una superposición que la app no hace. */}
         <div className="w-[190px] sm:w-[215px]">
           <Telefono>
-            <PantallaApp dice="Va un tango de los que te gustan." expresion="feliz">
-              <TarjetaMusica />
-            </PantallaApp>
+            <PantallaApp dice="Va un tango de los que te gustan." expresion="feliz" />
           </Telefono>
+        </div>
+        <div className="w-[190px] translate-y-6 sm:w-[215px]">
+          <TelefonoPantalla>
+            <PantallaRadioApp />
+          </TelefonoPantalla>
         </div>
         <div className="w-[190px] translate-y-10 sm:w-[215px]">
           <Telefono>
             <PantallaApp dice="Listo, te lo anoté en la lista.">
-              <TarjetaLista />
+              <PostItApp />
             </PantallaApp>
           </Telefono>
         </div>
@@ -1150,16 +1422,23 @@ const EscenaFamilia = () => (
         <div className="w-[190px] translate-y-10 sm:w-[215px]">
           <Telefono>
             <PantallaApp dice="Te dejó un mensaje tu hija Carolina." expresion="feliz">
-              <TarjetaMensajeFamilia />
+              <MensajeVozApp />
             </PantallaApp>
           </Telefono>
         </div>
+        {/* El informe NO es una pantalla de la app: es el mensaje de las 22:15 que
+            le llega a la familia. Por eso va como burbuja de Telegram, no adentro
+            del teléfono de ella. */}
         <div className="w-[190px] sm:w-[215px]">
           <Telefono>
-            <PantallaApp dice="Le mandé el resumen del día a la familia." expresion="ternura">
-              <TarjetaInforme />
-            </PantallaApp>
+            <PantallaApp dice="Le mandé el resumen del día a la familia." expresion="ternura" />
           </Telefono>
+        </div>
+        <div className="w-[210px] shrink-0 sm:w-[235px]">
+          <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/35">
+            Le llega a la familia
+          </p>
+          <MensajeTelegramInforme />
         </div>
       </div>
     }
@@ -1202,15 +1481,24 @@ const CitasUno = () => (
           fondo="card-dark"
           colorFrase="g-text g-siri"
         >
-          <div className="caja-ui mx-auto w-full max-w-[210px]">
-            <TarjetaRecordatorio />
+          {/* Pedirlo lo GUARDA: acá es donde queda. Pantalla entera, con las dos
+              secciones rotuladas y las filas blancas — el aviso cuando suena es
+              otra cosa (ver el teléfono de la izquierda arriba de todo). */}
+          <div className="mx-auto w-full max-w-[190px]">
+            <TelefonoPantalla>
+              <PantallaRecordatoriosApp />
+            </TelefonoPantalla>
           </div>
         </TarjetaCita>
       </Reveal>
       <Reveal delay={0.1}>
         <TarjetaCita frase="¿qué dice esta receta?" tema="claro" fondo="card-light" colorFrase="g-text g-violet">
-          <div className="caja-ui mx-auto w-full max-w-[210px]">
-            <TarjetaVision />
+          {/* El modo visión toma la pantalla entera: visor con esquinas de encuadre
+              y el estado abajo. Por eso va en su propio teléfono. */}
+          <div className="mx-auto w-full max-w-[190px]">
+            <TelefonoPantalla>
+              <PantallaVisionApp />
+            </TelefonoPantalla>
           </div>
         </TarjetaCita>
       </Reveal>
@@ -1223,8 +1511,10 @@ const CitasDos = () => (
     <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
       <Reveal>
         <TarjetaCita frase="poneme un tango" tema="claro" fondo="card-light" colorFrase="g-text g-teal">
-          <div className="caja-ui mx-auto w-full max-w-[210px]">
-            <TarjetaMusica />
+          <div className="mx-auto w-full max-w-[190px]">
+            <TelefonoPantalla>
+              <PantallaRadioApp />
+            </TelefonoPantalla>
           </div>
         </TarjetaCita>
       </Reveal>
@@ -1261,12 +1551,25 @@ const EscenaSOS = ({ onSaberMas }: { onSaberMas: () => void }) => (
       </Reveal>
       <div className="mt-12 flex flex-col items-center gap-12 lg:mt-16 lg:flex-row lg:gap-20">
         <Reveal delay={0.1} className="w-full lg:flex-1">
-          <div className="mx-auto w-[230px] sm:w-[260px]">
-            <Telefono>
-              <PantallaApp dice="Ya avisé a tu familia. Quedate tranquila que vienen." expresion="sorprendida">
-                <TarjetaSOS />
-              </PantallaApp>
-            </Telefono>
+          {/* Los dos lados de lo que pasa: lo que ella escucha y lo que le llega a
+              la familia. La frase de Rosita es literal (useRosita.ts, vozConFamilia)
+              y en su teléfono no aparece ninguna tarjeta, porque el SOS no abre
+              ninguna pantalla. */}
+          <div className="mx-auto flex w-full max-w-[430px] items-center justify-center gap-5 sm:gap-7">
+            <div className="w-[190px] shrink-0 sm:w-[215px]">
+              <Telefono>
+                <PantallaApp
+                  dice="Ya avisé a tu familia. Alguien va a comunicarse con vos pronto."
+                  expresion="sorprendida"
+                />
+              </Telefono>
+            </div>
+            <div className="min-w-0 flex-1">
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/35">
+                Le llega a la familia
+              </p>
+              <MensajeTelegramSOS />
+            </div>
           </div>
         </Reveal>
         <Reveal delay={0.18} className="w-full max-w-md lg:w-[360px] lg:shrink-0">
