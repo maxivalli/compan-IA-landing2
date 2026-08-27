@@ -70,6 +70,30 @@
     letter-spacing: -0.038em;
     font-weight: 700;
   }
+  /* El eslogan del hero. No usa `.display` porque `.display` está pensada para
+     titulares de 2 o 3 palabras: su piso de 3.4rem no le entra a «Una compañía»
+     en un teléfono, y ahí la palabra se partía por la mitad.
+
+     Los dos renglones van con `whitespace-nowrap`, así que el tamaño es lo ÚNICO
+     que los mantiene adentro de la pantalla: si se toca alguno de estos números,
+     medir de nuevo a 360 px y a 1600 px antes de dar nada por bueno. */
+  .titular-eslogan {
+    font-size: clamp(2.6rem, 13vw, 10rem);
+    line-height: 0.96;
+    letter-spacing: -0.045em;
+    font-weight: 700;
+  }
+  /* El segundo renglón es SIEMPRE el 52% del primero, en los tres tramos del
+     clamp. Poniéndole números sueltos, los dos crecían a ritmos distintos y la
+     proporción entre ellos cambiaba con el ancho de la ventana: a 830 px el de
+     abajo llegaba al 77% del de arriba y la jerarquía se perdía. El 52% es el
+     mismo que el de la intro del onboarding. */
+  .titular-eslogan-2 {
+    font-size: clamp(1.35rem, 6.76vw, 5.2rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
   .display-sm {
     font-size: clamp(2rem, 4.6vw, 3.4rem);
     line-height: 1.05;
@@ -107,7 +131,7 @@
     color: transparent;
     padding-bottom: 0.15em;
   }
-  .g-hero   { background-image: linear-gradient(96deg, #4a8cff, #7b5cf0 30%, #e0509a 64%, #ff7a3d); }
+  .g-hero   { background-image: linear-gradient(96deg, #ff66c4, #ffde59); }
   .g-navy   { background-image: linear-gradient(165deg, #0b2a57, #5340a0); }
   .g-teal   { background-image: linear-gradient(160deg, #3fa8b8, #0d2b58); }
   .g-violet { background-image: linear-gradient(160deg, #123a7a, #6a3f9e); }
@@ -221,7 +245,7 @@
   .g-hero-vivo {
     background-image: linear-gradient(
       96deg,
-      #4a8cff, #7b5cf0 14%, #e0509a 30%, #ff7a3d 50%, #e0509a 70%, #7b5cf0 86%, #4a8cff
+      #ff66c4, #ffde59 25%, #ff66c4 50%, #ffde59 75%, #ff66c4
     );
     background-size: 200% auto;
     animation: barrido 14s linear infinite;

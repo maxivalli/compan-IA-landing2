@@ -93,7 +93,10 @@ const Entrada = ({
   </motion.div>
 );
 
-const DEGRADADO_HERO = 'linear-gradient(96deg, #4a8cff, #7b5cf0 30%, #e0509a 64%, #ff7a3d)';
+// Los mismos dos colores que el eslogan de la intro del onboarding, en el mismo
+// orden. Es la primera pantalla de la app y la primera pantalla de la web: si
+// no son el mismo degradado, no se leen como la misma marca.
+const DEGRADADO_HERO = 'linear-gradient(96deg, #ff66c4, #ffde59)';
 
 // Titular que entra letra por letra: cada una sube, crece y aparece.
 //
@@ -107,38 +110,58 @@ const DEGRADADO_HERO = 'linear-gradient(96deg, #4a8cff, #7b5cf0 30%, #e0509a 64%
 //
 // Las letras van aria-hidden y el texto real viaja en aria-label, así un lector
 // de pantalla lee "Nunca más solos." y no letra por letra.
+type LineaTitulo = {
+  texto: string;
+  /** Clases propias: cada renglón puede tener su tamaño y su color. */
+  clase?: string;
+  /** Si lleva el degradado. Los que no, van con el color que traiga `clase`. */
+  degradado?: boolean;
+};
+
 const TituloPorLetra = ({
   lineas,
-  className = '',
   delayInicial = 0,
   paso = 0.045,
 }: {
-  lineas: string[];
-  className?: string;
+  lineas: LineaTitulo[];
   delayInicial?: number;
   paso?: number;
 }) => {
-  const total = lineas.reduce((acc, l) => acc + Array.from(l).length, 0);
+  // Dos cuentas distintas y a propósito.
+  //
+  // `n` es el orden de ENTRADA y corre por el titular entero: las letras del
+  // segundo renglón siguen después de las del primero, así la aparición se lee
+  // como un solo gesto y no como dos animaciones pegadas.
+  //
+  // `conDeg` es sólo para el degradado, y cuenta únicamente las letras que lo
+  // llevan. Si contara todas, el degradado se estiraría por debajo de un renglón
+  // que no lo usa y el primero terminaría cortado a mitad de camino: arrancaría
+  // en rosa y no llegaría nunca al amarillo.
+  const conDeg = lineas.filter(l => l.degradado).reduce((a, l) => a + Array.from(l.texto).length, 0);
   let n = 0;
+  let d = 0;
 
   return (
-    <h1 className={className} aria-label={lineas.join(' ')}>
+    <h1 aria-label={lineas.map(l => l.texto).join(' ')}>
       {lineas.map((linea, li) => (
-        <span key={li} className="block" aria-hidden="true">
-          {Array.from(linea).map((ch, i) => {
+        <span key={li} className={`block whitespace-nowrap ${linea.clase ?? ''}`} aria-hidden="true">
+          {Array.from(linea.texto).map((ch, i) => {
             const idx = n++;
+            const deg = linea.degradado
+              ? {
+                  backgroundImage: DEGRADADO_HERO,
+                  backgroundSize: `${conDeg * 100}% 100%`,
+                  backgroundPositionX: conDeg > 1 ? `${(d++ / (conDeg - 1)) * 100}%` : '50%',
+                  WebkitBackgroundClip: 'text' as const,
+                  backgroundClip: 'text' as const,
+                  color: 'transparent',
+                }
+              : undefined;
             return (
               <motion.span
                 key={i}
                 className="inline-block whitespace-pre"
-                style={{
-                  backgroundImage: DEGRADADO_HERO,
-                  backgroundSize: `${total * 100}% 100%`,
-                  backgroundPositionX: total > 1 ? `${(idx / (total - 1)) * 100}%` : '50%',
-                  WebkitBackgroundClip: 'text',
-                  backgroundClip: 'text',
-                  color: 'transparent',
-                }}
+                style={deg}
                 initial={{ opacity: 0, y: '0.4em', scale: 0.92 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: delayInicial + idx * paso, duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
@@ -1126,69 +1149,42 @@ const Navbar = () => (
 // separación del borde depende de cuánto ocupa ESA línea: al lado de "más
 // solos." (la línea más ancha) van bien pegados al borde; al lado de "Nunca" o
 // del párrafo, que son más angostos, pueden acercarse al centro.
-const ICONOS_HERO = [
-  { src: '/clock.png',  lado: 'izq', top: 'top-[7rem]',  x: 'left-[6vw]',  tam: 'w-[104px] xl:w-[150px]', delay: 0.3,  flot: 'flotar-a' },
-  { src: '/chat.png',   lado: 'der', top: 'top-[6rem]',  x: 'right-[7vw]', tam: 'w-[88px] xl:w-[128px]',  delay: 0.4,  flot: 'flotar-c' },
-  { src: '/health.png', lado: 'izq', top: 'top-[19rem]', x: 'left-[2vw]',  tam: 'w-[112px] xl:w-[168px]', delay: 0.52, flot: 'flotar-b' },
-  { src: '/note.png',   lado: 'der', top: 'top-[18rem]', x: 'right-[2vw]', tam: 'w-[100px] xl:w-[148px]', delay: 0.62, flot: 'flotar-a' },
-  { src: '/radio.png',  lado: 'izq', top: 'top-[31rem]', x: 'left-[7vw]',  tam: 'w-[84px] xl:w-[122px]',  delay: 0.74, flot: 'flotar-c' },
-  { src: '/camera.png', lado: 'der', top: 'top-[32rem]', x: 'right-[6vw]', tam: 'w-[96px] xl:w-[140px]',  delay: 0.84, flot: 'flotar-b' },
-] as const;
-
-const IconosHero = () => (
-  <>
-    {ICONOS_HERO.map(({ src, lado, top, x, tam, delay, flot }) => {
-      const desde = lado === 'izq' ? -180 : 180;
-      return (
-        <motion.div
-          key={src}
-          aria-hidden="true"
-          className={`pointer-events-none absolute z-0 hidden select-none lg:block ${top} ${x}`}
-          initial={{ opacity: 0, x: desde, scale: 0.5, rotate: lado === 'izq' ? -28 : 28 }}
-          animate={{ opacity: 1, x: 0, scale: 1, rotate: lado === 'izq' ? -7 : 7 }}
-          transition={{ delay, duration: 1.05, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className={flot}>
-            <img src={src} alt="" className={`${tam} h-auto drop-shadow-[0_22px_50px_rgba(0,0,0,0.7)]`} />
-          </div>
-        </motion.div>
-      );
-    })}
-  </>
-);
-
 const Hero = () => (
   <section id="top" className="relative overflow-hidden bg-black px-5 pt-28 pb-20 sm:pt-36">
     <div className="pointer-events-none absolute left-1/2 top-[-14%] -translate-x-1/2">
       <div className="siri-orb respirar h-[560px] w-[560px] sm:h-[900px] sm:w-[900px]" />
     </div>
 
-    <IconosHero />
+    <div className="relative z-10 mx-auto max-w-6xl text-center">
+      {/* Lo primero que se ve es el eslogan, el mismo que cierra la intro del
+          onboarding y letra por letra. Arriba tenía el nombre de la marca y una
+          línea de entrada («Para tus familiares queridos»); las dos se sacaron a
+          pedido del dueño. La jerarquía es la de la app: arriba lo que la frase
+          DICE, en degradado; abajo el cuándo, más chico y en blanco apagado.
 
-    <div className="relative z-10 mx-auto max-w-5xl text-center">
-      <Entrada>
-        <p className="eyebrow mb-8 text-white/45">
-          <Brand />
-        </p>
-      </Entrada>
-      {/* El titular es UNA frase partida en dos tamaños: la primera mitad chica y la
-          segunda grande. Antes decía "Nunca más sola.", que le hablaba solo a las
-          mujeres — y la app la usan padres, madres, abuelos y abuelas. */}
-      <Entrada delay={0.1}>
-        {/* Más chica que `display-sm`: es la entrada de la frase, no su peso. El
-            titular grande tiene que seguir siendo lo primero que se lee. */}
-        <p className="mx-auto mb-2 max-w-3xl text-balance text-[clamp(1.3rem,2.8vw,2rem)] font-bold leading-tight tracking-[-0.01em] text-white/55">
-          Tus familiares queridos
-        </p>
-      </Entrada>
-      <TituloPorLetra lineas={['Nunca', 'más solos.']} className="display" delayInicial={0.25} />
-      <Entrada delay={0.85}>
-        <p className="copy-lead mx-auto mt-9 max-w-lg text-balance text-white/60">
+          Los dos renglones van con SU tamaño y no con `.display`, que es la clase
+          de los titulares de capítulo (2 o 3 palabras). Acá son 12 y 19
+          caracteres: con el piso de `.display` la palabra «compañía» se partía y
+          la «ía» caía al renglón de abajo. Los tamaños de acá están medidos para
+          que ninguno de los dos se parta nunca — ver `whitespace-nowrap`. */}
+      <TituloPorLetra
+        lineas={[
+          { texto: 'Una compañía', clase: 'titular-eslogan', degradado: true },
+          { texto: 'para todos los días', clase: 'titular-eslogan-2 mt-1 text-white/70' },
+        ]}
+        delayInicial={0.1}
+      />
+      <Entrada delay={0.7}>
+        {/* Ancho pensado para que entre en DOS renglones, con el corte cayendo
+            entre las dos oraciones. En teléfono no hay forma —serían 62 caracteres
+            por renglón en 390 px— así que ahí se deja envolver: antes que dos
+            renglones vale más que se pueda leer. */}
+        <p className="copy-lead mx-auto mt-9 max-w-[58rem] text-balance text-white/60">
           Una compañera de voz que escucha, recuerda y cuida a tu ser querido. Y mantiene a toda la familia cerca,
           aunque estén lejos.
         </p>
       </Entrada>
-      <Entrada delay={1}>
+      <Entrada delay={0.85}>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-6">
           <BotonLleno href={LATEST_ANDROID_BUILD_URL} tono="blanco">
             Probá 7 días gratis
