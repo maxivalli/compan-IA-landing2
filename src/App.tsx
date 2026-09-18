@@ -248,7 +248,7 @@ const Telefono = ({ children, className = '' }: { children: React.ReactNode; cla
    PANTALLAS DE LA APP — recreadas en código
    ═══════════════════════════════════════════════════════════════════════════ */
 
-/* ── El rostro de Rosita ─────────────────────────────────────────────────────
+/* ── El rostro de Nina ─────────────────────────────────────────────────────
    NO hay boca: son solo los dos ojos. Las formas salen tal cual de
    AbuApp/components/RostroAsistente.tsx (`formaBase`), que las define sobre un
    rostro de referencia de 360 px de ancho:
@@ -752,7 +752,7 @@ const PantallaRosita = ({ expresion = 'neutral', reposo = false }: { expresion?:
   </div>
 );
 
-// Pantalla con una acción en curso: el mismo rostro, lo que Rosita está
+// Pantalla con una acción en curso: el mismo rostro, lo que Nina está
 // diciendo, y abajo la tarjeta de lo que hizo.
 // Un teléfono mostrando una pantalla ENTERA de la app (la radio, los avisos, el
 // visor). Va al lado del que muestra la cara, no encima: esas pantallas ocupan el
@@ -935,7 +935,7 @@ const PantallaRecordatoriosApp = () => (
     <div className="mt-[5cqw] flex items-start gap-[2.5cqw] rounded-[4cqw] bg-white px-[4cqw] py-[3cqw]">
       <AlertCircle className="mt-[0.4cqw] h-[3.6cqw] w-[3.6cqw] shrink-0 text-[#A855F7]" strokeWidth={2.2} />
       <p className="text-[3cqw] leading-relaxed text-[#7C6A9A]">
-        Pedíselos a Rosita hablando: «acordate de mi pastilla a las ocho».
+        Pedíselos a Nina hablando: «acordate de mi pastilla a las ocho».
       </p>
     </div>
     </div>
@@ -1337,7 +1337,7 @@ const EscenaEnCasa = () => (
     }
     copy={
       <>
-        Decile «Hola Rosita» desde cualquier rincón y ya está escuchando. Sin botones, sin menús, sin aprender nada. Ella
+        Decile «Hola Nina» desde cualquier rincón y ya está escuchando. Sin botones, sin menús, sin aprender nada. Ella
         se acuerda de la charla de ayer, de los remedios y de los nombres de todos los nietos.
       </>
     }
@@ -1409,7 +1409,7 @@ const EscenaFamilia = () => (
     }
     copy={
       <>
-        Los hijos mandan un audio o una foto por Telegram y Rosita se los lee en voz alta. Cada noche, la familia recibe
+        Los hijos mandan un audio o una foto por Telegram y Nina se los lee en voz alta. Cada noche, la familia recibe
         un informe: cómo estuvo de ánimo, de qué habló, si tomó los remedios.
       </>
     }
@@ -1461,7 +1461,7 @@ const TarjetaCita = ({
 }) => (
   <div className={`card relative flex min-h-[440px] flex-col p-8 sm:min-h-[520px] sm:p-10 ${fondo}`}>
     <p className={`display-sm ${tema === 'claro' ? 'text-ink' : 'text-white'}`}>
-      <span className={colorFrase}>Rosita,</span> {frase}
+      <span className={colorFrase}>Nina,</span> {frase}
     </p>
     <div className="mt-auto pt-10">{children}</div>
   </div>
@@ -1548,7 +1548,7 @@ const EscenaSOS = ({ onSaberMas }: { onSaberMas: () => void }) => (
       <div className="mt-12 flex flex-col items-center gap-12 lg:mt-16 lg:flex-row lg:gap-20">
         <Reveal delay={0.1} className="w-full lg:flex-1">
           {/* Los dos lados de lo que pasa: lo que ella escucha y lo que le llega a
-              la familia. La frase de Rosita es literal (useRosita.ts, vozConFamilia)
+              la familia. La frase de Nina es literal (useRosita.ts, vozConFamilia)
               y en su teléfono no aparece ninguna tarjeta, porque el SOS no abre
               ninguna pantalla. */}
           <div className="mx-auto flex w-full max-w-[430px] items-center justify-center gap-5 sm:gap-7">
@@ -1570,7 +1570,7 @@ const EscenaSOS = ({ onSaberMas }: { onSaberMas: () => void }) => (
         </Reveal>
         <Reveal delay={0.18} className="w-full max-w-md lg:w-[360px] lg:shrink-0">
           <p className="copy-lead text-white">
-            Un botón, o simplemente decirlo. Si Rosita escucha «me caí», «me duele el pecho» o «ayuda», avisa a toda la
+            Un botón, o simplemente decirlo. Si Nina escucha «me caí», «me duele el pecho» o «ayuda», avisa a toda la
             familia por Telegram — sin esperar a que nadie pregunte.
           </p>
           <div className="mt-8">
@@ -1599,7 +1599,7 @@ const Voces = () => {
   const voces = [
     {
       id: 'rosita',
-      name: 'Rosita',
+      name: 'Nina',
       desc: 'Cálida y cantarina, con el acento del norte del país.',
       file: '/voz-nortena.mp3',
       fondo:
@@ -1702,7 +1702,7 @@ const Voces = () => {
         {/* Aclaración del asterisco de los nombres */}
         <Reveal delay={0.15}>
           <p className="mt-10 max-w-xl text-[13px] leading-relaxed text-white/35">
-            <span className="align-super text-[0.75em]">*</span> Rosita y Juanchi son los nombres por defecto. Podés
+            <span className="align-super text-[0.75em]">*</span> Nina y Juanchi son los nombres por defecto. Podés
             ponerle a tu asistente el nombre que quieras desde la configuración de la app.
           </p>
         </Reveal>
@@ -1721,9 +1721,9 @@ const Funciones = ({ onVision, onTelegram }: { onVision: () => void; onTelegram:
     { icon: Calendar, title: 'Asistencia de memoria', desc: 'Recordatorios de citas, eventos familiares y medicación.' },
     { icon: Music, title: 'Música y juegos', desc: 'Entretenimiento personalizado y ejercicios mentales.' },
     { icon: Clock, title: 'Recordatorios', desc: 'Avisos diarios para actividades y bienestar.' },
-    { icon: Bell, title: 'Alarmas por voz', desc: '«Rosita, despertame mañana a las 8» — sin tocar nada.' },
+    { icon: Bell, title: 'Alarmas por voz', desc: '«Nina, despertame mañana a las 8» — sin tocar nada.' },
     { icon: Headphones, title: 'Soporte 24/7', desc: 'Acceso continuo y actualizaciones automáticas.' },
-    { icon: UserCheck, title: 'Detección de presencia', desc: 'Rosita nota cuando alguien se acerca y lo saluda.' },
+    { icon: UserCheck, title: 'Detección de presencia', desc: 'Nina nota cuando alguien se acerca y lo saluda.' },
     { icon: Lightbulb, title: 'Casa inteligente', desc: 'Luces y enchufes por voz con SmartThings.' },
     { icon: Radio, title: 'Info en tiempo real', desc: 'Clima, noticias, búsquedas y Wikipedia con una pregunta.' },
   ];
@@ -1742,7 +1742,7 @@ const Funciones = ({ onVision, onTelegram }: { onVision: () => void; onTelegram:
     {
       icon: Subtitles,
       title: 'Subtítulos en pantalla',
-      desc: 'Todo lo que dice Rosita aparece en texto grande, en tiempo real.',
+      desc: 'Todo lo que dice Nina aparece en texto grande, en tiempo real.',
     },
   ];
 
@@ -2437,7 +2437,7 @@ const CierrePrivacidad = () => (
       <img src="/logo.png" alt="" className="mx-auto mb-10 h-14 w-14 rounded-2xl object-contain" />
       <h2 className="display-md text-balance text-white">La compañía más discreta.</h2>
       <p className="copy-body mx-auto mt-9 text-white/55">
-        Rosita aprende de tu ser querido, pero nadie más escucha. El audio se transcribe en el momento y se descarta: las
+        Nina aprende de tu ser querido, pero nadie más escucha. El audio se transcribe en el momento y se descarta: las
         conversaciones no se guardan en ningún servidor. El perfil, los gustos y los recuerdos viven en el dispositivo.
         La familia recibe resúmenes de bienestar, nunca la charla completa. Y por supuesto, no se comparte nada con
         anunciantes.
@@ -2574,7 +2574,7 @@ const ModalVision = ({ onClose }: { onClose: () => void }) => (
     />
     <ListaModal>
       <ItemModal titulo="Lectura de textos y documentos">
-        ¿Una carta, una receta, una boleta? Solo decile <span className="italic">«Rosita, ¿qué dice acá?»</span> y
+        ¿Una carta, una receta, una boleta? Solo decile <span className="italic">«Nina, ¿qué dice acá?»</span> y
         apuntá el teléfono. La cámara trasera se activa sola con una cuenta regresiva y lee todo el texto en voz alta.
       </ItemModal>
       <ItemModal titulo="Fotos de la familia narradas">

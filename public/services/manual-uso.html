@@ -179,7 +179,7 @@
     <div class="toc-title">Contenido</div>
     <a href="#onboarding"><span class="toc-dot"></span> Primeros pasos (Onboarding)</a>
     <a href="#pantalla-principal"><span class="toc-dot"></span> Pantalla principal</a>
-    <a href="#hablar"><span class="toc-dot"></span> Hablar con Rosita</a>
+    <a href="#hablar"><span class="toc-dot"></span> Hablar con Nina</a>
     <a href="#musica"><span class="toc-dot"></span> Música y radio</a>
     <a href="#juegos"><span class="toc-dot"></span> Juegos y entretenimiento</a>
     <a href="#notas"><span class="toc-dot"></span> Notas guardadas</a>
@@ -221,7 +221,7 @@
         <div class="step-num">0</div>
         <div>
           <h4>Bienvenida</h4>
-          <p>Presentación animada de la app con el avatar de Rosita. Muestra las funciones principales en un carrusel con dots indicadores: charla y compañía, música y radio, recordatorios de medicamentos, clima en tiempo real, alertas a la familia y botón de emergencia.</p>
+          <p>Presentación animada de la app con el avatar de Nina. Muestra las funciones principales en un carrusel con dots indicadores: charla y compañía, música y radio, recordatorios de medicamentos, clima en tiempo real, alertas a la familia y botón de emergencia.</p>
         </div>
       </div>
       <div class="step-arrow">↓</div>
@@ -251,7 +251,7 @@
         <div class="step-num">3</div>
         <div>
           <h4>Nombre y género</h4>
-          <p>Se ingresa el nombre con el que Rosita va a llamar al usuario (ej: "Negrita", "Carmen", "Abuela"). También se elige cómo preferís que te trate: Mujer/Abuela o Hombre/Abuelo, para que Rosita use la concordancia correcta en las respuestas.</p>
+          <p>Se ingresa el nombre con el que Nina va a llamar al usuario (ej: "Negrita", "Carmen", "Abuela"). También se elige cómo preferís que te trate: Mujer/Abuela o Hombre/Abuelo, para que Nina use la concordancia correcta en las respuestas.</p>
         </div>
       </div>
       <div class="step-arrow">↓</div>
@@ -267,7 +267,7 @@
         <div class="step-num">5</div>
         <div>
           <h4>Nombre y voz de la asistente</h4>
-          <p>Se puede cambiar el nombre "Rosita" por cualquier otro. Hay 2 voces disponibles con botón de muestra de audio por cada una:</p>
+          <p>Se puede cambiar el nombre "Nina" por cualquier otro. Hay 2 voces disponibles con botón de muestra de audio por cada una:</p>
           <ul>
             <li>👩 Voz femenina</li>
             <li>👨 Voz masculina</li>
@@ -279,7 +279,7 @@
         <div class="step-num">6</div>
         <div>
           <h4>Entorno familiar</h4>
-          <p>Datos opcionales para que Rosita conozca el entorno del usuario: cónyuge/pareja, hijos, nietos, hermanos y mascotas (separados por coma). Esta información se usa en las conversaciones para personalizar las respuestas. Se puede completar después.</p>
+          <p>Datos opcionales para que Nina conozca el entorno del usuario: cónyuge/pareja, hijos, nietos, hermanos y mascotas (separados por coma). Esta información se usa en las conversaciones para personalizar las respuestas. Se puede completar después.</p>
         </div>
       </div>
       <div class="step-arrow">↓</div>
@@ -305,7 +305,7 @@
       <div class="section-icon" style="background:#fce7f3">🏠</div>
       <div>
         <h2>Pantalla principal</h2>
-        <p>La pantalla donde vive Rosita. Todo arranca desde acá.</p>
+        <p>La pantalla donde vive Nina. Todo arranca desde acá.</p>
       </div>
     </div>
 
@@ -343,7 +343,7 @@
         <h3>🔕 Modo No Molestar</h3>
         <ul>
           <li>Botón flotante en la esquina superior izquierda</li>
-          <li>Cuando está activo: Rosita no escucha ni responde</li>
+          <li>Cuando está activo: Nina no escucha ni responde</li>
           <li>El avatar muestra los ojos entornados y una cremallera animada en la boca</li>
           <li>Se activa tocando el botón o por voz: <span class="cmd">hacé silencio</span> / <span class="cmd">modo no molestar</span></li>
           <li>Para desactivar: tocar el botón nuevamente</li>
@@ -355,7 +355,7 @@
           <li>Si hay listas creadas por voz (compras, tareas, etc.) aparecen como post-its apilados</li>
           <li>Tocando el stack se abre el detalle completo</li>
           <li>Cada lista tiene un color distinto</li>
-          <li>Se crean y se borran hablando con Rosita</li>
+          <li>Se crean y se borran hablando con Nina</li>
         </ul>
       </div>
     </div>
@@ -368,7 +368,7 @@
     <div class="section-header">
       <div class="section-icon" style="background:#fce7f3">🎙️</div>
       <div>
-        <h2>Hablar con Rosita</h2>
+        <h2>Hablar con Nina</h2>
         <p>Cómo funciona el reconocimiento de voz y la conversación.</p>
       </div>
     </div>
@@ -379,15 +379,15 @@
         <ul>
           <li>Usa <strong>Deepgram Nova-3</strong> vía conexión WebSocket permanente</li>
           <li>No hace falta tocar nada — solo hablar</li>
-          <li>Durante la respuesta de Rosita el micrófono se pausa (anti-eco) y se reactiva automáticamente al terminar</li>
+          <li>Durante la respuesta de Nina el micrófono se pausa (anti-eco) y se reactiva automáticamente al terminar</li>
           <li>Si la conexión se interrumpe, se reconecta sola con backoff exponencial</li>
         </ul>
       </div>
       <div class="card">
-        <h3>📍 ¿Cuándo responde Rosita?</h3>
+        <h3>📍 ¿Cuándo responde Nina?</h3>
         <p>Responde si se cumple al menos una de estas condiciones:</p>
         <ul>
-          <li>Se menciona su nombre en cualquier parte de la frase ("Rosita, …" o "… Rosita")</li>
+          <li>Se menciona su nombre en cualquier parte de la frase ("Nina, …" o "… Nina")</li>
           <li>Hubo una charla hace menos de 60 segundos <em>y</em> no hay música activa</li>
         </ul>
         <p style="margin-top:8px;font-size:12px;color:#888">Con música activa: el micrófono sigue abierto pero solo responde si se menciona su nombre. Al responder, baja el volumen de la música automáticamente.</p>
@@ -412,7 +412,7 @@
       <div class="card">
         <h3>💬 Charla proactiva</h3>
         <ul>
-          <li>Si pasan 2 horas sin charla, Rosita toma la iniciativa</li>
+          <li>Si pasan 2 horas sin charla, Nina toma la iniciativa</li>
           <li>Solo entre las 9h y las 23h (configurable)</li>
           <li>Temas varían según el momento del día</li>
           <li>25% de las veces propone entretenimiento: juego, chiste o noticia del día</li>
@@ -428,7 +428,7 @@
           <li>Horarios, direcciones, farmacias, hospitales, bancos, etc.</li>
           <li>Noticias, deportes, política, economía, clima</li>
           <li>Wikipedia para información general</li>
-          <li>Rosita busca y responde sin que el usuario haga nada extra</li>
+          <li>Nina busca y responde sin que el usuario haga nada extra</li>
         </ul>
       </div>
     </div>
@@ -438,7 +438,7 @@
       <table>
         <thead><tr><th>Decir</th><th>Resultado</th></tr></thead>
         <tbody>
-          <tr><td>"Rosita, contame un chiste"</td><td>Cuenta un chiste rioplatense con pausa para el remate</td></tr>
+          <tr><td>"Nina, contame un chiste"</td><td>Cuenta un chiste rioplatense con pausa para el remate</td></tr>
           <tr><td>"¿Qué tiempo hace hoy?"</td><td>Responde con temperatura, descripción y pronóstico</td></tr>
           <tr><td>"Jugamos a algo"</td><td>Propone trivia, adivinanza, trabalenguas, refrán o cálculo</td></tr>
           <tr><td>"Avisame en 20 minutos"</td><td>Programa un timer y avisa cuando vence</td></tr>
@@ -466,7 +466,7 @@
 
     <div class="alert azul">
       <span class="alert-icon">🎵</span>
-      Para parar la música, decile <strong>"pará la música"</strong> o tocá la pantalla. Rosita avisa cómo pararla al arrancar.
+      Para parar la música, decile <strong>"pará la música"</strong> o tocá la pantalla. Nina avisa cómo pararla al arrancar.
     </div>
 
     <div class="cards" style="margin-top:12px">
@@ -494,7 +494,7 @@
         <h3>⏰ Timer nocturno automático</h3>
         <ul>
           <li>Al arrancar música, se programa un timer de 30 minutos</li>
-          <li>Si es horario nocturno y el timer se dispara, Rosita pregunta: "¿Seguís ahí?"</li>
+          <li>Si es horario nocturno y el timer se dispara, Nina pregunta: "¿Seguís ahí?"</li>
           <li>Si no hay respuesta en 2 minutos, para la música automáticamente</li>
           <li>Función de seguridad para evitar que la música quede sonando toda la noche</li>
         </ul>
@@ -503,7 +503,7 @@
 
     <div class="alert azul" style="margin-top:12px">
       <span class="alert-icon">💡</span>
-      También se puede pedir cualquier radio por nombre libre: "Poné Radio Universidad", "Buscame una radio de folclore". Si existe en Radio Browser, Rosita la encuentra.
+      También se puede pedir cualquier radio por nombre libre: "Poné Radio Universidad", "Buscame una radio de folclore". Si existe en Radio Browser, Nina la encuentra.
     </div>
   </div>
 
@@ -536,7 +536,7 @@
         <ul>
           <li>Tablero de hasta 3x3 fichas cubiertas</li>
           <li>4 sets de emojis: formas, animales, frutas, objetos</li>
-          <li>Rosita pide buscar algo específico: "Encontrá el gato"</li>
+          <li>Nina pide buscar algo específico: "Encontrá el gato"</li>
           <li>3 niveles de dificultad (4, 6 y 9 fichas)</li>
         </ul>
       </div>
@@ -554,7 +554,7 @@
     <h3 style="font-size:14px;font-weight:700;margin:20px 0 10px;color:var(--violeta)">🗣️ JUEGOS CONVERSACIONALES (Por voz)</h3>
     <div class="alert azul">
       <span class="alert-icon">🎲</span>
-      Decir: <span class="cmd">"Jugamos a algo"</span> o <span class="cmd">"Contame un chiste"</span>. Rosita elige automáticamente sin repetir los últimos 20 juegos o 10 chistes.
+      Decir: <span class="cmd">"Jugamos a algo"</span> o <span class="cmd">"Contame un chiste"</span>. Nina elige automáticamente sin repetir los últimos 20 juegos o 10 chistes.
     </div>
     <div class="cards" style="margin-top:12px">
       <div class="card">
@@ -591,13 +591,13 @@
       <div class="section-icon" style="background:#fef3c7">📝</div>
       <div>
         <h2>Notas guardadas</h2>
-        <p>Información completa que Rosita guarda automáticamente para consultar después.</p>
+        <p>Información completa que Nina guarda automáticamente para consultar después.</p>
       </div>
     </div>
 
     <div class="alert azul">
       <span class="alert-icon">✨</span>
-      Rosita decide automáticamente cuándo vale la pena guardar una nota completa. No hace falta pedirlo.
+      Nina decide automáticamente cuándo vale la pena guardar una nota completa. No hace falta pedirlo.
     </div>
 
     <div class="cards" style="margin-top:12px">
@@ -609,7 +609,7 @@
           <li>"Contame sobre la Revolución de Mayo"</li>
           <li>"¿Qué es el Parque Nacional Iguazú?"</li>
         </ul>
-        <p style="margin-top:8px">Rosita responde con un resumen breve y 30-60 segundos después avisa: "Te dejé una nota con información sobre..."</p>
+        <p style="margin-top:8px">Nina responde con un resumen breve y 30-60 segundos después avisa: "Te dejé una nota con información sobre..."</p>
       </div>
       <div class="card naranja">
         <h3>🍳 Recetas completas</h3>
@@ -618,7 +618,7 @@
           <li>"¿Cómo hago budín de pan?"</li>
           <li>"Receta de empanadas"</li>
         </ul>
-        <p style="margin-top:8px">Rosita explica lo básico y genera una nota con ingredientes, cantidades y pasos detallados.</p>
+        <p style="margin-top:8px">Nina explica lo básico y genera una nota con ingredientes, cantidades y pasos detallados.</p>
       </div>
       <div class="card naranja">
         <h3>🔍 Búsquedas generales</h3>
@@ -673,7 +673,7 @@
 
     <div class="alert azul">
       <span class="alert-icon">💡</span>
-      Los recordatorios se crean hablando con Rosita. Esta pantalla es solo para consulta y eliminación. Los pasados se limpian automáticamente.
+      Los recordatorios se crean hablando con Nina. Esta pantalla es solo para consulta y eliminación. Los pasados se limpian automáticamente.
     </div>
   </div>
 
@@ -692,7 +692,7 @@
       <h3>😊 Estado de ánimo <span class="badge">Menú → Estado de ánimo</span></h3>
       <p>Muestra el registro emocional agrupado por día, del más reciente al más antiguo. Si hay PIN configurado, se solicita al entrar.</p>
       <ul>
-        <li>Rosita registra el estado de ánimo automáticamente después de cada charla</li>
+        <li>Nina registra el estado de ánimo automáticamente después de cada charla</li>
         <li>5 estados: 😊 Feliz · 😢 Triste · 😮 Sorprendida · 🤔 Pensativa · 😐 Neutral</li>
         <li>Cada día muestra la emoción predominante con un chip de color</li>
         <li>Hora exacta de cada registro</li>
@@ -750,7 +750,7 @@
 
     <div class="view-box violeta">
       <h3>📖 Guía <span class="badge">Menú → Guía de uso</span></h3>
-      <p>Pantalla de referencia rápida con ejemplos de frases y funciones organizadas por categoría. Ideal para consultar qué se le puede pedir a Rosita sin necesidad de saber los comandos exactos.</p>
+      <p>Pantalla de referencia rápida con ejemplos de frases y funciones organizadas por categoría. Ideal para consultar qué se le puede pedir a Nina sin necesidad de saber los comandos exactos.</p>
     </div>
   </div>
 
@@ -815,7 +815,7 @@
       <div class="card rojo">
         <h3>🗣️ SOS por voz</h3>
         <ul>
-          <li>Rosita detecta síntomas graves en la conversación</li>
+          <li>Nina detecta síntomas graves en la conversación</li>
           <li>Ejemplos: "me duele el pecho", "me caí", "no puedo respirar"</li>
           <li>Avisa con calma que ya alertó a la familia</li>
           <li>Cooldown de 30 minutos para alertas repetidas</li>
@@ -826,7 +826,7 @@
         <ul>
           <li>El acelerómetro detecta caída libre seguida de impacto</li>
           <li>Alerta automática sin que el usuario haga nada</li>
-          <li>Rosita habla: "¿Estás bien? Ya avisé a tu familia."</li>
+          <li>Nina habla: "¿Estás bien? Ya avisé a tu familia."</li>
           <li>Cooldown de 60 segundos para evitar falsos positivos</li>
           <li>⚠️ Disponible solo en el plan Companion. Requiere la pulsera de detección (se vende por separado)</li>
         </ul>
@@ -863,7 +863,7 @@
         <h3>📩 Mensajes de voz entrantes</h3>
         <ul>
           <li>La familia manda mensajes de voz al bot</li>
-          <li>Rosita anuncia quién lo mandó y lo reproduce en voz alta</li>
+          <li>Nina anuncia quién lo mandó y lo reproduce en voz alta</li>
           <li>Pregunta si quiere responder; si acepta, graba y envía</li>
           <li>Si es de noche (22h–9h), los mensajes quedan en cola</li>
         </ul>
@@ -872,7 +872,7 @@
         <h3>🖼️ Fotos recibidas</h3>
         <ul>
           <li>La familia manda una foto al bot</li>
-          <li>Rosita la describe en voz alta con Claude Vision</li>
+          <li>Nina la describe en voz alta con Claude Vision</li>
           <li>Ejemplo: "Tu hija te manda una foto de los chicos en el parque"</li>
           <li>La foto aparece en la pantalla mientras la describe</li>
         </ul>
@@ -907,7 +907,7 @@
         <h3>📨 Mensajes directos</h3>
         <ul>
           <li>Decir: "Avisale a Juan que estoy bien"</li>
-          <li>Rosita envía el mensaje por Telegram al contacto indicado</li>
+          <li>Nina envía el mensaje por Telegram al contacto indicado</li>
           <li>Confirma en voz cuando lo mandó</li>
         </ul>
       </div>
@@ -927,7 +927,7 @@
         <ul>
           <li>Formato: <span class="cmd">/recordatorio texto, fecha, hora</span></li>
           <li>Ejemplo: <span class="cmd">/recordatorio tomar pastilla, 2026-04-26, 14:00</span></li>
-          <li>Agrega un recordatorio remoto que Rosita avisará en el momento indicado</li>
+          <li>Agrega un recordatorio remoto que Nina avisará en el momento indicado</li>
         </ul>
       </div>
     </div>
@@ -987,7 +987,7 @@
       <div class="section-icon" style="background:#dcfce7">👁️</div>
       <div>
         <h2>Cámara y visión</h2>
-        <p>Dos modos para que Rosita "vea" lo que tiene delante.</p>
+        <p>Dos modos para que Nina "vea" lo que tiene delante.</p>
       </div>
     </div>
 
@@ -996,7 +996,7 @@
         <h3>📄 Lectura de texto</h3>
         <p>Decir: <span class="cmd">"¿Qué dice acá?"</span>, <span class="cmd">"Leeme esto"</span>, <span class="cmd">"¿Qué ves?"</span></p>
         <ul>
-          <li>Rosita indica que apunte la cámara trasera</li>
+          <li>Nina indica que apunte la cámara trasera</li>
           <li>Cuenta regresiva de 3 segundos y captura automática</li>
           <li>Claude Vision lee el texto en voz alta</li>
           <li>Los números se leen dígito por dígito</li>
@@ -1008,8 +1008,8 @@
         <p>Activado mediante frases de descripción visual.</p>
         <ul>
           <li>La cámara queda abierta en pantalla completa</li>
-          <li>El usuario apunta a lo que quiere que Rosita vea</li>
-          <li>Rosita captura y describe lo que ve</li>
+          <li>El usuario apunta a lo que quiere que Nina vea</li>
+          <li>Nina captura y describe lo que ve</li>
           <li>Se puede pedir nueva descripción hablando de nuevo</li>
           <li>Botón Cerrar para salir del modo</li>
         </ul>
@@ -1044,13 +1044,13 @@
           <li>Temperatura actual y descripción</li>
           <li>Ciudad detectada automáticamente por GPS</li>
           <li>Pronóstico de los próximos 2–3 días (máximas y mínimas)</li>
-          <li>Rosita conoce el clima todo el tiempo — sin necesidad de preguntar</li>
+          <li>Nina conoce el clima todo el tiempo — sin necesidad de preguntar</li>
         </ul>
       </div>
       <div class="card">
         <h3>⛈️ Alerta de mal tiempo</h3>
         <ul>
-          <li>Rosita avisa proactivamente a las 9h y a las 14h si hay tormenta, granizo o lluvia intensa</li>
+          <li>Nina avisa proactivamente a las 9h y a las 14h si hay tormenta, granizo o lluvia intensa</li>
           <li>Ejemplo: "Carmen, afuera hay tormenta. Si pensabas salir, mejor esperá."</li>
           <li>Una sola vez por checkpoint por día</li>
         </ul>
@@ -1123,7 +1123,7 @@
       <div class="section-icon" style="background:#ede9fe">👤</div>
       <div>
         <h2>Detección de presencia</h2>
-        <p>Rosita saluda cuando alguien se acerca a la pantalla.</p>
+        <p>Nina saluda cuando alguien se acerca a la pantalla.</p>
       </div>
     </div>
 
@@ -1146,7 +1146,7 @@
       <div class="card violeta">
         <h3>🗣️ Qué hace al detectar</h3>
         <ul>
-          <li>Rosita saluda automáticamente: "¡Carmen! ¡Qué bueno verte!"</li>
+          <li>Nina saluda automáticamente: "¡Carmen! ¡Qué bueno verte!"</li>
           <li>Sale del modo watching inmediatamente</li>
           <li>Cooldown de 1 minuto antes de poder saludar de nuevo</li>
           <li>Respeta modo no molestar y música activa (no interrumpe)</li>
@@ -1189,7 +1189,7 @@
       </div>
       <div class="card">
         <h3>🔕 Modo No molestar</h3>
-        <p>Rosita no interrumpe ni inicia nada por su cuenta. Cremallera animada en la boca. <strong>No escucha ni responde</strong> mientras está activo.</p>
+        <p>Nina no interrumpe ni inicia nada por su cuenta. Cremallera animada en la boca. <strong>No escucha ni responde</strong> mientras está activo.</p>
         <ul style="margin-top:8px">
           <li>Tocar el ícono 🔕 en la pantalla principal</li>
           <li>Decirle: <span class="cmd">hacé silencio</span> / <span class="cmd">modo no molestar</span></li>
@@ -1218,27 +1218,27 @@
     <div class="cards">
       <div class="card">
         <h3>🥱 Bostezo</h3>
-        <p>Si pasan 5 minutos sin actividad de día, Rosita bosteza con animación y sonido. Solo si no hay música, modo noche ni modo no molestar. Mínimo 10 min entre bostezos.</p>
+        <p>Si pasan 5 minutos sin actividad de día, Nina bosteza con animación y sonido. Solo si no hay música, modo noche ni modo no molestar. Mínimo 10 min entre bostezos.</p>
       </div>
       <div class="card">
         <h3>🎵 Silbido</h3>
-        <p>Si pasan 10 minutos sin charla, Rosita silba una serie de 3 silbidos como llamado suave. Cooldown de 10 min entre series.</p>
+        <p>Si pasan 10 minutos sin charla, Nina silba una serie de 3 silbidos como llamado suave. Cooldown de 10 min entre series.</p>
       </div>
       <div class="card">
         <h3>🎂 Saludo de cumpleaños</h3>
-        <p>A las 9hs del día del cumpleaños (configurado en el perfil), Rosita reproduce una canción y hace un saludo emotivo generado por IA. Globos animados durante todo el día.</p>
+        <p>A las 9hs del día del cumpleaños (configurado en el perfil), Nina reproduce una canción y hace un saludo emotivo generado por IA. Globos animados durante todo el día.</p>
       </div>
       <div class="card">
         <h3>☀️ Saludo matutino</h3>
-        <p>A las 9hs, Rosita da los buenos días con el clima del día y una pregunta cálida. Saludo especial en Navidad y Año Nuevo.</p>
+        <p>A las 9hs, Nina da los buenos días con el clima del día y una pregunta cálida. Saludo especial en Navidad y Año Nuevo.</p>
       </div>
       <div class="card">
         <h3>🗓️ Feriados</h3>
-        <p>Si hay un feriado hoy o mañana, Rosita lo menciona en la conversación o en el saludo matutino. Datos de feriados nacionales de Argentina del año en curso.</p>
+        <p>Si hay un feriado hoy o mañana, Nina lo menciona en la conversación o en el saludo matutino. Datos de feriados nacionales de Argentina del año en curso.</p>
       </div>
       <div class="card">
         <h3>⚠️ Alerta de inactividad</h3>
-        <p>Si el usuario no interactúa en 4 horas seguidas (entre 9h y 21h), Rosita envía automáticamente una alerta por Telegram a los contactos familiares.</p>
+        <p>Si el usuario no interactúa en 4 horas seguidas (entre 9h y 21h), Nina envía automáticamente una alerta por Telegram a los contactos familiares.</p>
       </div>
       <div class="card">
         <h3>🔄 Actualizaciones OTA</h3>

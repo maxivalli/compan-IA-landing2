@@ -309,7 +309,7 @@
     to   { transform: rotate(360deg); }
   }
 
-  /* Ojos de Rosita — pestañeo lento, igual que en la app */
+  /* Ojos de Nina — pestañeo lento, igual que en la app */
   @keyframes rosita-blink {
     0%, 92%, 100% { transform: scaleY(1); }
     95%           { transform: scaleY(0.08); }

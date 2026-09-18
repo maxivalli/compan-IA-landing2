@@ -176,7 +176,7 @@ function conBrillo(ctx, p, fn) {
 }
 
 // Contorno opcional. Sin él, la forma la define la luz — es lo que separa un
-// objeto con volumen de un dibujito. Se sigue usando en el estilo Rosita,
+// objeto con volumen de un dibujito. Se sigue usando en el estilo Nina,
 // donde la línea cian ES la identidad.
 function contornear(ctx, p, op) {
   if (op && op.sinContorno && !p.brillo) return;
