@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import NinaRive, { type ExpresionNina } from './NinaRive';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   AlarmClock,
@@ -249,275 +250,10 @@ const Telefono = ({ children, className = '' }: { children: React.ReactNode; cla
    ═══════════════════════════════════════════════════════════════════════════ */
 
 /* ── El rostro de Nina ─────────────────────────────────────────────────────
-   NO hay boca: son solo los dos ojos. Las formas salen tal cual de
-   AbuApp/components/RostroAsistente.tsx (`formaBase`), que las define sobre un
-   rostro de referencia de 360 px de ancho:
-     · w, h  = tamaño del ojo
-     · rt, rb = radio de las esquinas de arriba y de abajo
-     · rot    = inclinación en grados (distinta por ojo en triste/enojada)
-     · dy     = corrimiento vertical (solo 'confundida', que tiene ojos desparejos)
-   Los CENTROS de los ojos son fijos (x = 106 y 254 de 360) y lo que cambia es
-   el tamaño de cada forma — por eso van posicionados por su centro y no en una
-   fila flex, que los estiraría a todos por igual.                             */
+   Desde el 2026-10-02 es Nina de verdad, el archivo de Rive de la app (ver
+   NinaRive.tsx). Antes eran los dos ojos cian dibujados con CSS.             */
+export type Expresion = ExpresionNina;
 
-const CARA_W = 360; // ancho del rostro de referencia en la app
-const OJO_CX_IZQ = 106 / CARA_W; // 29,4%
-const OJO_CX_DER = 254 / CARA_W; // 70,6%
-
-type Forma = { w: number; h: number; rt: number; rb: number; rot?: number; arco?: boolean };
-
-// Solo las expresiones que usamos en la web. El resto (confundida, guiño,
-// avergonzada, durmiendo…) existe en la app pero acá no aporta.
-const EXPRESIONES: Record<string, { L: Forma; R: Forma }> = {
-  // óvalo de siempre. h=106, NO 132: acá decía 132 y el ojo salía un 25% más alto
-  // que en la app — y es la expresión por defecto, la que más se ve.
-  neutral: { L: { w: 104, h: 106, rt: 52, rb: 52 }, R: { w: 104, h: 106, rt: 52, rb: 52 } },
-  // más alto y angosto: ojos bien abiertos
-  sorprendida: { L: { w: 100, h: 152, rt: 50, rb: 50 }, R: { w: 100, h: 152, rt: 50, rb: 50 } },
-  // domo grueso: plano abajo, redondo arriba (ternura / pensativa)
-  ternura: { L: { w: 122, h: 72, rt: 61, rb: 6 }, R: { w: 122, h: 72, rt: 61, rb: 6 } },
-  // arco: los ojitos de risa "⌒"
-  feliz: { L: { w: 100, h: 50, rt: 0, rb: 0, arco: true }, R: { w: 100, h: 50, rt: 0, rb: 0, arco: true } },
-  // cuenco inclinado hacia afuera: ojos caídos
-  triste: { L: { w: 120, h: 66, rt: 8, rb: 60, rot: -16 }, R: { w: 120, h: 66, rt: 8, rb: 60, rot: 16 } },
-  // semi-cerrados: plano arriba, redondo abajo
-  cansada: { L: { w: 118, h: 56, rt: 6, rb: 56 }, R: { w: 118, h: 56, rt: 6, rb: 56 } },
-};
-
-export type Expresion = keyof typeof EXPRESIONES;
-
-// Un ojo, en DOS capas, y la separación es obligatoria:
-//   · la de afuera lo ubica (translate para centrarlo en su eje + rotación)
-//   · la de adentro lleva la forma y el pestañeo
-// No se pueden juntar: el pestañeo es una animación CSS que escribe
-// `transform: scaleY(...)`, y una animación le GANA al transform inline — se
-// comía el translate de centrado y los ojos se corrían media anchura.
-//
-// El radio va con los dos ejes separados por barra para que la esquina sea un
-// arco redondo: el % horizontal se mide contra el ancho y el vertical contra
-// el alto, que acá son distintos.
-const Ojo = ({ f, cx, retardo }: { f: Forma; cx: number; retardo: string }) => {
-  const posicion: React.CSSProperties = {
-    position: 'absolute',
-    left: `${cx * 100}%`,
-    top: '50%',
-    width: `${(f.w / CARA_W) * 100}%`,
-    paddingBottom: `${(f.h / CARA_W) * 100}%`,
-    transform: `translate(-50%, -50%) rotate(${f.rot ?? 0}deg)`,
-  };
-
-  if (f.arco) {
-    return (
-      <div style={posicion}>
-        <svg
-          viewBox={`0 0 ${f.w} ${f.h}`}
-          className="rosita-eye absolute inset-0 h-full w-full overflow-visible drop-shadow-[0_0_9px_rgba(92,225,230,0.8)]"
-          style={{ animationDelay: retardo }}
-        >
-          <path
-            d={`M 13 ${f.h - 7} Q ${f.w / 2} 1 ${f.w - 13} ${f.h - 7}`}
-            fill="none"
-            stroke="#5ce1e6"
-            strokeWidth={24}
-            strokeLinecap="round"
-          />
-        </svg>
-      </div>
-    );
-  }
-
-  // El ojo NO es un rectángulo con `border-radius`: es el mismo path que dibuja la
-  // app (`pathForma` en RostroAsistente.tsx), con curvas CUADRÁTICAS cuyo punto de
-  // control está en la esquina del rectángulo.
-  //
-  // La diferencia importa y se ve: `border-radius` traza un arco de ELIPSE, así que
-  // con rt = w/2 el ojo sale un círculo perfecto. Una cuadrática con el control en
-  // la esquina traza una parábola, que es más PLANA que el arco — por eso el ojo de
-  // la app se lee como "redondo pero un poco cuadrado". Con border-radius eso se
-  // perdía y quedaba una pastilla.
-  //
-  // Los recortes (`Math.min`) son los mismos que hace la app, en el mismo orden.
-  const rt = Math.max(0, Math.min(f.rt, f.w / 2, f.h));
-  const rb = Math.max(0, Math.min(f.rb, f.w / 2, f.h - rt));
-  const d =
-    `M ${rt},0 ` +
-    `L ${f.w - rt},0 Q ${f.w},0 ${f.w},${rt} ` +
-    `L ${f.w},${f.h - rb} Q ${f.w},${f.h} ${f.w - rb},${f.h} ` +
-    `L ${rb},${f.h} Q 0,${f.h} 0,${f.h - rb} ` +
-    `L 0,${rt} Q 0,0 ${rt},0 Z`;
-
-  return (
-    <div style={posicion}>
-      <svg
-        viewBox={`0 0 ${f.w} ${f.h}`}
-        preserveAspectRatio="none"
-        className="rosita-eye absolute inset-0 h-full w-full drop-shadow-[0_0_13px_rgba(92,225,230,0.75)]"
-        style={{ animationDelay: retardo }}
-      >
-        <path d={d} fill="#5ce1e6" />
-      </svg>
-    </div>
-  );
-};
-
-/* ── Overlays de expresión ───────────────────────────────────────────────────
-   La app suma un efecto encima de los ojos según la expresión (ver
-   `OverlayEmojis` en RostroAsistente.tsx): corazones en ternura, confeti en
-   feliz, signos de admiración en sorprendida. Posiciones, tamaños y colores
-   salen de components/EfectosExpresion.tsx, convertidos a % del rostro de 360.  */
-
-// x = centro de la pieza dentro del rostro (%), tam = tamaño (% del rostro)
-const CORAZONES = [
-  { x: 20.6, tam: 10.0, d: '0s' },
-  { x: 32.2, tam: 8.3, d: '0.35s' },
-  { x: 49.2, tam: 11.7, d: '0.7s' },
-  { x: 64.2, tam: 9.4, d: '0.2s' },
-  { x: 79.7, tam: 10.6, d: '0.55s' },
-  { x: 38.3, tam: 7.8, d: '0.9s' },
-];
-
-const CONFETI = [
-  { x: 19.2, tam: 5.6, color: '#FF6B6B', estrella: true, d: '0s' },
-  { x: 30.0, tam: 6.7, color: '#FFD93D', estrella: false, d: '0.12s' },
-  { x: 41.1, tam: 5.0, color: '#6BCB77', estrella: true, d: '0.06s' },
-  { x: 53.3, tam: 6.1, color: '#4D96FF', estrella: false, d: '0.22s' },
-  { x: 64.7, tam: 5.6, color: '#FF6BFF', estrella: true, d: '0.09s' },
-  { x: 75.8, tam: 6.7, color: '#FF9F45', estrella: false, d: '0.18s' },
-  { x: 86.1, tam: 5.0, color: '#C77DFF', estrella: true, d: '0.04s' },
-];
-
-// En la app van ARRIBA de los ojos y en diagonal: el más grande, más alto y
-// más a la derecha (offsetX -28/0/+32, offsetY 52/26/0 sobre el rostro de 360).
-// `alto` es la ALTURA en % del rostro (22/32/44 de 360, igual que la app). El
-// ancho sale de ahí: el signo es un SVG de 10×34, o sea alto/3,4 — si se pone
-// el valor como ancho, el signo sale 3,4 veces más grande de lo que debería.
-const PROPORCION_SIGNO = 34 / 10;
-const ADMIRACION = [
-  { x: 42.2, alto: 6.1, top: 8, txt: '!', d: '0s' },
-  { x: 50.0, alto: 8.9, top: -1, txt: '¡', d: '0.18s' },
-  { x: 58.9, alto: 12.2, top: -11, txt: '!', d: '0.36s' },
-];
-
-const HEART_PATH =
-  'M 0,-8 C -5,-14 -16,-12 -16,-4 C -16,4 -8,10 0,16 C 8,10 16,4 16,-4 C 16,-12 5,-14 0,-8 Z';
-const STAR_PATH = 'M 0,-10 L 2.9,-3.1 L 10,-3.1 L 4.3,1.5 L 6.5,9 L 0,4.6 L -6.5,9 L -4.3,1.5 L -10,-3.1 L -2.9,-3.1 Z';
-
-const Pieza = ({ x, tam, retardo, children }: { x: number; tam: number; retardo: string; children: React.ReactNode }) => (
-  <div
-    className="efecto-sube absolute"
-    style={{ left: `${x}%`, bottom: '6%', width: `${tam}%`, animationDelay: retardo }}
-  >
-    {children}
-  </div>
-);
-
-const OverlayExpresion = ({ expresion }: { expresion: Expresion }) => {
-  if (expresion === 'ternura') {
-    return (
-      <>
-        {CORAZONES.map((c) => (
-          <Pieza key={c.x} x={c.x} tam={c.tam} retardo={c.d}>
-            <svg viewBox="-18 -16 36 34" className="w-full drop-shadow-[0_0_6px_rgba(255,143,171,0.6)]">
-              <path d={HEART_PATH} fill="#FF8FAB" />
-            </svg>
-          </Pieza>
-        ))}
-      </>
-    );
-  }
-  if (expresion === 'feliz') {
-    return (
-      <>
-        {CONFETI.map((c) => (
-          <Pieza key={c.x} x={c.x} tam={c.tam} retardo={c.d}>
-            {c.estrella ? (
-              <svg viewBox="-11 -11 22 22" className="w-full">
-                <path d={STAR_PATH} fill={c.color} />
-              </svg>
-            ) : (
-              <div className="aspect-square w-full rounded-[28%]" style={{ background: c.color }} />
-            )}
-          </Pieza>
-        ))}
-      </>
-    );
-  }
-  if (expresion === 'sorprendida') {
-    return (
-      <>
-        {ADMIRACION.map((a) => (
-          <div
-            key={a.txt + a.x}
-            className="efecto-late absolute"
-            style={{
-              left: `${a.x}%`,
-              top: `${a.top}%`,
-              width: `${a.alto / PROPORCION_SIGNO}%`,
-              animationDelay: a.d,
-            }}
-          >
-            <svg viewBox="0 0 10 34" className="w-full drop-shadow-[0_0_7px_rgba(92,225,230,0.7)]">
-              {/* "¡" va cabeza abajo: el punto arriba y la barra colgando */}
-              {a.txt === '¡' ? (
-                <>
-                  <circle cx="5" cy="4" r="3.4" fill="#5ce1e6" />
-                  <path d="M 2.1 11 h 5.8 l -1 20 h -3.8 Z" fill="#5ce1e6" />
-                </>
-              ) : (
-                <>
-                  <path d="M 2.1 3 h 5.8 l -1 20 h -3.8 Z" fill="#5ce1e6" />
-                  <circle cx="5" cy="30" r="3.4" fill="#5ce1e6" />
-                </>
-              )}
-            </svg>
-          </div>
-        ))}
-      </>
-    );
-  }
-  return null;
-};
-
-// ⚠️ HOY NO SE DIBUJAN. Van con la escena del LIBRO, y la landing ahora muestra la
-// del mate. Se dejan porque son una función real de la app (RostroAsistente.tsx,
-// "Anteojos de lectura"): si algún día se cambia la escena copiada del taller por
-// `libro.js`, hay que volver a pasar `leyendo` y aparecen solos.
-//
-// Anteojos de lectura, iguales a los de la app (`AnteojosLectura`): dos lentes
-// de radio 58 centrados en los mismos puntos que los ojos (106 y 254 de 360),
-// vidrio cian translúcido, marco cálido y el puente que los une.
-// La app los pone en y=145 de un rostro de 260 de alto, o sea 15 por debajo del
-// centro de los ojos; acá el rostro mide 200, así que van a 100 + 15 = 115.
-const AnteojosLectura = () => (
-  <svg viewBox="0 0 360 200" className="pointer-events-none absolute inset-0 h-full w-full">
-    {/* El vidrio va más suave que en la app (0,3): acá los ojos llevan un glow
-        que la app no tiene, y con el tinte original todo se fundía en un bloque. */}
-    <g fill="rgba(92,225,230,0.14)" stroke="#F0CFA0" strokeWidth={6}>
-      <circle cx={106} cy={115} r={58} />
-      <circle cx={254} cy={115} r={58} />
-    </g>
-    <rect x={164} y={111} width={32} height={8} fill="#F0CFA0" />
-  </svg>
-);
-
-const OjosRosita = ({ expresion = 'neutral', leyendo = false }: { expresion?: Expresion; leyendo?: boolean }) => {
-  const { L, R } = EXPRESIONES[expresion] ?? EXPRESIONES.neutral;
-  return (
-    <div className="relative w-full" style={{ paddingBottom: `${(200 / CARA_W) * 100}%` }}>
-      {/* El vaivén va en una capa aparte que envuelve a los dos ojos: mueve el
-          PAR completo, como el `idleX` de la app, y no toca ni el centrado de
-          cada ojo ni el pestañeo. */}
-      <div className={`absolute inset-0 ${leyendo ? 'leer-vaiven' : ''}`}>
-        <Ojo f={L} cx={OJO_CX_IZQ} retardo="0s" />
-        <Ojo f={R} cx={OJO_CX_DER} retardo="0.06s" />
-      </div>
-      {leyendo && <AnteojosLectura />}
-      <OverlayExpresion expresion={expresion} />
-    </div>
-  );
-};
-
-// Barra de estado del sistema: hora a la izquierda, señal/wifi/batería a la derecha.
 const BarraEstado = () => (
   <div className="absolute inset-x-0 top-0 flex items-center justify-between px-[7%] pt-[4%] text-white">
     <span className="text-[3.5cqw] font-medium">13:57</span>
@@ -593,161 +329,30 @@ const PanelInferiorApp = () => (
   </div>
 );
 
-// Fondo de la app: casi negro, un poco más claro arriba, con el halo de los ojos.
+// Fondo de la app: casi negro, un poco más claro arriba, con un halo tibio donde está Nina.
 const FondoApp = () => (
   <>
     <div className="absolute inset-0 bg-[linear-gradient(180deg,#1a1d23_0%,#0b0d11_45%,#050506_100%)]" />
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_26%,rgba(92,225,230,0.13),transparent_55%)]" />
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_26%,rgba(255,200,90,0.10),transparent_55%)]" />
   </>
 );
 
-// La pantalla principal, reproducida de la captura real: los ojos arrancan al
-// 19% del alto y abajo va el panel blanco con el reloj y el botón de ¡Ayuda!
-// El rostro va centrado en su línea de ojos (27% del alto), no anclado arriba:
-// así las formas más bajas (ternura, feliz) no "flotan" fuera de lugar cuando
-// cambia la expresión.
-const Rostro = ({ expresion, leyendo = false }: { expresion: Expresion; leyendo?: boolean }) => (
-  <div className="absolute left-1/2 top-[27%] w-[96%] -translate-x-1/2 -translate-y-1/2">
-    <OjosRosita expresion={expresion} leyendo={leyendo} />
-  </div>
+// La pantalla principal: Nina arriba, centrada en el 27% del alto como en la app,
+// y abajo el panel blanco con el reloj y el botón de ¡Ayuda!
+const Rostro = ({ expresion, escena }: { expresion: Expresion; escena?: string }) => (
+  <NinaRive
+    expresion={expresion}
+    escena={escena}
+    className="absolute left-1/2 top-[27%] aspect-square w-[92%] -translate-x-1/2 -translate-y-1/2"
+  />
 );
-
-// Animación de reposo — el MISMO dibujo que hace la app.
-//
-// Antes acá corría un Lottie (`/leyendo.json`) sacado de AbuApp/assets/animations/.
-// Esa carpeta hoy está VACÍA: la app dejó de usar Lottie y dibuja quince escenas
-// propias con Skia (AbuApp/components/idle/escenas/). O sea que la web mostraba una
-// animación de una versión de la app que ya no existe.
-//
-// La fuente de esas escenas es el taller (AbuApp/taller-animaciones/), Canvas2D puro,
-// y el navegador lo corre tal cual. Así que en vez de portar el dibujo a mano —que
-// volvería a separarse en la próxima edición— se copian los dos archivos del taller
-// y se los llama con las MISMAS opciones y el MISMO encuadre que usa la app.
-//
-// Los números salen de AbuApp/components/idle/: lienzo lógico 900×800, encuadre del
-// mate {cx:450, cy:461, alto:414} y tamaño en pantalla 175 sobre una de ~850 de alto.
-const ESCENA = {
-  lienzoW: 900,
-  lienzoH: 800,
-  cx: 450,
-  cy: 461,
-  alto: 414,
-  // 175 de alto de objeto sobre una pantalla de ~850 → 20,6% del alto.
-  fraccionAlto: 175 / 850,
-  // AbuApp/components/idle/index.ts → OPCIONES. `rastro` y `sinContorno` prendidos,
-  // ojos apagados (los dibuja RostroAsistente aparte) y guías apagadas.
-  opciones: { ojos: false, guias: false, rastro: true, sinContorno: true },
-};
-
-let escenasCargadas: Promise<void> | null = null;
-function cargarEscenas(): Promise<void> {
-  if (escenasCargadas) return escenasCargadas;
-  escenasCargadas = new Promise<void>((listo, falla) => {
-    // Scripts clásicos y EN ORDEN: `mate.js` se registra dentro del `ANIMACIONES`
-    // que declara `comun.js`, y `puente.js` es el que lo expone al módulo.
-    const rutas = ['/escenas/comun.js', '/escenas/mate.js', '/escenas/puente.js'];
-    const siguiente = (i: number) => {
-      if (i >= rutas.length) return listo();
-      const el = document.createElement('script');
-      el.src = rutas[i];
-      el.async = false;
-      el.onload = () => siguiente(i + 1);
-      el.onerror = () => falla(new Error(`no cargó ${rutas[i]}`));
-      document.head.appendChild(el);
-    };
-    siguiente(0);
-  });
-  return escenasCargadas;
-}
-
-const AnimacionReposo = () => {
-  const lienzo = useRef<HTMLCanvasElement | null>(null);
-
-  useEffect(() => {
-    const nodo = lienzo.current;
-    if (!nodo) return;
-
-    let vivo = true;
-    let pedido = 0;
-    let arranque = 0;
-
-    const dibujar = (escena: any) => {
-      const ctx = nodo.getContext('2d');
-      if (!ctx) return;
-
-      const marco = (ahora: number) => {
-        if (!vivo) return;
-        if (!arranque) arranque = ahora;
-
-        // Tamaño real en píxeles: el teléfono de la web es chico y sin esto el
-        // dibujo sale borroso en pantallas densas.
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        const anchoCss = nodo.clientWidth;
-        const altoCss = nodo.clientHeight;
-        if (!anchoCss || !altoCss) { pedido = requestAnimationFrame(marco); return; }
-        if (nodo.width !== Math.round(anchoCss * dpr)) {
-          nodo.width = Math.round(anchoCss * dpr);
-          nodo.height = Math.round(altoCss * dpr);
-        }
-
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        ctx.clearRect(0, 0, anchoCss, altoCss);
-
-        // El mismo encuadre que hace EscenaIdle.tsx: se escala para que el objeto
-        // mida lo que tiene que medir, y se corre el lienzo para que el punto del
-        // encuadre caiga en el centro de la pantalla.
-        const k = (altoCss * ESCENA.fraccionAlto) / ESCENA.alto;
-        ctx.save();
-        ctx.translate(anchoCss / 2, altoCss / 2);
-        ctx.scale(k, k);
-        ctx.translate(-ESCENA.cx, -ESCENA.cy);
-
-        const t = (ahora - arranque) % escena.dur;
-        escena.atras?.(ctx, ESCENA.lienzoW, ESCENA.lienzoH, t);
-        escena.dibujar(ctx, ESCENA.lienzoW, ESCENA.lienzoH, t, ESCENA.opciones);
-        escena.frente?.(ctx, ESCENA.lienzoW, ESCENA.lienzoH, t);
-        ctx.restore();
-
-        pedido = requestAnimationFrame(marco);
-      };
-      pedido = requestAnimationFrame(marco);
-    };
-
-    // Recién cuando entra en pantalla: son 25 KB de escena que no hacen falta
-    // para el primer pintado del hero.
-    const obs = new IntersectionObserver(
-      entradas => {
-        if (!entradas.some(e => e.isIntersecting)) return;
-        obs.disconnect();
-        cargarEscenas()
-          .then(() => {
-            const escena = (window as any).__ESCENAS?.mate;
-            if (vivo && escena) dibujar(escena);
-          })
-          .catch(() => {});
-      },
-      { rootMargin: '200px' },
-    );
-    obs.observe(nodo);
-
-    return () => {
-      vivo = false;
-      obs.disconnect();
-      cancelAnimationFrame(pedido);
-    };
-  }, []);
-
-  // Cubre la pantalla entera, igual que en la app: la escena se ubica sola con su
-  // encuadre y el panel blanco de abajo la tapa en parte, como corresponde.
-  return <canvas ref={lienzo} className="absolute inset-0 h-full w-full" />;
-};
 
 const PantallaRosita = ({ expresion = 'neutral', reposo = false }: { expresion?: Expresion; reposo?: boolean }) => (
   <div className="absolute inset-0 overflow-hidden bg-black">
     <FondoApp />
     <BarraEstado />
-    <Rostro expresion={expresion} />
-    {reposo && <AnimacionReposo />}
+    {/* en reposo, la escena del mate, la misma que hace la app */}
+    <Rostro expresion={expresion} escena={reposo ? 'mate' : undefined} />
     <PanelInferiorApp />
   </div>
 );
@@ -1115,6 +720,7 @@ const Navbar = () => (
       </a>
       <div className="hidden items-center gap-8 lg:flex">
         {[
+          ['#video', 'Video'],
           ['#escenas', 'Cómo funciona'],
           ['#voces', 'Voces'],
             ['#funciones', 'Funciones'],
@@ -1261,6 +867,42 @@ const Hero = () => (
 /* ═══════════════════════════════════════════════════════════════════════════
    Franja de confianza (negro)
    ═══════════════════════════════════════════════════════════════════════════ */
+
+// ── El video de presentación (2026-10-02) ─────────────────────────────────────
+// «Un día con Nina»: el video vertical hecho con el mismo archivo de Nina, sus
+// voces y las escenas reales de la app. Va comprimido para la web (720×1280,
+// ~5 MB) y no se baja hasta que alguien le da play (`preload="none"` + póster).
+// Sin marco de teléfono a propósito: el video es 9:16 y el teléfono es más alto,
+// así que adentro quedaba con franjas o recortado a los costados (y a los
+// costados van los subtítulos).
+const VideoPresentacion = () => (
+  <section id="video" className="bg-black px-5 py-24 sm:py-32">
+    <div className="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-[1fr_auto]">
+      <Reveal>
+        <h2 className="display g-text g-siri">
+          Un día
+          <br />
+          con Nina.
+        </h2>
+        <p className="copy-lead mt-10 max-w-md text-white/55">
+          Los remedios, la familia, lo que se acuerda de vos, una búsqueda, la radio y las buenas noches. Así acompaña, de la mañana a la noche.
+        </p>
+      </Reveal>
+      <Reveal delay={0.1} className="mx-auto w-full max-w-[340px]">
+        <div className="overflow-hidden rounded-[28px] border border-white/10 bg-black shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
+          <video
+            className="block aspect-[9/16] w-full"
+            src="/video/un-dia-con-nina.mp4"
+            poster="/video/un-dia-con-nina.jpg"
+            controls
+            playsInline
+            preload="none"
+          />
+        </div>
+      </Reveal>
+    </div>
+  </section>
+);
 
 const Confianza = () => (
   <section className="border-t border-white/[0.07] bg-black py-14">
@@ -2848,6 +2490,7 @@ export default function App() {
         <main>
           <Hero />
           <Confianza />
+          <VideoPresentacion />
           <EscenaEnCasa />
           <CitasUno />
           <EscenaAcompana />
