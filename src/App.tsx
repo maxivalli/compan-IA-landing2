@@ -148,8 +148,15 @@ const TituloPorLetra = ({
         <span key={li} className={`block whitespace-nowrap ${linea.clase ?? ''}`} aria-hidden="true">
           {Array.from(linea.texto).map((ch, i) => {
             const idx = n++;
+            // El acento de «compañía» (y la tilde de la ñ) sobresalen arriba de la caja
+            // de la letra, y `background-clip: text` sólo pinta ADENTRO de esa caja:
+            // lo que sale queda transparente y el acento se veía cortado. Se agranda
+            // la caja hacia arriba con padding y se devuelve con margen negativo, así
+            // el renglón no se mueve.
             const deg = linea.degradado
               ? {
+                  paddingTop: '0.18em',
+                  marginTop: '-0.18em',
                   backgroundImage: DEGRADADO_HERO,
                   backgroundSize: `${conDeg * 100}% 100%`,
                   backgroundPositionX: conDeg > 1 ? `${(d++ / (conDeg - 1)) * 100}%` : '50%',
@@ -715,7 +722,7 @@ const Navbar = () => (
       <a href="#top" className="flex items-center gap-2">
         <img src="/logo.png" alt="CompañIA" className="h-5 w-5 object-contain" />
         <span className="text-[13px] text-white">
-          <Brand iaClassName="text-brand-blue" />
+          <Brand iaClassName="ia-marca" />
         </span>
       </a>
       <div className="hidden items-center gap-8 lg:flex">
@@ -1723,7 +1730,7 @@ const Comparativa = () => {
                       col.destacado ? 'bg-ink text-white' : 'text-ink-soft'
                     }`}
                   >
-                    {col.destacado ? <Brand iaClassName="text-brand-blue" /> : col.name}
+                    {col.destacado ? <Brand iaClassName="ia-marca" /> : col.name}
                   </th>
                 ))}
               </tr>

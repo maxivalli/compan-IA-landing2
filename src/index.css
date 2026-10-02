@@ -372,3 +372,12 @@
   .no-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
   .no-scrollbar::-webkit-scrollbar { display: none; }
 }
+
+/* El «IA» de CompañIA con los colores del logo de los globitos (2026-10-02;
+   antes era el cian de los ojos viejos). */
+.ia-marca {
+  background-image: linear-gradient(95deg, #ff9a3c, #ff3d7f 55%, #b23cf0);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
