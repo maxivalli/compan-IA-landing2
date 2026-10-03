@@ -729,7 +729,7 @@ const Navbar = () => (
         {[
           ['#video', 'Video'],
           ['#escenas', 'Cómo funciona'],
-          ['#voces', 'Voces'],
+          ['#voces', 'Su voz'],
             ['#funciones', 'Funciones'],
           ['#precios', 'Precios'],
           ['#faq', 'Preguntas'],
@@ -1254,14 +1254,6 @@ const Voces = () => {
       fondo:
         'radial-gradient(circle at 22% 12%, rgba(242,144,92,0.3), transparent 58%), radial-gradient(circle at 86% 92%, rgba(167,139,250,0.22), transparent 62%), #0b0a0a',
     },
-    {
-      id: 'juanchi',
-      name: 'Juanchi',
-      desc: 'Tranquilo y cercano. El acento de todos los días.',
-      file: '/voz-argentino.mp3',
-      fondo:
-        'radial-gradient(circle at 22% 12%, rgba(92,225,230,0.28), transparent 58%), radial-gradient(circle at 86% 92%, rgba(110,140,255,0.24), transparent 62%), #06090b',
-    },
   ];
 
   const handlePlay = (id: string) => {
@@ -1291,16 +1283,16 @@ const Voces = () => {
       <div className="mx-auto max-w-6xl">
         <Reveal>
           <h2 className="display g-text g-siri">
-            Elegí
+            Escuchá
             <br />
             su voz.
           </h2>
           <p className="copy-lead mt-10 max-w-md text-white/55">
-            Dos personalidades, el mismo cuidado. Tocá para escucharlas.
+            Cercana, cálida y con tonada. Tocá para escucharla.
           </p>
         </Reveal>
 
-        <div className="mt-14 grid gap-5 md:grid-cols-2">
+        <div className="mt-14 grid max-w-2xl gap-5">
           {voces.map((voz, i) => (
             <Reveal key={voz.id} delay={0.1 * i}>
               <div
@@ -1351,8 +1343,8 @@ const Voces = () => {
         {/* Aclaración del asterisco de los nombres */}
         <Reveal delay={0.15}>
           <p className="mt-10 max-w-xl text-[13px] leading-relaxed text-white/35">
-            <span className="align-super text-[0.75em]">*</span> Nina y Juanchi son los nombres por defecto. Podés
-            ponerle a tu asistente el nombre que quieras desde la configuración de la app.
+            <span className="align-super text-[0.75em]">*</span> Nina es el nombre por defecto. Podés ponerle el
+            nombre que quieras desde la configuración de la app.
           </p>
         </Reveal>
       </div>
