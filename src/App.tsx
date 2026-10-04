@@ -1249,8 +1249,8 @@ const Voces = () => {
     {
       id: 'rosita',
       name: 'Nina',
-      desc: 'Cálida y cantarina, con el acento del norte del país.',
-      file: '/voz-nortena.mp3',
+      desc: 'Cálida y cercana. Es la misma voz que vas a escuchar en la app.',
+      file: '/voz-nina.mp3',
       fondo:
         'radial-gradient(circle at 22% 12%, rgba(242,144,92,0.3), transparent 58%), radial-gradient(circle at 86% 92%, rgba(167,139,250,0.22), transparent 62%), #0b0a0a',
     },
@@ -1288,7 +1288,7 @@ const Voces = () => {
             su voz.
           </h2>
           <p className="copy-lead mt-10 max-w-md text-white/55">
-            Cercana, cálida y con tonada. Tocá para escucharla.
+            Así suena Nina. Tocá para escucharla.
           </p>
         </Reveal>
 
@@ -1309,7 +1309,6 @@ const Voces = () => {
                 <div>
                   <p className="display-md">
                     <span className="g-text g-siri">{voz.name}</span>
-                    <span className="align-super text-[0.32em] font-semibold text-white/40">*</span>
                   </p>
                   <p className="copy-body mt-5 max-w-xs text-white/50">{voz.desc}</p>
                 </div>
@@ -1340,13 +1339,6 @@ const Voces = () => {
           ))}
         </div>
 
-        {/* Aclaración del asterisco de los nombres */}
-        <Reveal delay={0.15}>
-          <p className="mt-10 max-w-xl text-[13px] leading-relaxed text-white/35">
-            <span className="align-super text-[0.75em]">*</span> Nina es el nombre por defecto. Podés ponerle el
-            nombre que quieras desde la configuración de la app.
-          </p>
-        </Reveal>
       </div>
     </section>
   );
