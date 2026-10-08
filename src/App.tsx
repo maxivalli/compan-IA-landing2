@@ -882,6 +882,8 @@ const Hero = () => (
 // Sin marco de teléfono a propósito: el video es 9:16 y el teléfono es más alto,
 // así que adentro quedaba con franjas o recortado a los costados (y a los
 // costados van los subtítulos).
+// La música (2026-10-08) es de dibujito, con muestras de FluidR3 GM: su licencia
+// (CC BY 3.0) pide el crédito, que va debajo del video.
 const VideoPresentacion = () => (
   <section id="video" className="bg-black px-5 py-24 sm:py-32">
     <div className="mx-auto grid max-w-6xl items-center gap-14 md:grid-cols-[1fr_auto]">
@@ -906,6 +908,9 @@ const VideoPresentacion = () => (
             preload="none"
           />
         </div>
+        <p className="mt-3 text-center text-[11px] leading-snug text-white/35">
+          Música con instrumentos de FluidR3 GM (Frank Wen), CC BY 3.0.
+        </p>
       </Reveal>
     </div>
   </section>
