@@ -2358,9 +2358,12 @@ const ModalPrivacidad = ({ onClose }: { onClose: () => void }) => (
         No recopilamos nombre, correo, edad ni teléfono. No hay cuentas de usuario. No vendemos datos a terceros.
       </ItemModal>
       <ItemModal titulo="Servicios de terceros">
-        OpenAI y Google Gemini (respuestas IA) · Deepgram (transcripción) · Fish Audio (síntesis de voz, sin
-        almacenamiento) · OpenWeather (clima) · Telegram (mensajes familiares) · Samsung SmartThings (domótica,
-        opcional).
+        Together AI (respuestas de la asistente, descripción de imágenes y memoria) · TypeSafe (interpretar cada
+        frase) · Deepgram (transcripción) · Fish Audio (síntesis de voz) · Serper (búsquedas web) · Wikipedia y
+        OpenStreetMap (consultas de temas y lugares) · OpenWeatherMap (clima) · Cloudinary (fotos) · Samsung
+        SmartThings (domótica, opcional) · Telegram (mensajes familiares, opcional) · Google Calendar (sólo lectura,
+        opcional) · Radio Browser (radios) · Railway (servidor y base de datos) · Sentry (reportes de errores) ·
+        Better Stack (registros técnicos) · Expo (actualizaciones de la app).
       </ItemModal>
       <ItemModal titulo="Seguridad">
         Toda la comunicación usa HTTPS. Las claves de API nunca están en el dispositivo.
