@@ -2341,27 +2341,29 @@ const ModalTerminos = ({ onClose }: { onClose: () => void }) => (
 
 const ModalPrivacidad = ({ onClose }: { onClose: () => void }) => (
   <Modal onClose={onClose}>
-    <EncabezadoModal antetitulo="Última actualización: marzo 2026" titulo="Política de privacidad." />
+    <EncabezadoModal antetitulo="Última actualización: octubre 2026" titulo="Política de privacidad." />
     <ListaModal>
       <ItemModal titulo="¿Qué es CompañIA?">
         Una aplicación de asistente de voz para adultos mayores. Permite conversar por voz, recibir recordatorios de
         medicamentos, escuchar música y mantenerse en contacto con familiares mediante Telegram.
       </ItemModal>
       <ItemModal titulo="Datos que recopilamos">
-        <span className="font-medium text-ink">Voz y audio:</span> el audio se envía a Deepgram para transcripción y se
-        descarta de inmediato. No se almacena.
+        <span className="font-medium text-ink">Voz y audio:</span> tu voz se transcribe con un proveedor de transcripción (Deepgram) y la voz de la asistente la genera un proveedor de síntesis de voz (Fish Audio). En nuestro servidor no guardamos el audio. Si activás la verificación de hablante, guardamos un perfil de voz.
         <br />
-        <span className="font-medium text-ink">Ubicación:</span> solo para obtener el clima local (OpenWeather). No se
-        comparte ni almacena.
+        <span className="font-medium text-ink">Conversaciones y memoria:</span> lo que decís se procesa con proveedores de inteligencia artificial para responderte. Nuestro servidor guarda un resumen de las charlas (memoria) y conserva por un tiempo lo que se habló para armarla.
         <br />
-        <span className="font-medium text-ink">Perfil:</span> nombre, gustos, medicamentos y fechas se guardan
-        únicamente en el dispositivo. Las conversaciones no se almacenan en ningún servidor.
+        <span className="font-medium text-ink">Perfil y salud:</span> nombre, edad, familiares, gustos, medicamentos y fechas se guardan en el dispositivo y en una copia de respaldo en nuestro servidor.
         <br />
-        <span className="font-medium text-ink">ID de dispositivo:</span> un identificador anónimo para vincular el
-        dispositivo con tu familia. No contiene información personal.
+        <span className="font-medium text-ink">Ubicación:</span> se usa para el clima, para buscar lugares cercanos y calcular distancias, y se comparte con los proveedores necesarios para esas consultas.
+        <br />
+        <span className="font-medium text-ink">Estado de ánimo:</span> la asistente lo estima a partir de la charla y lo ven los familiares que configures.
+        <br />
+        <span className="font-medium text-ink">Cámara y fotos:</span> las imágenes que le mostrás a la cámara y las fotos de Telegram se envían a un proveedor de inteligencia artificial para describirlas; las fotos de la galería y de Telegram se almacenan en un servicio de almacenamiento de imágenes.
+        <br />
+        <span className="font-medium text-ink">ID de dispositivo:</span> un identificador anónimo para vincular el dispositivo con tu familia. No contiene información personal.
       </ItemModal>
       <ItemModal titulo="Datos que no recopilamos">
-        No recopilamos nombre, correo, edad ni teléfono. No hay cuentas de usuario. No vendemos datos a terceros.
+        No pedimos correo electrónico, teléfono ni documento. No hay cuentas de usuario con contraseña. No vendemos datos a terceros.
       </ItemModal>
       <ItemModal titulo="Servicios de terceros">
         Together AI (respuestas de la asistente, descripción de imágenes y memoria) · TypeSafe (interpretar cada
