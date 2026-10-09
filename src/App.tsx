@@ -1068,8 +1068,11 @@ const EscenaFamilia = () => (
       </>
     }
     visual={
-      <div className="mx-auto flex w-full max-w-[520px] items-end justify-center gap-5">
-        <div className="w-[190px] translate-y-10 sm:w-[215px]">
+      // En el celular: los dos teléfonos en una fila y el mensaje DEBAJO, a lo ancho. Los tres
+      // en una fila no entran en 390px: los teléfonos quedaban de 50px y el mensaje se comía
+      // todo. Desde `sm` vuelven a ir los tres en fila.
+      <div className="mx-auto flex w-full max-w-[520px] flex-wrap items-end justify-center gap-x-3 gap-y-8 sm:flex-nowrap sm:gap-5">
+        <div className="w-[150px] sm:w-[215px] sm:translate-y-10">
           <Telefono>
             <PantallaApp dice="Te dejó un mensaje tu hija Carolina." expresion="feliz">
               <MensajeVozApp />
@@ -1079,13 +1082,14 @@ const EscenaFamilia = () => (
         {/* El informe NO es una pantalla de la app: es el mensaje de las 22:15 que
             le llega a la familia. Por eso va como burbuja de Telegram, no adentro
             del teléfono de ella. */}
-        <div className="w-[190px] sm:w-[215px]">
+        <div className="w-[150px] sm:w-[215px]">
           <Telefono>
             <PantallaApp dice="Le mandé el resumen del día a la familia." expresion="ternura" />
           </Telefono>
         </div>
-        <div className="w-[210px] shrink-0 sm:w-[235px]">
-          <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-white/35">
+        {/* La etiqueta va en tinta: esta sección tiene fondo CLARO, y en blanco no se leía. */}
+        <div className="w-full max-w-[320px] sm:w-[235px] sm:max-w-none sm:shrink-0">
+          <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-ink/45">
             Le llega a la familia
           </p>
           <MensajeTelegramInforme />
@@ -1205,8 +1209,10 @@ const EscenaSOS = ({ onSaberMas }: { onSaberMas: () => void }) => (
               la familia. La frase de Nina es literal (useRosita.ts, vozConFamilia)
               y en su teléfono no aparece ninguna tarjeta, porque el SOS no abre
               ninguna pantalla. */}
-          <div className="mx-auto flex w-full max-w-[430px] items-center justify-center gap-5 sm:gap-7">
-            <div className="w-[190px] shrink-0 sm:w-[215px]">
+          {/* En el celular van APILADOS (teléfono arriba, mensaje abajo): uno al lado del
+              otro, el mensaje quedaba en ~150px y partía «ALERTA SOS» palabra por palabra. */}
+          <div className="mx-auto flex w-full max-w-[430px] flex-col items-center justify-center gap-8 sm:flex-row sm:gap-7">
+            <div className="w-[220px] shrink-0 sm:w-[215px]">
               <Telefono>
                 <PantallaApp
                   dice="Ya avisé a tu familia. Alguien va a comunicarse con vos pronto."
@@ -1214,7 +1220,7 @@ const EscenaSOS = ({ onSaberMas }: { onSaberMas: () => void }) => (
                 />
               </Telefono>
             </div>
-            <div className="min-w-0 flex-1">
+            <div className="w-full max-w-[320px] min-w-0 sm:max-w-none sm:flex-1">
               <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/35">
                 Le llega a la familia
               </p>
