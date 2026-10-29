@@ -2,7 +2,8 @@ import { useEffect, useRef } from 'react';
 
 /* ── Nina, la de verdad ─────────────────────────────────────────────────────
    El MISMO archivo de Rive que usa la app (AbuApp/assets/chispa/chispa.riv,
-   copiado a public/chispa.riv — si cambia allá, se vuelve a copiar). Antes los
+   copiado a public/chispa.riv — si cambia allá, se vuelve a copiar; última copia:
+   2026-10-29, cara de píldoras). Antes los
    mockups dibujaban con CSS los ojos cian viejos; desde el 2026-10-02 es Nina con
    su cuerpo, en esfera y dorada, que es como sale de fábrica.
 
