@@ -1694,7 +1694,7 @@ const Comparativa = () => {
     'Subtítulos en pantalla',
   ];
   const columnas = [
-    { name: 'CompañIA', precio: 'desde USD 19', destacado: true,  valores: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true] },
+    { name: 'CompañIA', precio: 'desde USD 14,90', destacado: true,  valores: [true, true, true, true, true, true, true, true, true, true, true, true, true, true, true] },
     { name: 'Ato',      precio: '$29 + hardware', destacado: false, valores: [true, false, true, true, false, false, true, true, true, true, false, false, false, false, false] },
     { name: 'Cuidador', precio: 'USD 400-1.200',  destacado: false, valores: [false, true, true, false, true, false, false, false, true, false, true, false, true, false, true] },
     { name: 'Videollamada', precio: 'Gratis',     destacado: false, valores: [false, true, false, false, false, false, false, false, true, false, false, false, false, false, false] },
@@ -1819,7 +1819,7 @@ const Precios = () => {
     },
     {
       etiqueta: 'Starter',
-      precio: 'USD 19',
+      precio: 'USD 14,90',
       periodo: '/mes',
       desc: 'Motor de voz nativo de Android. Ideal para empezar.',
       items: ['Voz nativa Android', ...comunes],
@@ -1828,7 +1828,7 @@ const Precios = () => {
     },
     {
       etiqueta: 'Companion',
-      precio: 'USD 29',
+      precio: 'USD 29,90',
       periodo: '/mes',
       desc: 'Voz premium ultra-natural. La experiencia completa.',
       items: ['Voz premium ultra-natural', ...comunes],
@@ -2302,14 +2302,14 @@ const ModalSobreNosotros = ({ onClose }: { onClose: () => void }) => (
 
 const ModalTerminos = ({ onClose }: { onClose: () => void }) => (
   <Modal onClose={onClose}>
-    <EncabezadoModal antetitulo="Última actualización: marzo 2026" titulo="Términos de servicio." />
+    <EncabezadoModal antetitulo="Última actualización: octubre 2026" titulo="Términos de servicio." />
     <ListaModal>
       <ItemModal titulo="1. El servicio">
         <Brand className="text-ink" /> es una aplicación de asistente de voz con IA para adultos mayores. Incluye
         conversación por voz, recordatorios, alertas a familiares y funciones de accesibilidad.
       </ItemModal>
       <ItemModal titulo="2. Suscripción">
-        El costo es de <span className="font-medium text-ink">USD 19 (Starter) o USD 29 (Companion) por mes</span> por
+        El costo es de <span className="font-medium text-ink">USD 14,90 (Starter) o USD 29,90 (Companion) por mes</span> por
         dispositivo. Podés cancelar en cualquier momento sin penalidad; el acceso se mantiene hasta el fin del período
         pagado.
       </ItemModal>
